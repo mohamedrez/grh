@@ -31,6 +31,7 @@ class User < ApplicationRecord
   has_many :notifications, as: :recipient, dependent: :destroy
 
   has_one :address, dependent: :destroy
+  has_many :experiences, dependent: :destroy
   enum :gender, %i[male female]
   enum :marital_status, %i[single married divorced]
 
