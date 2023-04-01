@@ -360,9 +360,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_073539) do
     t.string "avatar_url"
     t.string "first_name"
     t.string "last_name"
-    t.date "birthday"
-    t.date "entry_date"
-    t.date "departure_date"
+    t.date "birthdate"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "gender"
+    t.integer "marital_status"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
