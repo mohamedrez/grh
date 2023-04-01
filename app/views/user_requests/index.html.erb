@@ -1,0 +1,7 @@
+<div class="overflow-hidden bg-white shadow sm:rounded-md">
+  <ul role="list" class="divide-y divide-gray-200">
+    <% @user_requests.each do |user_request| %>
+      <%= render partial: 'list_item', locals: {user_request: user_request} %>
+    <% end %>
+  </ul>
+</div>

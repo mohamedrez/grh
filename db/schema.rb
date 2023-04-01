@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_29_125403) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_01_050951) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -308,6 +308,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_125403) do
     t.index ["stepable_type", "stepable_id"], name: "index_steps_on_stepable"
   end
 
+  create_table "time_off_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "tracks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "position"
@@ -357,6 +364,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_125403) do
     t.index ["user_id"], name: "index_user_quiz_responses_on_user_id"
   end
 
+  create_table "user_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "state", default: "pending"
+    t.bigint "user_id", null: false
+    t.bigint "managed_by_id"
+    t.string "requestable_type", null: false
+    t.bigint "requestable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["managed_by_id"], name: "index_user_requests_on_managed_by_id"
+    t.index ["requestable_type", "requestable_id"], name: "index_user_requests_on_requestable"
+    t.index ["user_id"], name: "index_user_requests_on_user_id"
+  end
+
   create_table "users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -396,4 +416,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_29_125403) do
   add_foreign_key "user_progresses", "users"
   add_foreign_key "user_quiz_responses", "quizzes"
   add_foreign_key "user_quiz_responses", "users"
+  add_foreign_key "user_requests", "users"
+  add_foreign_key "user_requests", "users", column: "managed_by_id"
 end
