@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe "time_off_requests/new", type: :view do
   before(:each) do
     assign(:time_off_request, TimeOffRequest.new(
-      content: nil,
-      user: nil
+      content: nil
     ))
   end
 

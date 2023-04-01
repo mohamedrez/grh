@@ -3,8 +3,7 @@ require 'rails_helper'
 RSpec.describe "time_off_requests/edit", type: :view do
   let(:time_off_request) {
     TimeOffRequest.create!(
-      content: nil,
-      user: nil
+      content: nil
     )
   }
 
