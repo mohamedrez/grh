@@ -14,4 +14,5 @@ en:
       quiz_passed: "The quiz is passed."
       quiz_did_not_passed: "The quiz didn't passed."
     profiles_controller:
-      account_been_updated: "Your account has been updated"
+      account_been_updated: "Your profile was successfully updated."
+

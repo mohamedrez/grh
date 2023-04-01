@@ -12,11 +12,12 @@ Rails.application.routes.draw do
 
   scope "(:locale)", locale: /en|ar/ do
     resources :home, only: [:index]
-    resources :users, only: [:index, :show]
     devise_for :users, skip: :omniauth_callbacks
     delete "users", to: "devise/registrations#destroy", as: :destroy_user_registration
     get "users/profile/edit", to: "profiles#edit"
     patch "users/profile", to: "profiles#update"
+
+    resources :users, only: [:index, :show, :edit, :update]
 
     resources :tracks, only: [:index]
     resources :courses, only: [:index, :show] do
