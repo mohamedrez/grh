@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_01_050951) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_02_173021) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -49,6 +49,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_050951) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "addresses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "street"
+    t.string "city"
+    t.string "zipcode"
+    t.integer "country"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_addresses_on_user_id"
+  end
+
   create_table "courses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "track_id", null: false
     t.string "name"
@@ -57,6 +68,34 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_050951) do
     t.datetime "updated_at", null: false
     t.index ["position"], name: "index_courses_on_position", unique: true
     t.index ["track_id"], name: "index_courses_on_track_id"
+  end
+
+  create_table "educations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "school"
+    t.integer "country"
+    t.string "city"
+    t.integer "education_level"
+    t.integer "study_field"
+    t.date "start_date"
+    t.date "end_date"
+    t.boolean "still_on_this_course"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_educations_on_user_id"
+  end
+
+  create_table "experiences", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "job_title"
+    t.string "company_name"
+    t.integer "employment_type"
+    t.date "start_date"
+    t.date "end_date"
+    t.text "work_description"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_experiences_on_user_id"
   end
 
   create_table "lectures", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -367,14 +406,26 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_050951) do
     t.string "provider"
     t.string "uid"
     t.string "avatar_url"
+    t.string "first_name"
+    t.string "last_name"
+    t.date "birthdate"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "gender"
+    t.integer "marital_status"
+    t.bigint "manager_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["manager_id"], name: "index_users_on_manager_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "addresses", "users"
   add_foreign_key "courses", "tracks"
+  add_foreign_key "educations", "users"
+  add_foreign_key "experiences", "users"
   add_foreign_key "motor_alert_locks", "motor_alerts", column: "alert_id"
   add_foreign_key "motor_alerts", "motor_queries", column: "query_id"
   add_foreign_key "motor_note_tag_tags", "motor_note_tags", column: "tag_id"
@@ -387,4 +438,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_01_050951) do
   add_foreign_key "user_quiz_responses", "users"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"
+  add_foreign_key "users", "users", column: "manager_id"
 end
