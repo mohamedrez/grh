@@ -5,12 +5,12 @@ en:
     community: "Community"
     switch_to: "Switch to arabic"
   flash:
-    courses_controller: 
+    courses_controller:
       course_been_created: "Great! The Course has been created!"
-    steps_controller: 
+    steps_controller:
       step_been_created: "Great! The Step has been created!"
     fix_your_mistakes: "Fix your mistakes, please."
-    user_quiz_responses_controller: 
+    user_quiz_responses_controller:
       quiz_passed: "The quiz is passed."
       quiz_did_not_passed: "The quiz didn't passed."
     profiles_controller:
@@ -24,4 +24,4 @@ en:
   time_Off_requests:
     time_Off_requests_created: "Time off request was successfully created."
     time_Off_requests_updated: "Time off request was successfully updated."
-    time_Off_requests_updated: "Time off request was successfully destroyed."
+    time_Off_requests_destroyed: "Time off request was successfully destroyed."

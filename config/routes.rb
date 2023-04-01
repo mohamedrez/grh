@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   resources :time_off_requests
   resources :user_requests
+  resources :educations
   authenticate :user, ->(user) { user.admin? } do
     mount Motor::Admin => "/motor_admin"
     mount Sidekiq::Web => "/sidekiq"
