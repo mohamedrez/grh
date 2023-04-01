@@ -1,4 +1,4 @@
-<div>
+<div data-controller="sidebar-menu" >
   <!-- Off-canvas menu for mobile, show/hide based on off-canvas menu state. -->
   <div class="relative z-50 lg:hidden" role="dialog" aria-modal="true">
     <!--
@@ -11,9 +11,16 @@
         From: "opacity-100"
         To: "opacity-0"
     -->
-    <div class="fixed inset-0 bg-gray-900/80"></div>
+    <div data-sidebar-menu-target="overlay" class="fixed inset-0 hidden bg-gray-900/80"
+          data-transition-enter="ease-in-out duration-500"
+          data-transition-enter-start="opacity-0"
+          data-transition-enter-end="opacity-100"
+          data-transition-leave="ease-in-out duration-500"
+          data-transition-leave-start="opacity-100"
+          data-transition-leave-end="opacity-0"
+    ></div>
 
-    <div class="fixed inset-0 flex">
+    <div data-sidebar-menu-target="sidebarContainer" class="fixed hidden inset-0 lg:flex">
       <!--
         Off-canvas menu, show/hide based on off-canvas menu state.
 
@@ -24,7 +31,14 @@
           From: "translate-x-0"
           To: "-translate-x-full"
       -->
-      <div class="relative mr-16 flex w-full max-w-xs flex-1">
+      <div data-sidebar-menu-target="sidebar"
+            data-transition-enter="transform transition ease-in-out duration-500 sm:duration-700"
+            data-transition-enter-start="-translate-x-full"
+            data-transition-enter-end="translate-x-0"
+            data-transition-leave="transition ease-in-out duration-500 transform sm:duration-700"
+            data-transition-leave-start="translate-x-0"
+            data-transition-leave-end="-translate-x-full"
+      class="relative mr-16 lg:flex w-full max-w-xs flex-1 hidden">
         <!--
           Close button, show/hide based on off-canvas menu state.
 
@@ -36,7 +50,7 @@
             To: "opacity-0"
         -->
         <div class="absolute left-full top-0 flex w-16 justify-center pt-5">
-          <button type="button" class="-m-2.5 p-2.5" data-action="slideover#toggle">
+          <button type="button" class="-m-2.5 p-2.5" data-action="click->sidebar-menu#hide" >
             <span class="sr-only">Close sidebar</span>
             <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -153,9 +167,9 @@
   </div>
 
   <!-- Static sidebar for desktop -->
-  <div class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
+  <div  class="hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col">
     <!-- Sidebar component, swap this element with another sidebar if you like -->
-    <div id="slideover-target" class="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
+    <div class="flex grow flex-col gap-y-5 overflow-y-auto bg-indigo-600 px-6 pb-4">
       <div class="flex h-16 shrink-0 items-center">
         <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/mark.svg?color=white" alt="Your Company">
       </div>
@@ -262,7 +276,7 @@
 
   <div class="lg:pl-72">
     <div class="sticky top-0 z-40 flex h-16 shrink-0 items-center gap-x-4 border-b border-gray-200 bg-white px-4 shadow-sm sm:gap-x-6 sm:px-6 lg:px-8">
-      <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden">
+      <button type="button" class="-m-2.5 p-2.5 text-gray-700 lg:hidden" data-action="click->sidebar-menu#show">
         <span class="sr-only">Open sidebar</span>
         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
           <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
