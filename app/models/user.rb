@@ -30,6 +30,8 @@ class User < ApplicationRecord
   has_one_attached :avatar, dependent: :destroy
   has_many :notifications, as: :recipient, dependent: :destroy
 
+  has_one :address, dependent: :destroy
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
