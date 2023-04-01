@@ -32,8 +32,9 @@ class User < ApplicationRecord
 
   has_one :address, dependent: :destroy
   has_many :experiences, dependent: :destroy
-  enum :gender, %i[male female]
-  enum :marital_status, %i[single married divorced]
+  has_many :educations, dependent: :destroy
+  enum :gender, %i[male female], prefix: :user
+  enum :marital_status, %i[single married divorced other], prefix: :user
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
