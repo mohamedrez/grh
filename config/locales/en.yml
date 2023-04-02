@@ -15,4 +15,8 @@ en:
       quiz_did_not_passed: "The quiz didn't passed."
     profiles_controller:
       account_been_updated: "Your profile was successfully updated."
+  experiences:
+    experience_created: "Experience was successfully created."
+    experience_updated: "Experience was successfully updated."
+    experience_destroyed: "Experience was successfully destroyed."
 
