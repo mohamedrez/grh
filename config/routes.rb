@@ -3,6 +3,7 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  resources :educations
   authenticate :user, ->(user) { user.admin? } do
     mount Motor::Admin => "/motor_admin"
     mount Sidekiq::Web => "/sidekiq"

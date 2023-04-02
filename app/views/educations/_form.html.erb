@@ -1,0 +1,62 @@
+<%= form_with(model: education) do |form| %>
+  <% if education.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(education.errors.count, "error") %> prohibited this education from being saved:</h2>
+
+      <ul>
+        <% education.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :school, style: "display: block" %>
+    <%= form.text_field :school %>
+  </div>
+
+  <div>
+    <%= form.label :country, style: "display: block" %>
+    <%= form.number_field :country %>
+  </div>
+
+  <div>
+    <%= form.label :city, style: "display: block" %>
+    <%= form.text_field :city %>
+  </div>
+
+  <div>
+    <%= form.label :education_level, style: "display: block" %>
+    <%= form.number_field :education_level %>
+  </div>
+
+  <div>
+    <%= form.label :study_field, style: "display: block" %>
+    <%= form.number_field :study_field %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, style: "display: block" %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, style: "display: block" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.label :still_on_this_course, style: "display: block" %>
+    <%= form.check_box :still_on_this_course %>
+  </div>
+
+  <div>
+    <%= form.label :user_id, style: "display: block" %>
+    <%= form.text_field :user_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
