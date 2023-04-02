@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   scope "(:locale)", locale: /en|ar/ do
     resources :home, only: [:index]
-    devise_for :users, skip: :omniauth_callbacks
+    devise_for :users, skip: :omniauth_callbacks, controllers: {
+      registrations: "users/registrations"
+    }
     delete "users", to: "devise/registrations#destroy", as: :destroy_user_registration
     get "users/profile/edit", to: "profiles#edit"
     patch "users/profile", to: "profiles#update"

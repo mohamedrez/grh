@@ -18,12 +18,14 @@
             <div class="text-sm">
               <%= link_to "Log in", new_session_path(resource_name), class:  "font-medium text-gray-600 underline dark:text-gray-300"%>
             </div>
-            <div class="text-sm">
-              <%= link_to "Sign up", new_registration_path(resource_name), class:  "font-medium text-gray-600 underline dark:text-gray-300"%>
-            </div>
-            <div class="text-sm">
-              <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class:  "font-medium text-gray-600 underline dark:text-gray-300"%>
-            </div>
+            <% if user_signed_in? %>
+              <div class="text-sm">
+                <%= link_to "Sign up", new_registration_path(resource_name), class:  "font-medium text-gray-600 underline dark:text-gray-300"%>
+              </div>
+              <div class="text-sm">
+                <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class:  "font-medium text-gray-600 underline dark:text-gray-300"%>
+              </div>
+            <% end %>
           </div>
           <div>
             <%= f.submit "Send me reset password instructions", style: "background-color: rgb(15 118 110);", class: "button button--primary w-full py-2 px-4 text-sm" %>

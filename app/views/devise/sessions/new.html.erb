@@ -32,9 +32,11 @@
               <a class="font-medium text-gray-600 underline dark:text-gray-300" href="<%= url_for(new_password_url(resource_name)) %>">Forgot your password?</a>
             </div>
           </div>
-          <div class="text-sm" style="text-align: right;">
-            <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class:  "font-medium text-gray-600 underline dark:text-gray-300"%>
-          </div>
+          <% if user_signed_in? %>
+            <div class="text-sm" style="text-align: right;">
+              <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class:  "font-medium text-gray-600 underline dark:text-gray-300"%>
+            </div>
+          <% end %>      
           <div>
             <%= f.submit "Log in", style: "background-color: rgb(15 118 110);", class: "button button--primary w-full py-2 px-4 text-sm" %>
           </div>
