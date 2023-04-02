@@ -9,12 +9,13 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user.address
   end
 
   def update
     respond_to do |format|
       if @user.update(user_params)
-        format.html { redirect_to post_url(@user), notice: t("flash.profiles_controller.account_been_updated") }
+        format.html { redirect_to user_url(@user), notice: t("flash.profiles_controller.account_been_updated") }
       else
         format.html { render :edit, status: :unprocessable_entity }
       end
@@ -28,6 +29,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :avatar, :birthdate, :start_date, :end_date, :gender, :marital_status)
+    params.require(:user).permit(:first_name, :last_name, :email, :avatar, :birthdate, :start_date, :end_date, :gender, :marital_status, address_attributes: [:country, :street, :city, :zipcode])
   end
 end
