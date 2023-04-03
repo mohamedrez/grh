@@ -2,7 +2,7 @@
   <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-700 dark:text-gray-200">sign up for a new account</h2>
   <p class="mt-2 text-center text-sm text-gray-600 dark:text-gray-300">
     Or
-    <a class="font-medium text-gold-600 hover:text-gold-500" href="<%= url_for(new_session_url(resource_name)) %>">Sign in to your account</a>
+    <a href="<%= url_for(new_session_url(resource_name)) %>">Sign in to your account</a>
   </p>
 </div>
 <div class="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
@@ -47,7 +47,6 @@
           </div>
         </div>
       <% end %>
-      <%= render partial: "devise/shared/third_party" %>
     </div>
   </div>
 </div>
