@@ -25,7 +25,7 @@ class EducationsController < ApplicationController
 
     respond_to do |format|
       if @education.save
-        format.html { redirect_to education_url(@education), notice: "Education was successfully created." }
+        format.html { redirect_to edit_user_url(@education.user), notice: "Education was successfully created." }
         format.json { render :show, status: :created, location: @education }
       else
         format.html { render :new, status: :unprocessable_entity }

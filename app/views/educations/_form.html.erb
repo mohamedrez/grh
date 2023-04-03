@@ -1,68 +1,70 @@
-<%= form_with(model: education) do |form| %>
-  <% if education.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(education.errors.count, "error") %> prohibited this education from being saved:</h2>
+<%= form_with model: education, class: "bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2" do |form| %>
+  <div class="px-4 py-6 sm:p-8">
+    <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="sm:col-span-4">
+        <%= form.label :school, class: "block text-sm font-medium leading-6 text-gray-900" %> 
+        <div class="mt-2">
+          <%= form.text_field :school, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
 
-      <ul>
-        <% education.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+      <div class="sm:col-span-3">
+        <%= form.label :country, class: "block text-sm font-medium leading-6 text-gray-900" %> 
+        <div class="mt-2 px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+          <%= form.select :country, options_for_select(Education.countries.map {|key, value| [key.humanize, key]}) %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-3">
+        <%= form.label :city, class: "block text-sm font-medium leading-6 text-gray-900" %> 
+        <div class="mt-2">
+          <%= form.text_field :city, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-3">
+        <%= form.label :education_level, class: "block text-sm font-medium leading-6 text-gray-900" %> 
+        <div class="mt-2 px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+          <%= form.select :education_level, options_for_select(Education.education_levels.map {|key, value| [key.humanize, key]}) %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-3">
+        <%= form.label :study_field, class: "block text-sm font-medium leading-6 text-gray-900" %> 
+        <div class="mt-2 px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+          <%= form.select :study_field, options_for_select(Education.study_fields.map {|key, value| [key.humanize, key]}) %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-3">
+        <%= form.label :start_date, class: "block text-sm font-medium leading-6 text-gray-900" %> 
+        <div class="mt-2">
+          <%= form.date_field :start_date, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-3">
+        <%= form.label :end_date, class: "block text-sm font-medium leading-6 text-gray-900" %> 
+        <div class="mt-2">
+          <%= form.date_field :end_date, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-3">
+        <%= form.check_box :still_on_this_course, class: "mx-2 h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600" %>
+        <%= form.label :still_on_this_course, class: "text-sm font-medium leading-6 text-gray-900" %>
+      </div>
+
+      <div class="sm:col-span-2 sm:col-start-1">
+        <%= form.label :user_id, class: "block text-sm font-medium leading-6 text-gray-900" %> 
+        <div class="mt-2">
+          <%= form.text_field :user_id, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :school, style: "display: block" %>
-    <%= form.text_field :school %>
   </div>
-
-  <div class="sm:col-span-4">
-    <%= form.label :country, class: "block text-sm font-medium leading-6 text-gray-900" %> 
-    <div class="mt-2 px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-      <%= form.select :country, options_for_select(Education.countries.map {|key, value| [key.humanize, key]}) %>
-    </div>
-  </div>
-
-  <div>
-    <%= form.label :city, style: "display: block" %>
-    <%= form.text_field :city %>
-  </div>
-
-  <div class="sm:col-span-4">
-    <%= form.label :education_level, class: "block text-sm font-medium leading-6 text-gray-900" %> 
-    <div class="mt-2 px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-      <%= form.select :education_level, options_for_select(Education.education_levels.map {|key, value| [key.humanize, key]}) %>
-    </div>
-  </div>
-
-  <div class="sm:col-span-4">
-    <%= form.label :study_field, class: "block text-sm font-medium leading-6 text-gray-900" %> 
-    <div class="mt-2 px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
-      <%= form.select :study_field, options_for_select(Education.study_fields.map {|key, value| [key.humanize, key]}) %>
-    </div>
-  </div>
-
-  <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.date_field :start_date %>
-  </div>
-
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.date_field :end_date %>
-  </div>
-
-  <div>
-    <%= form.label :still_on_this_course, style: "display: block" %>
-    <%= form.check_box :still_on_this_course %>
-  </div>
-
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+    <%= link_to "Cancel", "", class: "text-sm font-semibold leading-6 text-gray-900" %>
+    <%= form.submit "Save", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
   </div>
 <% end %>

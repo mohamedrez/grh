@@ -1,9 +1,3 @@
-<h1>New education</h1>
-
-<%= render "form", education: @education %>
-
-<br>
-
-<div>
-  <%= link_to "Back to educations", educations_path %>
-</div>
+<%= turbo_frame_tag "new_user_education", class: "block" do  %>
+  <%= render "form", education: @education %>
+<% end %>
