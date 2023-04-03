@@ -42,8 +42,6 @@ Rails.application.routes.draw do
     get "user_notifications", to: "user_notifications#index"
     get "user_notifications/notification_bell", to: "user_notifications#notification_bell"
   end
-  devise_for :users, skip: :omniauth_callbacks, path: '/auth'
-  delete "users", to: "devise/registrations#destroy", as: :destroy_user_registration
   get "users/profile/edit", to: "profiles#edit"
   patch "users/profile", to: "profiles#update"
 
