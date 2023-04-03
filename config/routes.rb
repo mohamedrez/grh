@@ -39,4 +39,5 @@ Rails.application.routes.draw do
     resources :user_progresses, only: [:create, :update]
     get "user_notifications", to: "user_notifications#index"
     get "user_notifications/notification_bell", to: "user_notifications#notification_bell"
+  end
 end

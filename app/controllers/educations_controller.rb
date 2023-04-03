@@ -1,5 +1,5 @@
 class EducationsController < ApplicationController
-  before_action :set_education, only: %i[ show edit update destroy ]
+  before_action :set_education, only: %i[show edit update destroy]
 
   # GET /educations or /educations.json
   def index
@@ -58,13 +58,14 @@ class EducationsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_education
-      @education = Education.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def education_params
-      params.require(:education).permit(:school, :country, :city, :education_level, :study_field, :start_date, :end_date, :still_on_this_course, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_education
+    @education = Education.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def education_params
+    params.require(:education).permit(:school, :country, :city, :education_level, :study_field, :start_date, :end_date, :still_on_this_course, :user_id)
+  end
 end

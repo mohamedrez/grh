@@ -436,7 +436,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_173021) do
   add_foreign_key "user_progresses", "users"
   add_foreign_key "user_quiz_responses", "quizzes"
   add_foreign_key "user_quiz_responses", "users"
-  add_foreign_key "users", "users", column: "manager_id"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"
+  add_foreign_key "users", "users", column: "manager_id"
 end

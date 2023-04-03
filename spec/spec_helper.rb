@@ -24,8 +24,8 @@ else
   require "simplecov-cobertura"
   SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 end
-SimpleCov.start 'rails' do
-  add_filter 'spec'
+SimpleCov.start "rails" do
+  add_filter "spec"
 end
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

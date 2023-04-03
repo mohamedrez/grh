@@ -14,12 +14,12 @@ require_relative "../../lib/helpers/lecture_helper"
 #   end
 # end
 RSpec.describe(LectureHelper, type: :helper) do
-    include LectureHelper
-    
-    describe ".youtube_id" do
-        it "return the id of a given youtube url" do    
-          expect(youtube_id("https://www.youtube.com/watch?v=cND5yDV1qJs&t=31s"))
-          .to eql("cND5yDV1qJs")
-        end
+  include LectureHelper
+
+  describe ".youtube_id" do
+    it "return the id of a given youtube url" do
+      expect(youtube_id("https://www.youtube.com/watch?v=cND5yDV1qJs&t=31s"))
+        .to eql("cND5yDV1qJs")
     end
+  end
 end
