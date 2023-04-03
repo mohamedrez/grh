@@ -9,11 +9,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    if @user.address.present?
-      @user.address
-    else
-      @user.build_address
-    end
+    @user.address.presence || @user.build_address
     @experiences = @user.experiences
     @educations = @user.educations
   end
