@@ -12,7 +12,7 @@ Rails.application.routes.draw do
     mount Motor::Admin => "/motor_admin"
     mount Sidekiq::Web => "/sidekiq"
   end
-
+  devise_for :users, skip: :omniauth_callbacks, path: "/auth"
   devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
 
   scope "(:locale)", locale: /en|ar/ do
