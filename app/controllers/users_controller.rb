@@ -9,7 +9,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user.address
+    if @user.address.present?
+      @user.address
+    else
+      @user.build_address
+    end
+    @experiences = @user.experiences
+    @educations = @user.educations
   end
 
   def update

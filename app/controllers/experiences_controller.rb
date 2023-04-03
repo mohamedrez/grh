@@ -25,7 +25,7 @@ class ExperiencesController < ApplicationController
 
     respond_to do |format|
       if @experience.save
-        format.html { redirect_to experience_url(@experience), notice: t("experiences.experience_created") }
+        format.html { redirect_to edit_user_url(@experience.user), notice: t("experiences.experience_created") }
         format.json { render :show, status: :created, location: @experience }
       else
         format.html { render :new, status: :unprocessable_entity }
