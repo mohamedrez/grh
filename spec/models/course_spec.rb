@@ -17,7 +17,7 @@ RSpec.describe(Course, type: :model) do
   before do
     @user1 = FactoryBot.create(:user)
     @user2 = FactoryBot.create(:user)
-    
+
     @track = FactoryBot.create(:track)
     @course = FactoryBot.create(:course, track: @track)
 

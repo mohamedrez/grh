@@ -28,10 +28,10 @@ RSpec.describe(UserProgress, type: :model) do
 
   context "user completes all steps in a course" do
     it "creates completes a course progress when all the steps are completed " do
-      user_progress1 = FactoryBot.create(
+      FactoryBot.create(
         :user_progress, user: @user, progressable: @step1, status: :started
       ).update(status: :completed)
-      user_progress2 = FactoryBot.create(
+      FactoryBot.create(
         :user_progress, user: @user, progressable: @step1, status: :started
       ).update(status: :completed)
       expect(
