@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     resources :experiences
 
     resources :home, only: [:index]
-    devise_for :users, skip: :omniauth_callbacks, controllers: {
+    devise_for :users, skip: :omniauth_callbacks, path: "/auth", controllers: {
       registrations: "users/registrations"
     }
     delete "users", to: "devise/registrations#destroy", as: :destroy_user_registration
