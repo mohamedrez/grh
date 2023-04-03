@@ -12,6 +12,10 @@
   <body class="h-full">
 
     <%= render partial: "layouts/alert" %>
-    <%= render partial: "layouts/main" %>
+    <% if current_user %>
+      <%= render partial: "layouts/main" %>
+    <% else %>
+      <%= render partial: "layouts/guest" %>
+    <% end %>
   </body>
 </html>

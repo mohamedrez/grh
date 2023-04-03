@@ -23,6 +23,9 @@ input[type="submit"] {
 label {
   @apply block text-sm font-medium leading-6 text-gray-900
 }
+a {
+  @apply text-indigo-600 hover:text-indigo-500
+}
 /* @layer components {
   .page-container {
     @apply max-w-7xl mx-auto py-10 px-4 sm:py-14 sm:px-6 lg:px-8;

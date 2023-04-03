@@ -3,6 +3,8 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  root to: "home#index"
+
   resources :time_off_requests
   resources :user_requests
   authenticate :user, ->(user) { user.admin? } do
