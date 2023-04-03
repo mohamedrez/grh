@@ -1,5 +1,9 @@
 class EducationsController < ApplicationController
+<<<<<<< HEAD
   before_action :set_education, only: %i[edit update]
+=======
+  before_action :set_education, only: %i[show edit update destroy]
+>>>>>>> 909aa4c (fixed  styles)
 
   def new
     @education = Education.new
@@ -36,6 +40,10 @@ class EducationsController < ApplicationController
     @education = Education.find(params[:id])
   end
 
+<<<<<<< HEAD
+=======
+  # Only allow a list of trusted parameters through.
+>>>>>>> 909aa4c (fixed  styles)
   def education_params
     params.require(:education).permit(:school, :country, :city, :education_level, :study_field, :start_date, :end_date, :still_on_this_course, :user_id)
   end
