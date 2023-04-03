@@ -50,4 +50,12 @@ class User < ApplicationRecord
       user.skip_confirmation!
     end
   end
+
+  def avatar_url_or_default
+    if avatar.attached?
+      avatar
+    else
+      "users/user.png"
+    end
+  end
 end

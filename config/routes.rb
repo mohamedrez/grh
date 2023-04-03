@@ -4,6 +4,10 @@ require "sidekiq/web"
 
 Rails.application.routes.draw do
   resources :educations
+  root to: "home#index"
+
+  resources :time_off_requests
+  resources :user_requests
   authenticate :user, ->(user) { user.admin? } do
     mount Motor::Admin => "/motor_admin"
     mount Sidekiq::Web => "/sidekiq"
@@ -22,7 +26,9 @@ Rails.application.routes.draw do
     get "users/profile/edit", to: "profiles#edit"
     patch "users/profile", to: "profiles#update"
 
-    resources :users, only: [:index, :show, :edit, :update]
+    resources :users, only: [:index, :show, :edit, :update] do
+      resources :time_off_requests
+    end
 
     resources :tracks, only: [:index]
     resources :courses, only: [:index, :show] do
@@ -33,5 +39,4 @@ Rails.application.routes.draw do
     resources :user_progresses, only: [:create, :update]
     get "user_notifications", to: "user_notifications#index"
     get "user_notifications/notification_bell", to: "user_notifications#notification_bell"
-  end
 end

@@ -16,7 +16,7 @@
           </div>
           <div>
             <div class="text-sm">
-              <%= link_to "Log in", new_session_path(resource_name), class:  "font-medium text-gray-600 underline dark:text-gray-300"%>
+              <%= link_to "Log in", new_session_path(resource_name)%>
             </div>
             <% if user_signed_in? %>
               <div class="text-sm">
@@ -28,7 +28,7 @@
             <% end %>
           </div>
           <div>
-            <%= f.submit "Send me reset password instructions", style: "background-color: rgb(15 118 110);", class: "button button--primary w-full py-2 px-4 text-sm" %>
+            <%= f.submit "Send me reset password instructions", class: "button button--primary w-full py-2 px-4 text-sm" %>
           </div>
         </div>
       <% end %>

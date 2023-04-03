@@ -7,16 +7,15 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
-    <script>
-      if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark')
-      }
-    </script>
   </head>
 
   <body class="h-full">
-    <%= render partial: "layouts/main" %>
+
+    <%= render partial: "layouts/alert" %>
+    <% if current_user %>
+      <%= render partial: "layouts/main" %>
+    <% else %>
+      <%= render partial: "layouts/guest" %>
+    <% end %>
   </body>
 </html>
