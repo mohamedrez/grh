@@ -24,3 +24,4 @@ en:
   time_Off_requests:
     time_Off_requests_created: "Time off request was successfully created."
     time_Off_requests_updated: "Time off request was successfully updated."
+    time_Off_requests_updated: "Time off request was successfully destroyed."

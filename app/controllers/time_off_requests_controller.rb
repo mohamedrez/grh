@@ -53,7 +53,7 @@ class TimeOffRequestsController < ApplicationController
     @time_off_request.destroy
 
     respond_to do |format|
-      format.html { redirect_to time_off_requests_url, notice: "Time off request was successfully destroyed." }
+      format.html { redirect_to time_off_requests_url, notice: t("time_Off_requests.time_Off_requests_destroyed") }
       format.json { head :no_content }
     end
   end
