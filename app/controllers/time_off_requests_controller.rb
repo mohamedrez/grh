@@ -19,7 +19,6 @@ class TimeOffRequestsController < ApplicationController
   def new
     @time_off_request = TimeOffRequest.new
     @user = User.find(params[:user_id])
-
   end
 
   # GET /time_off_requests/1/edit

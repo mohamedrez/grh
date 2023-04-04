@@ -18,16 +18,13 @@ Rails.application.routes.draw do
     resources :educationsr
     resources :experiences
     resources :home, only: [:index]
-
-    devise_for :users, skip: :omniauth_callbacks, path: "/auth", controllers: {
-      registrations: "users/registrations"
-    }
     delete "users", to: "devise/registrations#destroy", as: :destroy_user_registration
     get "users/profile/edit", to: "profiles#edit"
     patch "users/profile", to: "profiles#update"
 
     resources :users, only: [:index, :show, :edit, :update] do
       resources :time_off_requests
+      resources :user_requests
     end
 
     resources :tracks, only: [:index]
