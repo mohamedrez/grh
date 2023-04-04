@@ -10,35 +10,13 @@
     <div class="p-8 ">
       <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-        <div class="space-y-6">
-          <div>
-            <%= f.label :email, class: "block text-sm font-medium text-gray-700 dark:text-gray-200 " %>
-            <div class="mt-1 relative rounded-md shadow-sm">
-              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full border rounded-md py-2 px-3 focus:outline-none dark:bg-gray-700/50 dark:border-gray-500 dark:text-gray-300 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:ring-2 dark:focus:border-transparent border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark-form-input border-red-400 text-red-600 placeholder-red-300 focus:ring-red-500 focus:border-red-500" %>
-            </div>
-          </div>
-          <div>
-            <label class="block text-sm font-medium text-gray-700 dark:text-gray-200 " for="user_password">Password</label>
-            <div class="mt-1 relative rounded-md shadow-sm">
-              <%= f.password_field :password, autocomplete: "current-password", class: "block w-full border rounded-md py-2 px-3 focus:outline-none dark:bg-gray-700/50 dark:border-gray-500 dark:text-gray-300 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:ring-2 dark:focus:border-transparent border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark-form-input"  %>
-            </div>
-          </div>
-          <div class="flex items-center justify-between">
-            <div class="flex items-center">
-              <input name="user[remember_me]" type="hidden" value="0" autocomplete="off"><input class="form-checkbox text-teal-700 focus:ring-teal-800 h-4 w-4 border-gray-300 rounded" type="checkbox" value="1" checked="checked" name="user[remember_me]" id="user_remember_me">
-              <label class="ml-2 block text-sm text-gray-900 mb-0 dark:text-gray-300" for="user_remember_me">Remember me</label>
-            </div>
-            <div class="text-sm">
-              <a class="font-medium text-gray-600 underline dark:text-gray-300" href="<%= url_for(new_password_url(resource_name)) %>">Forgot your password?</a>
-            </div>
-          </div>
-          <% if user_signed_in? %>
-            <div class="text-sm" style="text-align: right;">
-              <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name), class:  "font-medium text-gray-600 underline dark:text-gray-300"%>
-            </div>
-          <% end %>      
-          <div>
-            <%= f.submit "Log in", style: "background-color: rgb(15 118 110);", class: "button button--primary w-full py-2 px-4 text-sm" %>
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+      <div class="space-y-6">
+        <div>
+          <%= f.label :email, class: "block text-sm font-medium text-gray-700 dark:text-gray-200 " %>
+          <div class="mt-1 relative rounded-md shadow-sm">
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block w-full border rounded-md py-2 px-3 focus:outline-none dark:bg-gray-700/50 dark:border-gray-500 dark:text-gray-300 dark:placeholder-gray-400 dark:focus:ring-gray-500 dark:focus:ring-2 dark:focus:border-transparent border-gray-300 focus:ring-blue-600 focus:border-blue-600 dark-form-input border-red-400 text-red-600 placeholder-red-300 focus:ring-red-500 focus:border-red-500" %>
           </div>
         </div>
       <% end %>

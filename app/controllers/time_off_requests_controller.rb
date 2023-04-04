@@ -1,30 +1,37 @@
 class TimeOffRequestsController < ApplicationController
-  before_action :set_time_off_request, only: %i[show edit update destroy]
+  before_action :set_locals, only: %i[show edit update destroy]
 
   # GET /time_off_requests or /time_off_requests.json
   def index
-    @time_off_requests = TimeOffRequest.all
+    user_id = params[:user_id]
+    ids = UserRequest.where(
+      user_id: user_id, requestable_type: "TimeOffRequest"
+    ).pluck(:requestable_id)
+    @time_off_requests = TimeOffRequest.where(id: ids)
   end
 
   # GET /time_off_requests/1 or /time_off_requests/1.json
   def show
+    @user = User.find(params[:user_id])
   end
 
   # GET /time_off_requests/new
   def new
     @time_off_request = TimeOffRequest.new
-    @user_id = params[:user_id]
+    @user = User.find(params[:user_id])
   end
 
   # GET /time_off_requests/1/edit
   def edit
+    @user = User.find(params[:user_id])
   end
 
   # POST /time_off_requests or /time_off_requests.json
   def create
-    @time_off_request = TimeOffRequest.new(time_off_request_params.except(:user_id))
+    @user = User.find(params[:user_id])
+    @time_off_request = TimeOffRequest.new(time_off_request_params)
     respond_to do |format|
-      @time_off_request.user_id = time_off_request_params[:user_id]
+      @time_off_request.user_id = @user.id
       if @time_off_request.save
         format.html { redirect_to time_off_request_url(@time_off_request), notice: t("time_Off_requests.time_Off_requests_created") }
         format.json { render :show, status: :created, location: @time_off_request }
@@ -38,6 +45,7 @@ class TimeOffRequestsController < ApplicationController
   # PATCH/PUT /time_off_requests/1 or /time_off_requests/1.json
   def update
     respond_to do |format|
+      time_off_request_params[:user_id] = params[:user_id]
       if @time_off_request.update(time_off_request_params)
         format.html { redirect_to time_off_request_url(@time_off_request), notice: t("time_Off_requests.time_Off_requests_updated") }
         format.json { render :show, status: :ok, location: @time_off_request }
@@ -61,8 +69,9 @@ class TimeOffRequestsController < ApplicationController
   private
 
   # Use callbacks to share common setup or constraints between actions.
-  def set_time_off_request
+  def set_locals
     @time_off_request = TimeOffRequest.find(params[:id])
+    @user = User.find(params[:user_id])
   end
 
   # Only allow a list of trusted parameters through.

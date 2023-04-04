@@ -3,6 +3,9 @@ class TimeOffRequest < ApplicationRecord
   has_one :user_request, as: :requestable, dependent: :destroy
 
   after_create :create_user_request
+  validates_comparison_of :end_date, greater_than_or_equal_to: :start_date
+  validates :start_date, presence: true
+  validates :end_date, presence: true
 
   attr_accessor :user_id
 

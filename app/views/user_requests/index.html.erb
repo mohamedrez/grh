@@ -1,7 +1,39 @@
-<div class="overflow-hidden bg-white shadow sm:rounded-md">
-  <ul role="list" class="divide-y divide-gray-200">
-    <% @user_requests.each do |user_request| %>
-      <%= render partial: 'list_item', locals: {user_request: user_request} %>
-    <% end %>
+<main class="pb-16 pt-8">
+  <div class="mx-auto max-w-7xl mb-5">
+    <div class="px-4 sm:px-0">
+      <h2 class="text-lg font-medium text-gray-900">Requests</h2>
+    </div>
+  </div>
+  <div data-controller="tabs" data-tabs-active-tab="border-purple-500 text-purple-600 whitespace-nowrap border-b-2">
+  <ul class="list-reset flex border-b -mb-px mt-2 flex space-x-8">
+    <li class="-mb-px mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+      <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#">Pending</a>
+    </li>
+    <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+      <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#">Approved</a>
+    </li>
+    <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+      <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#">Rejected</a>
+    </li>
   </ul>
+
+  <div class="hidden mt-5 divide-y divide-gray-200 border-t border-gray-200 sm:mt-0 sm:border-t-0" data-tabs-target="panel">
+    <div class="overflow-hidden bg-white shadow sm:rounded-md">
+      <%= render partial: 'list_item', locals: {user_requests: @user_requests.pending} %>
+    </div>
+  </div>
+
+  <div class="hidden mt-5 divide-y divide-gray-200 border-t border-gray-200 sm:mt-0 sm:border-t-0" data-tabs-target="panel">
+    <div class="overflow-hidden bg-white shadow sm:rounded-md">
+      <%= render partial: 'list_item', locals: {user_requests: @user_requests.approved} %>
+    </div>
+  </div>
+
+  <div class="hidden mt-5 divide-y divide-gray-200 border-t border-gray-200 sm:mt-0 sm:border-t-0" data-tabs-target="panel">
+    <div class="overflow-hidden bg-white shadow sm:rounded-md">
+      <%= render partial: 'list_item', locals: {user_requests: @user_requests.rejected} %>
+    </div>
+  </div>
 </div>
+
+</main>
