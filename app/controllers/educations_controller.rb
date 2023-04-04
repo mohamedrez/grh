@@ -1,9 +1,5 @@
 class EducationsController < ApplicationController
-<<<<<<< HEAD
   before_action :set_education, only: %i[edit update]
-=======
-  before_action :set_education, only: %i[show edit update destroy]
->>>>>>> 909aa4c (fixed  styles)
 
   def new
     @education = Education.new
