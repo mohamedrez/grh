@@ -36,10 +36,6 @@ class EducationsController < ApplicationController
     @education = Education.find(params[:id])
   end
 
-<<<<<<< HEAD
-=======
-  # Only allow a list of trusted parameters through.
->>>>>>> 909aa4c (fixed  styles)
   def education_params
     params.require(:education).permit(:school, :country, :city, :education_level, :study_field, :start_date, :end_date, :still_on_this_course, :user_id)
   end
