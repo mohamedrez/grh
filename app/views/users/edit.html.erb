@@ -113,23 +113,38 @@
     </div>
     <div>
       <ul role="list" class="divide-y divide-gray-200">
-        <% @experiences.each do %>
+        <% @experiences.each do |experience| %>
           <li class="py-4">
-            <div class="flex space-x-3">
-              <img class="h-6 w-6 rounded-full" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" alt="">
-              <div class="flex-1 space-y-1">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-sm font-medium">Lindsay Walton</h3>
-                  <p class="text-sm text-gray-500">1h</p>
+            <%= turbo_frame_tag "edit_user_experience", class: "contenets" do  %>
+              <%= link_to edit_experience_path, class: "block hover:bg-gray-50" do %>
+                <div class="px-4 py-4 sm:px-6">
+                  <div class="flex items-center justify-between">
+                    <p class="truncate text-sm font-medium text-indigo-600"><%= experience.job_title.titleize %></p>
+                    <div class="ml-2 flex flex-shrink-0">
+                      <p class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800"><%= experience.employment_type.humanize %></p>
+                    </div>
+                  </div>
+                  <div class="mt-2 sm:flex sm:justify-between">
+                    <div class="sm:flex">
+                      <p class="mt-2 flex items-center text-sm text-gray-500 sm:ml-6 sm:mt-0">
+                        <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
+                        </svg>
+                        <%= experience.company_name.titleize %>
+                      </p>
+                    </div>
+                    <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+                      <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
+                      </svg>
+                      <p>
+                        <time datetime="2020-01-07"><%= experience.start_date.strftime('%a %d %b %Y')   %> - <%= experience.end_date.strftime('%a %d %b %Y')   %></time>
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <p class="text-sm text-gray-500">Deployed Workcation (2d89f0c8 in master) to production</p>
-              </div>
-              <div>
-                <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                </svg>
-              </div>
-            </div>
+              <% end %>
+            <% end %>
           </li>
         <% end %>
       </ul>
@@ -148,23 +163,38 @@
     </div>
     <div>
       <ul role="list" class="divide-y divide-gray-200">
-        <% @educations.each do %>
+        <% @educations.each do |education| %>
           <li class="py-4">
-            <div class="flex space-x-3">
-              <img class="h-6 w-6 rounded-full" src="https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=3&w=256&h=256&q=80" alt="">
-              <div class="flex-1 space-y-1">
-                <div class="flex items-center justify-between">
-                  <h3 class="text-sm font-medium">Lindsay Walton</h3>
-                  <p class="text-sm text-gray-500">1h</p>
+            <%= turbo_frame_tag "edit_user_education", class: "contenets" do %>
+              <%= link_to edit_education_path do %>
+                <div class="px-4 py-4 sm:px-6">
+                  <div class="flex items-center justify-between">
+                    <p class="truncate text-sm font-medium text-indigo-600"><%= education.study_field.titleize %></p>
+                    <div class="ml-2 flex flex-shrink-0">
+                      <p class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800"><%= education.education_level.humanize %></p>
+                    </div>
+                  </div>
+                  <div class="mt-2 sm:flex sm:justify-between">
+                    <div class="sm:flex">
+                      <p class="mt-2 flex items-center text-sm text-gray-500 sm:ml-6 sm:mt-0">
+                        <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                          <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
+                        </svg>
+                        <%= education.school.titleize %>
+                      </p>
+                    </div>
+                    <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
+                      <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
+                      </svg>
+                      <p>
+                        <time datetime="2020-01-07"><%= education.start_date.strftime('%a %d %b %Y')   %> - <%= education.end_date.strftime('%a %d %b %Y')   %></time>
+                      </p>
+                    </div>
+                  </div>
                 </div>
-                <p class="text-sm text-gray-500">Deployed Workcation (2d89f0c8 in master) to production</p>
-              </div>
-              <div>
-                <svg class="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                  <path fill-rule="evenodd" d="M7.21 14.77a.75.75 0 01.02-1.06L11.168 10 7.23 6.29a.75.75 0 111.04-1.08l4.5 4.25a.75.75 0 010 1.08l-4.5 4.25a.75.75 0 01-1.06-.02z" clip-rule="evenodd" />
-                </svg>
-              </div>
-            </div>
+              <% end %>
+            <% end %>
           </li>
         <% end %>
       </ul>

@@ -1,10 +1,3 @@
-<h1>Editing education</h1>
-
-<%= render "form", education: @education %>
-
-<br>
-
-<div>
-  <%= link_to "Show this education", @education %> |
-  <%= link_to "Back to educations", educations_path %>
-</div>
+<%= turbo_frame_tag "edit_user_education", class: "contenets" do  %>
+    <%= render "form", education: @education %>
+<% end %>

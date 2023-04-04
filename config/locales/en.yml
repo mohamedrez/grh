@@ -19,4 +19,7 @@ en:
     experience_created: "Experience was successfully created."
     experience_updated: "Experience was successfully updated."
     experience_destroyed: "Experience was successfully destroyed."
-
+  educations:
+    education_created: "Education was successfully created."
+    education_updated: "Education was successfully updated."
+    education_destroyed: "Education was successfully destroyed."

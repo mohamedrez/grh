@@ -15,3 +15,11 @@ ar:
       quiz_did_not_passed: ".لم ينجح الاختبار"
     profiles_controller:
       account_been_updated: "تم تحديث الحساب الخاص بك"
+  experiences:
+    experience_created: "Experience was successfully created."
+    experience_updated: "Experience was successfully updated."
+    experience_destroyed: "Experience was successfully destroyed."
+  educations:
+    education_created: "Education was successfully created."
+    education_updated: "Education was successfully updated."
+    education_destroyed: "Education was successfully destroyed."

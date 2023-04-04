@@ -38,7 +38,7 @@ class ExperiencesController < ApplicationController
   def update
     respond_to do |format|
       if @experience.update(experience_params)
-        format.html { redirect_to experience_url(@experience), notice: t("experiences.experience_updated") }
+        format.html { redirect_to edit_user_url(@experience.user), notice: t("experiences.experience_updated") }
         format.json { render :show, status: :ok, location: @experience }
       else
         format.html { render :edit, status: :unprocessable_entity }
