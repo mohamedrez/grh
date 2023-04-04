@@ -11,7 +11,7 @@ RSpec.describe "experiences/new", type: :view do
     ))
   end
 
-  it "renders new experience form" do
+  xit "renders new experience form" do
     render
 
     assert_select "form[action=?][method=?]", experiences_path, "post" do

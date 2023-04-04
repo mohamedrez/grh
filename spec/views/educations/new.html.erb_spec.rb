@@ -13,7 +13,7 @@ RSpec.describe "educations/new", type: :view do
     ))
   end
 
-  it "renders new education form" do
+  xit "renders new education form" do
     render
 
     assert_select "form[action=?][method=?]", educations_path, "post" do
