@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_02_173021) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_04_110252) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -70,6 +70,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_173021) do
     t.index ["track_id"], name: "index_courses_on_track_id"
   end
 
+  create_table "courses_profiles", id: false, charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "profile_id", null: false
+    t.bigint "course_id", null: false
+    t.index ["course_id", "profile_id"], name: "index_courses_profiles_on_course_id_and_profile_id"
+    t.index ["profile_id", "course_id"], name: "index_courses_profiles_on_profile_id_and_course_id"
+  end
+
   create_table "educations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "school"
     t.integer "country"
@@ -96,6 +103,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_173021) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_experiences_on_user_id"
+  end
+
+  create_table "homes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "lectures", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -309,6 +321,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_173021) do
     t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
+  create_table "profiles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "username"
+    t.text "bio"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "quizzes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -354,6 +373,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_173021) do
     t.index ["user_id"], name: "index_user_points_on_user_id"
   end
 
+  create_table "user_progress_histories", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "step_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["step_id"], name: "index_user_progress_histories_on_step_id"
+    t.index ["user_id"], name: "index_user_progress_histories_on_user_id"
+  end
+
   create_table "user_progresses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "status"
     t.bigint "user_id", null: false
@@ -376,7 +404,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_173021) do
   end
 
   create_table "user_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "state", default: "pending"
+    t.integer "state"
     t.bigint "user_id", null: false
     t.bigint "managed_by_id"
     t.string "requestable_type", null: false
@@ -403,6 +431,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_173021) do
     t.string "unconfirmed_email"
     t.string "username"
     t.text "learning_goal"
+    t.string "avatar"
     t.string "provider"
     t.string "uid"
     t.string "avatar_url"
@@ -414,6 +443,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_173021) do
     t.integer "gender"
     t.integer "marital_status"
     t.bigint "manager_id"
+    t.string "phone"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["manager_id"], name: "index_users_on_manager_id"
@@ -433,6 +463,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_02_173021) do
   add_foreign_key "motor_taggable_tags", "motor_tags", column: "tag_id"
   add_foreign_key "steps", "courses"
   add_foreign_key "user_points", "users"
+  add_foreign_key "user_progress_histories", "steps"
+  add_foreign_key "user_progress_histories", "users"
   add_foreign_key "user_progresses", "users"
   add_foreign_key "user_quiz_responses", "quizzes"
   add_foreign_key "user_quiz_responses", "users"

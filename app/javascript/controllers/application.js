@@ -6,6 +6,7 @@ const application = Application.start()
 
 application.register('notification', Notification)
 application.register('dropdown', Dropdown)
+application.register('tabs', Tabs)
 // Configure Stimulus development experience
 application.debug = false
 window.Stimulus   = application
