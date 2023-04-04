@@ -10,7 +10,7 @@ RSpec.describe "time_off_requests/new", type: :view do
   it "renders new time_off_request form" do
     render
 
-    assert_select "form[action=?][method=?]", time_off_requests_path, "post" do
+    assert_select "form[action=?][method=?]", user_time_off_requests_path, "post" do
       assert_select "input[name=?]", "time_off_request[content]"
 
       assert_select "input[name=?]", "time_off_request[user_id]"

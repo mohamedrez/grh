@@ -3,10 +3,9 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  root to: "home#index"
+  root to: "dashboard#index"
+  get "dashboard", to: "dashboard#index"
 
-  resources :time_off_requests
-  resources :user_requests
   resources :educations
   authenticate :user, ->(user) { user.admin? } do
     mount Motor::Admin => "/motor_admin"

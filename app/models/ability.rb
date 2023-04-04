@@ -14,6 +14,7 @@ class Ability
     can :update, UserProgress, user: user
     can :update, :profile
 
+    can :update, time_off_request, user: user, status: "pending"
     return unless user.admin?
     can :manage, :all
   end
