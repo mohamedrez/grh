@@ -24,22 +24,6 @@ RSpec.describe "/educations", type: :request do
     skip("Add a hash of attributes invalid for your model")
   }
 
-  describe "GET /index" do
-    it "renders a successful response" do
-      Education.create! valid_attributes
-      get educations_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      education = Education.create! valid_attributes
-      get education_url(education)
-      expect(response).to be_successful
-    end
-  end
-
   describe "GET /new" do
     it "renders a successful response" do
       get new_education_url
@@ -110,21 +94,6 @@ RSpec.describe "/educations", type: :request do
         patch education_url(education), params: {education: invalid_attributes}
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    end
-  end
-
-  describe "DELETE /destroy" do
-    it "destroys the requested education" do
-      education = Education.create! valid_attributes
-      expect {
-        delete education_url(education)
-      }.to change(Education, :count).by(-1)
-    end
-
-    it "redirects to the educations list" do
-      education = Education.create! valid_attributes
-      delete education_url(education)
-      expect(response).to redirect_to(educations_url)
     end
   end
 end

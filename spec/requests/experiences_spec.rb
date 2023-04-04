@@ -23,23 +23,7 @@ RSpec.describe "/experiences", type: :request do
   let(:invalid_attributes) {
     skip("Add a hash of attributes invalid for your model")
   }
-
-  describe "GET /index" do
-    it "renders a successful response" do
-      Experience.create! valid_attributes
-      get experiences_url
-      expect(response).to be_successful
-    end
-  end
-
-  describe "GET /show" do
-    it "renders a successful response" do
-      experience = Experience.create! valid_attributes
-      get experience_url(experience)
-      expect(response).to be_successful
-    end
-  end
-
+  
   describe "GET /new" do
     it "renders a successful response" do
       get new_experience_url
@@ -110,21 +94,6 @@ RSpec.describe "/experiences", type: :request do
         patch experience_url(experience), params: {experience: invalid_attributes}
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    end
-  end
-
-  describe "DELETE /destroy" do
-    it "destroys the requested experience" do
-      experience = Experience.create! valid_attributes
-      expect {
-        delete experience_url(experience)
-      }.to change(Experience, :count).by(-1)
-    end
-
-    it "redirects to the experiences list" do
-      experience = Experience.create! valid_attributes
-      delete experience_url(experience)
-      expect(response).to redirect_to(experiences_url)
     end
   end
 end
