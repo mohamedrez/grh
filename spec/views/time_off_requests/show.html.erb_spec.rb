@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "time_off_requests/show", type: :view do
   before(:each) do

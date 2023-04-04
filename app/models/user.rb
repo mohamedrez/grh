@@ -30,6 +30,17 @@ class User < ApplicationRecord
   has_one_attached :avatar, dependent: :destroy
   has_many :notifications, as: :recipient, dependent: :destroy
 
+  has_one :address, dependent: :destroy
+  has_many :experiences, dependent: :destroy
+  has_many :educations, dependent: :destroy
+  enum :gender, %i[male female], prefix: :user
+  enum :marital_status, %i[single married divorced other], prefix: :user
+
+  accepts_nested_attributes_for :address
+
+  has_many :subordinates, class_name: "User", foreign_key: "manager_id", dependent: :destroy, inverse_of: :manager
+  belongs_to :manager, class_name: "User", optional: true
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email

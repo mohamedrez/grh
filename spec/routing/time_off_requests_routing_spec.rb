@@ -18,7 +18,6 @@ RSpec.describe TimeOffRequestsController, type: :routing do
       expect(get: "/time_off_requests/1/edit").to route_to("time_off_requests#edit", id: "1")
     end
 
-
     it "routes to #create" do
       expect(post: "/time_off_requests").to route_to("time_off_requests#create")
     end

@@ -6,5 +6,4 @@ class UserRequest < ApplicationRecord
   def path
     polymorphic_url(requestable)
   end
-
 end

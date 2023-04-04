@@ -14,4 +14,14 @@ en:
       quiz_passed: "The quiz is passed."
       quiz_did_not_passed: "The quiz didn't passed."
     profiles_controller:
-      account_been_updated: "Your account has been updated"
+      account_been_updated: "Your profile was successfully updated."
+  experiences:
+    experience_created: "Experience was successfully created."
+    experience_updated: "Experience was successfully updated."
+  educations:
+    education_created: "Education was successfully created."
+    education_updated: "Education was successfully updated."
+  time_Off_requests:
+    time_Off_requests_created: "Time off request was successfully created."
+    time_Off_requests_updated: "Time off request was successfully updated."
+    time_Off_requests_updated: "Time off request was successfully destroyed."

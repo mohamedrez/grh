@@ -26,7 +26,7 @@ class TimeOffRequestsController < ApplicationController
     respond_to do |format|
       @time_off_request.user_id = time_off_request_params[:user_id]
       if @time_off_request.save
-        format.html { redirect_to time_off_request_url(@time_off_request), notice: "Time off request was successfully created." }
+        format.html { redirect_to time_off_request_url(@time_off_request), notice: t("time_Off_requests.time_Off_requests_created") }
         format.json { render :show, status: :created, location: @time_off_request }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -39,7 +39,7 @@ class TimeOffRequestsController < ApplicationController
   def update
     respond_to do |format|
       if @time_off_request.update(time_off_request_params)
-        format.html { redirect_to time_off_request_url(@time_off_request), notice: "Time off request was successfully updated." }
+        format.html { redirect_to time_off_request_url(@time_off_request), notice: t("time_Off_requests.time_Off_requests_updated") }
         format.json { render :show, status: :ok, location: @time_off_request }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -53,12 +53,12 @@ class TimeOffRequestsController < ApplicationController
     @time_off_request.destroy
 
     respond_to do |format|
-      format.html { redirect_to time_off_requests_url, notice: "Time off request was successfully destroyed." }
+      format.html { redirect_to time_off_requests_url, notice: t("time_Off_requests.time_Off_requests_destroyed") }
       format.json { head :no_content }
     end
   end
 
-private
+  private
 
   # Use callbacks to share common setup or constraints between actions.
   def set_time_off_request

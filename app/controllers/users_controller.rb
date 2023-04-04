@@ -1,9 +1,36 @@
 class UsersController < ApplicationController
+  before_action :set_user, only: %i[show edit update]
+
   def index
     @users = User.all
   end
 
   def show
-    #@user = User.find(params[:id])
+  end
+
+  def edit
+    @user.address.presence || @user.build_address
+    @experiences = @user.experiences
+    @educations = @user.educations
+  end
+
+  def update
+    respond_to do |format|
+      if @user.update(user_params)
+        format.html { redirect_to user_url(@user), notice: t("flash.profiles_controller.account_been_updated") }
+      else
+        format.html { render :edit, status: :unprocessable_entity }
+      end
+    end
+  end
+
+  private
+
+  def set_user
+    @user = User.find(params[:id])
+  end
+
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :avatar, :birthdate, :start_date, :end_date, :gender, :marital_status, address_attributes: [:country, :street, :city, :zipcode])
   end
 end

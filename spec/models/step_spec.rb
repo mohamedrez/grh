@@ -73,7 +73,7 @@ RSpec.describe(Step, type: :model) do
       expect(@step1.which_type).to eql("video")
     end
 
-    xit "returns an audio bcs it's a lecture that's attached to audio_file " do  
+    xit "returns an audio bcs it's a lecture that's attached to audio_file " do
     end
 
     it "returns a quiz bcs it's a quiz" do
