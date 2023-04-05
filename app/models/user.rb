@@ -40,6 +40,7 @@ class User < ApplicationRecord
 
   has_many :subordinates, class_name: "User", foreign_key: "manager_id", dependent: :destroy, inverse_of: :manager
   belongs_to :manager, class_name: "User", optional: true
+  has_rich_text :about
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -57,5 +58,9 @@ class User < ApplicationRecord
     else
       "users/user.png"
     end
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 end
