@@ -33,7 +33,7 @@ class TimeOffRequestsController < ApplicationController
     respond_to do |format|
       @time_off_request.user_id = @user.id
       if @time_off_request.save
-        format.html { redirect_to time_off_request_url(@time_off_request), notice: t("time_Off_requests.time_Off_requests_created") }
+        format.html { redirect_to user_time_off_request_url(@user, @time_off_request), notice: t("time_Off_requests.time_Off_requests_created") }
         format.json { render :show, status: :created, location: @time_off_request }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -47,7 +47,7 @@ class TimeOffRequestsController < ApplicationController
     respond_to do |format|
       time_off_request_params[:user_id] = params[:user_id]
       if @time_off_request.update(time_off_request_params)
-        format.html { redirect_to time_off_request_url(@time_off_request), notice: t("time_Off_requests.time_Off_requests_updated") }
+        format.html { redirect_to user_time_off_request_url(@user, @time_off_request), notice: t("time_Off_requests.time_Off_requests_updated") }
         format.json { render :show, status: :ok, location: @time_off_request }
       else
         format.html { render :edit, status: :unprocessable_entity }
