@@ -9,7 +9,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user.address.presence || @user.build_address
+    @address = @user.address || @user.build_address
     @experiences = @user.experiences
     @educations = @user.educations
   end
