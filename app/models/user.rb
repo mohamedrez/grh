@@ -58,4 +58,8 @@ class User < ApplicationRecord
       "users/user.png"
     end
   end
+
+  def self.search(params)
+    params[:query].blank? ? all : where("first_name LIKE ?", "%#{sanitize_sql_like(params[:query])}%")
+  end
 end
