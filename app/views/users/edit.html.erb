@@ -4,19 +4,19 @@
     <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
       <div>
         <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-        <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
+        <p class="mt-1 text-sm leading-6 text-gray-600">Put your personal informations.</p>
       </div>
       <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
         <div class="sm:col-span-3">
           <%= form.label :first_name %>
           <div class="mt-2">
-            <%= form.text_field :first_name, class: 'w-full' %>
+            <%= form.text_field :first_name %>
           </div>
         </div>
         <div class="sm:col-span-3">
           <%= form.label :last_name %>
           <div class="mt-2">
-            <%= form.text_field :last_name, class: 'w-full' %>
+            <%= form.text_field :last_name %>
           </div>
         </div>
         <div class="col-span-full">
@@ -26,85 +26,84 @@
           </div>
           <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
         </div>
-        <div class="sm:col-span-3">
+        <div class="sm:col-span-3 sm:col-start-1">
           <%= form.label :phone %>
           <div class="mt-2">
             <%= form.text_field :phone %>
           </div>
         </div>
-
-        <div class="col-span-full">
-          <label for="street-address" class="block text-sm font-medium leading-6 text-gray-900">Street address</label>
+        <div class="sm:col-span-3">
+          <%= form.label :birthdate %>
           <div class="mt-2">
-            <input type="text" name="street-address" id="street-address" autocomplete="street-address" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <%= form.date_field :birthdate %>
           </div>
         </div>
-
-        <div class="sm:col-span-2 sm:col-start-1">
+        <div class="sm:col-span-3 sm:col-start-1">
           <%= form.label :gender %>
           <div class="mt-2">
             <%= form.select :gender, options_for_select(User.genders.map {|key, value| [key.humanize, key]}) %>
           </div>
         </div>
-
-        <div class="sm:col-span-2">
-          <%= form.label :marital_status, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <div class="sm:col-span-3">
+          <%= form.label :marital_status %>
           <div class="mt-2">
             <%= form.select :marital_status, options_for_select(User.marital_statuses.map {|key, value| [key.humanize, key]}, @user.marital_status) %>
           </div>
         </div>
-
-        <div class="sm:col-span-2">
-          <%= form.label :birthdate, class: "block text-sm font-medium leading-6 text-gray-900" %>
+        <div class="col-span-full sm:col-start-1">
+          <%= form.label :job_title %>
           <div class="mt-2">
-            <%= form.date_field :birthdate, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+            <%= form.text_field :job_title %>
           </div>
         </div>
-      </div>
-    </div>
-
-    <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
-      <div>
-        <h2 class="text-base font-semibold leading-7 text-gray-900">Contact Information</h2>
-        <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
-      </div>
-      <%= form.fields_for @address do |f| %>
-      <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+        <div class="sm:col-span-3 sm:col-start-1">
+          <%= form.label :start_date %>
+          <div class="mt-2">
+            <%= form.date_field :start_date %>
+          </div>
+        </div>
         <div class="sm:col-span-3">
-          <%= f.label :country %>
+          <%= form.label :end_date %>
           <div class="mt-2">
-            <%= f.select :country, options_for_select(Address.countries.map {|key, value| [key.humanize, key]}, @address.country) %>
+            <%= form.date_field :end_date %>
           </div>
         </div>
+    </div>
+  </div>
 
-
-        <div class="col-span-full">
-          <%= f.label :street %>
+  <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+    <div>
+      <h2 class="text-base font-semibold leading-7 text-gray-900">Address Information</h2>
+      <p class="mt-1 text-sm leading-6 text-gray-600">Put your address informations.</p>
+    </div>
+    <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+      <%= form.fields_for :address do |f| %>
+        <div class="sm:col-span-4">
+          <%= f.label :street, "Street address" %>
           <div class="mt-2">
-            <%= @address.street %>
             <%= f.text_field :street %>
           </div>
         </div>
-        <div class="sm:col-span-2 sm:col-start-1">
-          <label for="city" class="block text-sm font-medium leading-6 text-gray-900">City</label>
-          <div class="mt-2">
-            <input type="text" name="city" id="city" autocomplete="address-level2" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
-          </div>
-        </div>
         <div class="sm:col-span-2">
-          <label for="region" class="block text-sm font-medium leading-6 text-gray-900">State / Province</label>
-          <div class="mt-2">
-            <input type="text" name="region" id="region" autocomplete="address-level1" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+          <%= f.label :country %>
+          <div>
+            <%= f.select :country, options_for_select(Address.countries.map {|key, value| [key.humanize, key]}, @user.address.country) %>
           </div>
         </div>
-        <div class="sm:col-span-2">
-          <label for="postal-code" class="block text-sm font-medium leading-6 text-gray-900">ZIP / Postal code</label>
+        <div class="col-span-3 sm:col-start-1">
+          <%= f.label :city %>
           <div class="mt-2">
-            <input type="text" name="postal-code" id="postal-code" autocomplete="postal-code" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+            <%= f.text_field :city %>
           </div>
         </div>
-      </div>
+        <div class="sm:col-span-3">
+          <%= f.label :zipcode, "ZIP / Postal code" %>
+          <div class="mt-2">
+            <%= f.text_field :zipcode %>
+          </div>
+        </div>
       <% end %>
+    </div>
   </div>
   </div>
   <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
