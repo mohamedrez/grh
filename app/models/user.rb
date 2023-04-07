@@ -36,7 +36,7 @@ class User < ApplicationRecord
   enum :gender, %i[male female], prefix: :user
   enum :marital_status, %i[single married divorced other], prefix: :user
 
-  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :address, update_only: true
 
   has_many :subordinates, class_name: "User", foreign_key: "manager_id", dependent: :destroy, inverse_of: :manager
   belongs_to :manager, class_name: "User", optional: true
