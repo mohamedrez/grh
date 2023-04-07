@@ -44,10 +44,13 @@ class UsersController < ApplicationController
       :phone,
       :job_title,
       address_attributes:
-        [:country,
-          :street,
-          :city,
-          :zipcode]
+      [
+        :id,
+        :street,
+        :country,
+        :city,
+        :zipcode
+      ]
     )
   end
 end
