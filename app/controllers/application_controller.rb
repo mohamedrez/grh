@@ -1,6 +1,9 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
+  include Pundit::Authorization
+  rescue_from Pundit::NotAuthorizedError, with: :pundishing_user
+
   before_action :set_locale, :set_user
 
   def after_sign_in_path_for(resource)
@@ -23,5 +26,10 @@ class ApplicationController < ActionController::Base
 
   def default_url_options(options = {})
     {locale: I18n.locale}.merge options
+  end
+
+  def pundishing_user
+    flash[:notice] = t("flash.application_controller.not_authorized")
+    redirect_to dashboard_path
   end
 end

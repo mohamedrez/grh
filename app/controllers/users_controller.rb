@@ -1,20 +1,28 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update]
 
   def index
     @users = User.search(params)
+    authorize @users
   end
 
   def show
+    # authorization
+    unless current_user == @user || current_user.admin?
+      raise Pundit::NotAuthorizedError
+    end
   end
 
   def edit
+    authorize @user
     @address = @user.address || @user.build_address
     @experiences = @user.experiences
     @educations = @user.educations
   end
 
   def update
+    authorize @user
     respond_to do |format|
       @user.create_address!(user_params[:address_attributes]) unless @user.address
       if @user.update(user_params)
