@@ -63,4 +63,8 @@ class User < ApplicationRecord
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  def self.search(params)
+    params[:query].blank? ? all : where("first_name LIKE ?", "%#{sanitize_sql_like(params[:query])}%")
+  end
 end

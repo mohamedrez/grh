@@ -16,5 +16,18 @@
 require "rails_helper"
 
 RSpec.describe(User, type: :model) do
-  pending "add some examples to (or delete) #{__FILE__}"
+  before do
+    @user1 = FactoryBot.create(:user, first_name: "tim")
+    @user2 = FactoryBot.create(:user, first_name: "corey")
+    @user3 = FactoryBot.create(:user, first_name: "james")
+  end
+
+  describe ".search" do
+    it "returns the filtered name" do
+      params = {query: "m"}
+      expect(User.search(params).count).to eql(2)
+      expect(User.search(params).first).to eql(@user1)
+      expect(User.search(params).last).to eql(@user3)
+    end
+  end
 end
