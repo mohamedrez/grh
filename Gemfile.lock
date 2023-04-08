@@ -419,7 +419,6 @@ DEPENDENCIES
   annotate
   bootsnap
   brakeman
-  cancancan
   capybara
   codecov
   cssbundling-rails

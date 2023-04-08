@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class HomeController < ApplicationController
-  authorize_resource class: false
-
   def index
     if current_user
       @active_step = active_step

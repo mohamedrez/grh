@@ -35,7 +35,7 @@
         <% end %>
       </div>
       <div class="flex-shrink-0 mt-4 md:mt-0 md:ml-4">
-        <% if can? :update, @user_progress %>
+        <%# if can? :update, @user_progress %>
           <% unless @up_status == "completed"%>
             <div class="button button--secondary hover:bg-sky-500 font-medium mt-2 bg-sky-400">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 mr-2">
@@ -51,7 +51,7 @@
               <%= button_to 'Lesson Completed', user_progress_path(course_id: @course.id, step_id: @step.id), method: :patch %>
             </div>
           <% end %>
-        <% end %>
+        <%# end %>
       </div>
     </div>
     <% if @index_plus_one < @course.steps_count %>
