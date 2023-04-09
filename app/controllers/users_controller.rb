@@ -8,10 +8,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    # authorization
-    unless current_user == @user || current_user.admin?
-      raise Pundit::NotAuthorizedError
-    end
+    authorize @user
   end
 
   def edit

@@ -96,7 +96,7 @@ GEM
     codecov (0.2.12)
       json
       simplecov
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     connection_pool (2.3.0)
     crass (1.0.6)
     cssbundling-rails (1.1.2)
@@ -189,7 +189,7 @@ GEM
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
-    minitest (5.17.0)
+    minitest (5.18.0)
     motor-admin (0.4.7)
       ar_lazy_preload (~> 1.0)
       audited (~> 5.0)
