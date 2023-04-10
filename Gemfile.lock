@@ -167,6 +167,18 @@ GEM
       railties (>= 6.0.0)
     json (2.6.3)
     jwt (2.7.0)
+    kaminari (1.2.2)
+      activesupport (>= 4.1.0)
+      kaminari-actionview (= 1.2.2)
+      kaminari-activerecord (= 1.2.2)
+      kaminari-core (= 1.2.2)
+    kaminari-actionview (1.2.2)
+      actionview
+      kaminari-core (= 1.2.2)
+    kaminari-activerecord (1.2.2)
+      activerecord
+      kaminari-core (= 1.2.2)
+    kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
     llhttp-ffi (0.4.0)
       ffi-compiler (~> 1.0)
@@ -434,6 +446,7 @@ DEPENDENCIES
   image_processing (~> 1.2)
   jbuilder
   jsbundling-rails
+  kaminari (~> 1.2)
   lograge
   motor-admin
   mysql2 (~> 0.5)

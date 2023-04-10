@@ -100,3 +100,5 @@ gem "sidekiq", "~> 7.0"
 gem "noticed", "~> 1.6"
 
 gem "pundit", "~> 2.3"
+
+gem "kaminari", "~> 1.2"

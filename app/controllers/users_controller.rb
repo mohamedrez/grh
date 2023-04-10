@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
   def index
-    @users = User.search(params)
+    # @users = User.search(params)
+    @users = User.page(params[:page])
     authorize @users
   end
 
