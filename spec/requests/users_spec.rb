@@ -1,7 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "Users", type: :request do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, admin: true) }
+
+  before do
+    sign_in user
+  end
 
   describe "GET /users/:id/edit" do
     it "renders a successful response" do
@@ -26,6 +30,7 @@ RSpec.describe "Users", type: :request do
           end_date: "02-03-2024",
           address_attributes:
             {
+              id: 1,
               street: "123 Main St",
               country: "usa",
               city: "New York",
