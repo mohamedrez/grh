@@ -30,7 +30,6 @@ end
 require 'pundit/matchers'
 require 'pundit/rspec'
 require 'devise'
-# require 'warden/test/helpers'
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate
@@ -114,16 +113,4 @@ RSpec.configure do |config|
 
   # Including Devise test helpers
   config.include Devise::Test::ControllerHelpers, type: :controller
-  # config.include Warden::Test::Helpers, type: :request
-
-  # # configuring Warden and Capybara with Devise
-  # config.before(:suite) do
-  #   Warden.test_mode!
-  # end
-
-  # config.after(:each) do
-  #   Warden.test_reset!
-  # end
-
-  # config.include Devise::Test::IntegrationHelpers, type: :feature
 end
