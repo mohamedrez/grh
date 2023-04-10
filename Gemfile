@@ -79,7 +79,7 @@ group :test do
   gem "rspec_junit_formatter"
   gem "simplecov-cobertura", require: false
   gem "codecov"
-  gem 'pundit-matchers', '~> 1.8.4'
+  gem "pundit-matchers", "~> 1.8.4"
 end
 
 group :development do

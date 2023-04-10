@@ -1,7 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "Users", type: :request do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, admin: true) }
+
+  before do
+    sign_in user
+  end
 
   describe "GET /users/:id/edit" do
     it "renders a successful response" do
