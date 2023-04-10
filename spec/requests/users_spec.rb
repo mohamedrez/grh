@@ -1,7 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "Users", type: :request do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, admin: true) }
+
+  before do
+    sign_in user
+  end
 
   describe "GET /users/:id/edit" do
     it "renders a successful response" do
@@ -45,9 +49,9 @@ RSpec.describe "Users", type: :request do
         expect(user.gender).to eq("male")
         expect(user.marital_status).to eq("single")
         expect(user.job_title).to eq("RoR developer")
-        expect(user.start_date).to eq(Date.new(2019, 03, 02))
-        expect(user.birthdate).to eq(Date.new(1998, 03, 02))
-        expect(user.end_date).to eq(Date.new(2024, 03, 02))
+        expect(user.start_date).to eq(Date.new(2019, 0o3, 0o2))
+        expect(user.birthdate).to eq(Date.new(1998, 0o3, 0o2))
+        expect(user.end_date).to eq(Date.new(2024, 0o3, 0o2))
 
         expect(user.address.street).to eq("123 Main St")
         expect(user.address.country).to eq("usa")

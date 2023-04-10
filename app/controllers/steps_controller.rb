@@ -3,7 +3,6 @@
 require "json"
 
 class StepsController < ApplicationController
-  authorize_resource
   before_action :set_course_step, only: [:show]
 
   def index

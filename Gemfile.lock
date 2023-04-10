@@ -96,7 +96,7 @@ GEM
     codecov (0.2.12)
       json
       simplecov
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     connection_pool (2.3.0)
     crass (1.0.6)
     cssbundling-rails (1.1.2)
@@ -189,7 +189,7 @@ GEM
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
-    minitest (5.17.0)
+    minitest (5.18.0)
     motor-admin (0.4.7)
       ar_lazy_preload (~> 1.0)
       audited (~> 5.0)
@@ -263,6 +263,10 @@ GEM
     public_suffix (5.0.1)
     puma (6.1.0)
       nio4r (~> 2.0)
+    pundit (2.3.0)
+      activesupport (>= 3.0.0)
+    pundit-matchers (1.8.4)
+      rspec-rails (>= 3.0.0)
     raabro (1.4.0)
     racc (1.6.2)
     rack (2.2.6.2)
@@ -419,7 +423,6 @@ DEPENDENCIES
   annotate
   bootsnap
   brakeman
-  cancancan
   capybara
   codecov
   cssbundling-rails
@@ -441,6 +444,8 @@ DEPENDENCIES
   omniauth-twitter
   overcommit
   puma (~> 6.1)
+  pundit (~> 2.3)
+  pundit-matchers (~> 1.8.4)
   rack-protection
   rails (~> 7.0.4)
   rspec-rails

@@ -55,7 +55,6 @@ gem "lograge"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
 gem "devise"
-gem "cancancan"
 gem "motor-admin"
 gem "omniauth"
 gem "omniauth-google-oauth2"
@@ -80,6 +79,7 @@ group :test do
   gem "rspec_junit_formatter"
   gem "simplecov-cobertura", require: false
   gem "codecov"
+  gem "pundit-matchers", "~> 1.8.4"
 end
 
 group :development do
@@ -98,3 +98,5 @@ end
 gem "sidekiq", "~> 7.0"
 
 gem "noticed", "~> 1.6"
+
+gem "pundit", "~> 2.3"
