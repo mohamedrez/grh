@@ -36,10 +36,11 @@ class User < ApplicationRecord
   enum :gender, %i[male female], prefix: :user
   enum :marital_status, %i[single married divorced other], prefix: :user
 
-  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :address, update_only: true
 
   has_many :subordinates, class_name: "User", foreign_key: "manager_id", dependent: :destroy, inverse_of: :manager
   belongs_to :manager, class_name: "User", optional: true
+  has_rich_text :about
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -57,6 +58,10 @@ class User < ApplicationRecord
     else
       "users/user.png"
     end
+  end
+
+  def full_name
+    "#{first_name} #{last_name}"
   end
 
   def self.search(params)

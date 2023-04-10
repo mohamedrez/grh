@@ -1,0 +1,9 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Time off requests</h1>
+
+<div id="time_off_requests">
+  <% @time_off_requests.each do |time_off_request| %>
+    <%= render time_off_request %>
+  <% end %>
+</div>

@@ -1,197 +1,113 @@
-  <div class="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
-    <div class="px-4 sm:px-0">
-      <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-      <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
-    </div>
-
-    <%= form_with(model: @user, class: "bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2") do |form| %>
-      <div class="px-4 py-6 sm:p-8">
-        <h1 class="my-5 text-blue-500 font-black">Basic informations</h1>
-        <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-          <div class="sm:col-span-3">
-            <%= form.label :first_name, class: "block text-sm font-medium leading-6 text-gray-900" %>
-            <div class="mt-2">
-              <%= form.text_field :first_name, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-            </div>
-          </div>
-
-          <div class="sm:col-span-3">
-            <%= form.label :last_name, class: "block text-sm font-medium leading-6 text-gray-900" %>
-            <div class="mt-2">
-              <%= form.text_field :last_name, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-            </div>
-          </div>
-
-          <div class="sm:col-span-2">
-            <%= form.label :birthdate, class: "block text-sm font-medium leading-6 text-gray-900" %>
-            <div class="mt-2">
-              <%= form.date_field :birthdate, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-            </div>
-          </div>
-
-          <div class="sm:col-span-3">
-            <%= form.label :start_date, class: "block text-sm font-medium leading-6 text-gray-900" %>
-            <div class="mt-2">
-              <%= form.date_field :start_date, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-            </div>
-          </div>
-
-          <div class="sm:col-span-3">
-            <%= form.label :end_date, class: "block text-sm font-medium leading-6 text-gray-900" %>
-            <div class="mt-2">
-              <%= form.date_field :end_date, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-            </div>
-          </div>
-
-          <div class="sm:col-span-2">
-            <%= form.label :gender, class: "block text-sm font-medium leading-6 text-gray-900" %>
-            <%= form.select :gender, options_for_select(User.genders.map {|key, value| [key.humanize, key]}) %>
-          </div>
-
-          <div class="sm:col-span-2">
-            <%= form.label :marital_status, class: "block text-sm font-medium leading-6 text-gray-900" %>
-            <%= form.select :marital_status, options_for_select(User.marital_statuses.map {|key, value| [key.humanize, key]}) %>
-          </div>
+<section>
+  <%= form_with(model: @user) do |form| %>
+    <div class="space-y-12">
+      <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+        <div>
+          <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
+          <p class="mt-1 text-sm leading-6 text-gray-600">Put your personal informations.</p>
         </div>
-        <h1 class="my-5 text-blue-500 font-black">Address</h1>
-        <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-          <%= form.fields_for :address do |f| %>
-            <div class="sm:col-span-4">
-              <%= f.label :country, class: "block text-sm font-medium leading-6 text-gray-900" %>
-              <div>
-                <%= f.select :country, options_for_select(Address.countries.map {|key, value| [key.humanize, key]}) %>
-              </div>
+        <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+          <div class="sm:col-span-3">
+            <%= form.label :first_name %>
+            <div class="mt-2">
+              <%= form.text_field :first_name %>
             </div>
-
-            <div class="col-span-full">
-              <%= f.label :street, "Street address", class: "block text-sm font-medium leading-6 text-gray-900" %>
-              <div class="mt-2">
-                <%= f.text_field :street, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-              </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= form.label :last_name %>
+            <div class="mt-2">
+              <%= form.text_field :last_name %>
             </div>
-
-            <div class="col-span-2">
-              <%= f.label :city, class: "block text-sm font-medium leading-6 text-gray-900" %>
-              <div class="mt-2">
-                <%= f.text_field :city, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-              </div>
+          </div>
+          <div class="col-span-full">
+            <%= form.label :about %>
+            <div class="mt-2">
+              <%= form.rich_text_area :about %>
             </div>
-
-            <div class="sm:col-span-2">
-              <div class="col-span-full">
-              <%= f.label :zipcode, "ZIP / Postal code", class: "block text-sm font-medium leading-6 text-gray-900" %>
-              <div class="mt-2">
-                <%= f.text_field :zipcode, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-              </div>
+            <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
+          </div>
+          <div class="sm:col-span-3 sm:col-start-1">
+            <%= form.label :phone %>
+            <div class="mt-2">
+              <%= form.text_field :phone %>
             </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= form.label :birthdate %>
+            <div class="mt-2">
+              <%= form.date_field :birthdate %>
             </div>
-          <% end %>
-        </div>
+          </div>
+          <div class="sm:col-span-3 sm:col-start-1">
+            <%= form.label :gender %>
+            <div class="mt-2">
+              <%= form.select :gender, options_for_select(User.genders.map {|key, value| [key.humanize, key]}) %>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= form.label :marital_status %>
+            <div class="mt-2">
+              <%= form.select :marital_status, options_for_select(User.marital_statuses.map {|key, value| [key.humanize, key]}, @user.marital_status) %>
+            </div>
+          </div>
+          <div class="col-span-full sm:col-start-1">
+            <%= form.label :job_title %>
+            <div class="mt-2">
+              <%= form.text_field :job_title %>
+            </div>
+          </div>
+          <div class="sm:col-span-3 sm:col-start-1">
+            <%= form.label :start_date %>
+            <div class="mt-2">
+              <%= form.date_field :start_date %>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= form.label :end_date %>
+            <div class="mt-2">
+              <%= form.date_field :end_date %>
+            </div>
+          </div>
       </div>
-      <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-        <%= link_to "Cancel", @user, class: "text-sm font-semibold leading-6 text-gray-900" %>
-        <%= form.submit "Save", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+    </div>
+    <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+      <div>
+        <h2 class="text-base font-semibold leading-7 text-gray-900">Address Information</h2>
+        <p class="mt-1 text-sm leading-6 text-gray-600">Put your address informations.</p>
       </div>
-    <% end %>
-  </div>
-
-  <div class="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
-    <div class="px-4 sm:px-0">
-      <h2 class="text-base font-semibold leading-7 text-gray-900">Experience</h2>
-      <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
-    </div>
-    <div>
-      <ul role="list" class="divide-y divide-gray-200">
-        <% @experiences&.each do |experience| %>
-          <li class="py-4">
-            <%= turbo_frame_tag experience, class: "contenets" do  %>
-              <%= link_to edit_experience_path(experience), class: "block hover:bg-gray-50" do %>
-                <div class="px-4 py-4 sm:px-6">
-                  <div class="flex items-center justify-between">
-                    <p class="truncate text-sm font-medium text-indigo-600"><%= experience.job_title.titleize %></p>
-                    <div class="ml-2 flex flex-shrink-0">
-                      <p class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800"><%= experience.employment_type.humanize %></p>
-                    </div>
-                  </div>
-                  <div class="mt-2 sm:flex sm:justify-between">
-                    <div class="sm:flex">
-                      <p class="mt-2 flex items-center text-sm text-gray-500 sm:ml-6 sm:mt-0">
-                        <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
-                        </svg>
-                        <%= experience.company_name.titleize %>
-                      </p>
-                    </div>
-                    <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-                      <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
-                      </svg>
-                      <p>
-                        <time datetime="2020-01-07"><%= experience.start_date.strftime('%a %d %b %Y')   %> - <%= experience.end_date.strftime('%a %d %b %Y')   %></time>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
-          </li>
+      <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+        <%= form.fields_for :address do |f| %>
+          <div class="sm:col-span-4">
+            <%= f.label :street, "Street address" %>
+            <div class="mt-2">
+              <%= f.text_field :street %>
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <%= f.label :country %>
+            <div>
+              <%= f.select :country, options_for_select(Address.countries.map {|key, value| [key.humanize, key]}, @user.address.country) %>
+            </div>
+          </div>
+          <div class="col-span-3 sm:col-start-1">
+            <%= f.label :city %>
+            <div class="mt-2">
+              <%= f.text_field :city %>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= f.label :zipcode, "ZIP / Postal code" %>
+            <div class="mt-2">
+              <%= f.text_field :zipcode %>
+            </div>
+          </div>
         <% end %>
-      </ul>
-      <%= turbo_frame_tag "new_user_experience" do  %>
-        <div class="flex items-center justify-center gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-          <%= link_to "New experience", new_experience_path, class: "rounded-md bg-indigo-600 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
-        </div>
-      <% end %>
+      </div>
     </div>
-  </div>
-
-  <div class="grid grid-cols-1 gap-x-8 gap-y-8 pt-10 md:grid-cols-3">
-    <div class="px-4 sm:px-0">
-      <h2 class="text-base font-semibold leading-7 text-gray-900">Education</h2>
-      <p class="mt-1 text-sm leading-6 text-gray-600">Use a permanent address where you can receive mail.</p>
     </div>
-    <div>
-      <ul role="list" class="divide-y divide-gray-200">
-        <% @educations.each do |education| %>
-          <li class="py-4">
-            <%= turbo_frame_tag education, class: "contenets" do %>
-              <%= link_to edit_education_path(education) do %>
-                <div class="px-4 py-4 sm:px-6">
-                  <div class="flex items-center justify-between">
-                    <p class="truncate text-sm font-medium text-indigo-600"><%= education.study_field.titleize %></p>
-                    <div class="ml-2 flex flex-shrink-0">
-                      <p class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800"><%= education.education_level.humanize %></p>
-                    </div>
-                  </div>
-                  <div class="mt-2 sm:flex sm:justify-between">
-                    <div class="sm:flex">
-                      <p class="mt-2 flex items-center text-sm text-gray-500 sm:ml-6 sm:mt-0">
-                        <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                          <path fill-rule="evenodd" d="M9.69 18.933l.003.001C9.89 19.02 10 19 10 19s.11.02.308-.066l.002-.001.006-.003.018-.008a5.741 5.741 0 00.281-.14c.186-.096.446-.24.757-.433.62-.384 1.445-.966 2.274-1.765C15.302 14.988 17 12.493 17 9A7 7 0 103 9c0 3.492 1.698 5.988 3.355 7.584a13.731 13.731 0 002.273 1.765 11.842 11.842 0 00.976.544l.062.029.018.008.006.003zM10 11.25a2.25 2.25 0 100-4.5 2.25 2.25 0 000 4.5z" clip-rule="evenodd" />
-                        </svg>
-                        <%= education.school.titleize %>
-                      </p>
-                    </div>
-                    <div class="mt-2 flex items-center text-sm text-gray-500 sm:mt-0">
-                      <svg class="mr-1.5 h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.75 2a.75.75 0 01.75.75V4h7V2.75a.75.75 0 011.5 0V4h.25A2.75 2.75 0 0118 6.75v8.5A2.75 2.75 0 0115.25 18H4.75A2.75 2.75 0 012 15.25v-8.5A2.75 2.75 0 014.75 4H5V2.75A.75.75 0 015.75 2zm-1 5.5c-.69 0-1.25.56-1.25 1.25v6.5c0 .69.56 1.25 1.25 1.25h10.5c.69 0 1.25-.56 1.25-1.25v-6.5c0-.69-.56-1.25-1.25-1.25H4.75z" clip-rule="evenodd" />
-                      </svg>
-                      <p>
-                        <time datetime="2020-01-07"><%= education.start_date.strftime('%a %d %b %Y')   %> - <%= education.end_date.strftime('%a %d %b %Y')   %></time>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              <% end %>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-      <%= turbo_frame_tag "new_user_education" do  %>
-        <div class="flex items-center justify-center gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-          <%= link_to "New education", new_education_path, class: "rounded-md bg-indigo-600 px-6 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
-        </div>
-      <% end %>
+    <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+      <%= link_to "Cancel", @user, class: "text-sm font-semibold leading-6 text-gray-900" %>
+      <%= form.submit "Save", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
     </div>
-  </div>
-</div>
+  <% end %>
+</section>

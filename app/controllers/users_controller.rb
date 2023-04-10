@@ -9,13 +9,14 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user.address.presence || @user.build_address
+    @address = @user.address || @user.build_address
     @experiences = @user.experiences
     @educations = @user.educations
   end
 
   def update
     respond_to do |format|
+      @user.create_address!(user_params[:address_attributes]) unless @user.address
       if @user.update(user_params)
         format.html { redirect_to user_url(@user), notice: t("flash.profiles_controller.account_been_updated") }
       else
@@ -31,6 +32,25 @@ class UsersController < ApplicationController
   end
 
   def user_params
-    params.require(:user).permit(:first_name, :last_name, :avatar, :birthdate, :start_date, :end_date, :gender, :marital_status, address_attributes: [:country, :street, :city, :zipcode])
+    params.require(:user).permit(
+      :first_name,
+      :last_name,
+      :about,
+      :birthdate,
+      :start_date,
+      :end_date,
+      :gender,
+      :marital_status,
+      :phone,
+      :job_title,
+      address_attributes:
+      [
+        :id,
+        :street,
+        :country,
+        :city,
+        :zipcode
+      ]
+    )
   end
 end
