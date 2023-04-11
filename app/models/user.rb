@@ -14,9 +14,6 @@
 #  remember_created_at    :datetime
 #
 class User < ApplicationRecord
-  paginates_per 10
-  max_paginates_per 20
-
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   has_many :user_points, dependent: :destroy
