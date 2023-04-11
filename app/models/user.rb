@@ -42,6 +42,8 @@ class User < ApplicationRecord
   belongs_to :manager, class_name: "User", optional: true
   has_rich_text :about
 
+  validates :first_name, :last_name, :phone, :birthdate, :job_title, presence: true
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
