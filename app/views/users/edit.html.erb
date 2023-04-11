@@ -10,13 +10,13 @@
           <div class="sm:col-span-3">
             <%= form.label :first_name %>
             <div class="mt-2">
-              <%= form.text_field :first_name %>
+              <%= form.text_field :first_name, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :last_name %>
             <div class="mt-2">
-              <%= form.text_field :last_name %>
+              <%= form.text_field :last_name, class: "w-full" %>
             </div>
           </div>
           <div class="col-span-full">
@@ -29,13 +29,13 @@
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :phone %>
             <div class="mt-2">
-              <%= form.text_field :phone %>
+              <%= form.text_field :phone, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :birthdate %>
             <div class="mt-2">
-              <%= form.date_field :birthdate %>
+              <%= form.date_field :birthdate, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
@@ -53,57 +53,57 @@
           <div class="col-span-full sm:col-start-1">
             <%= form.label :job_title %>
             <div class="mt-2">
-              <%= form.text_field :job_title %>
+              <%= form.text_field :job_title, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :start_date %>
             <div class="mt-2">
-              <%= form.date_field :start_date %>
+              <%= form.date_field :start_date, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :end_date %>
             <div class="mt-2">
-              <%= form.date_field :end_date %>
+              <%= form.date_field :end_date, class: "w-full" %>
             </div>
           </div>
+        </div>
       </div>
-    </div>
-    <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
-      <div>
-        <h2 class="text-base font-semibold leading-7 text-gray-900">Address Information</h2>
-        <p class="mt-1 text-sm leading-6 text-gray-600">Put your address informations.</p>
+      <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+        <div>
+          <h2 class="text-base font-semibold leading-7 text-gray-900">Address Information</h2>
+          <p class="mt-1 text-sm leading-6 text-gray-600">Put your address informations.</p>
+        </div>
+        <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+          <%= form.fields_for :address do |f| %>
+            <div class="sm:col-span-4">
+              <%= f.label :street, "Street address" %>
+              <div class="mt-2">
+                <%= f.text_field :street, class: "w-full" %>
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <%= f.label :country %>
+              <div>
+                <%= f.select :country, options_for_select(Address.countries.map {|key, value| [key.humanize, key]}, @user.address.country) %>
+              </div>
+            </div>
+            <div class="col-span-3 sm:col-start-1">
+              <%= f.label :city %>
+              <div class="mt-2">
+                <%= f.text_field :city %>
+              </div>
+            </div>
+            <div class="sm:col-span-3">
+              <%= f.label :zipcode, "ZIP / Postal code" %>
+              <div class="mt-2">
+                <%= f.text_field :zipcode %>
+              </div>
+            </div>
+          <% end %>
+        </div>
       </div>
-      <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
-        <%= form.fields_for :address do |f| %>
-          <div class="sm:col-span-4">
-            <%= f.label :street, "Street address" %>
-            <div class="mt-2">
-              <%= f.text_field :street %>
-            </div>
-          </div>
-          <div class="sm:col-span-2">
-            <%= f.label :country %>
-            <div>
-              <%= f.select :country, options_for_select(Address.countries.map {|key, value| [key.humanize, key]}, @user.address.country) %>
-            </div>
-          </div>
-          <div class="col-span-3 sm:col-start-1">
-            <%= f.label :city %>
-            <div class="mt-2">
-              <%= f.text_field :city %>
-            </div>
-          </div>
-          <div class="sm:col-span-3">
-            <%= f.label :zipcode, "ZIP / Postal code" %>
-            <div class="mt-2">
-              <%= f.text_field :zipcode %>
-            </div>
-          </div>
-        <% end %>
-      </div>
-    </div>
     </div>
     <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
       <%= link_to "Cancel", @user, class: "text-sm font-semibold leading-6 text-gray-900" %>

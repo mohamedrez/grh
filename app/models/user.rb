@@ -42,6 +42,8 @@ class User < ApplicationRecord
   belongs_to :manager, class_name: "User", optional: true
   has_rich_text :about
 
+  validates :first_name, :last_name, :phone, :birthdate, :job_title, presence: true
+
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
@@ -64,7 +66,7 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def self.search(params)
-    params[:query].blank? ? all : where("first_name LIKE ?", "%#{sanitize_sql_like(params[:query])}%")
+  def self.ransackable_attributes(auth_object = nil)
+    ["birthdate", "email", "end_date", "first_name", "gender", "job_title", "last_name", "manager_id", "marital_status", "phone", "start_date"]
   end
 end
