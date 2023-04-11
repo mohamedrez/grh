@@ -10,13 +10,13 @@
           <div class="sm:col-span-3">
             <%= form.label :first_name %>
             <div class="mt-2">
-              <%= form.text_field :first_name %>
+              <%= form.text_field :first_name, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :last_name %>
             <div class="mt-2">
-              <%= form.text_field :last_name %>
+              <%= form.text_field :last_name, class: "w-full" %>
             </div>
           </div>
           <div class="col-span-full">
@@ -29,13 +29,13 @@
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :phone %>
             <div class="mt-2">
-              <%= form.text_field :phone %>
+              <%= form.text_field :phone, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :birthdate %>
             <div class="mt-2">
-              <%= form.date_field :birthdate %>
+              <%= form.date_field :birthdate, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
@@ -53,19 +53,19 @@
           <div class="col-span-full sm:col-start-1">
             <%= form.label :job_title %>
             <div class="mt-2">
-              <%= form.text_field :job_title %>
+              <%= form.text_field :job_title, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :start_date %>
             <div class="mt-2">
-              <%= form.date_field :start_date %>
+              <%= form.date_field :start_date, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :end_date %>
             <div class="mt-2">
-              <%= form.date_field :end_date %>
+              <%= form.date_field :end_date, class: "w-full" %>
             </div>
           </div>
       </div>
@@ -80,7 +80,7 @@
           <div class="sm:col-span-4">
             <%= f.label :street, "Street address" %>
             <div class="mt-2">
-              <%= f.text_field :street %>
+              <%= f.text_field :street, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-2">
@@ -92,13 +92,13 @@
           <div class="col-span-3 sm:col-start-1">
             <%= f.label :city %>
             <div class="mt-2">
-              <%= f.text_field :city %>
+              <%= f.text_field :city, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= f.label :zipcode, "ZIP / Postal code" %>
             <div class="mt-2">
-              <%= f.text_field :zipcode %>
+              <%= f.text_field :zipcode, class: "w-full" %>
             </div>
           </div>
         <% end %>
