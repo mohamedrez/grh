@@ -1,12 +1,4 @@
-<%= search_form_for @q do |f| %>
-  <%= f.label :last_name_cont, "Last Name" %>
-  <%= f.search_field :last_name_cont %>
-
-  <%= f.label :email_cont, "Email" %>
-  <%= f.search_field :email_cont %>
-
-  <%= f.submit "Search" %>
-<% end %>
+<%= render partial: "search_form" %>
 
 <div class="overflow-hidden bg-white shadow sm:rounded-md mt-10">
   <ul role="list" class="divide-y divide-gray-200">
