@@ -50,12 +50,20 @@
               <%= form.select :marital_status, options_for_select(User.marital_statuses.map {|key, value| [key.humanize, key]}, @user.marital_status) %>
             </div>
           </div>
-          <div class="col-span-full sm:col-start-1">
+          <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :job_title %>
             <div class="mt-2">
               <%= form.text_field :job_title, class: "w-full" %>
             </div>
           </div>
+          <%= form.fields_for :site do |f| %>
+            <div class="sm:col-span-3">
+              <%= f.label :name, "Site" %>
+              <div>
+                <%= f.select :name, options_for_select(Site.names.map {|key, value| [key.humanize, key]}, @user.site.name) %>
+              </div>
+            </div>
+          <% end %>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :start_date %>
             <div class="mt-2">
