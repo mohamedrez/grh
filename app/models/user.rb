@@ -44,7 +44,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :phone, :birthdate, :job_title, presence: true
 
-  has_one :site, dependent: :destroy
+  belongs_to :site
   accepts_nested_attributes_for :site, update_only: true
 
   def self.from_omniauth(auth)

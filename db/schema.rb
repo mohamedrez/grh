@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_12_131645) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_12_163240) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -317,11 +317,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_131645) do
   end
 
   create_table "sites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "name"
-    t.bigint "user_id", null: false
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_sites_on_user_id"
+    t.string "code"
+    t.string "address"
+    t.string "phone"
   end
 
   create_table "steps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -424,10 +425,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_131645) do
     t.bigint "manager_id"
     t.string "phone"
     t.string "job_title"
+    t.bigint "site_id", null: false
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["manager_id"], name: "index_users_on_manager_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["site_id"], name: "index_users_on_site_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -441,7 +444,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_131645) do
   add_foreign_key "motor_note_tag_tags", "motor_note_tags", column: "tag_id"
   add_foreign_key "motor_note_tag_tags", "motor_notes", column: "note_id"
   add_foreign_key "motor_taggable_tags", "motor_tags", column: "tag_id"
-  add_foreign_key "sites", "users"
   add_foreign_key "steps", "courses"
   add_foreign_key "user_points", "users"
   add_foreign_key "user_progresses", "users"
@@ -449,5 +451,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_131645) do
   add_foreign_key "user_quiz_responses", "users"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"
+  add_foreign_key "users", "sites"
   add_foreign_key "users", "users", column: "manager_id"
 end
