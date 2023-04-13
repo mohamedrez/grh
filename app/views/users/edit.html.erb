@@ -8,15 +8,15 @@
         </div>
         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
           <div class="sm:col-span-3">
-            <%= form.label :first_name %>
-            <div class="mt-2">
-              <%= form.text_field :first_name, class: "w-full" %>
-            </div>
-          </div>
-          <div class="sm:col-span-3">
             <%= form.label :last_name %>
             <div class="mt-2">
               <%= form.text_field :last_name, class: "w-full" %>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= form.label :first_name %>
+            <div class="mt-2">
+              <%= form.text_field :first_name, class: "w-full" %>
             </div>
           </div>
           <div class="col-span-full">
@@ -27,43 +27,67 @@
             <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
+            <%= form.label :email %>
+            <div class="mt-2">
+              <%= form.text_field :email, class: "w-full" %>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
             <%= form.label :phone %>
             <div class="mt-2">
               <%= form.text_field :phone, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-3">
-            <%= form.label :birthdate %>
-            <div class="mt-2">
-              <%= form.date_field :birthdate, class: "w-full" %>
-            </div>
-          </div>
           <div class="sm:col-span-3 sm:col-start-1">
-            <%= form.label :gender %>
-            <div class="mt-2">
-              <%= form.select :gender, options_for_select(User.genders.map {|key, value| [key.humanize, key]}) %>
-            </div>
-          </div>
-          <div class="sm:col-span-3">
             <%= form.label :marital_status %>
             <div class="mt-2">
               <%= form.select :marital_status, options_for_select(User.marital_statuses.map {|key, value| [key.humanize, key]}, @user.marital_status) %>
             </div>
           </div>
-          <div class="sm:col-span-3 sm:col-start-1">
-            <%= form.label :job_title %>
+          <div class="sm:col-span-3">
+            <%= form.label :children_number %>
             <div class="mt-2">
-              <%= form.text_field :job_title, class: "w-full" %>
+              <%= form.select :children_number, (1..5).to_a %>
+            </div>
+          </div>
+          <div class="sm:col-span-3 sm:col-start-1">
+            <%= form.label :birthdate %>
+            <div class="mt-2">
+              <%= form.date_field :birthdate, class: "w-full" %>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= form.label :gender %>
+            <div class="mt-2">
+              <%= form.select :gender, options_for_select(User.genders.map {|key, value| [key.humanize, key]}, @user.gender) %>
             </div>
           </div>
           <%= form.fields_for :site do |f| %>
-            <div class="sm:col-span-3">
+            <div class="sm:col-span-3 sm:col-start-1">
               <%= f.label :name, "Site" %>
               <div>
-                <%= f.select :name, options_for_select(Site.pluck(:name, :name)), {}, { class: "w-full" } %>
+                <%= f.select :name, options_for_select(Site.pluck(:name, :name), @user.site.name), {}, { class: "w-full" } %>
               </div>
             </div>
           <% end %>
+          <div class="sm:col-span-3">
+            <%= form.label :cin, "CIN" %>
+            <div class="mt-2">
+              <%= form.text_field :cin, class: "w-full" %>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= form.label :service %>
+            <div class="mt-2">
+              <%= form.select :service, options_for_select(User.services.map {|key, value| [key.humanize, key]}, @user.service) %>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= form.label :function %>
+            <div class="mt-2">
+              <%= form.select :function, options_for_select(User.functions.map {|key, value| [key.humanize, key]}, @user.function) %>
+            </div>
+          </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :start_date %>
             <div class="mt-2">
@@ -71,9 +95,27 @@
             </div>
           </div>
           <div class="sm:col-span-3">
+            <%= form.label :joining_date %>
+            <div class="mt-2">
+              <%= form.date_field :joining_date, class: "w-full" %>
+            </div>
+          </div>
+          <div class="sm:col-span-2 sm:col-start-1">
             <%= form.label :end_date %>
             <div class="mt-2">
               <%= form.date_field :end_date, class: "w-full" %>
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <%= form.label :contract %>
+            <div class="mt-2">
+              <%= form.select :contract, options_for_select(User.contracts.map {|key, value| [key.humanize, key]}, @user.contract) %>
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <%= form.label :category %>
+            <div class="mt-2">
+              <%= form.select :category, options_for_select(User.categories.map {|key, value| [key.humanize, key]}, @user.category) %>
             </div>
           </div>
         </div>

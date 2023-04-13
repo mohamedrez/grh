@@ -39,16 +39,15 @@ RSpec.describe "Users", type: :request do
           birthdate: "02-03-1998",
           gender: "male",
           marital_status: "single",
-          job_title: "RoR developer",
           start_date: "02-03-2019",
           end_date: "02-03-2024",
           address_attributes:
-            {
-              street: "123 Main St",
-              country: "usa",
-              city: "New York",
-              zipcode: "42157"
-            }
+          {
+            street: "123 Main St",
+            country: "usa",
+            city: "New York",
+            zipcode: "42157"
+          }
         }
       end
 
@@ -62,7 +61,6 @@ RSpec.describe "Users", type: :request do
         expect(user.phone).to eq("12345678")
         expect(user.gender).to eq("male")
         expect(user.marital_status).to eq("single")
-        expect(user.job_title).to eq("RoR developer")
         expect(user.start_date).to eq(Date.new(2019, 0o3, 0o2))
         expect(user.birthdate).to eq(Date.new(1998, 0o3, 0o2))
         expect(user.end_date).to eq(Date.new(2024, 0o3, 0o2))

@@ -28,24 +28,29 @@ class User < ApplicationRecord
     :omniauthable, omniauth_providers: [:google_oauth2, :twitter]
 
   has_one_attached :avatar, dependent: :destroy
-  has_many :notifications, as: :recipient, dependent: :destroy
-
-  has_one :address, dependent: :destroy
-  has_many :experiences, dependent: :destroy
-  has_many :educations, dependent: :destroy
-  enum :gender, %i[male female], prefix: :user
-  enum :marital_status, %i[single married divorced other], prefix: :user
-
-  accepts_nested_attributes_for :address, update_only: true
-
-  has_many :subordinates, class_name: "User", foreign_key: "manager_id", dependent: :destroy, inverse_of: :manager
-  belongs_to :manager, class_name: "User", optional: true
   has_rich_text :about
 
-  validates :first_name, :last_name, :phone, :birthdate, :job_title, presence: true
+  has_many :notifications, as: :recipient, dependent: :destroy
+  has_many :experiences, dependent: :destroy
+  has_many :educations, dependent: :destroy
+  has_many :subordinates, class_name: "User", foreign_key: "manager_id", dependent: :destroy, inverse_of: :manager
 
+  has_one :address, dependent: :destroy
+
+  belongs_to :manager, class_name: "User", optional: true
   belongs_to :site
+
+  validates :first_name, :last_name, :phone, :birthdate, presence: true
+
+  accepts_nested_attributes_for :address, update_only: true
   accepts_nested_attributes_for :site, update_only: true
+
+  enum :gender, %i[male female], prefix: :user_gender
+  enum :marital_status, %i[single married divorced other], prefix: :user_marital_status
+  enum :service, %i[financial healthcare information_technology marketing_and_advertising], prefix: :user_service
+  enum :function, %i[operations finance human_resource marketing sale information_technology research_and_development administration], prefix: :user_function
+  enum :contract, %i[CDD CDI Intern], prefix: :user_contract
+  enum :category, %i[cadre non_cadre], prefix: :user_category
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
@@ -70,6 +75,6 @@ class User < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["birthdate", "email", "end_date", "first_name", "gender", "job_title", "last_name", "manager_id", "marital_status", "phone", "start_date"]
+    ["email", "last_name"]
   end
 end

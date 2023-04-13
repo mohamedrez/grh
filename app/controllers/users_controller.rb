@@ -49,7 +49,13 @@ class UsersController < ApplicationController
       :gender,
       :marital_status,
       :phone,
-      :job_title,
+      :children_number,
+      :cin,
+      :service,
+      :function,
+      :joining_date,
+      :contract,
+      :category,
       address_attributes:
       [
         :id,

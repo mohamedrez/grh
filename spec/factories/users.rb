@@ -23,7 +23,6 @@ FactoryBot.define do
     last_name { Faker::Name.last_name }
     birthdate { Faker::Date.birthday(min_age: 18, max_age: 45) }
     phone { Faker::PhoneNumber.phone_number }
-    job_title { Faker::Job.title }
     site { FactoryBot.create(:site) }
   end
 end

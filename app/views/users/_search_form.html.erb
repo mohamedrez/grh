@@ -2,20 +2,12 @@
   <%= search_form_for @q do |f| %>
     <div class="flex flex-wrap border-b border-gray-900/10">
       <div class="mx-4 my-2"> 
-        <%= f.label :first_name_cont, "First Name" %>
-        <%= f.search_field :first_name_cont %>
-      </div>
-      <div class="mx-4 my-2"> 
         <%= f.label :last_name_cont, "Last Name" %>
         <%= f.search_field :last_name_cont %>
       </div>
       <div class="mx-4 my-2"> 
         <%= f.label :email_cont, "Email" %>
         <%= f.search_field :email_cont %>
-      </div>
-      <div class="mx-4 my-2"> 
-        <%= f.label :job_title_cont, "Job Title" %>
-        <%= f.search_field :job_title_cont %>
       </div>
       <div class="mx-4 my-7">
         <%= f.submit "Search" %>
