@@ -118,6 +118,42 @@
               <%= form.select :category, options_for_select(User.categories.map {|key, value| [key.humanize, key]}, @user.category) %>
             </div>
           </div>
+          <div class="sm:col-span-3 sm:col-start-1">
+            <%= form.label :cnss_number, "CNSS number" %>
+            <div class="mt-2">
+              <%= form.number_field :cnss_number, class: "w-full" %>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= form.label :employee_number %>
+            <div class="mt-2">
+              <%= form.number_field :employee_number, class: "w-full" %>
+            </div>
+          </div>
+          <div class="sm:col-span-3 sm:col-start-1">
+            <%= form.label :brut_salary %>
+            <div class="mt-2">
+              <%= form.number_field  :brut_salary, class: "w-full" %>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= form.label :net_salary %>
+            <div class="mt-2">
+              <%= form.number_field :net_salary, class: "w-full" %>
+            </div>
+          </div>
+          <div class="sm:col-span-3 sm:col-start-1">
+            <%= form.label :cnss_contribution, "CNSS contribution" %>
+            <div class="mt-2">
+              <%= form.number_field  :cnss_contribution, class: "w-full" %>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= form.label :retirement_contribution %>
+            <div class="mt-2">
+              <%= form.number_field  :retirement_contribution, class: "w-full" %>
+            </div>
+          </div>
         </div>
       </div>
       <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">

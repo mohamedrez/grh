@@ -56,6 +56,12 @@ class UsersController < ApplicationController
       :joining_date,
       :contract,
       :category,
+      :cnss_number,
+      :employee_number,
+      :brut_salary,
+      :net_salary,
+      :cnss_contribution,
+      :retirement_contribution,
       address_attributes:
       [
         :id,

@@ -41,6 +41,7 @@ class User < ApplicationRecord
   belongs_to :site
 
   validates :first_name, :last_name, :phone, :birthdate, presence: true
+  validates :cnss_number, :employee_number, numericality: {only_integer: true}
 
   accepts_nested_attributes_for :address, update_only: true
   accepts_nested_attributes_for :site, update_only: true

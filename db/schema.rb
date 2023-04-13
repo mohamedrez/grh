@@ -432,6 +432,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_084218) do
     t.date "joining_date"
     t.integer "contract"
     t.integer "category"
+    t.string "cnss_number"
+    t.string "employee_number"
+    t.integer "brut_salary"
+    t.integer "net_salary"
+    t.integer "cnss_contribution"
+    t.integer "retirement_contribution"
+    t.integer "pto_number", default: 21
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["manager_id"], name: "index_users_on_manager_id"
