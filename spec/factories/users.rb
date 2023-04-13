@@ -25,7 +25,6 @@ FactoryBot.define do
     phone { Faker::PhoneNumber.phone_number }
     cnss_number { "124598756" }
     employee_number { "45215977" }
-    job_title { Faker::Job.title }
     
     if Rails.env.development?
       site_id { Site.first.id }
