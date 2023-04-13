@@ -425,7 +425,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_163240) do
     t.bigint "manager_id"
     t.string "phone"
     t.string "job_title"
-    t.bigint "site_id", null: false
+    t.bigint "site_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["manager_id"], name: "index_users_on_manager_id"
