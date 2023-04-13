@@ -154,6 +154,13 @@
               <%= form.number_field  :retirement_contribution, class: "w-full" %>
             </div>
           </div>
+          <div class="sm:col-span-2 sm:col-start-1">
+            <%= form.label :pto_number, "Paid Time Off" %>
+            <div class="flex items-center mt-2">
+              <%= image_tag('icons/add.svg', class: 'w-12 h-12 mr-2') %>
+              <%= form.number_field :pto_number, class: "w-full bg-gray-100" %>
+            </div>
+          </div>
         </div>
       </div>
       <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">

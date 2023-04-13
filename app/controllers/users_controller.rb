@@ -62,6 +62,7 @@ class UsersController < ApplicationController
       :net_salary,
       :cnss_contribution,
       :retirement_contribution,
+      :pto_number,
       address_attributes:
       [
         :id,
