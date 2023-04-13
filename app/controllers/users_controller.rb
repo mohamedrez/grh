@@ -15,7 +15,6 @@ class UsersController < ApplicationController
   def edit
     authorize @user
     @address = @user.address || @user.build_address
-    @site = @user.site || @user.build_site
     @experiences = @user.experiences
     @educations = @user.educations
   end
@@ -50,6 +49,7 @@ class UsersController < ApplicationController
       :marital_status,
       :phone,
       :job_title,
+      :site_id,
       address_attributes:
       [
         :id,
@@ -57,11 +57,6 @@ class UsersController < ApplicationController
         :country,
         :city,
         :zipcode
-      ],
-      site_attributes:
-      [
-        :id,
-        :name
       ]
     )
   end

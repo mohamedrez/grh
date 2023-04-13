@@ -41,7 +41,7 @@
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :gender %>
             <div class="mt-2">
-              <%= form.select :gender, options_for_select(User.genders.map {|key, value| [key.humanize, key]}) %>
+              <%= form.select :gender, options_for_select(User.genders.map {|key, value| [key.humanize, key]}, @user.gender) %>
             </div>
           </div>
           <div class="sm:col-span-3">
@@ -56,14 +56,12 @@
               <%= form.text_field :job_title, class: "w-full" %>
             </div>
           </div>
-          <%= form.fields_for :site do |f| %>
-            <div class="sm:col-span-3">
-              <%= f.label :name, "Site" %>
-              <div>
-                <%= f.select :name, options_for_select(Site.pluck(:name, :id), @user.site.name), {}, { class: "w-full" } %>
-              </div>
+          <div class="sm:col-span-3">
+            <%= form.label :site_id %>
+            <div class="mt-2">
+              <%= form.select :site_id, options_for_select(Site.pluck(:name, :id), @user.site_id) %>
             </div>
-          <% end %>
+          </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :start_date %>
             <div class="mt-2">
