@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :site do
-    name { "Akdital Headquarters" }
-    code { "AKDITAL" }                                               
-    address { "246 , Boulevard de l'Oasis , casablanca" }            
-    phone { "05 22 23 14 14" }
+    name { "Downtown Phoenix campus" }
+    code { "DPC" }                                               
+    address { "411 N Central Ave, Phoenix, AZ 85004" }            
+    phone { "(602) 496-4636" }
   end
 end

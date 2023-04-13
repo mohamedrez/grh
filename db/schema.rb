@@ -424,7 +424,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_084218) do
     t.integer "marital_status"
     t.bigint "manager_id"
     t.string "phone"
-    t.bigint "site_id", null: false
+    t.bigint "site_id"
     t.integer "children_number"
     t.string "cin"
     t.integer "service"
