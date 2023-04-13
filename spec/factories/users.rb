@@ -24,5 +24,7 @@ FactoryBot.define do
     birthdate { Faker::Date.birthday(min_age: 18, max_age: 45) }
     phone { Faker::PhoneNumber.phone_number }
     site { FactoryBot.create(:site) }
+    cnss_number { "124598756" }
+    employee_number { "45215977" }
   end
 end
