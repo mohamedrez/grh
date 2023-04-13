@@ -7,6 +7,9 @@ import { application } from "./application"
 import AvatarMenuController from "./avatar_menu_controller"
 application.register("avatar-menu", AvatarMenuController)
 
+import CalendarController from "./calendar_controller"
+application.register("calendar", CalendarController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 

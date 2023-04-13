@@ -1,24 +1,4 @@
-<script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.5/index.global.min.js'></script>
-<script>
-  fetch('/events.json')
-    .then(function(response) {
-      return response.json();
-    })
-    .then(function(events) {
-      events.map(function(event) {
-        event.start = event.start_at;
-        event.end = event.end_at;
-        event.title = event.eventable_type;
-        return event;
-      });
-      var calendarEl = document.getElementById('calendar');
-      var calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth',
-        events: events
-      });
-      calendar.addEvent({ title: 'new event', start: '2023-04-04' });
-      calendar.render();
-    });
+<div data-controller='calendar' >
 
-</script>
-<div id='calendar'></div>
+  <div id='calendar' ></div>
+</div>
