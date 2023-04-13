@@ -60,7 +60,7 @@
             <div class="sm:col-span-3">
               <%= f.label :name, "Site" %>
               <div>
-                <%= f.select :name, options_for_select(Site.pluck(:name, :name)), {}, { class: "w-full" } %>
+                <%= f.select :name, options_for_select(Site.pluck(:name, :id), @user.site.name), {}, { class: "w-full" } %>
               </div>
             </div>
           <% end %>
