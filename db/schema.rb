@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_12_163240) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_13_084218) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -318,11 +318,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_163240) do
 
   create_table "sites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "code"
     t.string "address"
     t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "steps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -424,8 +424,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_12_163240) do
     t.integer "marital_status"
     t.bigint "manager_id"
     t.string "phone"
-    t.string "job_title"
     t.bigint "site_id"
+    t.integer "job_title"
+    t.integer "children_number"
+    t.string "cin"
+    t.integer "service"
+    t.date "joining_date"
+    t.integer "contract"
+    t.integer "category"
+    t.string "cnss_number"
+    t.string "employee_number"
+    t.integer "brut_salary"
+    t.integer "net_salary"
+    t.integer "cnss_contribution"
+    t.integer "retirement_contribution"
+    t.integer "pto_number", default: 21
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["manager_id"], name: "index_users_on_manager_id"
