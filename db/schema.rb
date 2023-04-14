@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_05_061715) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_12_163240) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -316,6 +316,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_061715) do
     t.string "answer"
   end
 
+  create_table "sites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "code"
+    t.string "address"
+    t.string "phone"
+  end
+
   create_table "steps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "course_id", null: false
     t.integer "position"
@@ -416,10 +425,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_061715) do
     t.bigint "manager_id"
     t.string "phone"
     t.string "job_title"
+    t.bigint "site_id"
     t.index ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["manager_id"], name: "index_users_on_manager_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["site_id"], name: "index_users_on_site_id"
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
@@ -440,5 +451,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_05_061715) do
   add_foreign_key "user_quiz_responses", "users"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"
+  add_foreign_key "users", "sites"
   add_foreign_key "users", "users", column: "manager_id"
 end

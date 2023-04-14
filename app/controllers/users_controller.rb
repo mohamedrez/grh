@@ -49,6 +49,7 @@ class UsersController < ApplicationController
       :marital_status,
       :phone,
       :job_title,
+      :site_id,
       address_attributes:
       [
         :id,
