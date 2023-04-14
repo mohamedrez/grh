@@ -19,7 +19,7 @@ RSpec.describe "Users", type: :request do
       children_number: 2,
       cin: "ZWE452GH",
       service: :financial,
-      function: :sale,
+      job_title: :sale,
       joining_date: Date.new(2023, 4, 14),
       contract: :CDI,
       category: :cadre,
@@ -94,7 +94,7 @@ RSpec.describe "Users", type: :request do
         expect(user.children_number).to eq(2)
         expect(user.cin).to eq("ZWE452GH")
         expect(user.service).to eq("financial")
-        expect(user.function).to eq("sale")
+        expect(user.job_title).to eq("sale")
         expect(user.joining_date).to eq(Date.new(2023, 4, 14))
         expect(user.contract).to eq("CDI")
         expect(user.category).to eq("cadre")

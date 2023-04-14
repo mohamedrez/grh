@@ -48,7 +48,7 @@ class User < ApplicationRecord
   enum :gender, %i[male female], prefix: :user_gender
   enum :marital_status, %i[single married divorced other], prefix: :user_marital_status
   enum :service, %i[financial healthcare information_technology marketing_and_advertising], prefix: :user_service
-  enum :function, %i[operations finance human_resource marketing sale information_technology research_and_development administration], prefix: :user_function
+  enum :job_title, %i[operations finance human_resource marketing sale information_technology research_and_development administration], prefix: :user_job_title
   enum :contract, %i[CDD CDI Intern], prefix: :user_contract
   enum :category, %i[cadre non_cadre], prefix: :user_category
 

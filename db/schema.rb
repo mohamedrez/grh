@@ -318,11 +318,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_084218) do
 
   create_table "sites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
     t.string "code"
     t.string "address"
     t.string "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "steps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -425,10 +425,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_084218) do
     t.bigint "manager_id"
     t.string "phone"
     t.bigint "site_id"
+    t.integer "job_title"
     t.integer "children_number"
     t.string "cin"
     t.integer "service"
-    t.integer "function"
     t.date "joining_date"
     t.integer "contract"
     t.integer "category"
