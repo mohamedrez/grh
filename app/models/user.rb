@@ -38,7 +38,7 @@ class User < ApplicationRecord
   has_one :address, dependent: :destroy
 
   belongs_to :manager, class_name: "User", optional: true
-  belongs_to :site
+  belongs_to :site, optional: true
 
   validates :first_name, :last_name, :phone, :birthdate, presence: true
   validates :cnss_number, :employee_number, numericality: {only_integer: true}

@@ -1,3 +1,3 @@
 class Site < ApplicationRecord
-  has_many :user, dependent: :destroy
+  has_many :users, dependent: :nullify
 end
