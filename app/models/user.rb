@@ -44,7 +44,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :phone, :birthdate, :job_title, presence: true
 
-  belongs_to :site
+  belongs_to :site, optional: true
 
   def self.from_omniauth(auth)
     where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
