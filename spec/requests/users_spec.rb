@@ -8,6 +8,7 @@ RSpec.describe "Users", type: :request do
       first_name: "John",
       last_name: "Doe",
       about: "<div>hello everyone</div>",
+      email: "me@test.com",
       phone: "12345678",
       birthdate: "02-03-1998",
       gender: "male",
@@ -68,10 +69,45 @@ RSpec.describe "Users", type: :request do
     end
   end
 
+  describe "GET /new" do
+    it "renders a successful response" do
+      get "/users/new"
+      expect(response).to be_successful
+    end
+  end
+
   describe "GET /edit" do
     it "renders a successful response" do
       get "/users/#{user.id}/edit"
       expect(response).to be_successful
+    end
+  end
+
+  describe "POST /create" do
+    context "with valid parameters" do
+      it "creates a new user" do
+        expect {
+          post "/users", params: {user: valid_attributes}
+        }.to change(User, :count).by(1)
+      end
+
+      it "redirects to the created User" do
+        post "/users", params: {user: valid_attributes}
+        expect(response).to redirect_to(user_url(User.last))
+      end
+    end
+
+    context "with invalid parameters" do
+      it "does not create a new User" do
+        expect {
+          post "/users", params: {user: invalid_attributes}
+        }.to change(User, :count).by(0)
+      end
+
+      it "renders a response with 422 status (i.e. to display the 'new' template)" do
+        post "/users", params: {user: invalid_attributes}
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
     end
   end
 

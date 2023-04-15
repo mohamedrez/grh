@@ -3,8 +3,8 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
   def index
-    @q = User.ransack(params[:q])
-    @users = @q.result(distinct: true).page(params[:page])
+    @q = User.ransack(User.search(params[:q]))
+    @users = @q.result.page(params[:page])
     authorize @users
   end
 
@@ -12,22 +12,38 @@ class UsersController < ApplicationController
     authorize @user
   end
 
+  def new
+    @user = User.new
+    authorize @user
+    @user.build_address
+  end
+
   def edit
     authorize @user
-    @address = @user.address || @user.build_address
-    @experiences = @user.experiences
-    @educations = @user.educations
+    @address = @user.address
+  end
+
+  def create
+    @user = User.new(user_params)
+    authorize @user
+    @user.password = Devise.friendly_token.first(8)
+    @user.confirmed_at = Time.now.utc
+    @user.build_address(user_params[:address_attributes])
+
+    if @user.save
+      @user.send_reset_password_instructions
+      redirect_to user_url(@user), notice: t("flash.profiles_controller.account_been_created")
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def update
     authorize @user
-    respond_to do |format|
-      @user.create_address!(user_params[:address_attributes]) unless @user.address
-      if @user.update(user_params)
-        format.html { redirect_to user_url(@user), notice: t("flash.profiles_controller.account_been_updated") }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @user.update(user_params)
+      redirect_to user_url(@user), notice: t("flash.profiles_controller.account_been_updated")
+    else
+      render :edit, status: :unprocessable_entity
     end
   end
 
