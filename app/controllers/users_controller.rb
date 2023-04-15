@@ -3,12 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
   def index
-    if params[:q].blank?
-      @q = User.ransack(params[:q])
-    else
-      search = params[:q][:last_name_or_email_or_employee_number_cont]
-      @q = User.ransack search_hash(search)
-    end
+    @q = User.ransack(User.search(params[:q]))
     @users = @q.result.page(params[:page])
     authorize @users
   end
@@ -78,15 +73,5 @@ class UsersController < ApplicationController
         :zipcode
       ]
     )
-  end
-
-  def search_hash(search)
-    if search.match?(/\A[a-zA-Z]+\z/)
-      {"last_name_cont" => search}
-    elsif search.match?(/\A[\w+.\\-]+@[a-z\d\\-]+(\.[a-z\d\\-]+)*\.[a-z]+\z/i)
-      {"email_cont" => search}
-    elsif search.match?(/\A\d+\z/)
-      {"employee_number_cont" => search}
-    end
   end
 end

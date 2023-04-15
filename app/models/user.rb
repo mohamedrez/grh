@@ -74,7 +74,26 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
+  def self.search(query)
+    if query.blank?
+      query
+    else
+      search = query[:last_name_or_email_or_employee_number_cont]
+      search_hash(search)
+    end
+  end
+
   def self.ransackable_attributes(auth_object = nil)
     ["email", "last_name", "employee_number", "last_name_or_email_or_employee_number"]
+  end
+
+  private_class_method def self.search_hash(search)
+    if search.match?(/\A[a-zA-Z]+\z/)
+      {"last_name_cont" => search}
+    elsif search.match?(/\A[\w+.\\-]+@[a-z\d\\-]+(\.[a-z\d\\-]+)*\.[a-z]+\z/i)
+      {"email_cont" => search}
+    elsif search.match?(/\A\d+\z/)
+      {"employee_number_cont" => search}
+    end
   end
 end
