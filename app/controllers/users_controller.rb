@@ -24,13 +24,12 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    faker = Faker::Internet.password
-    Rails.logger.info "PASSWORD ========================== #{faker} ==========================="
-    @user.password = faker
+    @user.password = Devise.friendly_token.first(8)
     @user.confirmed_at = Time.now.utc
     @user.build_address(user_params[:address_attributes])
 
     if @user.save
+      @user.send_reset_password_instructions
       redirect_to user_url(@user), notice: t("flash.profiles_controller.account_been_created")
     else
       render :new, status: :unprocessable_entity
