@@ -14,6 +14,7 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    authorize @user
     @user.build_address
   end
 
@@ -24,6 +25,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
+    authorize @user
     @user.password = Devise.friendly_token.first(8)
     @user.confirmed_at = Time.now.utc
     @user.build_address(user_params[:address_attributes])

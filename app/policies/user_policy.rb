@@ -7,8 +7,16 @@ class UserPolicy < ApplicationPolicy
     user.admin || record == user
   end
 
-  def update?
+  def create?
     user.admin
+  end
+
+  def new?
+    create?
+  end
+
+  def update?
+    user.admin? || user == record
   end
 
   def edit?
