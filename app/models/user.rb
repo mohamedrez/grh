@@ -40,8 +40,8 @@ class User < ApplicationRecord
   belongs_to :manager, class_name: "User", optional: true
   belongs_to :site, optional: true
 
-  validates :first_name, :last_name, :phone, :birthdate, presence: true
-  validates :cnss_number, :employee_number, numericality: {only_integer: true}
+  validates :first_name, :last_name, presence: true
+  validates :cnss_number, :employee_number, numericality: {only_integer: true, allow_blank: true}
 
   accepts_nested_attributes_for :address, update_only: true
 

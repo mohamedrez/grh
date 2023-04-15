@@ -25,7 +25,7 @@ Rails.application.routes.draw do
     get "users/profile/edit", to: "profiles#edit"
     patch "users/profile", to: "profiles#update"
 
-    resources :users, only: [:index, :show, :edit, :update] do
+    resources :users do
       resources :time_off_requests
       resources :user_requests
     end

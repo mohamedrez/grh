@@ -1,5 +1,3 @@
-
-
 <div class="max-w-lg w-full lg:max-w-xs">
   <%= search_form_for @q, method: :get, url: users_path, html: { id: 'search-form' } do |f| %>
     <%= f.label :last_name_or_email_or_employee_number_cont, "Search by name, email, or employee ID", class: "sr-only" %>
@@ -11,7 +9,7 @@
       </div>
       <%= f.search_field :last_name_or_email_or_employee_number_cont, class: "block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-100 placeholder-gray-600 focus:outline-none sm:text-sm transition duration-150 ease-in-out", placeholder: "Last name, Email, or Emolyee ID" %>
     </div>
-  <% end %> 
+  <% end %>
 </div>
 
 <script>
