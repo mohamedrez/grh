@@ -97,7 +97,7 @@ GEM
       json
       simplecov
     concurrent-ruby (1.2.2)
-    connection_pool (2.3.0)
+    connection_pool (2.4.0)
     crass (1.0.6)
     cssbundling-rails (1.1.2)
       railties (>= 6.0.0)
@@ -318,7 +318,7 @@ GEM
       activerecord (>= 6.1.5)
       activesupport (>= 6.1.5)
       i18n
-    redis-client (0.13.0)
+    redis-client (0.14.1)
       connection_pool
     regexp_parser (2.7.0)
     reline (0.3.2)
@@ -373,7 +373,7 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     ruby2_keywords (0.0.5)
-    sidekiq (7.0.6)
+    sidekiq (7.0.8)
       concurrent-ruby (< 2)
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
