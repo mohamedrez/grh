@@ -8,7 +8,6 @@ RSpec.describe "Events", type: :request do
       create :event
       get "/events"
       expect(response).to have_http_status(:success)
-      debugger
     end
   end
 end
