@@ -24,4 +24,16 @@ class TimeOffRequest < ApplicationRecord
 
     overlapping_requests.map { |request| {user: request.user_request.user, request: request} }
   end
+
+  def day_color(day)
+    if (start_date.day == day || end_date.day == day) && Time.zone.today.day == day
+      "font-semibold bg-gray-900 text-indigo-600"
+    elsif start_date.day == day || end_date.day == day
+      "bg-gray-900 font-semibold text-white"
+    elsif Time.zone.today.day == day
+      "font-semibold text-indigo-600 hover:bg-gray-200"
+    else
+      "text-gray-900 hover:bg-gray-200"
+    end
+  end
 end
