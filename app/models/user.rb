@@ -64,7 +64,9 @@ class User < ApplicationRecord
 
   def avatar_url_or_default
     if avatar.attached?
-      avatar
+      Rails.application.routes.url_helpers.rails_blob_url(
+        avatar, only_path: true
+      )
     else
       "users/user.png"
     end

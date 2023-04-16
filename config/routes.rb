@@ -5,7 +5,8 @@ require "sidekiq/web"
 Rails.application.routes.draw do
   root to: "dashboard#index"
   get "dashboard", to: "dashboard#index"
-
+  get "calendar", to: "calendar#index"
+  get "events", to: "events#index"
   resources :educations
   authenticate :user, ->(user) { user.admin? } do
     mount Motor::Admin => "/motor_admin"
