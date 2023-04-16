@@ -1,4 +1,5 @@
 class TimeOffRequestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_locals, only: %i[show edit update destroy]
 
   # GET /time_off_requests or /time_off_requests.json
