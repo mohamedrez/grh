@@ -14,6 +14,7 @@ class TimeOffRequestsController < ApplicationController
   def show
     @user = User.find(params[:user_id])
     @user_request = @time_off_request.user_request
+    @who_else_be_out = @time_off_request.who_else_be_out?
   end
 
   # GET /time_off_requests/new
