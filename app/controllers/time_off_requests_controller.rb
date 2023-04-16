@@ -13,6 +13,7 @@ class TimeOffRequestsController < ApplicationController
   # GET /time_off_requests/1 or /time_off_requests/1.json
   def show
     @user = User.find(params[:user_id])
+    @user_request = @time_off_request.user_request
   end
 
   # GET /time_off_requests/new
