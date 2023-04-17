@@ -9,17 +9,14 @@ class TimeOffRequestsController < ApplicationController
       user_id: user_id, requestable_type: "TimeOffRequest"
     ).pluck(:requestable_id)
     @time_off_requests = TimeOffRequest.where(id: ids)
-
-    return if @time_off_requests.any?
-
-    flash[:notice] = t("flash.time_off_requests_controller.no_requests")
-    redirect_to user_path(id: user_id)
+    authorize @time_off_requests
   end
 
   # GET /time_off_requests/1 or /time_off_requests/1.json
   def show
     user_requests = @user.user_requests.where(requestable_type: "TimeOffRequest").pluck(:id)
     @user_request = @time_off_request.user_request
+    authorize @time_off_request
     @find_overlapping_requests = @time_off_request.find_overlapping_requests
 
     return if user_requests.include?(@user_request.id)
@@ -36,6 +33,7 @@ class TimeOffRequestsController < ApplicationController
 
   # GET /time_off_requests/1/edit
   def edit
+    authorize @time_off_request
     @user = User.find(params[:user_id])
   end
 
@@ -57,6 +55,7 @@ class TimeOffRequestsController < ApplicationController
 
   # PATCH/PUT /time_off_requests/1 or /time_off_requests/1.json
   def update
+    authorize @time_off_request
     respond_to do |format|
       time_off_request_params[:user_id] = params[:user_id]
       if @time_off_request.update(time_off_request_params)
