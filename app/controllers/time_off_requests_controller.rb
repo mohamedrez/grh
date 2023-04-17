@@ -9,13 +9,23 @@ class TimeOffRequestsController < ApplicationController
       user_id: user_id, requestable_type: "TimeOffRequest"
     ).pluck(:requestable_id)
     @time_off_requests = TimeOffRequest.where(id: ids)
+
+    return if @time_off_requests.any?
+
+    flash[:notice] = t("flash.time_off_requests_controller.no_requests")
+    redirect_to user_path(id: user_id)
   end
 
   # GET /time_off_requests/1 or /time_off_requests/1.json
   def show
-    @user = User.find(params[:user_id])
+    user_requests = @user.user_requests.where(requestable_type: "TimeOffRequest").pluck(:id)
     @user_request = @time_off_request.user_request
     @who_else_be_out = @time_off_request.who_else_be_out?
+
+    return if user_requests.include?(@user_request.id)
+
+    flash[:notice] = t("flash.time_off_requests_controller.no_request")
+    redirect_to user_path(id: @user.id)
   end
 
   # GET /time_off_requests/new

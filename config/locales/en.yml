@@ -18,6 +18,9 @@ en:
       account_been_updated: "the profile was successfully updated."
     application_controller:
       not_authorized: "You are not authorized to perform this action."
+    time_off_requests_controller:
+      no_requests: "This user has no time off requests."
+      no_request: "This time off request doesn't exist"
   experiences:
     experience_created: "Experience was successfully created."
     experience_updated: "Experience was successfully updated."
