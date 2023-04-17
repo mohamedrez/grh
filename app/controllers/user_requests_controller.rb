@@ -4,10 +4,12 @@ class UserRequestsController < ApplicationController
   def index
     user_id = params[:user_id]
     @user_requests = UserRequest.where(user_id: user_id)
+    authorize @user_requests
   end
 
   def update
     @user_request = UserRequest.find(params[:id])
+    authorize @user_request
     if params[:state] == "approved"
       @user_request.update(managed_by_id: params[:managed_by_id], state: :approved)
     elsif params[:state] == "rejected"
