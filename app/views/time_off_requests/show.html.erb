@@ -84,27 +84,31 @@
     <div class="mt-2 grid grid-cols-7 text-sm">
       <% Time.days_in_month(Time.current.month, Time.current.year).times do |i| %>
         <div class="border-t border-gray-200 py-2">
-          <p class="mx-auto flex h-8 w-8 items-center justify-center rounded-full <%= @time_off_request.day_color(i + 1) %>"><%= i + 1 %></p>
+          <p class="mx-auto flex h-8 w-8 items-center justify-center rounded-full
+            <%= ((@time_off_request.start_date.day == i + 1 || @time_off_request.end_date.day == i + 1) && (Time.zone.today.day == i + 1)) ? 'font-semibold bg-gray-900 text-indigo-600' :
+              (@time_off_request.start_date.day == i + 1) || (@time_off_request.end_date.day == i + 1) ? 'bg-gray-900 font-semibold text-white' :
+              (Time.zone.today.day == i + 1) ? 'font-semibold text-indigo-600 hover:bg-gray-200' : 'text-gray-900 hover:bg-gray-200' %>">
+            <%= i + 1 %>
+          </p>
         </div>
       <% end %>
     </div>
   </div>
   <section class="mt-12 md:mt-0 md:pl-14">
-    <% if @who_else_be_out.any? %>
+    <% if @find_overlapping_requests.any? %>
       <h2 class="text-base font-semibold leading-6 text-gray-900">Who else will be out?</h2>
       <h2 class="text-base font-semibold leading-6 text-green-500">Approved</h2>
     <% else %>
       <h2 class="text-base font-semibold leading-6 text-gray-900">No one else on the team will be out.</h2>
     <% end %>
     <ol class="mt-4 space-y-1 text-sm leading-6 text-gray-500">
-    <% @who_else_be_out.each do |user_request| %>
+    <% @find_overlapping_requests.each do |user_request| %>
       <%= link_to user_time_off_request_path(user_id: user_request[:user].id, id: user_request[:request]) do %>
         <li class="group flex items-center space-x-4 rounded-xl px-4 py-2 focus-within:bg-gray-100 hover:bg-gray-100">
           <%= image_tag user_request[:user].avatar_url_or_default, class: "h-10 w-10 rounded-full flex-none bg-gray-50" %>
           <div class="flex-auto">
             <p class="text-gray-900"><%= user_request[:user].full_name %></p>
             <p class="mt-0.5"><%= user_request[:request].start_date %> - <%= user_request[:request].end_date %></p>
-            
           </div>
         </li>
       <% end %>

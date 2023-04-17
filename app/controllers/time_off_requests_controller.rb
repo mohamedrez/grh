@@ -20,7 +20,7 @@ class TimeOffRequestsController < ApplicationController
   def show
     user_requests = @user.user_requests.where(requestable_type: "TimeOffRequest").pluck(:id)
     @user_request = @time_off_request.user_request
-    @who_else_be_out = @time_off_request.who_else_be_out?
+    @find_overlapping_requests = @time_off_request.find_overlapping_requests
 
     return if user_requests.include?(@user_request.id)
 

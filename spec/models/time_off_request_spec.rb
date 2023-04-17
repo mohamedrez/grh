@@ -22,11 +22,11 @@ RSpec.describe TimeOffRequest, type: :model do
     end
   end
 
-  describe "#who_else_be_out?" do
+  describe "#find_overlapping_requests" do
     context "when there are no overlapping requests" do
 
       it "returns an empty array" do
-        expect(time_off_request.who_else_be_out?).to eq([])
+        expect(time_off_request.find_overlapping_requests).to eq([])
       end
     end
 
@@ -37,31 +37,8 @@ RSpec.describe TimeOffRequest, type: :model do
           {user: user1, request: time_off_request1},
           {user: user2, request: time_off_request2}
         ]
-        expect(time_off_request.who_else_be_out?).to eq(expected_result)
+        expect(time_off_request.find_overlapping_requests).to eq(expected_result)
       end
     end
   end
-
-  describe '#day_color' do
-    context "when day is in the range of the time off request" do
-      it "returns the expected class for the current day" do
-        expect(time_off_request.day_color(Date.today.day)).to eq("font-semibold bg-gray-900 text-indigo-600")
-      end
-  
-      it "returns the expected class for a day within the range" do
-        expect(time_off_request.day_color(Date.today.day + 7)).to eq("bg-gray-900 font-semibold text-white")
-      end
-    end
-  
-    context "when day is outside the range of the time off request" do
-      it "returns the expected class for a day before the range" do
-        expect(time_off_request.day_color(Date.today.day - 1)).to eq("text-gray-900 hover:bg-gray-200")
-      end
-  
-      it "returns the expected class for a day after the range" do
-        expect(time_off_request.day_color(Date.today.day + 8)).to eq("text-gray-900 hover:bg-gray-200")
-      end
-    end
-  end
-
 end
