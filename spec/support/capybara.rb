@@ -51,7 +51,7 @@ end
 Capybara.configure do |config|
   config.server = :puma, { Silent: true }
   config.server_host = selenium_app_host
-  config.server_port = 4000
+  config.server_port = 3000
 end
 
 
