@@ -52,6 +52,7 @@ Capybara.configure do |config|
   config.server = :puma, { Silent: true }
   config.server_host = '0.0.0.0'
   config.server_port = 3000
+  config.app_host = "http://#{selenium_app_host}:#{config.server_port}"
 end
 
 
@@ -61,7 +62,7 @@ RSpec.configure do |config|
     # in `ActionDispatch::SystemTesting::TestHelpers::SetupAndTeardown`, which
     # is annoying as hell, but not easy to "fix". Just set it manually every
     # test run.
-    Capybara.app_host = "http://#{Capybara.server_host}:#{Capybara.server_port}"
+    Capybara.app_host = "http://#{Capybara.selenium_app_host}:#{Capybara.server_port}"
 
     # Allow Capybara and WebDrivers to access network if necessary
     driver = if example.metadata[:js]
