@@ -35,6 +35,24 @@ RSpec.describe "/time_off_requests", type: :request do
       get user_time_off_request_path(user_id: admin_user.id, id: time_off_request.id)
       expect(response).to be_successful
     end
+
+    context "when the user is not authorized to view the time off request" do
+      let(:other_user) { create(:user) }
+      let(:other_user_request) { create(:user_request, user: other_user, requestable: time_off_request) }
+
+      before do
+        other_user_request
+        get user_time_off_request_path(user_id: other_user.id, id: time_off_request.id)
+      end
+
+      it "redirects the user to their profile page" do
+        expect(response).to redirect_to(user_path(other_user))
+      end
+
+      it "sets a flash notice indicating that the user has no time off requests" do
+        expect(flash[:notice]).to eq(I18n.t("flash.time_off_requests_controller.no_request"))
+      end
+    end
   end
 
   describe "GET /new" do
@@ -79,11 +97,6 @@ RSpec.describe "/time_off_requests", type: :request do
     end
   end
 
-
-    ##############################################################################
-    ##############################################################################
-
-
   describe "PATCH /update" do
     context "with valid parameters" do
       it "updates the requested time_off_request" do
@@ -109,23 +122,10 @@ RSpec.describe "/time_off_requests", type: :request do
     end
   end
 
-
-
-  ##############################################################################
-  ##############################################################################
-
   describe "DELETE /destroy" do
-    xit "destroys the requested time_off_request" do
-      time_off_request = TimeOffRequest.create! valid_attributes
-      expect {
-        delete user_time_off_request_url(time_off_request)
-      }.to change(TimeOffRequest, :count).by(-1)
-    end
-
-    xit "redirects to the time_off_requests list" do
-      time_off_request = TimeOffRequest.create! valid_attributes
-      delete user_time_off_request_url(time_off_request)
-      expect(response).to redirect_to(time_off_requests_url)
+    it "redirects to the time_off_requests list" do
+      delete "/users/#{admin_user.id}/time_off_requests/#{time_off_request.id}"
+      expect(response).to redirect_to(user_time_off_requests_path(user_id: admin_user.id))
     end
   end
 end
