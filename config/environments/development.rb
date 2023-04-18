@@ -84,4 +84,5 @@ Rails.application.configure do
     open_timeout: 5,
     read_timeout: 5
   }
+  config.hosts.clear
 end

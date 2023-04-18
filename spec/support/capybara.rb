@@ -41,7 +41,7 @@ Capybara.register_driver :local_selenium_headless do |app|
 
   Capybara::Selenium::Driver.new(app, browser: :chrome, options: options)
 end
-
+locality = ENV["SELENIUM_HOST"].present? ? :remote : :local
 selenium_app_host = ENV.fetch("SELENIUM_APP_HOST") do
   Socket.ip_address_list
         .find(&:ipv4_private?)
@@ -49,12 +49,15 @@ selenium_app_host = ENV.fetch("SELENIUM_APP_HOST") do
 end
 
 Capybara.configure do |config|
-  config.server = :puma, { Silent: true }
-  config.server_host = '0.0.0.0'
-  config.server_port = 4000
-  config.app_host = "http://#{selenium_app_host}:#{config.server_port}"
+  if(locality == :remote)
+    config.run_server = false
+    config.app_host = "http://web:3000"
+  else
+    config.server = :puma, { Silent: true }
+    config.server_host = '0.0.0.0'
+    config.server_port = 4000
+  end
 end
-
 
 RSpec.configure do |config|
   config.before(:each, type: :system) do |example|
@@ -62,11 +65,8 @@ RSpec.configure do |config|
     # in `ActionDispatch::SystemTesting::TestHelpers::SetupAndTeardown`, which
     # is annoying as hell, but not easy to "fix". Just set it manually every
     # test run.
-    Capybara.app_host = "http://#{selenium_app_host}:#{Capybara.server_port}"
-
     # Allow Capybara and WebDrivers to access network if necessary
     driver = if example.metadata[:js]
-        locality = ENV["SELENIUM_HOST"].present? ? :remote : :local
         headless = "_headless" if ENV["DISABLE_HEADLESS"].blank?
         puts "#{locality}_selenium#{headless}".to_sym
         "#{locality}_selenium#{headless}".to_sym

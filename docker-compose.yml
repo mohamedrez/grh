@@ -32,6 +32,7 @@ services:
       SELENIUM_PORT: 4444
       SELENIUM_APP_HOST: web
       TEST_PORT: 3001
+      RAILS_ENV: test
     depends_on:
       - db
       - redis
