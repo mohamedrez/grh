@@ -10,7 +10,7 @@ class TimeOffRequest < ApplicationRecord
   attr_accessor :user_id
 
   def create_user_request
-    UserRequest.create(user_id: user_id, requestable: self)
+    UserRequest.create(user_id: user_id, state: :pending, requestable: self)
   end
 
   def find_overlapping_requests
