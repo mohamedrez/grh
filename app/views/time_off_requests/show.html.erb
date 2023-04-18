@@ -18,8 +18,8 @@
         Rejected
       </span>
     <% elsif @user_request.pending? && current_user.admin %>
-      <%= button_to "Approve", user_user_request_update_path(user_id: @user.id, id: @user_request.id, managed_by_id: current_user.id, state: :approved), method: :patch, class: "rounded-md bg-gray-900 px-5 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" %>
-      <%= button_to "Deny", user_user_request_update_path(user_id: @user.id, id: @user_request.id, managed_by_id: current_user.id, state: :rejected), method: :patch, class: "rounded-md bg-white px-5 py-2 ttext-base font-medium text-gray-900 shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" %>
+      <%= button_to "Approve", user_user_request_update_path(user_id: @user.id, id: @user_request.id, state: :approved), method: :patch, class: "rounded-md bg-gray-900 px-5 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" %>
+      <%= button_to "Deny", user_user_request_update_path(user_id: @user.id, id: @user_request.id, state: :rejected), method: :patch, class: "rounded-md bg-white px-5 py-2 ttext-base font-medium text-gray-900 shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" %>
     <% else%>
       <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-blue-100 text-blue-800">
         <svg class="mr-1.5 h-2 w-2 text-blue-400" fill="currentColor" viewBox="0 0 8 8">

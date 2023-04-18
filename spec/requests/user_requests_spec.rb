@@ -19,13 +19,12 @@ RSpec.describe "UserRequests", type: :request do
   describe "PATCH /user_requests/:id" do
     context "when the request is approved" do
       before do
-        patch user_user_request_update_path(user_id: user.id, id: time_off_request.user_request.id, managed_by_id: admin_user.id, state: "approved")
+        patch user_user_request_update_path(user_id: user.id, id: time_off_request.user_request.id, state: "approved")
       end
 
       it "updates the request with the correct attributes" do
         time_off_request.user_request.reload
         expect(time_off_request.user_request.state).to eq("approved")
-        expect(time_off_request.user_request.managed_by_id).to eq(admin_user.id)
       end
 
       it "redirects to the user time off request page" do
@@ -35,13 +34,12 @@ RSpec.describe "UserRequests", type: :request do
 
     context "when the request is rejected" do
       before do
-        patch user_user_request_update_path(user_id: user.id, id: time_off_request.user_request.id, managed_by_id: user.id, state: "rejected")
+        patch user_user_request_update_path(user_id: user.id, id: time_off_request.user_request.id, state: "rejected")
       end
 
       it "updates the request with the correct attributes" do
         time_off_request.user_request.reload
         expect(time_off_request.user_request.state).to eq("rejected")
-        expect(time_off_request.user_request.managed_by_id).to eq(user.id)
       end
 
       it "redirects to the user time off request page" do

@@ -11,9 +11,9 @@ class UserRequestsController < ApplicationController
     @user_request = UserRequest.find(params[:id])
     authorize @user_request
     if params[:state] == "approved"
-      @user_request.update(managed_by_id: params[:managed_by_id], state: :approved)
+      @user_request.update(managed_by_id: current_user.id, state: :approved)
     elsif params[:state] == "rejected"
-      @user_request.update(managed_by_id: params[:managed_by_id], state: :rejected)
+      @user_request.update(managed_by_id: current_user.id, state: :rejected)
     end
     @requestable_id = @user_request.requestable_id
     redirect_to user_time_off_request_path(user_id: params[:user_id], id: @requestable_id)
