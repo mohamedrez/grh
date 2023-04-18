@@ -80,6 +80,9 @@ group :test do
   gem "simplecov-cobertura", require: false
   gem "codecov"
   gem "pundit-matchers", "~> 1.8.4"
+  gem "selenium-webdriver", "4.8.0"
+  gem "webdrivers"
+  gem "database_cleaner"
 end
 
 group :development do

@@ -27,6 +27,10 @@ services:
       SMTP_SERVER: mailer
       SMTP_PORT: 1025
       REDIS_URL: redis://redis:6379
+      SELENIUM_HOST: selenium
+      SELENIUM_PORT: 4444
+      SELENIUM_APP_HOST: web
+      TEST_PORT: 3001
     depends_on:
       - db
       - redis
@@ -60,7 +64,9 @@ services:
       REDIS_URL: redis://redis:6379
 
 
-  chrome:
-    image: selenium/standalone-chrome:4.8.0 # this version should match that of the selenium-webdriver gem (see Gemfile)
+  selenium:
+    image: seleniarm/standalone-chromium:111.0-chromedriver-111.0-grid-4.8.3-20230402 # this version should match that of the selenium-webdriver gem (see Gemfile)
     volumes:
       - /dev/shm:/dev/shm
+    ports:
+      - "4444:4444"
