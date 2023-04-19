@@ -3,6 +3,7 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  resources :holidays
   root to: "dashboard#index"
   get "dashboard", to: "dashboard#index"
   get "calendar", to: "calendar#index"
