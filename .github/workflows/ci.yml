@@ -22,7 +22,7 @@ jobs:
       - name: run selenium
         run: docker-compose up -d web selenium
       - name: rspec
-        run: docker-compose exec web bundle exec rspec
+        run: docker-compose exec -t web bash -c "bin/rails db:migrate RAILS_ENV=test && bundle exec rspec"
       - name: logfiles
         run: ls -alrt coverage
       - name: Upload coverage reports to Codecov
