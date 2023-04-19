@@ -102,20 +102,21 @@
     </div>
   </div>
   <section class="mt-12 md:mt-0 md:pl-14">
-    <% if @find_overlapping_requests.any? %>
+    <% if @overlapping_requests.any? %>
       <h2 class="text-base font-semibold leading-6 text-gray-900">Who else will be out?</h2>
       <h2 class="text-base font-semibold leading-6 text-green-500">Approved</h2>
     <% else %>
       <h2 class="text-base font-semibold leading-6 text-gray-900">No one else on the team will be out.</h2>
     <% end %>
     <ol class="mt-4 space-y-1 text-sm leading-6 text-gray-500">
-    <% @find_overlapping_requests.each do |user_request| %>
-      <%= link_to user_time_off_request_path(user_id: user_request[:user].id, id: user_request[:request]) do %>
+    <% @overlapping_requests.each do |request| %>
+      <% user = User.find(request.user_request.user_id) %>
+      <%= link_to user_time_off_request_path(user_id: user.id, id: request.id) do %>
         <li class="group flex items-center space-x-4 rounded-xl px-4 py-2 focus-within:bg-gray-100 hover:bg-gray-100">
-          <%= image_tag user_request[:user].avatar_url_or_default, class: "h-10 w-10 rounded-full flex-none bg-gray-50" %>
+          <%= image_tag user.avatar_url_or_default, class: "h-10 w-10 rounded-full flex-none bg-gray-50" %>
           <div class="flex-auto">
-            <p class="text-gray-900"><%= user_request[:user].full_name %></p>
-            <p class="mt-0.5"><%= user_request[:request].start_date %> - <%= user_request[:request].end_date %></p>
+            <p class="text-gray-900"><%= user.full_name %></p>
+            <p class="mt-0.5"><%= request.start_date %> - <%= request.end_date %></p>
           </div>
         </li>
       <% end %>

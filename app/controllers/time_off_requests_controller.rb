@@ -17,7 +17,7 @@ class TimeOffRequestsController < ApplicationController
     user_requests = @user.user_requests.where(requestable_type: "TimeOffRequest").pluck(:id)
     @user_request = @time_off_request.user_request
     authorize @time_off_request
-    @find_overlapping_requests = @time_off_request.find_overlapping_requests
+    @overlapping_requests = @time_off_request.overlapping_requests
 
     return if user_requests.include?(@user_request.id)
 
