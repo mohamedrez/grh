@@ -10,6 +10,12 @@ class TimeOffRequest < ApplicationRecord
   attr_accessor :user_id
 
   def create_user_request
-    UserRequest.create(user_id: user_id, requestable: self)
+    UserRequest.create(user_id: user_id, state: :pending, requestable: self)
+  end
+
+  def overlapping_requests
+    requests = TimeOffRequest.where.not(id: id)
+    range = start_date..end_date
+    requests.select { |request| range.cover?(request.start_date) }
   end
 end

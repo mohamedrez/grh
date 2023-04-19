@@ -1,9 +1,114 @@
-<p style="color: green"><%= notice %></p>
 
-<%= render @time_off_request %>
 
-<div>
-  <%= link_to "Edit this time off request", edit_user_time_off_request_path(@user.id, @time_off_request) %> |
+<div class="flex items-center justify-between gap-x-6 bg-indigo-600 px-6 py-5 sm:pr-3.5 lg:pl-8 rounded-lg">
+  <p class="text-lg font-medium leading-6 text-white">Time Off Request</p>
+  <div class="flex items-center gap-x-5 mr-5">
+    <% if @user_request.approved? %>
+      <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-green-100 text-green-800">
+        <svg class="mr-1.5 h-2 w-2 text-green-400" fill="currentColor" viewBox="0 0 8 8">
+          <circle cx="4" cy="4" r="3" />
+        </svg>
+        Approved
+      </span>
+    <% elsif @user_request.rejected? %>
+      <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-red-100 text-red-800">
+        <svg class="mr-1.5 h-2 w-2 text-red-400" fill="currentColor" viewBox="0 0 8 8">
+          <circle cx="4" cy="4" r="3" />
+        </svg>
+        Rejected
+      </span>
+    <% elsif @user_request.pending? && current_user.admin %>
+      <%= button_to "Approve", user_user_request_update_path(user_id: @user.id, id: @user_request.id, state: :approved), method: :patch, class: "rounded-md bg-gray-900 px-5 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" %>
+      <%= button_to "Deny", user_user_request_update_path(user_id: @user.id, id: @user_request.id, state: :rejected), method: :patch, class: "rounded-md bg-white px-5 py-2 ttext-base font-medium text-gray-900 shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" %>
+    <% else%>
+      <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-blue-100 text-blue-800">
+        <svg class="mr-1.5 h-2 w-2 text-blue-400" fill="currentColor" viewBox="0 0 8 8">
+          <circle cx="4" cy="4" r="3" />
+        </svg>
+        Pending
+      </span>
+    <% end %>
+  </div>
+</div>
 
-  <%= button_to "Destroy this time off request", user_time_off_request_path(@user.id, @time_off_request), method: :delete %>
+<hr class="border border-gray-200 my-10 w-3/4 mx-auto">
+
+<div class="inset-x-0 px-6 pb-6">
+  <div class="pointer-events-auto mx-auto max-w-xl rounded-xl bg-white p-6 shadow-lg ring-1 ring-gray-900/10">
+    <div class="relative mb-8 flex items-center gap-x-4">
+      <%= image_tag @user.avatar_url_or_default, class: "h-10 w-10 rounded-full bg-gray-50" %>
+      <div class="text-sm leading-6">
+        <p class="font-semibold text-gray-900">
+          <a href="#">
+            <span class="absolute inset-0"></span>
+            <%= @user.full_name %>
+          </a>
+        </p>
+        <p class="text-gray-600"><%= @user.email %></p>
+      </div>
+    </div>
+    <div class="flex items-center gap-x-4 text-lg font-medium">
+      <div class="text-indigo-600"><%= @time_off_request.start_date %></div>
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+      </svg>
+      <div class="text-indigo-600"><%= @time_off_request.end_date %></div>
+    </div>
+    <hr class="border border-gray-200 my-5 w-3/4 mx-auto">
+    <div class="group relative">
+      <p class="mt-5 line-clamp-3 text-base font-medium leading-6 text-gray-900"><%= @time_off_request.content %></p>
+    </div>
+  </div>
+</div>
+
+<hr class="border border-gray-200 my-10 w-3/4 mx-auto">
+
+<div class="md:grid md:grid-cols-2 md:divide-x md:divide-gray-200">
+  <div class="md:pr-14">
+    <div class="flex items-center">
+      <h2 class="flex-auto text-sm font-semibold text-gray-900"><%= Date.today.strftime("%B %Y") %></h2>
+    </div>
+    <div class="mt-10 grid grid-cols-7 text-center text-xs leading-6 text-gray-500">
+      <% first_day_of_month = Date.today.beginning_of_month.strftime("%A")[0] %>
+      <% days_of_week = ['M', 'T', 'W', 'T', 'F', 'S', 'S'] %>
+      <% days_of_week.rotate!(days_of_week.index(first_day_of_month)) %>
+      <% days_of_week.each do |day| %>
+        <div><%= day %></div>
+      <% end %>
+    </div>
+    <div class="mt-2 grid grid-cols-7 text-sm">
+      <% Time.days_in_month(Time.current.month, Time.current.year).times do |i| %>
+        <div class="border-t border-gray-200 py-2">
+          <p class="mx-auto flex h-8 w-8 items-center justify-center rounded-full
+            <%= ((@time_off_request.start_date.day == i + 1 || @time_off_request.end_date.day == i + 1) && (Time.zone.today.day == i + 1)) ? 'font-semibold bg-gray-900 text-indigo-600' :
+              (@time_off_request.start_date.day == i + 1) || (@time_off_request.end_date.day == i + 1) ? 'bg-gray-900 font-semibold text-white' :
+              (Time.zone.today.day == i + 1) ? 'font-semibold text-indigo-600 hover:bg-gray-200' : 'text-gray-900 hover:bg-gray-200' %>">
+            <%= i + 1 %>
+          </p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <section class="mt-12 md:mt-0 md:pl-14">
+    <% if @overlapping_requests.any? %>
+      <h2 class="text-base font-semibold leading-6 text-gray-900">Who else will be out?</h2>
+      <h2 class="text-base font-semibold leading-6 text-green-500">Approved</h2>
+    <% else %>
+      <h2 class="text-base font-semibold leading-6 text-gray-900">No one else on the team will be out.</h2>
+    <% end %>
+    <ol class="mt-4 space-y-1 text-sm leading-6 text-gray-500">
+    <% @overlapping_requests.each do |request| %>
+      <% user = User.find(request.user_request.user_id) %>
+      <%= link_to user_time_off_request_path(user_id: user.id, id: request.id) do %>
+        <li class="group flex items-center space-x-4 rounded-xl px-4 py-2 focus-within:bg-gray-100 hover:bg-gray-100">
+          <%= image_tag user.avatar_url_or_default, class: "h-10 w-10 rounded-full flex-none bg-gray-50" %>
+          <div class="flex-auto">
+            <p class="text-gray-900"><%= user.full_name %></p>
+            <p class="mt-0.5"><%= request.start_date %> - <%= request.end_date %></p>
+          </div>
+        </li>
+      <% end %>
+    <% end %>
+    </ol>
+  </section>
 </div>

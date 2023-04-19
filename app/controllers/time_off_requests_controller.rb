@@ -1,4 +1,5 @@
 class TimeOffRequestsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_locals, only: %i[show edit update destroy]
 
   # GET /time_off_requests or /time_off_requests.json
@@ -8,11 +9,14 @@ class TimeOffRequestsController < ApplicationController
       user_id: user_id, requestable_type: "TimeOffRequest"
     ).pluck(:requestable_id)
     @time_off_requests = TimeOffRequest.where(id: ids)
+    authorize @time_off_requests
   end
 
   # GET /time_off_requests/1 or /time_off_requests/1.json
   def show
-    @user = User.find(params[:user_id])
+    authorize @time_off_request
+    @overlapping_requests = @time_off_request.overlapping_requests
+    @user_request = @time_off_request.user_request
   end
 
   # GET /time_off_requests/new
@@ -23,7 +27,7 @@ class TimeOffRequestsController < ApplicationController
 
   # GET /time_off_requests/1/edit
   def edit
-    @user = User.find(params[:user_id])
+    authorize @time_off_request
   end
 
   # POST /time_off_requests or /time_off_requests.json
@@ -44,6 +48,7 @@ class TimeOffRequestsController < ApplicationController
 
   # PATCH/PUT /time_off_requests/1 or /time_off_requests/1.json
   def update
+    authorize @time_off_request
     respond_to do |format|
       time_off_request_params[:user_id] = params[:user_id]
       if @time_off_request.update(time_off_request_params)
@@ -61,7 +66,7 @@ class TimeOffRequestsController < ApplicationController
     @time_off_request.destroy
 
     respond_to do |format|
-      format.html { redirect_to time_off_requests_url, notice: t("time_Off_requests.time_Off_requests_destroyed") }
+      format.html { redirect_to user_time_off_requests_url, notice: t("time_Off_requests.time_Off_requests_destroyed") }
       format.json { head :no_content }
     end
   end
