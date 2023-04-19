@@ -18,6 +18,7 @@ class HolidaysController < ApplicationController
 
     if @holiday.save
       redirect_to holidays_path, notice: t("flash.successfully_created")
+    else
       render :new, status: :unprocessable_entity
     end
   end

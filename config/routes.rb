@@ -3,7 +3,6 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  resources :holidays
   root to: "dashboard#index"
   get "dashboard", to: "dashboard#index"
   get "calendar", to: "calendar#index"
@@ -16,6 +15,7 @@ Rails.application.routes.draw do
   devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
 
   scope "(:locale)", locale: /en|ar/ do
+    resources :holidays
     resources :educations
     resources :experiences
     resources :home, only: [:index]
