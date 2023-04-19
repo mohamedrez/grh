@@ -8,7 +8,8 @@ RSpec.describe "/time_off_requests", type: :request do
     {
       start_date: "2023-04-01", 
       end_date: "2023-04-06",
-      content: "<div>I would like to take some time off to recharge and return to work feeling refreshed and more productive.</div>"
+      content: "<div>I would like to take some time off to recharge and return to work feeling refreshed and more productive.</div>",
+      category: "personal_time"
     }
   end
 
@@ -87,6 +88,7 @@ RSpec.describe "/time_off_requests", type: :request do
         expect(time_off_request.start_date).to eq(Date.new(2023, 04, 01))
         expect(time_off_request.end_date).to eq(Date.new(2023, 04, 06))
         expect(time_off_request.content).to eq(TimeOffRequest.last.content)
+        expect(time_off_request.category).to eq("personal_time")
       end
 
       it "redirects to the time_off_request" do
