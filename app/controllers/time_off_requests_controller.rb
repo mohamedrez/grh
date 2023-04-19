@@ -14,15 +14,9 @@ class TimeOffRequestsController < ApplicationController
 
   # GET /time_off_requests/1 or /time_off_requests/1.json
   def show
-    user_requests = @user.user_requests.where(requestable_type: "TimeOffRequest").pluck(:id)
-    @user_request = @time_off_request.user_request
     authorize @time_off_request
     @overlapping_requests = @time_off_request.overlapping_requests
-
-    return if user_requests.include?(@user_request.id)
-
-    flash[:notice] = t("flash.time_off_requests_controller.no_request")
-    redirect_to user_path(id: @user.id)
+    @user_request = @time_off_request.user_request
   end
 
   # GET /time_off_requests/new
@@ -34,7 +28,6 @@ class TimeOffRequestsController < ApplicationController
   # GET /time_off_requests/1/edit
   def edit
     authorize @time_off_request
-    @user = User.find(params[:user_id])
   end
 
   # POST /time_off_requests or /time_off_requests.json
