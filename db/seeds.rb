@@ -44,7 +44,7 @@ sites_data.each do |site_data|
 end
 
 
-# Create sites
+# Create holidays
 holidays_data = [
   { name: "New Year's Day", start_date: '2023-01-01', end_date: '2023-01-01' },
   { name: 'Proclamation of Independence', start_date: '2023-01-11', end_date: '2023-01-11' },
