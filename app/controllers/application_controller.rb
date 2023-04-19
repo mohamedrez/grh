@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   before_action :set_locale, :set_user
 
   def after_sign_in_path_for(resource)
-    stored_location_for(resource) || home_index_path
+    dashboard_path
   end
 
   def after_sign_out_path_for(resource)
@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || I18n.default_locale
   end
 
+  # TODO: why do we have this one
   def set_user
     cookies[:username] = current_user&.email || "guest"
   end

@@ -4,4 +4,5 @@ COPY Gemfile.lock Gemfile.lock
 RUN bundle install
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
+EXPOSE 4000
 

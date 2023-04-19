@@ -29,6 +29,10 @@ label {
 a {
   @apply text-indigo-600 hover:text-indigo-500
 }
+.red {
+  @apply text-red-600 border-red-600
+
+}
 /* @layer components {
   .page-container {
     @apply max-w-7xl mx-auto py-10 px-4 sm:py-14 sm:px-6 lg:px-8;
