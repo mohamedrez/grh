@@ -13,7 +13,7 @@
   <% end %>
 
     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-      <div class="sm:col-span-3">
+      <div class="sm:col-span-3 sm:col-start-1">
         <%= form.label :start_date, style: "display: block" %>
         <div class="mt-2">
           <%= form.date_field :start_date, class: "w-full" %>
@@ -24,6 +24,13 @@
         <%= form.label :end_date, style: "display: block" %>
         <div class="mt-2">
           <%= form.date_field :end_date, class: "w-full" %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-3 sm:col-start-1">
+        <%= form.label :category %>
+        <div class="mt-2">
+          <%= form.select :category, options_for_select(TimeOffRequest.categories.map {|key, value| [key.humanize, key]}, @time_off_request.category) %>
         </div>
       </div>
     </div>

@@ -4,8 +4,9 @@ class TimeOffRequest < ApplicationRecord
   has_one :event, as: :eventable, dependent: :destroy
   after_create :create_user_request
   validates_comparison_of :end_date, greater_than_or_equal_to: :start_date
-  validates :start_date, presence: true
-  validates :end_date, presence: true
+  validates :start_date, :end_date, :category, presence: true
+
+  enum :category, %i[vacation_time sick_time personal_time bereavement_time parental_leave], prefix: :time_off_request_category
 
   attr_accessor :user_id
 

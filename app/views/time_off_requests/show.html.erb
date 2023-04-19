@@ -1,7 +1,7 @@
 
 
 <div class="flex items-center justify-between gap-x-6 bg-indigo-600 px-6 py-5 sm:pr-3.5 lg:pl-8 rounded-lg">
-  <p class="text-lg font-medium leading-6 text-white">Time Off Request</p>
+  <p class="text-2xl font-extrabold leading-none tracking-tight text-gray-900">Time Off Request <mark class="px-2 text-white bg-gray-500 rounded"><%= @time_off_request.category.humanize %></mark></p>
   <div class="flex items-center gap-x-5 mr-5">
     <% if @user_request.approved? %>
       <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-green-100 text-green-800">

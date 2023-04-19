@@ -81,6 +81,6 @@ class TimeOffRequestsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def time_off_request_params
-    params.require(:time_off_request).permit(:content, :start_date, :end_date, :user_id)
+    params.require(:time_off_request).permit(:content, :start_date, :end_date, :user_id, :category)
   end
 end
