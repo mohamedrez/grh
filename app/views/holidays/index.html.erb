@@ -21,12 +21,16 @@
               </th>
             </tr>
           </thead>
-          <tbody class="bg-white">
+          <tbody class="divide-y divide-gray-200 bg-white">
             <% @holidays.each do |holiday| %>
               <tr>
                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3"><%= holiday.name %></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= holiday.start_date %></td>
-                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= holiday.end_date %></td>
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                  <span class="inline-flex rounded-full bg-sky-100 px-2 text-xs font-semibold leading-5 text-sky-800"><%= holiday.start_date %></span>
+                </td>
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+                  <span class="inline-flex rounded-full bg-indigo-100 px-2 text-xs font-semibold leading-5 text-indigo-800"><%= holiday.end_date %></span>
+                </td>
                 <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
                   <%= link_to "Edit", edit_holiday_path(holiday), class: "text-indigo-600 hover:text-indigo-900" %>
                 </td>
