@@ -49,14 +49,12 @@ selenium_app_host = ENV.fetch("SELENIUM_APP_HOST") do
 end
 
 Capybara.configure do |config|
-  if(locality == :remote)
-    config.run_server = false
-    config.app_host = "http://web:3000"
-  else
-    config.server = :puma, { Silent: true }
-    config.server_host = '0.0.0.0'
-    config.server_port = 4000
-  end
+  config.server_host = '0.0.0.0'
+  config.server_port = 4000
+  config.server = :puma, { Silent: true }
+  config.run_server = true
+  config.app_host = "http://#{selenium_app_host}:4000"
+  config.always_include_port = true
 end
 
 RSpec.configure do |config|
@@ -68,7 +66,6 @@ RSpec.configure do |config|
     # Allow Capybara and WebDrivers to access network if necessary
     driver = if example.metadata[:js]
         headless = "_headless" if ENV["DISABLE_HEADLESS"].blank?
-        puts "#{locality}_selenium#{headless}".to_sym
         "#{locality}_selenium#{headless}".to_sym
       else
         :rack_test

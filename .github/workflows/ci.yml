@@ -22,7 +22,7 @@ jobs:
       - name: run selenium
         run: docker-compose up -d web selenium
       - name: rspec
-        run: docker-compose run web  bundle exec rspec
+        run: docker-compose exec web bundle exec rspec
       - name: logfiles
         run: ls -alrt coverage
       - name: Upload coverage reports to Codecov

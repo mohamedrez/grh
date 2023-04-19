@@ -16,7 +16,6 @@ services:
     stdin_open: true
     ports:
       - "3000:3000"
-      - "4000:4000"
     environment:
       DB_SOCKET: ''
       DB_USER: root
@@ -31,8 +30,6 @@ services:
       SELENIUM_HOST: selenium
       SELENIUM_PORT: 4444
       SELENIUM_APP_HOST: web
-      TEST_PORT: 3001
-      RAILS_ENV: test
     depends_on:
       - db
       - redis
@@ -72,3 +69,5 @@ services:
       - /dev/shm:/dev/shm
     ports:
       - "4444:4444"
+      - "7900:7900"
+
