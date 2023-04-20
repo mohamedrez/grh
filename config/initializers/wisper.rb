@@ -1,6 +1,6 @@
-require_relative "../../app/publishers/event_publisher"
-require_relative "../../app/subscribers/event_subscriber"
+require_relative "../../app/publishers/notification_publisher"
+require_relative "../../app/subscribers/notification_subscriber"
 
-# registering the EventSubscriber class with the EventPublisher class
+# registering the NotificationSubscriber class with the NotificationPublisher class
 # so that it will receive the events.
-EventPublisher.subscribe(EventSubscriber.new)
+NotificationPublisher.subscribe(NotificationSubscriber.new)
