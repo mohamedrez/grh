@@ -107,3 +107,5 @@ gem "pundit", "~> 2.3"
 gem "kaminari", "~> 1.2"
 
 gem "ransack", "~> 4.0"
+
+gem "wisper", "~> 2.0"
