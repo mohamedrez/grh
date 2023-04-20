@@ -5,6 +5,7 @@ require "sidekiq/web"
 Rails.application.routes.draw do
   root to: "dashboard#index"
   get "dashboard", to: "dashboard#index"
+  get "organization", to: "organization#index"
   get "calendar", to: "calendar#index"
   get "events", to: "events#index"
   resources :educations
