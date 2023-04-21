@@ -1,7 +1,12 @@
 class Event < ApplicationRecord
+  include Wisper::ActiveRecord::Publisher
+
+  after_create :publish_new_notification_event
+  subscribe NotificationSubscriber.new
+
   belongs_to :eventable, polymorphic: true
   belongs_to :user
-  after_create :publish_new_notification_event
+
   def color
     case eventable_type
     when "TimeOffRequest"
@@ -18,6 +23,6 @@ class Event < ApplicationRecord
   private
 
   def publish_new_notification_event
-    NotificationPublisher.new.new_notification(self, "New Request")
+    broadcast(:new_notification, self, "New Request")
   end
 end

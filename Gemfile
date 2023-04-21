@@ -108,4 +108,4 @@ gem "kaminari", "~> 1.2"
 
 gem "ransack", "~> 4.0"
 
-gem "wisper", "~> 2.0"
+gem "wisper-activerecord", "~> 1.0"
