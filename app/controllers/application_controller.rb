@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :pundishing_user
 
   before_action :set_locale, :set_user
+  before_action :set_notifications, if: :current_user
 
   def after_sign_in_path_for(resource)
     dashboard_path
@@ -16,11 +17,16 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def set_notifications
+    notifications = Notification.all.newest_first.limit(9)
+    @unread = notifications.unread
+    @read = notifications.read
+  end
+
   def set_locale
     I18n.locale = params[:locale] || I18n.default_locale
   end
 
-  # TODO: why do we have this one
   def set_user
     cookies[:username] = current_user&.email || "guest"
   end
