@@ -1,4 +1,5 @@
 class EmergencyContactsController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_locals, only: %i[edit update]
 
   def index
