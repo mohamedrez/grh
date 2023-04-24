@@ -29,6 +29,7 @@ Rails.application.routes.draw do
     patch "users/profile", to: "profiles#update"
 
     resources :users do
+      resources :emergency_contacts
       resources :time_off_requests
       resources :user_requests
       patch "/user_requests/:id", to: "user_requests#update", as: "user_request_update"

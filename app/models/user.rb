@@ -35,6 +35,7 @@ class User < ApplicationRecord
   has_many :educations, dependent: :destroy
   has_many :user_requests, dependent: :destroy
   has_many :subordinates, class_name: "User", foreign_key: "manager_id", dependent: :destroy, inverse_of: :manager
+  has_many :emergency_contacts, dependent: :destroy
 
   has_one :address, dependent: :destroy
 
