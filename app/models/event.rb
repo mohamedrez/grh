@@ -1,11 +1,9 @@
 class Event < ApplicationRecord
   include Wisper::ActiveRecord::Publisher
 
-  after_create :publish_new_notification_event
+  after_create :publish_new_notification_event, :notify_recipient
   subscribe NotificationSubscriber.new
 
-  after_create_commit :notify_recipient
-  before_destroy :cleanup_notifications
   has_noticed_notifications model_name: "Notification"
 
   belongs_to :eventable, polymorphic: true
@@ -27,14 +25,10 @@ class Event < ApplicationRecord
   private
 
   def publish_new_notification_event
-    broadcast(:new_notification, self, "New Request")
+    broadcast(:new_notification, self)
   end
 
   def notify_recipient
     EventNotification.with(event: self).deliver_later(user)
-  end
-
-  def cleanup_notifications
-    notifications_as_event.destroy_all
   end
 end

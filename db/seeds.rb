@@ -39,7 +39,6 @@ sites_data.each do |site_data|
     site.name = site_data[:name]
     site.address = site_data[:address]
     site.phone = site_data[:phone]
-    site.freeze
   end
 end
 
