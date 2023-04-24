@@ -87,9 +87,12 @@ class TimeOffRequestsController < ApplicationController
   end
 
   def mark_notifications_as_read
-    notifications_to_mark_as_read = current_user.notifications.where(read_at: nil)
-    notifications_to_mark_as_read.each do |notification|
-      notification.update(read_at: Time.zone.now)
+    unread_time_off_notifications = current_user.notifications.where(read_at: nil)
+
+    unread_time_off_notifications.each do |notification|
+      if notification.params[:event].eventable_type == "TimeOffRequest"
+        notification.update(read_at: Time.zone.now)
+      end
     end
   end
 end
