@@ -22,6 +22,8 @@ en:
       no_request: "This time off request doesn't exist"
     successfully_created: "It was successfully created."
     successfully_updated: "It was successfully updated."
+    successfully_imported : "Users imported successfully."
+    please_select_file: "Please select a file to import."
   experiences:
     experience_created: "Experience was successfully created."
     experience_updated: "Experience was successfully updated."

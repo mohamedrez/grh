@@ -3,6 +3,13 @@
     <div class="flex items-center">
       <%= link_to "Add new employee", new_user_path, class:  "block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"%>
     </div>
+    <%= form_tag import_users_path, multipart: true do %>
+      <div class="mx-2 flex items-center">
+        <%= label_tag :file, "Select a CSV file to import Users", class: "mr-2 py-2 px-4 bg-white rounded-lg shadow-md text-gray-700 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-gray-100" %>
+        <%= file_field_tag :file, accept: '.csv', class: "hidden" %>
+        <%= submit_tag "Import", class: "py-2 px-4 bg-blue-500 hover:bg-blue-600 rounded-lg shadow-md text-white font-medium tracking-wide cursor-pointer text-center" %>
+      </div>
+    <% end %>
     <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
       <%= render partial: "search_form" %>
     </div>

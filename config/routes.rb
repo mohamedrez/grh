@@ -32,6 +32,7 @@ Rails.application.routes.draw do
       resources :time_off_requests
       resources :user_requests
       patch "/user_requests/:id", to: "user_requests#update", as: "user_request_update"
+      collection { post :import }
     end
 
     resources :tracks, only: [:index]

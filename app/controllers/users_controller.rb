@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def edit
     authorize @user
-    @address = @user.address
+    @address = @user.address || @user.build_address
   end
 
   def create
@@ -44,6 +44,15 @@ class UsersController < ApplicationController
       redirect_to user_url(@user), notice: t("flash.profiles_controller.account_been_updated")
     else
       render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def import
+    if params[:file].present?
+      User.import(params[:file])
+      redirect_to users_path, notice: t("flash.successfully_imported")
+    else
+      redirect_to users_path, alert: t("flash.please_select_file")
     end
   end
 

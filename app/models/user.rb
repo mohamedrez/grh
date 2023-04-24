@@ -90,6 +90,22 @@ class User < ApplicationRecord
     ["email", "last_name", "employee_number", "last_name_or_email_or_employee_number"]
   end
 
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      User.find_or_create_by!(email: row["email"]) do |user|
+        user.password = row["password"]
+        user.first_name = row["first_name"]
+        user.last_name = row["last_name"]
+        user.birthdate = Date.parse(row["birthdate"])
+        user.start_date = Date.parse(row["start_date"])
+        user.end_date = Date.parse(row["end_date"])
+        user.cnss_number = row["cnss_number"]
+        user.employee_number = row["employee_number"]
+        user.confirmed_at = row["confirmed_at"]
+      end
+    end
+  end
+
   private_class_method def self.search_hash(search)
     if search.match?(/\A[a-zA-Z]+\z/)
       {"last_name_cont" => search}
