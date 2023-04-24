@@ -163,7 +163,7 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe 'POST /import' do
+  describe 'POST #import' do
     context 'with valid file' do
       let(:file) { Rack::Test::UploadedFile.new("#{Rails.root}/spec/fixtures/test_users.csv", 'text/csv') }
 
