@@ -162,4 +162,27 @@ RSpec.describe "Users", type: :request do
       end
     end
   end
+
+  describe 'POST /import' do
+    context 'with valid file' do
+      let(:file) { Rack::Test::UploadedFile.new("#{Rails.root}/spec/fixtures/test_users.csv", 'text/csv') }
+
+
+      it 'imports the users' do
+        post import_users_path, params: { file: file }
+
+        expect(response).to redirect_to(users_path)
+        expect(flash[:notice]).to eq(I18n.t('flash.successfully_imported'))
+      end
+    end
+
+    context 'with missing file' do
+      it 'returns an error message' do
+        post import_users_path
+
+        expect(response).to redirect_to(users_path)
+        expect(flash[:alert]).to eq(I18n.t('flash.please_select_file'))
+      end
+    end
+  end
 end
