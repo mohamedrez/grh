@@ -45,4 +45,47 @@ RSpec.describe(User, type: :model) do
       expect(User.search(query)).to eq({"employee_number_cont" => "5432157"})
     end
   end
+
+  describe ".import" do
+    let(:file) { Rack::Test::UploadedFile.new("#{Rails.root}/spec/fixtures/test_users.csv", 'text/csv') }
+
+    context "when a valid file is given" do
+      it "creates new users" do
+        expect {
+          User.import(file)
+        }.to change(User, :count).by(3)
+      end
+
+      it "creates users with the correct attributes" do
+        User.import(file)
+
+        user1 = User.find_by(email: "user1@example.com")
+        expect(user1.first_name).to eq("John")
+        expect(user1.last_name).to eq("Doe")
+        expect(user1.birthdate).to eq(Date.new(1990, 1, 1))
+        expect(user1.start_date).to eq(Date.new(2021, 1, 1))
+        expect(user1.end_date).to eq(Date.new(2022, 1, 1))
+        expect(user1.cnss_number).to eq("12345678")
+        expect(user1.employee_number).to eq("1")
+
+        user2 = User.find_by(email: "user2@example.com")
+        expect(user2.first_name).to eq("Jane")
+        expect(user2.last_name).to eq("Doe")
+        expect(user2.birthdate).to eq(Date.new(1995, 6, 15))
+        expect(user2.start_date).to eq(Date.new(2022, 1, 1))
+        expect(user2.end_date).to eq(Date.new(2022, 12, 31))
+        expect(user2.cnss_number).to eq("987654321")
+        expect(user2.employee_number).to eq("2")
+
+        user3 = User.find_by(email: "user3@example.com")
+        expect(user3.first_name).to eq("Michael")
+        expect(user3.last_name).to eq("Johnson")
+        expect(user3.birthdate).to eq(Date.new(1985, 3, 20))
+        expect(user3.start_date).to eq(Date.new(2022, 1, 1))
+        expect(user3.end_date).to eq(Date.new(2022, 12, 31))
+        expect(user3.cnss_number).to eq("567890123")
+        expect(user3.employee_number).to eq("3")
+      end
+    end
+  end
 end
