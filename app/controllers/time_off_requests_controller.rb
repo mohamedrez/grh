@@ -17,6 +17,8 @@ class TimeOffRequestsController < ApplicationController
     authorize @time_off_request
     @overlapping_requests = @time_off_request.overlapping_requests
     @user_request = @time_off_request.user_request
+
+    mark_notifications_as_read
   end
 
   # GET /time_off_requests/new
@@ -82,5 +84,12 @@ class TimeOffRequestsController < ApplicationController
   # Only allow a list of trusted parameters through.
   def time_off_request_params
     params.require(:time_off_request).permit(:content, :start_date, :end_date, :user_id, :category)
+  end
+
+  def mark_notifications_as_read
+    notifications_to_mark_as_read = current_user.notifications.where(read_at: nil)
+    notifications_to_mark_as_read.each do |notification|
+      notification.update(read_at: Time.zone.now)
+    end
   end
 end
