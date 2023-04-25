@@ -25,8 +25,6 @@ Rails.application.routes.draw do
       registrations: "users/registrations"
     }
     delete "users", to: "devise/registrations#destroy", as: :destroy_user_registration
-    get "users/profile/edit", to: "profiles#edit"
-    patch "users/profile", to: "profiles#update"
 
     resources :users do
       resources :emergency_contacts
@@ -34,6 +32,8 @@ Rails.application.routes.draw do
       resources :user_requests
       patch "/user_requests/:id", to: "user_requests#update", as: "user_request_update"
       collection { post :import }
+      get "profile", to: "profiles#edit"
+      patch "profile", to: "profiles#update"
     end
 
     resources :tracks, only: [:index]
