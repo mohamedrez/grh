@@ -91,6 +91,25 @@ class User < ApplicationRecord
     ["email", "last_name", "employee_number", "last_name_or_email_or_employee_number"]
   end
 
+  def self.import(file)
+    CSV.foreach(file.path, headers: true) do |row|
+      user = User.find_or_create_by!(email: row["email"]) do |user|
+        user.password = Devise.friendly_token.first(8)
+        user.confirmed_at = Time.now.utc
+        user.first_name = row["first_name"]
+        user.last_name = row["last_name"]
+        user.birthdate = Date.parse(row["birthdate"])
+        user.start_date = Date.parse(row["start_date"])
+        user.end_date = Date.parse(row["end_date"])
+        user.cnss_number = row["cnss_number"]
+        user.employee_number = row["employee_number"]
+      end
+
+      address_data = {street: row["street"], city: row["city"], zipcode: row["zipcode"], country: 6, user_id: user.id}
+      Address.find_or_create_by!(address_data)
+    end
+  end
+
   private_class_method def self.search_hash(search)
     if search.match?(/\A[a-zA-Z]+\z/)
       {"last_name_cont" => search}

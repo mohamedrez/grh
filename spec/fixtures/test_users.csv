@@ -1,0 +1,3 @@
+email,first_name,last_name,birthdate,start_date,end_date,cnss_number,employee_number,street,city,zipcode
+jdoe@example.com,John,Doe,1990-01-01,2020-01-01,2022-12-31,1234567890,1001,123 Main St,Anytown,12345
+jsmith@example.com,Jane,Smith,1985-05-20,2019-05-01,2023-06-30,0987654321,1002,456 Oak Ave,Anycity,54321
