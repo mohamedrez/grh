@@ -14,14 +14,14 @@ RSpec.describe "Profiles", type: :request do
     sign_in user
   end
 
-  describe "GET /edit" do
+  describe "GET #edit" do
     it "renders a successful response" do
       get "/users/#{user.id}/profile"
       expect(response).to be_successful
     end
   end
 
-  describe "PATCH /update" do
+  describe "PATCH #update" do
     it "updates the requested profile" do
       patch "/users/#{user.id}/profile", params: {user: valid_attributes}
       user.reload
