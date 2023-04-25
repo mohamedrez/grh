@@ -92,8 +92,9 @@ class User < ApplicationRecord
 
   def self.import(file)
     CSV.foreach(file.path, headers: true) do |row|
-      User.find_or_create_by!(email: row["email"]) do |user|
-        user.password = row["password"]
+      user = User.find_or_create_by!(email: row["email"]) do |user|
+        user.password = Devise.friendly_token.first(8)
+        user.confirmed_at = Time.now.utc
         user.first_name = row["first_name"]
         user.last_name = row["last_name"]
         user.birthdate = Date.parse(row["birthdate"])
@@ -101,8 +102,10 @@ class User < ApplicationRecord
         user.end_date = Date.parse(row["end_date"])
         user.cnss_number = row["cnss_number"]
         user.employee_number = row["employee_number"]
-        user.confirmed_at = row["confirmed_at"]
       end
+
+      address_data = {street: row["street"], city: row["city"], zipcode: row["zipcode"], country: 6, user_id: user.id}
+      Address.find_or_create_by!(address_data)
     end
   end
 
