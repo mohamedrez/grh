@@ -1,17 +1,38 @@
 require "rails_helper"
 
 RSpec.describe "Profiles", type: :request do
-  describe "GET /index" do
-    pending "add some examples (or delete) #{__FILE__}"
+  let(:user) { create(:user, admin: true) }
+  let(:valid_attributes) do
+    {
+      email: "me@test.com",
+      username: "mest",
+      learning_goal: "i wanna be a senior RoR"
+    }
   end
-  # describe "PATCH /update" do
-  #   it "changes the user's attributes" do
-  #     user = User.create! email: "email@eila.com", password: "somepassword", confirmation_token: "2023-03-15 13:24:03.915976000 +0000", confirmed_at: "2023-03-15 13:28:03.915976000 +0000"
-  #     sign_in user
-  #     patch users_profile_url, params: { user: { username: "hi42", learning_goal: "I wanna become a full stack RoR" } }
-  #     user.reload
-  #     expect(user.username).to eq('hi42')
-  #     expect(user.learning_goal).to eq('I wanna become a full stack RoR')
-  #   end
-  # end
+
+  before do
+    sign_in user
+  end
+
+  describe "GET /edit" do
+    it "renders a successful response" do
+      get "/users/#{user.id}/profile"
+      expect(response).to be_successful
+    end
+  end
+
+  describe "PATCH /update" do
+    it "updates the requested profile" do
+      patch "/users/#{user.id}/profile", params: {user: valid_attributes}
+      user.reload
+      expect(user.username).to eq("mest")
+      expect(user.learning_goal).to eq("i wanna be a senior RoR")
+    end
+
+    it "redirects to the user" do
+      patch "/users/#{user.id}/profile", params: {user: valid_attributes}
+      user.reload
+      expect(response).to redirect_to(user_profile_url(user_id: user.id))
+    end
+  end
 end
