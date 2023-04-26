@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
     if @user.save
       @user.send_reset_password_instructions
-      redirect_to user_url(@user), notice: t("flash.profiles_controller.account_been_created")
+      redirect_to user_url(@user), notice: t("flash.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -41,7 +41,7 @@ class UsersController < ApplicationController
   def update
     authorize @user
     if @user.update(user_params)
-      redirect_to user_url(@user), notice: t("flash.profiles_controller.account_been_updated")
+      redirect_to user_url(@user), notice: t("flash.successfully_updated")
     else
       render :edit, status: :unprocessable_entity
     end

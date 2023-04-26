@@ -13,9 +13,6 @@ en:
     user_quiz_responses_controller:
       quiz_passed: "The quiz is passed."
       quiz_did_not_passed: "The quiz didn't passed."
-    profiles_controller:
-      account_been_created: "the profile was successfully updated."
-      account_been_updated: "the profile was successfully updated."
     application_controller:
       not_authorized: "You are not authorized to perform this action."
     time_off_requests_controller:

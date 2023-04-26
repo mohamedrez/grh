@@ -13,5 +13,3 @@ ar:
     user_quiz_responses_controller: 
       quiz_passed: ".تم اجتياز الاختبار"
       quiz_did_not_passed: ".لم ينجح الاختبار"
-    profiles_controller:
-      account_been_updated: "تم تحديث الحساب الخاص بك"

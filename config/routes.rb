@@ -32,8 +32,8 @@ Rails.application.routes.draw do
       resources :user_requests
       patch "/user_requests/:id", to: "user_requests#update", as: "user_request_update"
       collection { post :import }
-      get "profile", to: "profiles#edit"
-      patch "profile", to: "profiles#update"
+      get "settings", to: "settings#edit"
+      patch "settings", to: "settings#update"
     end
 
     resources :tracks, only: [:index]
