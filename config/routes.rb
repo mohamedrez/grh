@@ -8,7 +8,6 @@ Rails.application.routes.draw do
   get "organization", to: "organization#index"
   get "calendar", to: "calendar#index"
   get "events", to: "events#index"
-  resources :educations
   authenticate :user, ->(user) { user.admin? } do
     mount Motor::Admin => "/motor_admin"
     mount Sidekiq::Web => "/sidekiq"
@@ -17,8 +16,6 @@ Rails.application.routes.draw do
 
   scope "(:locale)", locale: /en|ar/ do
     resources :holidays
-    resources :educations
-    resources :experiences
     resources :home, only: [:index]
 
     devise_for :users, skip: :omniauth_callbacks, path: "/auth", controllers: {
@@ -34,6 +31,8 @@ Rails.application.routes.draw do
       collection { post :import }
       get "settings", to: "settings#edit"
       patch "settings", to: "settings#update"
+      resources :experiences, only: [:new, :create]
+      resources :educations, only: [:new, :create]
     end
 
     resources :tracks, only: [:index]

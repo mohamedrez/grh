@@ -96,6 +96,16 @@ class UsersController < ApplicationController
         :country,
         :city,
         :zipcode
+      ],
+      experiences_attributes:
+      [
+        :id,
+        :job_title,
+        :company_name,
+        :employment_type,
+        :start_date,
+        :end_date,
+        :work_description
       ]
     )
   end
