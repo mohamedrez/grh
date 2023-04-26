@@ -47,6 +47,7 @@ class User < ApplicationRecord
 
   accepts_nested_attributes_for :address, update_only: true
   accepts_nested_attributes_for :experiences
+  accepts_nested_attributes_for :educations
 
   enum :gender, %i[male female], prefix: :user_gender
   enum :marital_status, %i[single married divorced other], prefix: :user_marital_status

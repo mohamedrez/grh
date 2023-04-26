@@ -3,8 +3,7 @@
     <div class="space-y-12">
       <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
         <div>
-          <h2 class="text-base font-semibold leading-7 text-gray-900">Personal Information</h2>
-          <p class="mt-1 text-sm leading-6 text-gray-600">Put your personal information.</p>
+          <h1 class="w-3/4 py-2 px-4 bg-white rounded-lg shadow-md text-teal-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-teal-100">Personal Information</h1>
         </div>
         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
           <div class="sm:col-span-3">
@@ -162,8 +161,7 @@
       </div>
       <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
         <div>
-          <h2 class="text-base font-semibold leading-7 text-gray-900">Address Information</h2>
-          <p class="mt-1 text-sm leading-6 text-gray-600">Put your address informations.</p>
+          <h1 class="w-3/4 py-2 px-4 bg-white rounded-lg shadow-md text-sky-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-sky-100">Personal Information</h1>
         </div>
         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
           <%= form.fields_for :address do |f| %>
@@ -196,8 +194,7 @@
       </div>
       <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
         <div>
-          <h2 class="text-base font-semibold leading-7 text-gray-900">Experiences</h2>
-          <p class="mt-1 text-sm leading-6 text-gray-600">A list of your experiences.</p>
+          <h1 class="w-3/4 py-2 px-4 bg-white rounded-lg shadow-md text-indigo-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-indigo-100">Experiences</h1>
         </div>
         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
           <%= form.fields_for :experiences do |f| %>
@@ -237,7 +234,7 @@
                 <%= f.text_area :work_description, class: "w-full", rows: 5 %>
               </div>
             </div> 
-            <hr class="border border-sky-500 sm:col-span-6">
+            <hr class="border border-indigo-500 sm:col-span-6">
           <% end %>
           <div class="sm:col-span-6"> 
             <%= link_to new_user_experience_path(@user), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
@@ -245,6 +242,72 @@
                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               Add new experience
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+        <div>
+          <h1 class="w-3/4 py-2 px-4 bg-white rounded-lg shadow-md text-pink-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-pink-100">Experiences</h1>
+        </div>
+        <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+          <%= form.fields_for :educations do |f| %>
+            <div class="sm:col-span-3">
+              <%= f.label :school %>
+              <div class="mt-2">
+                <%= f.text_field :school, class: "w-full" %>
+              </div>
+            </div>
+            <div class="sm:col-span-3">
+              <%= f.label :education_level %>
+              <div class="mt-2">
+                <%= f.select :education_level, options_for_select(Education.education_levels.map {|key, value| [key.humanize, key]}, f.object.education_level) %>
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <%= f.label :study_field %>
+              <div class="mt-2">
+                <%= f.select :study_field, options_for_select(Education.study_fields.map {|key, value| [key.humanize, key]}, f.object.study_field) %>
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <%= f.label :start_date %>
+              <div class="mt-2">
+                <%= f.date_field :start_date, class: "w-full" %>
+              </div>
+            </div>
+            <div class="sm:col-span-2">
+              <%= f.label :end_date %>
+              <div class="mt-2">
+                <%= f.date_field :end_date, class: "w-full" %>
+              </div>
+            </div>
+            <div class="sm:col-span-3">
+              <%= f.label :country %>
+              <div class="mt-2">
+                <%= f.select :country, options_for_select(Education.countries.map {|key, value| [key.humanize, key]}, f.object.country) %>
+              </div>
+            </div>
+            <div class="sm:col-span-3">
+              <%= f.label :city %>
+              <div class="mt-2">
+                <%= f.text_field :city, class: "w-full" %>
+              </div>
+            </div>
+            <div class="sm:col-span-3">
+              <div class="sm:col-span-4 flex items-center">
+                <%= f.check_box :still_on_this_course, class: "mx-2 h-5 w-5 rounded border-gray-300 text-green-500 focus:ring-green-500 focus:border-green-500", checked: f.object.still_on_this_course %>
+                <%= f.label :still_on_this_course %>
+              </div>
+            </div>
+            <hr class="border border-pink-500 sm:col-span-6">
+          <% end %>
+          <div class="sm:col-span-6"> 
+            <%= link_to new_user_education_path(@user), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:text-pink-500 hover:bg-pink-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" do %>
+              <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Add new education
             <% end %>
           </div>
         </div>

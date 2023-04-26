@@ -106,6 +106,17 @@ class UsersController < ApplicationController
         :start_date,
         :end_date,
         :work_description
+      ],
+      educations_attributes: [
+        :id,
+        :school,
+        :country,
+        :city,
+        :education_level,
+        :study_field,
+        :start_date,
+        :end_date,
+        :still_on_this_course
       ]
     )
   end
