@@ -123,4 +123,109 @@
       </div>
     </dl>
   </div>
+  <div class="my-10" >
+    <h1 class="py-2 px-4 bg-white rounded-lg shadow-md text-sky-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-sky-100">Experiences</h1>
+  </div>
+  <div class="flow-root">
+    <ul role="list" class="-mb-8">
+      <% @user.experiences.each do |experience| %>
+        <li>
+          <div class="relative pb-10 w-1/2">
+            <% unless experience == @user.experiences.last %>
+              <span class="absolute left-10 top-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+            <% end %>
+            <div class="relative flex space-x-3">
+              <div>
+                <span class="h-20 w-20 rounded-full bg-sky-50 flex items-center justify-center ring-8 ring-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" class="h-12 w-12 text-white">
+                    <path fill="#2b3344" d="M21.5 22h-7a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM12.5 22h-9a.5.5 0 0 1 0-1h9a.5.5 0 0 1 0 1z" class="color2b3344 svgShape"></path>
+                    <path fill="#2b3344" d="M14.5 22a.5.5 0 0 1-.5-.5V4H6V21.5a.5.5 0 0 1-1 0V3.5A.5.5 0 0 1 5.5 3h9a.5.5 0 0 1 .5.5v18A.5.5 0 0 1 14.5 22zM19.5 22a.5.5 0 0 1-.5-.5V7.86L16.34 7A.49.49 0 0 1 16 6.34.51.51 0 0 1 16.66 6l3 1A.49.49 0 0 1 20 7.5v14A.5.5 0 0 1 19.5 22z" class="color2b3344 svgShape"></path>
+                    <path fill="#2b3344" d="M11 22a.5.5 0 0 1-.5-.5V19h-1V21.5a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 9 18h2a.5.5 0 0 1 .5.5v3A.5.5 0 0 1 11 22zM9 16h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 16H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 13h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 13H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 10h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 10H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 7h-1a.5.5 0 0 1 0-1H9A.5.5 0 0 1 9 7zM12.06 7H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM17.5 19h-1a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zM17.5 16h-1a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5h1a.51.51 0 0 1 .5.5A.5.5 0 0 1 17.5 16zM17.5 13h-1a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zM17.5 10h-1a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5A.51.51 0 0 1 17.5 10z" class="color2b3344 svgShape"></path>
+                  </svg>
+                </span>
+              </div>
+              <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+                <div>
+                  <p class="font-medium text-lg text-gray-900"><%= experience.job_title.humanize %></p>
+                  <p class="font-normal text-base text-gray-900"><%= experience.company_name.humanize %> . <%= experience.employment_type.humanize %></p>
+                  <p class="font-normal text-base text-gray-500"><%= experience.start_date %> - <%= experience.end_date %></p>
+                  <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 mt-3">
+                    <div class="flex justify-between gap-x-4">
+                      <p class="font-normal text-base text-gray-900">Work description</p>
+                    </div>
+                    <p class="text-sm leading-6 text-gray-500"><%= experience.work_description.humanize %></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <% if @user.experiences.blank? %>
+      <div class="my-5 mx-10"> 
+        <%= link_to new_user_experience_path(@user), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+          <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Add new experience
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+  <div class="my-10" >
+    <h1 class="py-2 px-4 bg-white rounded-lg shadow-md text-pink-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-pink-100">Experiences</h1>
+  </div>
+  <div class="flow-root">
+    <ul role="list" class="-mb-8">
+      <% @user.educations.each do |education| %>
+        <li>
+          <div class="relative pb-10 w-1/2">
+            <% unless education == @user.educations.last %>
+              <span class="absolute left-10 top-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+            <% end %>
+            <div class="relative flex space-x-3">
+              <div>
+                <span class="h-20 w-20 rounded-full bg-pink-50 flex items-center justify-center ring-8 ring-white">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="h-12 w-12 text-white">
+                    <path d="m512.868 650.199-440-240.3 440-240.4 440 240.3-440 240.4zm-377.4-240.3 377.4 206.1 377.4-206.2-377.4-206.1-377.4 206.2z" fill="#000000" class="color000 svgShape"></path>
+                    <path d="m511.868 855.299-299-155v-247.1l299 162.9 299-162.9v247.2l-299 154.9zm-269-173.2 269 139.4 269-139.4v-178.4l-269 146.5-269-146.5v178.4zM906.868 410.499h30v199h-30z" fill="#000000" class="color000 svgShape"></path>
+                  </svg>
+                </span>
+              </div>
+              <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+                <div>
+                  <p class="font-medium text-lg text-gray-900"><%= education.school.humanize %> <span class="font-normal text-base text-gray-500">/ <%= education.city.humanize %> - <%= education.country.humanize %></span></p>
+                  <p class="font-normal text-base text-gray-900"><%= education.education_level.humanize %> . <%= education.study_field.humanize %></p>
+                  <p class="font-normal text-base text-gray-500"><%= education.start_date %> - <%= education.end_date %></p>
+                </div>
+                <div class="whitespace-nowrap text-right text-sm text-gray-500">
+                  <p class="font-normal text-base text-gray-500 mb-1">Stil On This Course?</p>
+                  <% if education.still_on_this_course %>
+                    <span  class="bg-indigo-500 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
+                      <span aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                    </span>
+                  <% else %>
+                    <span  class="bg-gray-100 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
+                      <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                    </span>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+    <% if @user.educations.blank? %>
+      <div class="my-5 mx-10"> 
+        <%= link_to new_user_education_path(@user), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:text-pink-500 hover:bg-pink-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" do %>
+          <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          Add new education
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
