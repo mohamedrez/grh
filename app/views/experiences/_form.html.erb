@@ -25,7 +25,7 @@
       </div>
       <div class="sm:col-span-4">
         <%= form.label :employment_type, class: "block text-sm font-medium leading-6 text-gray-900" %>
-        <%= form.select :employment_type, options_for_select(Experience.employment_types.map {|key, value| [key.humanize, key]}) %>
+        <%= form.select :employment_type, options_for_select(Experience.employment_types.map {|key, value| [key.humanize, key]}, @experience.employment_type) %>
       </div>
       <div class="sm:col-span-3">
         <%= form.label :start_date, class: "block text-sm font-medium leading-6 text-gray-900" %>
