@@ -1,0 +1,42 @@
+<div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
+  <aside class="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3">
+    <nav class="space-y-1">
+      <a class="bg-gray-200 text-gray-900 dark:bg-gray-700/50 dark:text-gray-300 group rounded-md px-3 py-2 flex items-center text-sm font-medium" href="<%= url_for(user_settings_url(user_id: @user.id)) %>">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-500 group-hover:text-gray-700 dark:text-gray-300 dark:group-hover:text-gray-300 flex-shrink-0 -ml-1 mr-3 h-6 w-6" role="img" aria-labelledby="ab2kik8tmojy2n0qeid1w90apsdluvb1"><title id="ab2kik8tmojy2n0qeid1w90apsdluvb1">Settings icon</title>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17L17.25 21A2.652 2.652 0 0021 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.548 2.548 0 11-3.586-3.586l6.837-5.63m5.108-.233c.55-.164 1.163-.188 1.743-.14a4.5 4.5 0 004.486-6.336l-3.276 3.277a3.004 3.004 0 01-2.25-2.25l3.276-3.276a4.5 4.5 0 00-6.336 4.486c.091 1.076-.071 2.264-.904 2.95l-.102.085m-1.745 1.437L5.909 7.5H4.5L2.25 3.75l1.5-1.5L7.5 4.5v1.409l4.26 4.26m-1.745 1.437l1.745-1.437m6.615 8.206L15.75 15.75M4.867 19.125h.008v.008h-.008v-.008z" />
+        </svg>
+        <span class="truncate"> Settings </span>
+      </a>
+      <a class="text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:hover:bg-gray-600/70 dark:hover:text-gray-300 dark:text-gray-400 group rounded-md px-3 py-2 flex items-center text-sm font-medium" href="<%= url_for(edit_user_registration_url) %>">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6 text-gray-400 group-hover:text-gray-500 dark:text-gray-400 dark:group-hover:text-gray-300 flex-shrink-0 -ml-1 mr-3 h-6 w-6" role="img" aria-labelledby="ack6ppb0ma7u89tch673cv7qitmzi8n1"><title id="ack6ppb0ma7u89tch673cv7qitmzi8n1">Password icon</title>
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 5.25a3 3 0 013 3m3 0a6 6 0 01-7.029 5.912c-.563-.097-1.159.026-1.563.43L10.5 17.25H8.25v2.25H6v2.25H2.25v-2.818c0-.597.237-1.17.659-1.591l6.499-6.499c.404-.404.527-1 .43-1.563A6 6 0 1121.75 8.25z"></path>
+        </svg>
+        <span class="truncate"> Password </span>
+      </a>
+    </nav>
+  </aside>
+  <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
+    <%= form_with model: current_user, url: "/users/#{@user.id}/settings", html: { method: :patch } do |form| %>
+      <div class="bg-white shadow rounded-lg dark:bg-gray-800 dark:ring-1 dark:ring-white/10 dark:ring-inset ">
+        <div class="p-8 pb-0 ">
+          <h3 class="text-xl leading-6 font-medium text-gray-900 dark:text-gray-200">Settings</h3>
+          <p class="text-sm mt-2 text-gray-500 dark:text-gray-400">These information will be displayed on your profile.</p>
+        </div>
+        <div class="p-8 ">
+          <div class="grid grid-cols-6 gap-6">            
+            <div class="col-span-6">            
+              <%= form.label :avatar, "User picture", class: "mr-5 mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
+              <%= form.file_field :avatar, class: "hidden", accept: 'image/svg,image/png,image/jpg,image/jpeg', id: "avatar-input" %>
+              <label for="avatar-input" class="cursor-pointer">
+                <%= render partial: "shared/user_avatar", locals: {class_avatar: "w-16 h-16 rounded-full"} %>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div class="p-8 pt-0 px-4 py-3 pt-3 bg-gray-50 text-right sm:px-6 dark:bg-gray-700/40">
+          <%= form.submit 'Save', class: 'button button--primary py-2 px-4' %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
