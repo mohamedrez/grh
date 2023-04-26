@@ -1,153 +1,126 @@
 <%= render partial: 'shared/user_overview', locals: {user: @user} %>
 
-<section>
-  <div class="mt-5" >
-    <h1 class="py-2 px-4 bg-white rounded-lg shadow-md text-pink-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-pink-100">Personal Information</h1>
+<div>
+  <div class="my-10" >
+    <h1 class="py-2 px-4 bg-white rounded-lg shadow-md text-teal-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-teal-100">Personal Information</h1>
   </div>
-  <div class="mx-auto mt-6 max-w-5xl px-4 sm:px-6 lg:px-8">
-    <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Full name</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.full_name %></dd>
+  <div class="mx-10">
+    <dl class="divide-y divide-gray-100">
+      <div class="px-4 pb-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Full name</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.full_name %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">CIN</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.cin %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">CIN</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.cin %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Birthday</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.birthdate%></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Birthday</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.birthdate %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Gender</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.gender&.humanize %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Gender</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.gender&.humanize %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Phone</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.phone %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Phone</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.phone %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Email</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.email %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Email</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.email %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Marital status</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.marital_status&.humanize %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Marital status</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.marital_status&.humanize %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Children number</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.children_number %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Children number</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.children_number %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Site</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.site&.name %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Site</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.site&.name %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Service</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.service&.humanize %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Service</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.service&.humanize %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Job title</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.job_title&.humanize %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Job title</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.job_title&.humanize %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Start date</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.start_date %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Start date</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.start_date %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Joining date</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.joining_date %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Joining date</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.joining_date %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">End date</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.end_date %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">End date</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.end_date %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Contract</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.contract %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Contract</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.contract %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Category</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.category&.humanize %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Category</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.category&.humanize %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Employee ID</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.employee_number %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Employee ID</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.employee_number %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">CNSS number</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.cnss_number %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">CNSS number</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.cnss_number %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Brut salary</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.brut_salary %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Brut salary</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.brut_salary %> DH</dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Net salary</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.net_salary %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Net salary</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.net_salary %> DH</dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">CNSS contribution</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.cnss_contribution %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">CNSS contribution</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.cnss_contribution %> DH</dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Retirement contribution</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.retirement_contribution %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Retirement contribution</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.retirement_contribution %> DH</dd>
       </div>
-
-      <div class="sm:col-span-2">
-        <dt class="text-sm font-medium text-gray-500">About</dt>
-        <dd class="mt-1 max-w-prose space-y-5 text-sm text-gray-900">
-          <p><%= @user.about %></p>
-        </dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">About</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.about %></dd>
       </div>
     </dl>
   </div>
-  <div class="mt-5" >
+  <div class="my-10" >
     <h1 class="py-2 px-4 bg-white rounded-lg shadow-md text-sky-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-sky-100">Address Information</h1>
   </div>
-  <div class="mx-auto mt-6 max-w-5xl px-4 sm:px-6 lg:px-8">
-    <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Street address</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.address&.street %></dd>
+  <div class="mx-10">
+    <dl class="divide-y divide-gray-100">
+      <div class="px-4 pb-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Street address</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.street %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">Country</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.address&.country&.humanize %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Country</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.country&.humanize %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">City</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.address&.city %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">City</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.city %></dd>
       </div>
-
-      <div class="sm:col-span-1">
-        <dt class="text-sm font-medium text-gray-500">ZIP / Postal code</dt>
-        <dd class="mt-1 text-sm text-gray-900"><%= @user.address&.zipcode %></dd>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">ZIP / Postal code</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.zipcode %></dd>
       </div>
     </dl>
   </div>
-</section>
+</div>
