@@ -6,7 +6,7 @@ RSpec.describe "/time_off_requests", type: :request do
 
   let(:valid_attributes) do
     {
-      start_date: "2023-04-01", 
+      start_date: "2023-04-01",
       end_date: "2023-04-06",
       content: "<div>I would like to take some time off to recharge and return to work feeling refreshed and more productive.</div>",
       category: "personal_time"
@@ -15,7 +15,7 @@ RSpec.describe "/time_off_requests", type: :request do
 
   let(:invalid_attributes) do
     {
-      start_date: "2023-04-11", 
+      start_date: "2023-04-11",
       end_date: "2023-04-06"
     }
   end
@@ -85,8 +85,8 @@ RSpec.describe "/time_off_requests", type: :request do
       it "updates the requested time_off_request" do
         patch "/users/#{admin_user.id}/time_off_requests/#{time_off_request.id}", params: {time_off_request: valid_attributes}
         time_off_request.reload
-        expect(time_off_request.start_date).to eq(Date.new(2023, 04, 01))
-        expect(time_off_request.end_date).to eq(Date.new(2023, 04, 06))
+        expect(time_off_request.start_date).to eq(Date.new(2023, 0o4, 0o1))
+        expect(time_off_request.end_date).to eq(Date.new(2023, 0o4, 0o6))
         expect(time_off_request.content).to eq(TimeOffRequest.last.content)
         expect(time_off_request.category).to eq("personal_time")
       end

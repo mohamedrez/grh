@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "/holidays", type: :request do
   let(:user) { create(:user, admin: true) }
@@ -7,7 +7,7 @@ RSpec.describe "/holidays", type: :request do
   let(:valid_attributes) do
     {
       name: "First Holiday",
-      start_date: "2023-04-01", 
+      start_date: "2023-04-01",
       end_date: "2023-04-06"
     }
   end
@@ -15,7 +15,7 @@ RSpec.describe "/holidays", type: :request do
   let(:invalid_attributes) do
     {
       name: "",
-      start_date: "2023-04-11", 
+      start_date: "2023-04-11",
       end_date: "2023-04-06"
     }
   end
@@ -58,12 +58,12 @@ RSpec.describe "/holidays", type: :request do
     context "with valid parameters" do
       it "creates a new Holiday" do
         expect {
-          post holidays_url, params: { holiday: valid_attributes }
+          post holidays_url, params: {holiday: valid_attributes}
         }.to change(Holiday, :count).by(1)
       end
 
       it "redirects to the the index page" do
-        post holidays_url, params: { holiday: valid_attributes }
+        post holidays_url, params: {holiday: valid_attributes}
         expect(response).to redirect_to(holidays_url)
       end
     end
@@ -71,41 +71,37 @@ RSpec.describe "/holidays", type: :request do
     context "with invalid parameters" do
       it "does not create a new Holiday" do
         expect {
-          post holidays_url, params: { holiday: invalid_attributes }
+          post holidays_url, params: {holiday: invalid_attributes}
         }.to change(Holiday, :count).by(0)
       end
 
-    
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post holidays_url, params: { holiday: invalid_attributes }
+        post holidays_url, params: {holiday: invalid_attributes}
         expect(response).to have_http_status(:unprocessable_entity)
       end
-    
     end
   end
 
   describe "PATCH /update" do
     context "with valid parameters" do
-
       it "updates the requested holiday" do
-        patch holiday_url(id: holiday.id), params: { holiday: valid_attributes }
+        patch holiday_url(id: holiday.id), params: {holiday: valid_attributes}
         holiday.reload
         expect(holiday.name).to eq("First Holiday")
-        expect(holiday.start_date).to eq(Date.new(2023, 04, 01))
-        expect(holiday.end_date).to eq(Date.new(2023, 04, 06))
+        expect(holiday.start_date).to eq(Date.new(2023, 0o4, 0o1))
+        expect(holiday.end_date).to eq(Date.new(2023, 0o4, 0o6))
       end
 
       it "redirects to the holiday" do
-        patch holiday_url(id: holiday.id), params: { holiday: valid_attributes }
+        patch holiday_url(id: holiday.id), params: {holiday: valid_attributes}
         holiday.reload
         expect(response).to redirect_to(holidays_url)
       end
     end
 
     context "with invalid parameters" do
-    
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        patch holiday_url(id: holiday.id), params: { holiday: invalid_attributes }
+        patch holiday_url(id: holiday.id), params: {holiday: invalid_attributes}
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end

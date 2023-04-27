@@ -1,10 +1,10 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe UserPolicy, type: :policy do
   subject { described_class }
   let(:admin_user) { create(:user, admin: true) }
   let(:user) { create(:user) }
-  
+
   permissions :index? do
     it "grants access if user is an admin" do
       expect(subject).to permit(admin_user)

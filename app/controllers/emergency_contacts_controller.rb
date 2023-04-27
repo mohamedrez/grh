@@ -40,6 +40,7 @@ class EmergencyContactsController < ApplicationController
       turbo_stream.replace("notification_alert", partial: "layouts/alert")
     ]
   end
+
   def update
     emergency_contact_params[:user_id] = params[:user_id]
     if @emergency_contact.update(emergency_contact_params)
@@ -52,6 +53,7 @@ class EmergencyContactsController < ApplicationController
       render :edit, status: :unprocessable_entity
     end
   end
+
   private
 
   def set_locals
