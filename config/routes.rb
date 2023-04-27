@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     delete "users", to: "devise/registrations#destroy", as: :destroy_user_registration
 
     resources :users do
+      resources :assets
       resources :emergency_contacts
       resources :time_off_requests
       resources :user_requests
