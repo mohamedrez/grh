@@ -1,6 +1,4 @@
-<div class="isolate bg-white px-6 lg:px-8">
-    <div class="mx-auto max-w-2xl text-center">
-        <h2 class="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Add New Emergency Contact</h2>
-    </div>
-</div>
-<%= render "form", emergency_contact: @emergency_contact %>
+
+<%= turbo_frame_tag "new-emergency-contact-form", class: "w-full" do %>
+  <%= render "form", emergency_contact: @emergency_contact %>
+<% end %>
