@@ -37,7 +37,7 @@ class TimeOffRequestsController < ApplicationController
       render turbo_stream: [
         turbo_stream.prepend("time_off_requests", @time_off_request),
         turbo_stream.replace("notification_alert", partial: "layouts/alert"),
-        turbo_stream.remove("new_time_off_request")
+        turbo_stream.replace("new-time-off-request-form", partial: "form", locals: {user: @user, time_Off_request: TimeOffRequest.new})
       ]
     else
       render :new, status: :unprocessable_entity

@@ -1,3 +1,3 @@
 <%= turbo_frame_tag "new-emergency-contact-form", class: "w-full" do %>
-  <%= render "form", emergency_contact: @emergency_contact %>
+  <%= render partial: "form", locals: {user: @user, emergency_contact: @emergency_contact} %>
 <% end %>

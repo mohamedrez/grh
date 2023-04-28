@@ -43,7 +43,7 @@ a {
 
 .table {
   display: grid;
-  grid-template-columns: repeat(4, 2fr) 1fr;
+  grid-template-columns: repeat(5, 2fr) 1fr;
   column-gap: 2rem;
   align-items: bottom;
   padding: 1rem;

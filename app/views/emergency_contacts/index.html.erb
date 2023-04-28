@@ -1,21 +1,23 @@
 <%= turbo_frame_tag "tabbed-content" do %>
-<div class="w-full">
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Emergency contacts</h1>
-  </div>
-  <div class="min-w-full my-8">
-    <div class="table font-bold min-w-full">
-      <div>Name</div>
-      <div>Email</div>
-      <div>Relationship</div>
-      <div>Phone</div>
-      <div></div>
+  <div class="px-4 sm:px-6 lg:px-8 mt-10">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1 class="text-base font-semibold leading-6 text-gray-900">Emergency contacts</h1>
+        <p class="mt-2 text-sm text-gray-700">A list of all of your emergency contacts.</p>
+      </div>
     </div>
-    <%= turbo_frame_tag "new-emergency-contact-form", src: new_user_emergency_contact_path(@user.id) %>
-    <div id="emergency_contacts">
-      <%= render @emergency_contacts %>
+    <div class="min-w-full my-8">
+      <div class="table font-medium min-w-full rounded-tr-lg rounded-tl-lg">
+        <div>Name</div>
+        <div>Email</div>
+        <div>Relationship</div>
+        <div>Phone</div>
+        <div></div>
+      </div>
+      <%= turbo_frame_tag "new-emergency-contact-form", src: new_user_emergency_contact_path(@user.id) %>
+      <div id="emergency_contacts">
+        <%= render @emergency_contacts %>
+      </div>
     </div>
   </div>
-</div>
-
 <% end %>

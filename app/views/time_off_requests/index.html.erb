@@ -1,15 +1,19 @@
 <%= turbo_frame_tag "tabbed-content" do %>
-  <div class="w-full">
-    <div class="flex justify-between items-center">
-      <h1 class="font-bold text-4xl">Time off requests</h1>
+  <div class="px-4 sm:px-6 lg:px-8 mt-10">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1 class="text-base font-semibold leading-6 text-gray-900">Time off requests</h1>
+        <p class="mt-2 text-sm text-gray-700">A list of all of your time off requests.</p>
+      </div>
     </div>
     <div class="min-w-full my-8">
-      <div class="table font-bold min-w-full">
+      <div class="table font-medium min-w-full rounded-tr-lg rounded-tl-lg">
         <div>Category</div>
         <div>Start Date</div>
         <div>End Date</div>
         <div>State</div>
         <div>Managed by</div>
+        <div></div>
       </div>
       <%= turbo_frame_tag "new-time-off-request-form", src: new_user_time_off_request_path(@user.id) %>
       <div id="time_off_requests">
