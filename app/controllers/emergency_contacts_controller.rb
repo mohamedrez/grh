@@ -32,15 +32,6 @@ class EmergencyContactsController < ApplicationController
     end
   end
 
-  def destroy
-    @emergency_contact.destroy
-    flash.now[:notice] = "emergency contact was successfully destroyed."
-    render turbo_stream: [
-      turbo_stream.remove(@emergency_contact),
-      turbo_stream.replace("notification_alert", partial: "layouts/alert")
-    ]
-  end
-
   def update
     emergency_contact_params[:user_id] = params[:user_id]
     if @emergency_contact.update(emergency_contact_params)
@@ -52,6 +43,15 @@ class EmergencyContactsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @emergency_contact.destroy
+    flash.now[:notice] = "emergency contact was successfully destroyed."
+    render turbo_stream: [
+      turbo_stream.remove(@emergency_contact),
+      turbo_stream.replace("notification_alert", partial: "layouts/alert")
+    ]
   end
 
   private

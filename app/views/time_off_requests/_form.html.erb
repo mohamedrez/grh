@@ -1,49 +1,17 @@
-<%= form_with(model: [user, time_off_request]) do |form| %>
-<div class="space-y-12">
-  <% if time_off_request.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(time_off_request.errors.count, "error") %> prohibited this time_off_request from being saved:</h2>
-
-      <ul>
-        <% time_off_request.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-    <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-      <div class="sm:col-span-3 sm:col-start-1">
-        <%= form.label :start_date, style: "display: block" %>
-        <div class="mt-2">
-          <%= form.date_field :start_date, class: "w-full" %>
-        </div>
-      </div>
-
-      <div class="sm:col-span-3">
-        <%= form.label :end_date, style: "display: block" %>
-        <div class="mt-2">
-          <%= form.date_field :end_date, class: "w-full" %>
-        </div>
-      </div>
-
-      <div class="sm:col-span-3 sm:col-start-1">
-        <%= form.label :category %>
-        <div class="mt-2">
-          <%= form.select :category, options_for_select(TimeOffRequest.categories.map {|key, value| [key.humanize, key]}, @time_off_request.category) %>
-        </div>
-      </div>
-    </div>
-
+<%= form_with(model: [user, time_off_request], class: "table min-w-full") do |form| %>
   <div>
-    <%= form.label :content, style: "display: block" %>
-    <%= form.rich_text_area :content %>
+    <%= form.select :category, options_for_select(TimeOffRequest.categories.map {|key, value| [key.humanize, key]}, @time_off_request.category) %>
+    <%= inline_error_for(:category, time_off_request) %>
   </div>
-
   <div>
-    <%= form.hidden_field :user_id, value: @user_id %>
+    <%= form.date_field :start_date %>
+    <%= inline_error_for(:start_date, time_off_request) %>
+  </div>
+  <div>
+    <%= form.date_field :end_date %>
+    <%= inline_error_for(:end_date, time_off_request) %>
+  </div>
+  <div class="inline">
     <%= form.submit %>
   </div>
-
-</div>
 <% end %>

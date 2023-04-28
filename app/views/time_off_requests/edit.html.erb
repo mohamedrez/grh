@@ -1,6 +1,3 @@
-<h1>Editing time off request</h1>
-
-<%= render "form", time_off_request: @time_off_request, user: @user %>
-
-<br>
-
+<%= turbo_frame_tag @time_off_request  do %>
+  <%= render partial: "form", locals: {user: @user, time_off_request: @time_off_request} %>
+<% end %>
