@@ -9,7 +9,7 @@ class OrganizationController < ApplicationController
     csv_body = []
     header = "name,imageUrl,area,profileUrl,office,tags,isLoggedUser,positionName,id,parentId,size"
     User.all.each do |user|
-      csv_body << "#{user.first_name},#{user.avatar_url},#{user.address&.country},#{user_path(user)},'user.office','user.tags','user.is_logged_user',#{user.job_title},#{user.id},#{user.manager_id},"
+      csv_body << "#{user.first_name},#{user.avatar_url_or_default},#{user.address&.country},#{user_path(user)},'user.office','user.tags','user.is_logged_user',#{user.job_title},#{user.id},#{user.manager_id},"
     end
     csv_body.prepend(header)
     csv_body.prepend("\n")
