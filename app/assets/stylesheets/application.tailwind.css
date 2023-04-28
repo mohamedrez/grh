@@ -41,9 +41,8 @@ a {
   @apply border-indigo-500 text-indigo-600 whitespace-nowrap border-b-2 px-1 pb-4 text-sm font-medium
 }
 
-.table {
+.table-4, .table-5 {
   display: grid;
-  grid-template-columns: repeat(5, 2fr) 1fr;
   column-gap: 2rem;
   align-items: bottom;
   padding: 1rem;
@@ -52,11 +51,19 @@ a {
   border-collapse: collapse;
 }
 
-turbo-frame:last-child .table {
+.table-4 {
+  grid-template-columns: repeat(4, 2fr) 1fr;
+}
+
+.table-5 {
+  grid-template-columns: repeat(5, 2fr) 1fr;
+}
+
+turbo-frame:last-child .table-4 .table-5 {
   border-bottom: 1px solid #ccc;
 }
 
-turbo-frame:nth-child(even) .table {
+turbo-frame:nth-child(even) .table-4 .table-5 {
   background: #fafafa;
 }
 

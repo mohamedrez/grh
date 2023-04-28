@@ -1,4 +1,4 @@
-<%= form_with(model: [user, emergency_contact], class: "table min-w-full") do |form| %>
+<%= form_with(model: [user, emergency_contact], class: "table-4 min-w-full") do |form| %>
   <div>
     <%= form.text_field :name %>
     <%= inline_error_for(:name, emergency_contact) %>
