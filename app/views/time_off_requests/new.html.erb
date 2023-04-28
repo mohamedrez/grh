@@ -1,3 +1,2 @@
-<%= turbo_frame_tag "new-time-off-request-form", class: "w-full" do %>
-  <%= render partial: "form", locals: {user: @user, time_off_request: @time_off_request} %>
-<% end %>
+<p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">Add new time off request</p>
+<%= render partial: "form", locals: {user: @user, time_off_request: @time_off_request} %>

@@ -33,12 +33,7 @@ class TimeOffRequestsController < ApplicationController
     @time_off_request.user_id = @user.id
 
     if @time_off_request.save
-      flash.now[:notice] = t("time_Off_requests.time_Off_requests_created")
-      render turbo_stream: [
-        turbo_stream.prepend("time_off_requests", @time_off_request),
-        turbo_stream.replace("notification_alert", partial: "layouts/alert"),
-        turbo_stream.replace("new-time-off-request-form", partial: "form", locals: {user: @user, time_Off_request: TimeOffRequest.new})
-      ]
+      redirect_to user_time_off_request_url(@user, @time_off_request), notice: t("time_Off_requests.time_Off_requests_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -49,11 +44,7 @@ class TimeOffRequestsController < ApplicationController
     time_off_request_params[:user_id] = params[:user_id]
 
     if @time_off_request.update(time_off_request_params)
-      flash.now[:notice] = t("time_Off_requests.time_Off_requests_updated")
-      render turbo_stream: [
-        turbo_stream.replace(@time_off_request, @time_off_request),
-        turbo_stream.replace("notification_alert", partial: "layouts/alert")
-      ]
+      redirect_to user_time_off_request_url(@user, @time_off_request), notice: t("time_Off_requests.time_Off_requests_updated")
     else
       render :edit, status: :unprocessable_entity
     end
