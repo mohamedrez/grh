@@ -22,8 +22,8 @@ class EmergencyContactsController < ApplicationController
       flash.now[:notice] = "Emergency contact successfully created."
       render turbo_stream: [
         turbo_stream.prepend("emergency_contacts", @emergency_contact),
-        turbo_stream.replace("notification_alert", partial: "layouts/alert"),
-        turbo_stream.replace("new-emergency-contact-form", partial: "form", locals: {user: @user, emergency_contact: EmergencyContact.new})
+        turbo_stream.replace("new-emergency-contact-form", partial: "form", locals: {user: @user, emergency_contact: EmergencyContact.new}),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else
       render :new, status: :unprocessable_entity
@@ -39,7 +39,7 @@ class EmergencyContactsController < ApplicationController
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else
-      render :edit, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 

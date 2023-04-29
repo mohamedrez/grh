@@ -1,19 +1,19 @@
 <%= form_with(model: [user, emergency_contact], class: "table-4 min-w-full") do |form| %>
   <div>
     <%= form.text_field :name %>
-    <%= inline_error_for(:name, emergency_contact) %>
+    <%= inline_error_for(:name, emergency_contact).html_safe %>
   </div>
   <div>
     <%= form.text_field :email %>
-    <%= inline_error_for(:email, emergency_contact) %>
+    <%= inline_error_for(:email, emergency_contact).html_safe %>
   </div>
   <div>
     <%= form.select :relationship, options_for_select(EmergencyContact.relationships.map {|key, value| [key.humanize, key]}, emergency_contact.relationship) %>
-    <%= inline_error_for(:relationship, emergency_contact) %>
+    <%= inline_error_for(:relationship, emergency_contact).html_safe %>
   </div>
   <div>
     <%= form.text_field :phone %>
-    <%= inline_error_for(:phone, emergency_contact) %>
+    <%= inline_error_for(:phone, emergency_contact).html_safe %>
   </div>
   <div class="inline">
     <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>

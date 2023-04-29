@@ -12,6 +12,6 @@ module ApplicationHelper
         tag.div(msg, class: "text-red-400 text-xs m-0 p-0 text-right mb-2")
       end
     end
-    html.join.html_safe
+    html.join
   end
 end
