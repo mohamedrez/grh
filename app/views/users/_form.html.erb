@@ -217,10 +217,22 @@
                   <%= f.text_field :job_title, class: "w-full" %>
                 </div>
               </div>
-              <div class="sm:col-span-3">
+              <div class="sm:col-span-3 ">
                 <%= f.label :company_name %>
                 <div class="mt-2">
                   <%= f.text_field :company_name, class: "w-full" %>
+                </div>
+              </div>
+              <div class="sm:col-span-3 sm:col-start-1">
+                <%= f.label :country %>
+                <div class="mt-2">
+                  <%= f.select :country, options_for_select(Experience.countries.map {|key, value| [key.humanize, key]}, f.object.country) %>
+                </div>
+              </div>
+              <div class="sm:col-span-3">
+                <%= f.label :city %>
+                <div class="mt-2">
+                  <%= f.text_field :city, class: "w-full" %>
                 </div>
               </div>
               <div class="sm:col-span-2 sm:col-start-1">

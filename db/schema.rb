@@ -114,6 +114,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_21_125654) do
     t.integer "employment_type"
     t.date "start_date"
     t.date "end_date"
+    t.integer "country"
+    t.string "city"
     t.text "work_description"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false

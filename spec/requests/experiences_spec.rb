@@ -11,6 +11,8 @@ RSpec.describe "/experiences", type: :request do
       employment_type: :contractor,
       start_date: '2022-01-01',
       end_date: '2022-12-31',
+      city: "New City",
+      country: :usa,
       work_description: 'Worked on a variety of projects using Ruby on Rails and React'
     }
   end
@@ -21,6 +23,7 @@ RSpec.describe "/experiences", type: :request do
       company_name: '',
       start_date: '',
       end_date: '',
+      city: "",
       work_description: 'Worked on a variety of projects using Ruby on Rails and React'
     }
   end

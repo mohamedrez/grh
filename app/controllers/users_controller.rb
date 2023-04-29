@@ -105,6 +105,8 @@ class UsersController < ApplicationController
         :employment_type,
         :start_date,
         :end_date,
+        :country,
+        :city,
         :work_description
       ],
       educations_attributes: [
