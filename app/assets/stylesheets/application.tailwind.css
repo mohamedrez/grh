@@ -49,6 +49,7 @@ a {
   border: 1px solid #ccc;
   border-bottom: none;
   border-collapse: collapse;
+  border-bottom: 1px solid #ccc;
 }
 
 .table-4 {
@@ -59,7 +60,7 @@ a {
   grid-template-columns: repeat(5, 2fr) 1fr;
 }
 
-turbo-frame:last-child .table-4 .table-5 {
+turbo-frame:last-child {
   border-bottom: 1px solid #ccc;
 }
 

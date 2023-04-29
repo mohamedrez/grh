@@ -1,6 +1,6 @@
 class EmergencyContactsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_user, only: %i[index new edit create]
+  before_action :set_user, only: %i[index new edit create update]
   before_action :set_emergency_contact, only: %i[edit update destroy]
 
   def index
@@ -39,7 +39,7 @@ class EmergencyContactsController < ApplicationController
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else
-      render :new, status: :unprocessable_entity
+      render :edit, status: :unprocessable_entity
     end
   end
 

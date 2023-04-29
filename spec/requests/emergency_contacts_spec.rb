@@ -103,6 +103,16 @@ RSpec.describe "/emergency_contacts", type: :request do
         expect(flash[:notice]).to eq('User was successfully updated.')
       end
     end
+
+    context 'when the emergency contact fails to update' do
+      before do
+        patch "/users/#{user.id}/emergency_contacts/#{emergency_contact.id}", params: {emergency_contact: invalid_attributes}
+      end
+
+      it 'returns an unprocessable entity status' do
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 
   describe 'DELETE /destroy' do
