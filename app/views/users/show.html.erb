@@ -1,12 +1,15 @@
 <%= render partial: 'shared/user_overview', locals: {user: @user} %>
 
-<div>
-  <div class="my-10" >
-    <h1 class="py-2 px-4 bg-white rounded-lg shadow-md text-teal-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-teal-100">Personal Information</h1>
+<div class="px-4 sm:px-6 lg:px-8 mt-10">
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-indigo-500">Personal details</h1>
+      <p class="mt-2 text-sm text-gray-700">A list of personal details about you.</p>
+    </div>
   </div>
-  <div class="mx-10">
+  <div class="my-8 border-t border-gray-100">
     <dl class="divide-y divide-gray-100">
-      <div class="px-4 pb-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Full name</dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.full_name %></dd>
       </div>
@@ -39,16 +42,34 @@
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.children_number %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">About</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.about %></dd>
+      </div>
+    </dl>
+  </div>
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-indigo-500">Job details</h1>
+      <p class="mt-2 text-sm text-gray-700">A list of details about your job.</p>
+    </div>
+  </div>
+  <div class="my-8 border-t border-gray-100">
+    <dl class="divide-y divide-gray-100">
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Job title</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.job_title&.humanize %></dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+        <dt class="text-sm font-medium leading-6 text-gray-900">Employee ID</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.employee_number %></dd>
+      </div>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Site</dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.site&.name %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Service</dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.service&.humanize %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Job title</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.job_title&.humanize %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Start date</dt>
@@ -71,10 +92,6 @@
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.category&.humanize %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Employee ID</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.employee_number %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">CNSS number</dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.cnss_number %></dd>
       </div>
@@ -94,18 +111,18 @@
         <dt class="text-sm font-medium leading-6 text-gray-900">Retirement contribution</dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.retirement_contribution %> DH</dd>
       </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">About</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.about %></dd>
-      </div>
+      
     </dl>
   </div>
-  <div class="my-10" >
-    <h1 class="py-2 px-4 bg-white rounded-lg shadow-md text-sky-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-sky-100">Address Information</h1>
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-indigo-500">Address details</h1>
+      <p class="mt-2 text-sm text-gray-700">Details about your address.</p>
+    </div>
   </div>
-  <div class="mx-10">
+  <div class="my-8 border-t border-gray-100">
     <dl class="divide-y divide-gray-100">
-      <div class="px-4 pb-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900">Street address</dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.street %></dd>
       </div>
@@ -123,10 +140,13 @@
       </div>
     </dl>
   </div>
-  <div class="my-10" >
-    <h1 class="py-2 px-4 bg-white rounded-lg shadow-md text-sky-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-sky-100">Experiences</h1>
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-indigo-500">Experiences</h1>
+      <p class="mt-2 text-sm text-gray-700">A list of all of your experiences</p>
+    </div>
   </div>
-  <div class="flow-root">
+  <div class="my-8 flow-root">
     <ul role="list" class="-mb-8">
       <% @user.experiences.each do |experience| %>
         <li>
@@ -136,7 +156,7 @@
             <% end %>
             <div class="relative flex space-x-3">
               <div>
-                <span class="h-20 w-20 rounded-full bg-sky-50 flex items-center justify-center ring-8 ring-white">
+                <span class="h-20 w-20 rounded-full bg-indigo-50 flex items-center justify-center ring-8 ring-white">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" class="h-12 w-12 text-white">
                     <path fill="#2b3344" d="M21.5 22h-7a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM12.5 22h-9a.5.5 0 0 1 0-1h9a.5.5 0 0 1 0 1z" class="color2b3344 svgShape"></path>
                     <path fill="#2b3344" d="M14.5 22a.5.5 0 0 1-.5-.5V4H6V21.5a.5.5 0 0 1-1 0V3.5A.5.5 0 0 1 5.5 3h9a.5.5 0 0 1 .5.5v18A.5.5 0 0 1 14.5 22zM19.5 22a.5.5 0 0 1-.5-.5V7.86L16.34 7A.49.49 0 0 1 16 6.34.51.51 0 0 1 16.66 6l3 1A.49.49 0 0 1 20 7.5v14A.5.5 0 0 1 19.5 22z" class="color2b3344 svgShape"></path>
@@ -164,7 +184,7 @@
     </ul>
     <% if @user.experiences.blank? %>
       <div class="my-5 mx-10"> 
-        <%= link_to new_user_experience_path(@user), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+        <%= link_to new_user_experience_path(@user), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
           <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
@@ -173,10 +193,13 @@
       </div>
     <% end %>
   </div>
-  <div class="my-10" >
-    <h1 class="py-2 px-4 bg-white rounded-lg shadow-md text-pink-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-pink-100">Experiences</h1>
+  <div class="sm:flex sm:items-center">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-indigo-500">Academic background</h1>
+      <p class="mt-2 text-sm text-gray-700">A list of your academic background</p>
+    </div>
   </div>
-  <div class="flow-root">
+  <div class="my-8 flow-root">
     <ul role="list" class="-mb-8">
       <% @user.educations.each do |education| %>
         <li>
@@ -186,7 +209,7 @@
             <% end %>
             <div class="relative flex space-x-3">
               <div>
-                <span class="h-20 w-20 rounded-full bg-pink-50 flex items-center justify-center ring-8 ring-white">
+                <span class="h-20 w-20 rounded-full bg-indigo-50 flex items-center justify-center ring-8 ring-white">
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="h-12 w-12 text-white">
                     <path d="m512.868 650.199-440-240.3 440-240.4 440 240.3-440 240.4zm-377.4-240.3 377.4 206.1 377.4-206.2-377.4-206.1-377.4 206.2z" fill="#000000" class="color000 svgShape"></path>
                     <path d="m511.868 855.299-299-155v-247.1l299 162.9 299-162.9v247.2l-299 154.9zm-269-173.2 269 139.4 269-139.4v-178.4l-269 146.5-269-146.5v178.4zM906.868 410.499h30v199h-30z" fill="#000000" class="color000 svgShape"></path>
@@ -202,12 +225,12 @@
                 <div class="whitespace-nowrap text-right text-sm text-gray-500">
                   <p class="font-normal text-base text-gray-500 mb-1">Stil On This Course?</p>
                   <% if education.still_on_this_course %>
-                    <span  class="bg-indigo-500 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
-                      <span aria-hidden="true" class="translate-x-5 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                    <span  class="bg-indigo-500 relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
+                      <span aria-hidden="true" class="translate-x-5 inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
                     </span>
                   <% else %>
-                    <span  class="bg-gray-100 relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
-                      <span aria-hidden="true" class="translate-x-0 pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+                    <span  class="bg-gray-100 relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
+                      <span aria-hidden="true" class="translate-x-0 inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
                     </span>
                   <% end %>
                 </div>
@@ -219,7 +242,7 @@
     </ul>
     <% if @user.educations.blank? %>
       <div class="my-5 mx-10"> 
-        <%= link_to new_user_education_path(@user), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:text-pink-500 hover:bg-pink-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" do %>
+        <%= link_to new_user_education_path(@user), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
           <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>

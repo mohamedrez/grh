@@ -2,28 +2,22 @@
   <%= form_with(model: @user) do |form| %>
     <div class="space-y-12">
       <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
-        <div>
-          <h1 class="w-3/4 py-2 px-4 bg-white rounded-lg shadow-md text-teal-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-teal-100">Personal Information</h1>
+        <div class="sm:flex-auto">
+          <h1 class="text-base font-semibold leading-6 text-indigo-500">Personal details</h1>
+          <p class="mt-2 text-sm text-gray-700">A list of personal details about you.</p>
         </div>
         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
-          <div class="sm:col-span-3">
-            <%= form.label :last_name %>
-            <div class="mt-2">
-              <%= form.text_field :last_name, class: "w-full" %>
-            </div>
-          </div>
-          <div class="sm:col-span-3">
+        <div class="sm:col-span-3">
             <%= form.label :first_name %>
             <div class="mt-2">
               <%= form.text_field :first_name, class: "w-full" %>
             </div>
           </div>
-          <div class="col-span-full">
-            <%= form.label :about %>
+          <div class="sm:col-span-3">
+            <%= form.label :last_name %>
             <div class="mt-2">
-              <%= form.rich_text_area :about %>
+              <%= form.text_field :last_name, class: "w-full" %>
             </div>
-            <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :email %>
@@ -38,39 +32,66 @@
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
-            <%= form.label :marital_status %>
+            <%= form.label :cin, "CIN" %>
             <div class="mt-2">
-              <%= form.select :marital_status, options_for_select(User.marital_statuses.map {|key, value| [key.humanize, key]}, @user.marital_status) %>
+              <%= form.text_field :cin, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3">
-            <%= form.label :children_number %>
-            <div class="mt-2">
-              <%= form.select :children_number, (1..5).to_a %>
-            </div>
-          </div>
-          <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :birthdate %>
             <div class="mt-2">
               <%= form.date_field :birthdate, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-3">
+          <div class="sm:col-span-2 sm:col-start-1">
             <%= form.label :gender %>
             <div class="mt-2">
               <%= form.select :gender, options_for_select(User.genders.map {|key, value| [key.humanize, key]}, @user.gender) %>
             </div>
           </div>
-          <div class="sm:col-span-3">
-            <%= form.label :site_id %>
+          <div class="sm:col-span-2">
+            <%= form.label :marital_status %>
             <div class="mt-2">
-              <%= form.select :site_id, options_for_select(Site.pluck(:name, :id), @user.site_id) %>
+              <%= form.select :marital_status, options_for_select(User.marital_statuses.map {|key, value| [key.humanize, key]}, @user.marital_status) %>
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <%= form.label :children_number %>
+            <div class="mt-2">
+              <%= form.select :children_number, (1..5).to_a %>
+            </div>
+          </div>
+          <div class="col-span-full">
+            <%= form.label :about %>
+            <div class="mt-2">
+              <%= form.rich_text_area :about %>
+            </div>
+            <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
+          </div>
+        </div>
+      </div>
+      <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
+        <div class="sm:flex-auto">
+          <h1 class="text-base font-semibold leading-6 text-indigo-500">Job details</h1>
+          <p class="mt-2 text-sm text-gray-700">A list of details about your job.</p>
+        </div>
+        <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+          <div class="sm:col-span-3">
+            <%= form.label :job_title %>
+            <div class="mt-2">
+              <%= form.select :job_title, options_for_select(User.job_titles.map {|key, value| [key.humanize, key]}, @user.job_title) %>
             </div>
           </div>
           <div class="sm:col-span-3">
-            <%= form.label :cin, "CIN" %>
+            <%= form.label :employee_number %>
             <div class="mt-2">
-              <%= form.text_field :cin, class: "w-full" %>
+              <%= form.number_field :employee_number, class: "w-full" %>
+            </div>
+          </div>
+          <div class="sm:col-span-3 sm:col-start-1">
+            <%= form.label :site_id %>
+            <div class="mt-2">
+              <%= form.select :site_id, options_for_select(Site.pluck(:name, :id), @user.site_id) %>
             </div>
           </div>
           <div class="sm:col-span-3">
@@ -79,37 +100,31 @@
               <%= form.select :service, options_for_select(User.services.map {|key, value| [key.humanize, key]}, @user.service) %>
             </div>
           </div>
-          <div class="sm:col-span-3">
-            <%= form.label :job_title %>
-            <div class="mt-2">
-              <%= form.select :job_title, options_for_select(User.job_titles.map {|key, value| [key.humanize, key]}, @user.job_title) %>
-            </div>
-          </div>
-          <div class="sm:col-span-3 sm:col-start-1">
+          <div class="sm:col-span-2 sm:col-start-1">
             <%= form.label :start_date %>
             <div class="mt-2">
               <%= form.date_field :start_date, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-3">
+          <div class="sm:col-span-2">
             <%= form.label :joining_date %>
             <div class="mt-2">
               <%= form.date_field :joining_date, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-2 sm:col-start-1">
+          <div class="sm:col-span-2">
             <%= form.label :end_date %>
             <div class="mt-2">
               <%= form.date_field :end_date, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-2">
+          <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :contract %>
             <div class="mt-2">
               <%= form.select :contract, options_for_select(User.contracts.map {|key, value| [key.humanize, key]}, @user.contract) %>
             </div>
           </div>
-          <div class="sm:col-span-2">
+          <div class="sm:col-span-3">
             <%= form.label :category %>
             <div class="mt-2">
               <%= form.select :category, options_for_select(User.categories.map {|key, value| [key.humanize, key]}, @user.category) %>
@@ -121,37 +136,32 @@
               <%= form.number_field :cnss_number, class: "w-full" %>
             </div>
           </div>
+          
           <div class="sm:col-span-3">
-            <%= form.label :employee_number %>
-            <div class="mt-2">
-              <%= form.number_field :employee_number, class: "w-full" %>
-            </div>
-          </div>
-          <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :brut_salary %>
             <div class="mt-2">
               <%= form.number_field  :brut_salary, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-3">
+          <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :net_salary %>
             <div class="mt-2">
               <%= form.number_field :net_salary, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-3 sm:col-start-1">
+          <div class="sm:col-span-3">
             <%= form.label :cnss_contribution, "CNSS contribution" %>
             <div class="mt-2">
               <%= form.number_field  :cnss_contribution, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-3">
+          <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :retirement_contribution %>
             <div class="mt-2">
               <%= form.number_field  :retirement_contribution, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-2 sm:col-start-1">
+          <div class="sm:col-span-3">
             <%= form.label :pto_number, "Paid Time Off" %>
             <div class="mt-2">
               <%= form.number_field :pto_number, class: "w-full bg-gray-100" %>
@@ -160,8 +170,9 @@
         </div>
       </div>
       <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
-        <div>
-          <h1 class="w-3/4 py-2 px-4 bg-white rounded-lg shadow-md text-sky-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-sky-100">Personal Information</h1>
+        <div class="sm:flex-auto">
+          <h1 class="text-base font-semibold leading-6 text-indigo-500">Address details</h1>
+          <p class="mt-2 text-sm text-gray-700">Details about your address.</p>
         </div>
         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
           <%= form.fields_for :address do |f| %>
@@ -194,9 +205,10 @@
       </div>
       <% if action_name == 'edit' %>
         <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
-          <div>
-            <h1 class="w-3/4 py-2 px-4 bg-white rounded-lg shadow-md text-indigo-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-indigo-100">Experiences</h1>
-          </div>
+          <div class="sm:flex-auto">
+          <h1 class="text-base font-semibold leading-6 text-indigo-500">Experiences</h1>
+          <p class="mt-2 text-sm text-gray-700">A list of all of your experiences</p>
+        </div>
           <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
             <%= form.fields_for :experiences do |f| %>
               <div class="sm:col-span-3">
@@ -235,10 +247,10 @@
                   <%= f.text_area :work_description, class: "w-full", rows: 5 %>
                 </div>
               </div> 
-              <hr class="border border-indigo-500 sm:col-span-6">
+              <div class="sm:col-span-1"></div><hr class="border border-gray-200 sm:col-span-4">
             <% end %>
             <div class="sm:col-span-6"> 
-              <%= link_to new_user_experience_path(current_user), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+              <%= link_to new_user_experience_path(current_user), class: "inline-flex items-center px-4 py-2 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
                 <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
@@ -248,8 +260,9 @@
           </div>
         </div>
         <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
-          <div>
-            <h1 class="w-3/4 py-2 px-4 bg-white rounded-lg shadow-md text-pink-500 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-pink-100">Educations</h1>
+          <div class="sm:flex-auto">
+            <h1 class="text-base font-semibold leading-6 text-indigo-500">Academic background</h1>
+            <p class="mt-2 text-sm text-gray-700">A list of your academic background</p>
           </div>
           <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
             <%= form.fields_for :educations do |f| %>
@@ -297,14 +310,14 @@
               </div>
               <div class="sm:col-span-3">
                 <div class="sm:col-span-4 flex items-center">
-                  <%= f.check_box :still_on_this_course, class: "mx-2 h-5 w-5 rounded border-gray-300 text-green-500 focus:ring-green-500 focus:border-green-500", checked: f.object.still_on_this_course %>
+                  <%= f.check_box :still_on_this_course, class: "mx-2 h-5 w-5 rounded text-indigo-500 focus:ring-indigo-500 focus:border-indigo-500", checked: f.object.still_on_this_course %>
                   <%= f.label :still_on_this_course %>
                 </div>
               </div>
-              <hr class="border border-pink-500 sm:col-span-6">
+              <div class="sm:col-span-1"></div><hr class="border border-gray-200 sm:col-span-4">
             <% end %>
             <div class="sm:col-span-6"> 
-              <%= link_to new_user_education_path(current_user), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-pink-600 hover:text-pink-500 hover:bg-pink-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-pink-500" do %>
+              <%= link_to new_user_education_path(current_user), class: , class: "inline-flex items-center px-4 py-2 text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-500 hover:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
                 <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                   <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
