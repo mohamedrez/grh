@@ -45,11 +45,11 @@ a {
   display: grid;
   column-gap: 2rem;
   align-items: bottom;
-  padding: 1rem;
   border: 1px solid #ccc;
   border-bottom: none;
   border-collapse: collapse;
   border-bottom: 1px solid #ccc;
+  @apply py-3.5 pl-4 pr-3
 }
 
 .table-4 {
@@ -57,7 +57,7 @@ a {
 }
 
 .table-5 {
-  grid-template-columns: repeat(5, 2fr) 1fr;
+  grid-template-columns: repeat(5, 1fr) 1fr;
 }
 
 turbo-frame:last-child {

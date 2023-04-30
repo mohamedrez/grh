@@ -2,7 +2,7 @@
   <div class="px-4 sm:px-6 lg:px-8 mt-10">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1 class="text-base font-semibold leading-6 text-gray-900">Users requests</h1>
+        <h1 class="text-base font-semibold leading-6 text-indigo-500">Users requests</h1>
         <p class="mt-2 text-sm text-gray-700">A list of all of your requests.</p>
       </div>
     </div>
@@ -20,20 +20,20 @@
           </li>
         </ul>
 
-        <div class="hidden mt-5 divide-y divide-gray-200 border-t border-gray-200 sm:mt-0 sm:border-t-0" data-tabs-target="panel">
-          <div class="overflow-hidden bg-white shadow sm:rounded-md">
+        <div data-tabs-target="panel">
+          <div class="mt-10">
             <%= render partial: 'list_item', locals: {user_requests: @user_requests.pending} %>
           </div>
         </div>
 
-        <div class="hidden mt-5 divide-y divide-gray-200 border-t border-gray-200 sm:mt-0 sm:border-t-0" data-tabs-target="panel">
-          <div class="overflow-hidden bg-white shadow sm:rounded-md">
+        <div data-tabs-target="panel">
+          <div class="mt-10">
             <%= render partial: 'list_item', locals: {user_requests: @user_requests.approved} %>
           </div>
         </div>
 
-        <div class="hidden mt-5 divide-y divide-gray-200 border-t border-gray-200 sm:mt-0 sm:border-t-0" data-tabs-target="panel">
-          <div class="overflow-hidden bg-white shadow sm:rounded-md">
+        <div data-tabs-target="panel">
+          <div class="mt-10">
             <%= render partial: 'list_item', locals: {user_requests: @user_requests.rejected} %>
           </div>
         </div>
