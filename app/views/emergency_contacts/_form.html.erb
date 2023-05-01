@@ -1,47 +1,22 @@
-<%= form_with(model: [@user, @emergency_contact], class: "mx-auto mt-16 max-w-xl sm:mt-20") do |form| %>
-  <% if emergency_contact.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(emergency_contact.errors.count, "error") %> prohibited this emergency_contact from being saved:</h2>
-      <ul>
-        <% emergency_contact.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-    <div>
-      <%= form.label :name %>
-      <div class="mt-2">
-        <%= form.text_field :name, class: "w-full" %>
-      </div>
-    </div>
-
-    <div>
-      <%= form.label :relationship %>
-      <div class="mt-2">
-        <%= form.select :relationship, options_for_select(EmergencyContact.relationships.map {|key, value| [key.humanize, key]}, @emergency_contact.relationship) %>
-      </div>
-    </div>
-
-    <div>
-      <%= form.label :phone %>
-      <div class="mt-2">
-        <%= form.text_field :phone, class: "w-full" %>
-      </div>
-    </div>
-
-    <div>
-      <%= form.label :email %>
-      <div class="mt-2">
-        <%= form.text_field :email, class: "w-full" %>
-      </div>
-    </div>
+<%= form_with(model: [user, emergency_contact], class: "table-4 min-w-full") do |form| %>
   <div>
-
-  <div class="mt-10 flex">
-    <%= link_to "Cancel", user_emergency_contacts_url(@user.id), class: "hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block mr-2" %>
-    <%= form.submit "Save", class: "w-full" %>
+    <%= form.text_field :name %>
+    <%= inline_error_for(:name, emergency_contact).html_safe %>
+  </div>
+  <div>
+    <%= form.text_field :email %>
+    <%= inline_error_for(:email, emergency_contact).html_safe %>
+  </div>
+  <div>
+    <%= form.select :relationship, options_for_select(EmergencyContact.relationships.map {|key, value| [key.humanize, key]}, emergency_contact.relationship) %>
+    <%= inline_error_for(:relationship, emergency_contact).html_safe %>
+  </div>
+  <div>
+    <%= form.text_field :phone %>
+    <%= inline_error_for(:phone, emergency_contact).html_safe %>
+  </div>
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
+
