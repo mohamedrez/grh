@@ -1,8 +1,7 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe "Events", type: :request do
   describe "GET /index" do
-
     it "returns http success" do
       create :event
       create :event

@@ -27,11 +27,11 @@ end
 SimpleCov.start "rails" do
   add_filter "spec"
 end
-require 'pundit/matchers'
-require 'pundit/rspec'
-require 'devise'
-require 'selenium/webdriver'
-require 'support/capybara'
+require "pundit/matchers"
+require "pundit/rspec"
+require "devise"
+require "selenium/webdriver"
+require "support/capybara"
 
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

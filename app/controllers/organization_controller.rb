@@ -15,5 +15,4 @@ class OrganizationController < ApplicationController
     csv_body.prepend("\n")
     csv_body = csv_body.join("\n")
   end
-
 end
