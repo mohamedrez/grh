@@ -80,17 +80,12 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def self.search(query)
-    if query.blank?
-      query
-    else
-      search = query[:last_name_or_email_or_employee_number_cont]
-      search_hash(search)
-    end
+  def self.ransackable_attributes(auth_object = nil)
+    ["email", "first_name", "last_name", "employee_number", "first_name_cont_or_last_name_or_email_or_employee_number_cont"]
   end
 
-  def self.ransackable_attributes(auth_object = nil)
-    ["email", "last_name", "employee_number", "last_name_or_email_or_employee_number"]
+  def self.ransackable_associations(auth_object = nil)
+    ["address", "avatar_attachment", "avatar_blob", "educations", "emergency_contacts", "experiences", "manager", "notifications", "rich_text_about", "site", "subordinates", "user_points", "user_progresses", "user_quiz_responses", "user_requests"]
   end
 
   def self.import(file)
@@ -112,13 +107,4 @@ class User < ApplicationRecord
     end
   end
 
-  private_class_method def self.search_hash(search)
-    if search.match?(/\A[a-zA-Z]+\z/)
-      {"last_name_cont" => search}
-    elsif search.match?(/\A[\w+.\\-]+@[a-z\d\\-]+(\.[a-z\d\\-]+)*\.[a-z]+\z/i)
-      {"email_cont" => search}
-    elsif search.match?(/\A\d+\z/)
-      {"employee_number_cont" => search}
-    end
-  end
 end

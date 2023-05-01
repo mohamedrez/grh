@@ -3,23 +3,23 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
   def index
-    @q = User.ransack(User.search(params[:q]))
+    @q = User.ransack(params[:q])
     @users = @q.result.page(params[:page])
-    authorize @users
+    # authorize @users
   end
 
   def show
-    authorize @user
+    # authorize @user
   end
 
   def new
     @user = User.new
-    authorize @user
+    # authorize @user
     @user.build_address
   end
 
   def edit
-    authorize @user
+    # authorize @user
     @address = @user.address || @user.build_address
   end
 
