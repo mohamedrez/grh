@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_27_084109) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_01_151303) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -126,12 +126,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_084109) do
     t.integer "employment_type"
     t.date "start_date"
     t.date "end_date"
-    t.integer "country"
-    t.string "city"
     t.text "work_description"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "country"
+    t.string "city"
     t.index ["user_id"], name: "index_experiences_on_user_id"
   end
 
