@@ -1,17 +1,19 @@
-  <% if notice || alert %>
-    <div
-      data-controller="notification"
-      data-notification-delay-value="7000"
-      data-transition-enter-from="opacity-0 translate-x-6"
-      data-transition-enter-to="opacity-100 translate-x-0"
-      data-transition-leave-from="opacity-100 translate-x-0"
-      data-transition-leave-to="opacity-0 translate-x-6"
-      class="fixed bottom-0 transition transform duration-1000 hidden right-0 m-4 p-4 bg-white border border-gray-300 rounded shadow"
-    >
-      <% if alert %>
-      <p class="red" > <%= alert %> </p>
-      <% end %>
-      <p> <%= notice %> </p>
-    </div>
+  <%= turbo_frame_tag "notification_alert" do %>
+    <% if notice || alert %>
+      <div
+        data-controller="notification"
+        data-notification-delay-value="7000"
+        data-transition-enter-from="opacity-0 translate-x-6"
+        data-transition-enter-to="opacity-100 translate-x-0"
+        data-transition-leave-from="opacity-100 translate-x-0"
+        data-transition-leave-to="opacity-0 translate-x-6"
+        class="fixed bottom-0 transition transform duration-1000 hidden right-0 m-4 p-4 bg-white border border-gray-300 rounded shadow"
+      >
+        <% if alert %>
+        <p class="red" > <%= alert %> </p>
+        <% end %>
+        <p> <%= notice %> </p>
+      </div>
+    <% end %>
   <% end %>
 

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root to: "dashboard#index"
   get "dashboard", to: "dashboard#index"
   get "organization", to: "organization#index"
+  get "organization/csv", to: "organization#csv"
   get "calendar", to: "calendar#index"
   get "events", to: "events#index"
   authenticate :user, ->(user) { user.admin? } do
@@ -24,6 +25,7 @@ Rails.application.routes.draw do
     delete "users", to: "devise/registrations#destroy", as: :destroy_user_registration
 
     resources :users do
+      resources :assets
       resources :emergency_contacts
       resources :time_off_requests
       resources :user_requests

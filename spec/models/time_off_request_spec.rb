@@ -27,7 +27,7 @@ RSpec.describe TimeOffRequest, type: :model do
       it "returns a list of overlapping requests" do
         @user1 = create(:user)
         @user2 = create(:user)
-  
+
         @time_off_request1 = create(:time_off_request, user_id: @user1.id, start_date: (Date.today - 4), end_date: (Date.today + 3))
         @time_off_request2 = create(:time_off_request, user_id: @user2.id, start_date: (Date.today + 2), end_date: (Date.today + 9))
 

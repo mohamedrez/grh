@@ -8,7 +8,7 @@ Capybara.register_driver :remote_selenium do |app|
     app,
     browser: :remote,
     url: "http://#{ENV["SELENIUM_HOST"]}:4444/wd/hub",
-    options: options,
+    options: options
   )
 end
 
@@ -23,7 +23,7 @@ Capybara.register_driver :remote_selenium_headless do |app|
     app,
     browser: :remote,
     url: "http://#{ENV["SELENIUM_HOST"]}:4444/wd/hub",
-    options: options,
+    options: options
   )
 end
 
@@ -44,14 +44,14 @@ end
 locality = ENV["SELENIUM_HOST"].present? ? :remote : :local
 selenium_app_host = ENV.fetch("SELENIUM_APP_HOST") do
   Socket.ip_address_list
-        .find(&:ipv4_private?)
-        .ip_address
+    .find(&:ipv4_private?)
+    .ip_address
 end
 
 Capybara.configure do |config|
-  config.server_host = '0.0.0.0'
+  config.server_host = "0.0.0.0"
   config.server_port = 4000
-  config.server = :puma, { Silent: true }
+  config.server = :puma, {Silent: true}
   config.run_server = true
   config.app_host = "http://#{selenium_app_host}:4000"
   config.always_include_port = true
@@ -65,11 +65,11 @@ RSpec.configure do |config|
     # test run.
     # Allow Capybara and WebDrivers to access network if necessary
     driver = if example.metadata[:js]
-        headless = "_headless" if ENV["DISABLE_HEADLESS"].blank?
-        "#{locality}_selenium#{headless}".to_sym
-      else
-        :rack_test
-      end
+      headless = "_headless" if ENV["DISABLE_HEADLESS"].blank?
+      "#{locality}_selenium#{headless}".to_sym
+    else
+      :rack_test
+    end
 
     driven_by driver
   end

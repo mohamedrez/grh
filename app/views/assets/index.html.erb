@@ -1,0 +1,48 @@
+<%= turbo_frame_tag "tabbed-content" do %>
+  <div class="px-4 sm:px-6 lg:px-8 mt-10">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1 class="text-base font-semibold leading-6 text-indigo-500">Assets</h1>
+        <p class="mt-2 text-sm text-gray-700">A list of all of your assets.</p>
+      </div>
+      <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+        <%= link_to "Create asset", new_user_asset_path(@user.id), class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", data: { turbo_frame: "_top" } %>
+      </div>
+    </div>
+    <div class="my-8">
+      <ul role="list" class="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8">
+        <% @assets.each do |asset| %>
+          <li class="overflow-hidden rounded-xl border border-gray-200">
+            <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
+              <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
+              <div class="text-sm font-medium leading-6 text-gray-900"><%= asset.serial %></div>
+              <div class="relative ml-auto">
+                <%= link_to "Edit", edit_user_asset_path(user_id: asset.user_id, id: asset.id), data: { turbo_frame: "_top" }, class: "hidden rounded-md bg-white px-5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block" %>
+              </div>
+            </div>
+            <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
+              <div class="flex justify-between gap-x-4 py-3">
+                <dt class="text-gray-500">Category</dt>
+                <dd class="font-medium text-gray-900"><%= asset.category&.humanize %></dd>
+              </div>
+              <div class="flex justify-between gap-x-4 py-3">
+                <dt class="text-gray-500">Date assigned</dt>
+                <dd class="font-medium text-gray-900"><%= asset.date_assigned %></dd>
+              </div>
+              <div class="flex justify-between gap-x-4 py-3">
+                <dt class="text-gray-500">Date returned</dt>
+                <dd class="font-medium text-gray-900"><%= asset.date_returned %></dd>
+              </div>
+              <div class="flex justify-between gap-x-4 py-3">
+                <dt class="text-gray-500">Description</dt>
+                <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 ml-10">
+                  <p class="text-sm leading-6 text-gray-500"><%= asset.description %></p>
+                </div>
+              </div>
+            </dl>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
