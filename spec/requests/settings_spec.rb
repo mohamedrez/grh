@@ -2,9 +2,9 @@ require "rails_helper"
 
 RSpec.describe "Settings", type: :request do
   let(:user) { create(:user, admin: true) }
-  let(:avatar) { fixture_file_upload(Rails.root.join('spec', 'fixtures', 'test-image.png'), 'image/png') }
+  let(:avatar) { fixture_file_upload(Rails.root.join("spec", "fixtures", "test-image.png"), "image/png") }
 
-  let(:valid_attributes) { { avatar: avatar } }
+  let(:valid_attributes) { {avatar: avatar} }
 
   before do
     sign_in user

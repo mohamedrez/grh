@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   root to: "dashboard#index"
   get "dashboard", to: "dashboard#index"
   get "organization", to: "organization#index"
+  get "organization/csv", to: "organization#csv"
   get "calendar", to: "calendar#index"
   get "events", to: "events#index"
   resources :educations

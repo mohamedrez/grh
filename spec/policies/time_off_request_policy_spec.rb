@@ -1,4 +1,4 @@
-require 'rails_helper'
+require "rails_helper"
 
 RSpec.describe TimeOffRequestPolicy, type: :policy do
   let(:admin) { create(:user, admin: true) }
@@ -6,7 +6,7 @@ RSpec.describe TimeOffRequestPolicy, type: :policy do
   let(:other_user) { create(:user) }
   let(:records) { [create(:time_off_request, user_id: user.id)] }
   let(:record) { create(:time_off_request, user_id: user.id) }
-  
+
   subject { described_class }
 
   permissions :index? do
@@ -51,5 +51,5 @@ RSpec.describe TimeOffRequestPolicy, type: :policy do
     it "denies access to other users" do
       expect(subject).not_to permit(other_user, record)
     end
-  end  
+  end
 end

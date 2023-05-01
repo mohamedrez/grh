@@ -18,7 +18,6 @@ RSpec.describe EmergencyContactsController, type: :routing do
       expect(get: "/emergency_contacts/1/edit").to route_to("emergency_contacts#edit", id: "1")
     end
 
-
     xit "routes to #create" do
       expect(post: "/emergency_contacts").to route_to("emergency_contacts#create")
     end

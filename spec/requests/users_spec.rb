@@ -13,14 +13,12 @@ RSpec.describe "Users", type: :request do
       birthdate: "02-03-1998",
       gender: "male",
       marital_status: "single",
-      job_title: "RoR developer",
       start_date: "02-03-2019",
       end_date: "02-03-2024",
       site_id: site.id,
       children_number: 2,
       cin: "ZWE452GH",
       service: :financial,
-      job_title: :sale,
       joining_date: Date.new(2023, 4, 14),
       contract: :CDI,
       category: :cadre,
@@ -28,6 +26,7 @@ RSpec.describe "Users", type: :request do
       employee_number: "3397701296",
       brut_salary: 11000,
       net_salary: 8000,
+      job_title: :sale,
       cnss_contribution: 1000,
       retirement_contribution: 2000,
       pto_number: 23,
@@ -47,7 +46,7 @@ RSpec.describe "Users", type: :request do
       phone: "",
       birthdate: "",
       cnss_number: "45TH8977HFGH",
-      employee_number: "3397OJUU796",
+      employee_number: "3397OJUU796"
     }
   end
 
@@ -163,25 +162,24 @@ RSpec.describe "Users", type: :request do
     end
   end
 
-  describe 'POST #import' do
-    context 'with valid file' do
-      let(:file) { Rack::Test::UploadedFile.new("#{Rails.root}/spec/fixtures/test_users.csv", 'text/csv') }
+  describe "POST #import" do
+    context "with valid file" do
+      let(:file) { Rack::Test::UploadedFile.new("#{Rails.root}/spec/fixtures/test_users.csv", "text/csv") }
 
-
-      it 'imports the users' do
-        post import_users_path, params: { file: file }
+      it "imports the users" do
+        post import_users_path, params: {file: file}
 
         expect(response).to redirect_to(users_path)
-        expect(flash[:notice]).to eq(I18n.t('flash.successfully_imported'))
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_imported"))
       end
     end
 
-    context 'with missing file' do
-      it 'returns an error message' do
+    context "with missing file" do
+      it "returns an error message" do
         post import_users_path
 
         expect(response).to redirect_to(users_path)
-        expect(flash[:alert]).to eq(I18n.t('flash.please_select_file'))
+        expect(flash[:alert]).to eq(I18n.t("flash.please_select_file"))
       end
     end
   end
