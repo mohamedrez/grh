@@ -1,16 +1,36 @@
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-org-chart@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-flextree@2.1.2/build/d3-flextree.js"></script>
-    <div
-      class="chart-container"
-    ></div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
+    <div class="org-chart-layout relative">
+      <div class="chart-container">
+      </div>
+      <div class="chart-controls absolute top-0 right-20">
+        <div onclick="chart.zoomIn()" class="chart-controls__title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
+          </svg>
+        </div>
+        <div onclick="chart.zoomOut()" class="chart-controls__title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM13.5 10.5h-6" />
+          </svg>
+        </div>
+        <div onclick="downloadPdf()" class="chart-controls__title">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
+          </svg>
+        </div>
+
+      </div>
+    </div>
 
     <script>
-      var chart;
+
       d3.csv(
-        'https://raw.githubusercontent.com/bumbeishvili/sample-data/main/org.csv'
+        '/organization/csv',
       ).then(data => {
-        chart = new d3.OrgChart()
+        window.chart = new d3.OrgChart()
           .container('.chart-container')
           .data(data)
           .nodeWidth((d) => 250)
@@ -32,13 +52,6 @@
                   d.data.imageUrl
                 }" style="margin-top:-30px;margin-left:${d.width / 2 - 30}px;border-radius:100px;width:60px;height:60px;" />
 
-               <div style="margin-right:10px;margin-top:15px;float:right">${
-                 d.data.id
-               }</div>
-
-               <div style="margin-top:-30px;background-color:#3AB6E3;height:10px;width:${
-                 d.width - 2
-               }px;border-radius:1px"></div>
 
                <div style="padding:20px; padding-top:35px;text-align:center">
                    <div style="color:#111672;font-size:16px;font-weight:bold"> ${
@@ -48,14 +61,36 @@
                      d.data.positionName
                    } </div>
                </div>
-               <div style="display:flex;justify-content:space-between;padding-left:15px;padding-right:15px;">
-                 <div > Manages:  ${d.data._directSubordinates} 👤</div>
-                 <div > Oversees: ${d.data._totalSubordinates} 👤</div>
-               </div>
+
               </div>
       </div>
   `;
           })
           .render();
       });
+
+      function downloadPdf() {
+        chart.exportImg({
+          full: true,
+          save: false,
+          onLoad: (base64) => {
+            var pdf = new jspdf.jsPDF();
+            var img = new Image();
+            img.src = base64;
+            img.onload = function () {
+              pdf.addImage(
+                img,
+                'JPEG',
+                5,
+                5,
+                595 / 3,
+                ((img.height / img.width) * 595) / 3
+              );
+              pdf.save('chart.pdf');
+            };
+          },
+        });
+      }
     </script>
+
+
