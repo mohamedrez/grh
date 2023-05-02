@@ -32,7 +32,7 @@ sites_data = [
     address: "100 University Way, Lake Havasu City, AZ 86403",
     phone: "(928) 854-9705"
   }
-]
+].freeze
 
 sites_data.each do |site_data|
   Site.find_or_create_by(code: site_data[:code]) do |site|

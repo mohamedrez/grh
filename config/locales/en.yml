@@ -1,30 +1,17 @@
 en:
-  navbar:
-    home: "Home"
-    all_paths: "All Paths"
-    community: "Community"
-    switch_to: "Switch to arabic"
   flash:
-    courses_controller:
-      course_been_created: "Great! The Course has been created!"
-    steps_controller:
-      step_been_created: "Great! The Step has been created!"
-    fix_your_mistakes: "Fix your mistakes, please."
-    user_quiz_responses_controller:
-      quiz_passed: "The quiz is passed."
-      quiz_did_not_passed: "The quiz didn't passed."
     application_controller:
       not_authorized: "You are not authorized to perform this action."
-    time_off_requests_controller:
-      no_request: "This time off request doesn't exist"
     successfully_created: "It was successfully created."
     successfully_updated: "It was successfully updated."
     successfully_imported : "Users imported successfully."
     please_select_file: "Please select a file to import."
   experiences:
     experience_created: "Experience was successfully created."
+    experience_updated: "Experience was successfully updated."
   educations:
     education_created: "Education was successfully created."
+    education_updated: "Education was successfully updated."
   time_Off_requests:
     time_Off_requests_created: "Time off request was successfully created."
     time_Off_requests_updated: "Time off request was successfully updated."

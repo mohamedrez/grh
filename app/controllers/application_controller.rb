@@ -20,13 +20,12 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || I18n.default_locale
   end
 
-  # TODO: why do we have this one
-  def set_user
-    cookies[:username] = current_user&.email || "guest"
-  end
-
   def default_url_options(options = {})
     {locale: I18n.locale}.merge options
+  end
+
+  def set_user
+    cookies[:username] = current_user&.email || "guest"
   end
 
   def pundishing_user
