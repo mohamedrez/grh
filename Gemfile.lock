@@ -421,6 +421,7 @@ DEPENDENCIES
   annotate
   bootsnap
   brakeman
+  bundler (= 2.3.3)
   capybara
   codecov
   cssbundling-rails

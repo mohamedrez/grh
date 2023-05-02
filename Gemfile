@@ -62,6 +62,7 @@ gem "noticed", "~> 1.6"
 gem "pundit", "~> 2.3"
 gem "kaminari", "~> 1.2"
 gem "ransack", "~> 4.0"
+gem "bundler", "2.3.3"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
