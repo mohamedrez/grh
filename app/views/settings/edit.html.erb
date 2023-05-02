@@ -28,7 +28,7 @@
               <%= form.label :avatar, "User picture", class: "mr-5 mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
               <%= form.file_field :avatar, class: "hidden", accept: 'image/svg,image/png,image/jpg,image/jpeg', id: "avatar-input" %>
               <label for="avatar-input" class="cursor-pointer">
-                <%= render partial: "shared/user_avatar", locals: {class_avatar: "w-16 h-16 rounded-full"} %>
+                <%= image_tag @user.avatar_url_or_default, class: "w-16 h-16 rounded-full" %>
               </label>
             </div>
           </div>

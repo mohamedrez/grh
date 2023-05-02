@@ -36,9 +36,10 @@ module Maktabah
     # Don't generate system test files.
     config.generators.system_tests = nil
 
-    config.i18n.available_locales = [:en, :ar]
+    config.i18n.available_locales = [:en, :fr]
     config.i18n.default_locale = :en
     config.i18n.fallbacks = true
+
     config.active_job.queue_adapter = :sidekiq
   end
 end
