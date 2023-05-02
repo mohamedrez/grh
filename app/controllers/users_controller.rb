@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
 
   def index
-    @q = User.ransack(User.search(params[:q]))
+    @q = User.ransack(params[:q])
     @users = @q.result.page(params[:page])
     authorize @users
   end
@@ -20,6 +20,7 @@ class UsersController < ApplicationController
 
   def edit
     authorize @user
+    @manager_select = User.where.not(id: @user.id)&.map { |user| [user.full_name, user.id] }
     @address = @user.address || @user.build_address
   end
 
@@ -88,6 +89,7 @@ class UsersController < ApplicationController
       :cnss_contribution,
       :retirement_contribution,
       :pto_number,
+      :manager_id,
       :site_id,
       address_attributes:
       [

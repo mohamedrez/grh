@@ -88,6 +88,12 @@
               <%= form.number_field :employee_number, class: "w-full" %>
             </div>
           </div>
+          <div class="sm:col-span-3">
+            <%= form.label :manager_id %>
+            <div class="mt-2">
+              <%= form.select :manager_id, options_for_select(@manager_select.to_h, @user.manager_id) %>
+            </div>
+          </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :site_id %>
             <div class="mt-2">
@@ -136,7 +142,7 @@
               <%= form.number_field :cnss_number, class: "w-full" %>
             </div>
           </div>
-          
+
           <div class="sm:col-span-3">
             <%= form.label :brut_salary %>
             <div class="mt-2">
@@ -258,7 +264,7 @@
                 <div class="mt-2">
                   <%= f.text_area :work_description, class: "w-full", rows: 5 %>
                 </div>
-              </div> 
+              </div>
               <div class="sm:col-span-1"></div><hr class="border border-gray-200 sm:col-span-4">
             <% end %>
           </div>
