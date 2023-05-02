@@ -54,12 +54,14 @@ gem "rack-protection"
 gem "lograge"
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 gem "image_processing", "~> 1.2"
+
 gem "devise"
 gem "motor-admin"
-gem "omniauth"
-gem "omniauth-google-oauth2"
-gem "omniauth-twitter"
-gem "omniauth-rails_csrf_protection"
+gem "sidekiq", "~> 7.0"
+gem "noticed", "~> 1.6"
+gem "pundit", "~> 2.3"
+gem "kaminari", "~> 1.2"
+gem "ransack", "~> 4.0"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -98,13 +100,3 @@ group :development do
   gem "brakeman"
   gem "annotate"
 end
-
-gem "sidekiq", "~> 7.0"
-
-gem "noticed", "~> 1.6"
-
-gem "pundit", "~> 2.3"
-
-gem "kaminari", "~> 1.2"
-
-gem "ransack", "~> 4.0"

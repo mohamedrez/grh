@@ -1,5 +1,4 @@
 <div class="px-4 sm:px-6 lg:px-8">
-  <h1><%= t(".People") %></h1>
   <div class="flex items-center justify-between h-16">
     <div class="flex items-center">
       <%= link_to "Add new employee", new_user_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"%>
@@ -15,7 +14,13 @@
       <%= render partial: "search_form" %>
     </div>
   </div>
-  <div class="mt-8 flow-root">
+  <div class="sm:flex sm:items-center mt-10">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t(".Employees") %></h1>
+      <p class="mt-2 text-sm text-gray-700">A list of all the employees.</p>
+    </div>
+  </div>
+  <div class="mt-4 flow-root">
   <%= turbo_frame_tag "search-results" do %>
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
