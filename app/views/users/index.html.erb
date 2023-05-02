@@ -1,4 +1,5 @@
 <div class="px-4 sm:px-6 lg:px-8">
+  <h1><%= t(".People") %></h1>
   <div class="flex items-center justify-between h-16">
     <div class="flex items-center">
       <%= link_to "Add new employee", new_user_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"%>
@@ -21,12 +22,11 @@
         <table class="min-w-full divide-y divide-gray-300">
           <thead>
             <tr>
-              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Contract</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Service</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Brut salary</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Joining date</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ID number</th>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"><%= t('Name') %></th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t('Contract') %></th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t('Service') %></th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t('Joining date') %></th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t('Employee number') %></th>
               <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
                 <span class="sr-only">Edit</span>
               </th>
@@ -48,13 +48,12 @@
                 </td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.contract %></td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.service %></td>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.brut_salary %></td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.joining_date %></td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                   <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800"><%= user.employee_number %></span>
                 </td>
                 <td class="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                  <%= link_to 'View profile', user_path(user), data: {turbo_frame: "_top"} %>
+                  <%= link_to t('View profile'), user_path(user), data: {turbo_frame: "_top"} %>
                 </td>
               </tr>
             <% end %>

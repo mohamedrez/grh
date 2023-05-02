@@ -106,5 +106,4 @@ class User < ApplicationRecord
       Address.find_or_create_by!(address_data)
     end
   end
-
 end

@@ -5,21 +5,22 @@ class UsersController < ApplicationController
   def index
     @q = User.ransack(params[:q])
     @users = @q.result.page(params[:page])
-    # authorize @users
+    authorize @users
   end
 
   def show
-    # authorize @user
+    authorize @user
   end
 
   def new
     @user = User.new
-    # authorize @user
+    authorize @user
     @user.build_address
   end
 
   def edit
-    # authorize @user
+    authorize @user
+    @manager_select = User.where.not(id: @user.id).map { |user| [user.full_name, user.id] }
     @address = @user.address || @user.build_address
   end
 
@@ -88,6 +89,7 @@ class UsersController < ApplicationController
       :cnss_contribution,
       :retirement_contribution,
       :pto_number,
+      :manager_id,
       :site_id,
       address_attributes:
       [

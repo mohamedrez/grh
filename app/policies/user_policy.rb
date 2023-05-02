@@ -4,27 +4,22 @@ class UserPolicy < ApplicationPolicy
   end
 
   def show?
-    return true
-    user.admin || record == user
+    true
   end
 
   def create?
-    return true
-    user.admin
+    true
   end
 
   def new?
-    return true
-    create?
+    true
   end
 
   def update?
-    return true
-    user.admin? || user == record
+    true
   end
 
   def edit?
-    return true
-    update?
+    true
   end
 end
