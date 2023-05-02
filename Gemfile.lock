@@ -421,7 +421,6 @@ DEPENDENCIES
   annotate
   bootsnap
   brakeman
-  bundler (= 2.3.3)
   capybara
   codecov
   cssbundling-rails
@@ -467,4 +466,4 @@ RUBY VERSION
    ruby 3.1.0p0
 
 BUNDLED WITH
-   2.4.7
+   2.3.3
