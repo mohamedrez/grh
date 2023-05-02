@@ -15,7 +15,7 @@ Rails.application.routes.draw do
     mount Sidekiq::Web => "/sidekiq"
   end
 
-  scope "(:locale)", locale: /en|ar/ do
+  scope "(:locale)", locale: /en|fr/ do
     resources :holidays
     resources :educations
     resources :experiences

@@ -1,10 +1,6 @@
 # frozen_string_literal: true
 
 module ApplicationHelper
-  def direction
-    (I18n.locale == :ar) ? "rtl" : "ltr"
-  end
-
   def inline_error_for(field, form_obj)
     html = []
     if form_obj.errors[field].any?
