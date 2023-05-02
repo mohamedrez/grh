@@ -1,42 +1,26 @@
 class EducationsController < ApplicationController
-  before_action :set_education, only: %i[edit update]
+  before_action :authenticate_user!
 
   def new
     @education = Education.new
-  end
-
-  def edit
+    @user = User.find(params[:user_id])
   end
 
   def create
+    @user = User.find(params[:user_id])
     @education = Education.new(education_params)
+    @education.user_id = @user.id
 
-    respond_to do |format|
-      if @education.save
-        format.html { redirect_to edit_user_url(@education.user), notice: t("educations.education_created") }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  def update
-    respond_to do |format|
-      if @education.update(education_params)
-        format.html { redirect_to edit_user_url(@education.user), notice: t("educations.education_updated") }
-      else
-        format.html { render :edit, status: :unprocessable_entity }
-      end
+    if @education.save
+      redirect_to user_url(@education.user), notice: t("educations.education_created")
+    else
+      render :new, status: :unprocessable_entity
     end
   end
 
   private
 
-  def set_education
-    @education = Education.find(params[:id])
-  end
-
   def education_params
-    params.require(:education).permit(:school, :country, :city, :education_level, :study_field, :start_date, :end_date, :still_on_this_course, :user_id)
+    params.require(:education).permit(:school, :country, :city, :education_level, :study_field, :start_date, :end_date, :still_on_this_course)
   end
 end
