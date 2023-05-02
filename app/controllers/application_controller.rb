@@ -20,7 +20,6 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale] || I18n.default_locale
   end
 
-  # TODO: why do we have this one
   def set_user
     cookies[:username] = current_user&.email || "guest"
   end

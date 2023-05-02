@@ -24,8 +24,7 @@ class User < ApplicationRecord
     :recoverable,
     :rememberable,
     :validatable,
-    :confirmable,
-    :omniauthable, omniauth_providers: [:google_oauth2, :twitter]
+    :confirmable
 
   has_one_attached :avatar, dependent: :destroy
   has_rich_text :about
@@ -53,16 +52,6 @@ class User < ApplicationRecord
   enum :job_title, %i[operations finance human_resource marketing sale information_technology research_and_development administration], prefix: :user_job_title
   enum :contract, %i[CDD CDI Intern], prefix: :user_contract
   enum :category, %i[cadre non_cadre], prefix: :user_category
-
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.avatar_url = auth.info.image
-      user.username = auth.info.name
-      user.skip_confirmation!
-    end
-  end
 
   def avatar_url_or_default
     if avatar.attached?
