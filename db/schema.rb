@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_27_084109) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_02_090958) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -72,16 +72,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_084109) do
     t.index ["user_id"], name: "index_assets_on_user_id"
   end
 
-  create_table "courses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "track_id", null: false
-    t.string "name"
-    t.integer "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["position"], name: "index_courses_on_position", unique: true
-    t.index ["track_id"], name: "index_courses_on_track_id"
-  end
-
   create_table "educations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "school"
     t.integer "country"
@@ -139,13 +129,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_084109) do
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "lectures", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "youtube_video_link"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "teacher"
   end
 
   create_table "motor_alert_locks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -352,13 +335,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_084109) do
     t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
-  create_table "quizzes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.text "surveyjs"
-    t.string "answer"
-  end
-
   create_table "sites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "code"
@@ -368,64 +344,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_084109) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "steps", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "course_id", null: false
-    t.integer "position"
-    t.string "stepable_type", null: false
-    t.bigint "stepable_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.string "name"
-    t.index ["course_id"], name: "index_steps_on_course_id"
-    t.index ["stepable_type", "stepable_id"], name: "index_steps_on_stepable"
-  end
-
   create_table "time_off_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category"
-  end
-
-  create_table "tracks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.integer "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_points", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "scorable_type", null: false
-    t.bigint "scorable_id", null: false
-    t.boolean "check?", default: false
-    t.integer "point"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["scorable_type", "scorable_id"], name: "index_user_points_on_scorable"
-    t.index ["user_id"], name: "index_user_points_on_user_id"
-  end
-
-  create_table "user_progresses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.integer "status"
-    t.bigint "user_id", null: false
-    t.string "progressable_type", null: false
-    t.bigint "progressable_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["progressable_type", "progressable_id"], name: "index_user_progresses_on_progressable"
-    t.index ["user_id"], name: "index_user_progresses_on_user_id"
-  end
-
-  create_table "user_quiz_responses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "quiz_id", null: false
-    t.string "response"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["quiz_id"], name: "index_user_quiz_responses_on_quiz_id"
-    t.index ["user_id"], name: "index_user_quiz_responses_on_user_id"
   end
 
   create_table "user_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -494,7 +418,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_084109) do
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
   add_foreign_key "assets", "users"
-  add_foreign_key "courses", "tracks"
   add_foreign_key "educations", "users"
   add_foreign_key "emergency_contacts", "users"
   add_foreign_key "experiences", "users"
@@ -503,11 +426,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_27_084109) do
   add_foreign_key "motor_note_tag_tags", "motor_note_tags", column: "tag_id"
   add_foreign_key "motor_note_tag_tags", "motor_notes", column: "note_id"
   add_foreign_key "motor_taggable_tags", "motor_tags", column: "tag_id"
-  add_foreign_key "steps", "courses"
-  add_foreign_key "user_points", "users"
-  add_foreign_key "user_progresses", "users"
-  add_foreign_key "user_quiz_responses", "quizzes"
-  add_foreign_key "user_quiz_responses", "users"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"
   add_foreign_key "users", "sites"

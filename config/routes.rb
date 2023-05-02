@@ -38,13 +38,6 @@ Rails.application.routes.draw do
       patch "settings", to: "settings#update"
     end
 
-    resources :tracks, only: [:index]
-    resources :courses, only: [:index, :show] do
-      resources :steps, only: [:index, :show]
-    end
-    post "/user_quiz_responses", to: "user_quiz_responses#create"
-    resources :user_progresses, only: [:update]
-    resources :user_progresses, only: [:create, :update]
     get "user_notifications", to: "user_notifications#index"
     get "user_notifications/notification_bell", to: "user_notifications#notification_bell"
   end
