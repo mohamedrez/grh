@@ -156,7 +156,7 @@ GEM
     http-cookie (1.0.5)
       domain_name (~> 0.5)
     http-form_data (2.3.0)
-    i18n (1.12.0)
+    i18n (1.13.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
       mini_magick (>= 4.9.5, < 5)
@@ -283,7 +283,7 @@ GEM
       nio4r (~> 2.0)
     pundit (2.3.0)
       activesupport (>= 3.0.0)
-    pundit-matchers (1.8.4)
+    pundit-matchers (2.1.0)
       rspec-rails (>= 3.0.0)
     raabro (1.4.0)
     racc (1.6.2)
@@ -335,12 +335,12 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.5)
-    rspec-core (3.12.0)
+    rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
-    rspec-expectations (3.12.2)
+    rspec-expectations (3.12.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-mocks (3.12.3)
+    rspec-mocks (3.12.5)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-rails (6.0.1)
@@ -456,7 +456,7 @@ GEM
     websocket-extensions (0.1.5)
     xpath (3.2.0)
       nokogiri (~> 1.8)
-    zeitwerk (2.6.7)
+    zeitwerk (2.6.8)
 
 PLATFORMS
   aarch64-linux
@@ -491,7 +491,7 @@ DEPENDENCIES
   overcommit
   puma (~> 6.1)
   pundit (~> 2.3)
-  pundit-matchers (~> 1.8.4)
+  pundit-matchers (~> 2.1.0)
   rack-protection
   rails (~> 7.0.4)
   ransack (~> 4.0)
