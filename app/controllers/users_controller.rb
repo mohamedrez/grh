@@ -20,7 +20,7 @@ class UsersController < ApplicationController
 
   def edit
     authorize @user
-    @manager_select = User.where.not(id: @user.id).map { |user| [user.full_name, user.id] }
+    @manager_select = User.where.not(id: @user.id)&.map { |user| [user.full_name, user.id] }
     @address = @user.address || @user.build_address
   end
 

@@ -91,7 +91,7 @@
           <div class="sm:col-span-3">
             <%= form.label :manager_id %>
             <div class="mt-2">
-              <%= form.select :manager_id, options_for_select(@manager_select, @user.manager_id) %>
+              <%= form.select :manager_id, options_for_select(@manager_select.to_h, @user.manager_id) %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">

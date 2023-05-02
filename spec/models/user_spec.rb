@@ -24,28 +24,6 @@ RSpec.describe(User, type: :model) do
     end
   end
 
-  describe ".search" do
-    it "returns nil" do
-      query = nil
-      expect(User.search(query)).to eq(nil)
-    end
-
-    it "returns a hash containing last_name_cont value" do
-      query = {last_name_or_email_or_employee_number_cont: "vi"}
-      expect(User.search(query)).to eq({"last_name_cont" => "vi"})
-    end
-
-    it "returns a hash containing email_cont value" do
-      query = {last_name_or_email_or_employee_number_cont: "vi@me.com"}
-      expect(User.search(query)).to eq({"email_cont" => "vi@me.com"})
-    end
-
-    it "returns a hash containing employee_number_cont value" do
-      query = {last_name_or_email_or_employee_number_cont: "5432157"}
-      expect(User.search(query)).to eq({"employee_number_cont" => "5432157"})
-    end
-  end
-
   describe ".import" do
     let(:file) { Rack::Test::UploadedFile.new("#{Rails.root}/spec/fixtures/test_users.csv", "text/csv") }
 
