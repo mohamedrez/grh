@@ -6,26 +6,23 @@ Rails.application.routes.draw do
   root to: "dashboard#index"
   get "dashboard", to: "dashboard#index"
   get "organization", to: "organization#index"
+  get "organization/csv", to: "organization#csv"
   get "calendar", to: "calendar#index"
   get "events", to: "events#index"
-  resources :educations
   authenticate :user, ->(user) { user.admin? } do
     mount Motor::Admin => "/motor_admin"
     mount Sidekiq::Web => "/sidekiq"
   end
-  devise_for :users, only: :omniauth_callbacks, controllers: {omniauth_callbacks: "users/omniauth_callbacks"}
 
-  scope "(:locale)", locale: /en|ar/ do
+
+  scope "(:locale)", locale: /en|fr/ do
+
     resources :announcements
+
     resources :holidays
-    resources :educations
-    resources :experiences
     resources :home, only: [:index]
 
-    devise_for :users, skip: :omniauth_callbacks, path: "/auth", controllers: {
-      registrations: "users/registrations"
-    }
-    delete "users", to: "devise/registrations#destroy", as: :destroy_user_registration
+    devise_for :users, path: "/auth"
 
     resources :users do
       resources :assets
@@ -36,15 +33,10 @@ Rails.application.routes.draw do
       collection { post :import }
       get "settings", to: "settings#edit"
       patch "settings", to: "settings#update"
+      resources :experiences, only: [:new, :create]
+      resources :educations, only: [:new, :create]
     end
 
-    resources :tracks, only: [:index]
-    resources :courses, only: [:index, :show] do
-      resources :steps, only: [:index, :show]
-    end
-    post "/user_quiz_responses", to: "user_quiz_responses#create"
-    resources :user_progresses, only: [:update]
-    resources :user_progresses, only: [:create, :update]
     get "user_notifications", to: "user_notifications#index"
     get "user_notifications/notification_bell", to: "user_notifications#notification_bell"
   end

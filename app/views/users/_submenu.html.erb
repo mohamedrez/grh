@@ -1,0 +1,13 @@
+<div class="border-b border-gray-200 pb-5 sm:pb-0 mt-10">
+  <div class="mt-3 sm:mt-4">
+    <div class="hidden sm:block">
+      <nav class="-mb-px flex space-x-8 user-submenu">
+        <%= link_to 'User Profile', user_path(user), data: { turbo_frame: 'tabbed-content' } %>
+        <%= link_to 'Emergency contacts', user_emergency_contacts_path(user), data: { turbo_frame: 'tabbed-content'} %>
+        <%= link_to 'User requests', user_user_requests_path(user), data: { turbo_frame: 'tabbed-content'} %>
+        <%= link_to 'Time off requests', user_time_off_requests_path(user), data: { turbo_frame: 'tabbed-content'} %>
+        <%= link_to 'Assets', user_assets_path(user), data: { turbo_frame: 'tabbed-content'} %>
+      </nav>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,11 @@
 <div class="px-4 sm:px-6 lg:px-8">
   <div class="flex items-center justify-between h-16">
     <div class="flex items-center">
-      <%= link_to "Add new employee", new_user_path, class:  "block rounded-md bg-indigo-500 px-3 py-2 text-center text-sm font-semibold text-white hover:text-white shadow-sm hover:bg-indigo-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"%>
+      <%= link_to "Add new employee", new_user_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"%>
     </div>
     <%= form_tag import_users_path, multipart: true do %>
-      <div class="mx-2 flex items-center">
-        <%= label_tag :file, "Select a CSV file to import Users", class: "mr-2 py-2 px-4 bg-white rounded-lg shadow-md text-gray-700 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-gray-100" %>
+      <div class="ml-20 mx-2 flex items-center">
+        <%= label_tag :file, "Select a CSV file to import Users", class: "mr-2 cursor-pointer py-2 px-4 bg-white rounded-lg shadow-md text-gray-700 font-medium tracking-wide hover:bg-gray-100 focus:outline-none focus:bg-gray-100" %>
         <%= file_field_tag :file, accept: '.csv', class: "hidden" %>
         <%= submit_tag "Import", class: "py-2 px-4 bg-blue-500 hover:bg-blue-600 rounded-lg shadow-md text-white font-medium tracking-wide cursor-pointer text-center" %>
       </div>
@@ -14,18 +14,24 @@
       <%= render partial: "search_form" %>
     </div>
   </div>
-  <div class="mt-8 flow-root">
+  <div class="sm:flex sm:items-center mt-10">
+    <div class="sm:flex-auto">
+      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t(".Employees") %></h1>
+      <p class="mt-2 text-sm text-gray-700">A list of all the employees.</p>
+    </div>
+  </div>
+  <div class="mt-4 flow-root">
+  <%= turbo_frame_tag "search-results" do %>
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
         <table class="min-w-full divide-y divide-gray-300">
           <thead>
             <tr>
-              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0">Name</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Contract</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Service</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Brut salary</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">Joining date</th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900">ID number</th>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"><%= t('Name') %></th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t('Contract') %></th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t('Service') %></th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t('Joining date') %></th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t('Employee number') %></th>
               <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0">
                 <span class="sr-only">Edit</span>
               </th>
@@ -47,29 +53,30 @@
                 </td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.contract %></td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.service %></td>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.brut_salary %></td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.joining_date %></td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
                   <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800"><%= user.employee_number %></span>
                 </td>
                 <td class="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                  <%= link_to 'View profile', user_path(user), class: "text-indigo-600 hover:text-indigo-900" %>
+                  <%= link_to t('View profile'), user_path(user), data: {turbo_frame: "_top"} %>
                 </td>
               </tr>
             <% end %>
           </tbody>
         </table>
       </div>
+      <div class="flex items-center justify-between border-t border-gray-200 bg-white p-4 sm:px-6">
+        <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
+          <div class="text-sm text-sky-500">
+            <%= page_entries_info @users %>
+          </div>
+          <div>
+            <%= paginate @users%>
+          </div>
+        </div>
+      </div>
     </div>
+    <% end %>
   </div>
 </div>
-<div class="flex items-center justify-between border-t border-gray-200 bg-white p-4 sm:px-6">
-  <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-    <div class="text-sm text-sky-500">
-      <%= page_entries_info @users %>
-    </div>
-    <div>
-      <%= paginate @users%>
-    </div>
-  </div>
-</div>
+

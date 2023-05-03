@@ -12,11 +12,12 @@
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.14",
+    "debounce": "^1.2.1",
     "el-transition": "^0.0.7",
     "esbuild": "^0.17.18",
     "postcss": "^8.4.23",
     "stimulus-notification": "^2.2.0",
-    "tailwindcss": "^3.3.1",
+    "tailwindcss": "^3.3.2",
     "tailwindcss-stimulus-components": "^3.0.4",
     "trix": "^2.0.4"
   },

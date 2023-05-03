@@ -24,8 +24,7 @@ class User < ApplicationRecord
     :recoverable,
     :rememberable,
     :validatable,
-    :confirmable,
-    :omniauthable, omniauth_providers: [:google_oauth2, :twitter]
+    :confirmable
 
   has_one_attached :avatar, dependent: :destroy
   has_rich_text :about
@@ -47,6 +46,8 @@ class User < ApplicationRecord
   validates :cnss_number, :employee_number, numericality: {only_integer: true, allow_blank: true}
 
   accepts_nested_attributes_for :address, update_only: true
+  accepts_nested_attributes_for :experiences
+  accepts_nested_attributes_for :educations
 
   enum :gender, %i[male female], prefix: :user_gender
   enum :marital_status, %i[single married divorced other], prefix: :user_marital_status
@@ -54,16 +55,6 @@ class User < ApplicationRecord
   enum :job_title, %i[operations finance human_resource marketing sale information_technology research_and_development administration], prefix: :user_job_title
   enum :contract, %i[CDD CDI Intern], prefix: :user_contract
   enum :category, %i[cadre non_cadre], prefix: :user_category
-
-  def self.from_omniauth(auth)
-    where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
-      user.email = auth.info.email
-      user.password = Devise.friendly_token[0, 20]
-      user.avatar_url = auth.info.image
-      user.username = auth.info.name
-      user.skip_confirmation!
-    end
-  end
 
   def avatar_url_or_default
     if avatar.attached?
@@ -79,17 +70,12 @@ class User < ApplicationRecord
     "#{first_name} #{last_name}"
   end
 
-  def self.search(query)
-    if query.blank?
-      query
-    else
-      search = query[:last_name_or_email_or_employee_number_cont]
-      search_hash(search)
-    end
+  def self.ransackable_attributes(auth_object = nil)
+    ["email", "first_name", "last_name", "employee_number", "first_name_or_last_name_or_email_or_employee_number_cont"]
   end
 
-  def self.ransackable_attributes(auth_object = nil)
-    ["email", "last_name", "employee_number", "last_name_or_email_or_employee_number"]
+  def self.ransackable_associations(auth_object = nil)
+    ["address", "avatar_attachment", "avatar_blob", "educations", "emergency_contacts", "experiences", "manager", "notifications", "rich_text_about", "site", "subordinates", "user_points", "user_progresses", "user_quiz_responses", "user_requests"]
   end
 
   def self.import(file)
@@ -108,16 +94,6 @@ class User < ApplicationRecord
 
       address_data = {street: row["street"], city: row["city"], zipcode: row["zipcode"], country: 6, user_id: user.id}
       Address.find_or_create_by!(address_data)
-    end
-  end
-
-  private_class_method def self.search_hash(search)
-    if search.match?(/\A[a-zA-Z]+\z/)
-      {"last_name_cont" => search}
-    elsif search.match?(/\A[\w+.\\-]+@[a-z\d\\-]+(\.[a-z\d\\-]+)*\.[a-z]+\z/i)
-      {"email_cont" => search}
-    elsif search.match?(/\A\d+\z/)
-      {"employee_number_cont" => search}
     end
   end
 end

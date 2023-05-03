@@ -1,51 +1,52 @@
-<%= form_with(model: [@user, @asset], class: "") do |form| %>
-  <% if @asset.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(@asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
-      <ul>
-        <% @asset.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+<%= form_with(model: [user, asset], class: "") do |form| %>
+  <div class="space-y-12">
+    <% if asset.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(asset.errors.count, "error") %> prohibited this asset from being saved:</h2>
+        <ul>
+          <% asset.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="mt-10 overflow-hidden rounded-xl border border-gray-200">
+      <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
+        <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
+        <% if action_name == 'edit' %>
+          <div class="text-sm font-medium leading-6 text-gray-900"><%= form.text_field :serial %></div>
         <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="overflow-hidden rounded-xl border border-gray-200">
-    <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
-      <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
-      <% if action_name == 'edit' %>
-        <div class="text-sm font-medium leading-6 text-gray-900"><%= form.text_field :serial %></div>
-      <% end %>
-      <div class="relative ml-auto flex">
-        <%= link_to "Cancel", user_assets_url(@user.id), class: "rounded-md bg-white px-5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block mr-2" %>
-        <%= form.submit "Save" %>
+        <div class="relative ml-auto flex">
+          <%= link_to "Cancel", user_assets_url(user.id), class: "rounded-md bg-white px-5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block mr-2" %>
+          <%= form.submit "Save" %>
+        </div>
       </div>
-    </div>
-    <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
-      <div class="flex justify-between gap-x-4 py-3">
-        <dt class="text-gray-500">Category</dt>
-        <dd class="font-medium text-gray-700"><%= form.select :category, options_for_select(Asset.categories.map {|key, value| [key.humanize, key]}, @asset.category) %></dd>
-      </div>
-      <% if action_name == 'new' %>
+      <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
         <div class="flex justify-between gap-x-4 py-3">
-          <dt class="text-gray-500">Serial #</dt>
-          <dd class="font-medium text-gray-700"><%= form.text_field :serial %></dd>
+          <dt class="text-gray-500">Category</dt>
+          <dd class="font-medium text-gray-700"><%= form.select :category, options_for_select(Asset.categories.map {|key, value| [key.humanize, key]}, asset.category) %></dd>
         </div>
-      <% end %>
-      <div class="flex justify-between gap-x-4 py-3">
-        <dt class="text-gray-500">Date assigned</dt>
-        <dd class="font-medium text-gray-700"><%= form.date_field :date_assigned %></dd>
-      </div>
-      <div class="flex justify-between gap-x-4 py-3">
-        <dt class="text-gray-500">Date returned</dt>
-        <dd class="font-medium text-gray-700"><%= form.date_field :date_returned %></dd>
-      </div>
-      <div class="flex justify-between gap-x-4 py-3">
-        <dt class="text-gray-500">Description</dt>
-        <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 ml-10">
-          <p class="text-sm leading-6 text-gray-500"><%= form.text_area :description, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6", rows: 4 %></p>
+        <% if action_name == 'new' %>
+          <div class="flex justify-between gap-x-4 py-3">
+            <dt class="text-gray-500">Serial #</dt>
+            <dd class="font-medium text-gray-700"><%= form.text_field :serial %></dd>
+          </div>
+        <% end %>
+        <div class="flex justify-between gap-x-4 py-3">
+          <dt class="text-gray-500">Date assigned</dt>
+          <dd class="font-medium text-gray-700"><%= form.date_field :date_assigned %></dd>
         </div>
-      </div>
-    </dl>
+        <div class="flex justify-between gap-x-4 py-3">
+          <dt class="text-gray-500">Date returned</dt>
+          <dd class="font-medium text-gray-700"><%= form.date_field :date_returned %></dd>
+        </div>
+        <div class="flex justify-between gap-x-4 py-3">
+          <dt class="text-gray-500">Description</dt>
+          <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 ml-10">
+            <p class="text-sm leading-6 text-gray-500"><%= form.text_area :description, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6", rows: 4 %></p>
+          </div>
+        </div>
+      </dl>
+    </div>
   </div>
 <% end %>

@@ -18,7 +18,6 @@ RSpec.describe AssetsController, type: :routing do
       expect(get: "/assets/1/edit").to route_to("assets#edit", id: "1")
     end
 
-
     xit "routes to #create" do
       expect(post: "/assets").to route_to("assets#create")
     end
