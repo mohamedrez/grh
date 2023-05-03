@@ -1,0 +1,25 @@
+<%= form_with model: announcement do |form|%>
+    <div>
+        <%= form.label :title %><br>
+        <%= form.text_field :title %>
+    </div>
+
+    <div>
+        <%= form.label :status %><br>
+        <%= form.select :status, options_for_select(Announcement.statuses.map { |key, value| [key.humanize, key] }, @announcement.status) %>
+    </div>
+
+    <div>
+        <%= form.label :published_at %><br>
+        <%= form.date_field :published_at%>
+    </div>
+
+    <div>
+        <%= form.label :content %><br>
+        <%= form.rich_text_area :content %>
+    </div>
+
+    <div>
+        <%= form.submit class: "btn btn-primary m-3" %>
+    </div>
+<%end%>
