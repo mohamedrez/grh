@@ -1,254 +1,87 @@
-<div class="px-4 sm:px-6 lg:px-8 mt-10">
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500">Personal details</h1>
-      <p class="mt-2 text-sm text-gray-700">A list of personal details about you.</p>
-    </div>
-  </div>
-  <div class="my-8 border-t border-gray-100">
-    <dl class="divide-y divide-gray-100">
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Full name</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.full_name %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">CIN</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.cin %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Birthday</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.birthdate %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Gender</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.gender&.humanize %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Phone</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.phone %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Email</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.email %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Marital status</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.marital_status&.humanize %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Children number</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.children_number %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">About</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.about %></dd>
-      </div>
-    </dl>
-  </div>
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500">Job details</h1>
-      <p class="mt-2 text-sm text-gray-700">A list of details about your job.</p>
-    </div>
-  </div>
-  <div class="my-8 border-t border-gray-100">
-    <dl class="divide-y divide-gray-100">
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Job title</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.job_title&.humanize %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Employee ID</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.employee_number %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Site</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.site&.name %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Service</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.service&.humanize %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Start date</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.start_date %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Joining date</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.joining_date %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">End date</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.end_date %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Contract</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.contract %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Category</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.category&.humanize %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">CNSS number</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.cnss_number %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Brut salary</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.brut_salary %> DH</dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Net salary</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.net_salary %> DH</dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">CNSS contribution</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.cnss_contribution %> DH</dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Retirement contribution</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.retirement_contribution %> DH</dd>
-      </div>
-      
-    </dl>
-  </div>
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500">Address details</h1>
-      <p class="mt-2 text-sm text-gray-700">Details about your address.</p>
-    </div>
-  </div>
-  <div class="my-8 border-t border-gray-100">
-    <dl class="divide-y divide-gray-100">
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Street address</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.street %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Country</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.country&.humanize %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">City</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.city %></dd>
-      </div>
-      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">ZIP / Postal code</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.zipcode %></dd>
-      </div>
-    </dl>
-  </div>
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500">Experiences</h1>
-      <p class="mt-2 text-sm text-gray-700">A list of all of your experiences</p>
-    </div>
-  </div>
-  <div class="my-8 flow-root">
-    <ul role="list" class="-mb-8">
-      <% @user.experiences.each do |experience| %>
-        <li>
-          <div class="relative pb-10 w-1/2">
-            <% unless experience == @user.experiences.last %>
-              <span class="absolute left-10 top-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-            <% end %>
-            <div class="relative flex space-x-3">
-              <div>
-                <span class="h-20 w-20 rounded-full bg-indigo-50 flex items-center justify-center ring-8 ring-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" class="h-12 w-12 text-white">
-                    <path fill="#2b3344" d="M21.5 22h-7a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM12.5 22h-9a.5.5 0 0 1 0-1h9a.5.5 0 0 1 0 1z" class="color2b3344 svgShape"></path>
-                    <path fill="#2b3344" d="M14.5 22a.5.5 0 0 1-.5-.5V4H6V21.5a.5.5 0 0 1-1 0V3.5A.5.5 0 0 1 5.5 3h9a.5.5 0 0 1 .5.5v18A.5.5 0 0 1 14.5 22zM19.5 22a.5.5 0 0 1-.5-.5V7.86L16.34 7A.49.49 0 0 1 16 6.34.51.51 0 0 1 16.66 6l3 1A.49.49 0 0 1 20 7.5v14A.5.5 0 0 1 19.5 22z" class="color2b3344 svgShape"></path>
-                    <path fill="#2b3344" d="M11 22a.5.5 0 0 1-.5-.5V19h-1V21.5a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 9 18h2a.5.5 0 0 1 .5.5v3A.5.5 0 0 1 11 22zM9 16h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 16H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 13h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 13H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 10h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 10H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 7h-1a.5.5 0 0 1 0-1H9A.5.5 0 0 1 9 7zM12.06 7H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM17.5 19h-1a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zM17.5 16h-1a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5h1a.51.51 0 0 1 .5.5A.5.5 0 0 1 17.5 16zM17.5 13h-1a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zM17.5 10h-1a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5A.51.51 0 0 1 17.5 10z" class="color2b3344 svgShape"></path>
-                  </svg>
-                </span>
-              </div>
-              <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
-                <div>
-                  <p class="font-medium text-lg text-gray-900"><%= experience.job_title&.humanize %></p>
-                  <p class="font-normal text-base text-gray-900"><%= experience.company_name&.humanize %> . <%= experience.employment_type&.humanize %></p>
-                  <p class="font-normal text-base text-gray-500"><%= experience.start_date %> - <%= experience.end_date %></p>
-                  <p class="font-normal text-base text-gray-500"><%= experience.city&.humanize %>, <%= experience.country&.humanize %></p>
-                  <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 mt-3">
-                    <div class="flex justify-between gap-x-4">
-                      <p class="font-normal text-base text-gray-900">Work description</p>
-                    </div>
-                    <p class="text-sm leading-6 text-gray-500"><%= experience.work_description&.humanize %></p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-    <% if @user.experiences.blank? %>
-      <div class="my-5 mx-10"> 
-        <%= link_to new_user_experience_path(@user), data: {turbo_frame: "_top"}, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
-          <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          Add new experience
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500">Academic background</h1>
-      <p class="mt-2 text-sm text-gray-700">A list of your academic background</p>
-    </div>
-  </div>
-  <div class="my-8 flow-root">
-    <ul role="list" class="-mb-8">
-      <% @user.educations.each do |education| %>
-        <li>
-          <div class="relative pb-10 w-1/2">
-            <% unless education == @user.educations.last %>
-              <span class="absolute left-10 top-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-            <% end %>
-            <div class="relative flex space-x-3">
-              <div>
-                <span class="h-20 w-20 rounded-full bg-indigo-50 flex items-center justify-center ring-8 ring-white">
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="h-12 w-12 text-white">
-                    <path d="m512.868 650.199-440-240.3 440-240.4 440 240.3-440 240.4zm-377.4-240.3 377.4 206.1 377.4-206.2-377.4-206.1-377.4 206.2z" fill="#000000" class="color000 svgShape"></path>
-                    <path d="m511.868 855.299-299-155v-247.1l299 162.9 299-162.9v247.2l-299 154.9zm-269-173.2 269 139.4 269-139.4v-178.4l-269 146.5-269-146.5v178.4zM906.868 410.499h30v199h-30z" fill="#000000" class="color000 svgShape"></path>
-                  </svg>
-                </span>
-              </div>
-              <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
-                <div>
-                  <p class="font-medium text-lg text-gray-900"><%= education.school.humanize %></p>
-                  <p class="font-normal text-base text-gray-900"><%= education.education_level.humanize %> . <%= education.study_field.humanize %></p>
-                  <p class="font-normal text-base text-gray-500"><%= education.start_date %> - <%= education.end_date %></p>
-                  <p class="font-normal text-base text-gray-500"><%= education.city.humanize %>, <%= education.country.humanize %></p>
-                </div>
-                <div class="whitespace-nowrap text-right text-sm text-gray-500">
-                  <p class="font-normal text-base text-gray-500 mb-1">Stil On This Course?</p>
-                  <% if education.still_on_this_course %>
-                    <span  class="bg-indigo-500 relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
-                      <span aria-hidden="true" class="translate-x-5 inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
-                    </span>
-                  <% else %>
-                    <span  class="bg-gray-100 relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
-                      <span aria-hidden="true" class="translate-x-0 inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
-                    </span>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-      <% end %>
-    </ul>
-    <% if @user.educations.blank? %>
-      <div class="my-5 mx-10"> 
-        <%= link_to new_user_education_path(@user), data: {turbo_frame: "_top"}, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
-          <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-          </svg>
-          Add new education
-        <% end %>
-      </div>
-    <% end %>
-  </div>
+<div class="my-5">
+  <p class="text-3xl font-semibold tracking-tight text-indigo-500 sm:text-3xl">Personal</p>
+  <hr class="my-5 w-full border-gray-300 border-t-5">
 </div>
+<%= turbo_frame_tag dom_id(@user) do %>
+  <div class="my-8 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2">
+    <div class="px-4 py-6 sm:p-8">
+      <div class="sm:flex sm:items-center">
+        <div class="sm:flex-auto">
+          <h1 class="text-lg font-semibold leading-6 text-indigo-500">Basic Information</h1>
+        </div>
+      </div>
+      <div class="my-5 border-t border-gray-100">
+        <dl class="divide-y divide-gray-100">
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">First Name</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.first_name %></dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">Last Name</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.last_name %></dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">CIN</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.cin %></dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">Birthday</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.birthdate %></dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">Gender</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.gender&.humanize %></dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">Phone</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.phone %></dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">Email</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.email %></dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">Marital status</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.marital_status&.humanize %></dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">Children number</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.children_number %></dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">About</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.about %></dd>
+          </div>
+        </dl>
+      </div>
+      <div class="sm:flex sm:items-center">
+        <div class="sm:flex-auto">
+          <h1 class="text-lg font-semibold leading-6 text-indigo-500">Address</h1>
+        </div>
+      </div>
+      <div class="my-5 border-t border-gray-100">
+        <dl class="divide-y divide-gray-100">
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">Street address</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.street %></dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">Country</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.country&.humanize %></dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">City</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.city %></dd>
+          </div>
+          <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+            <dt class="text-sm font-medium leading-6 text-gray-900">ZIP / Postal code</dt>
+            <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.zipcode %></dd>
+          </div>
+        </dl>
+      </div>
+    </div> 
+    <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+      <%= link_to "Edit", edit_user_path, class: "rounded-md bg-indigo-600 px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+    </div>
+  </div>
+<% end %>
