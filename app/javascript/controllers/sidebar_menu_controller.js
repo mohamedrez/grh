@@ -5,6 +5,7 @@ import { enter, leave } from "el-transition";
 export default class extends Controller {
   static targets = [ "overlay", "sidebar", "sidebarContainer" ]
   connect() {
+    console.log('this')
   }
   hide() {
     // this.overlayTarget.classList.add("hidden");

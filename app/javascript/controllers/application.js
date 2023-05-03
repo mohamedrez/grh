@@ -1,6 +1,6 @@
 import { Application } from "@hotwired/stimulus"
 import Notification from 'stimulus-notification'
-import { Alert, Autosave, Dropdown, Modal, Tabs, Popover, Toggle, Slideover } from "tailwindcss-stimulus-components"
+import { Alert, Autosave, Dropdown, Tabs, Popover, Toggle, Slideover } from "tailwindcss-stimulus-components"
 
 const application = Application.start()
 
