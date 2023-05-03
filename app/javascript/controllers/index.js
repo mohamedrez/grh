@@ -13,6 +13,9 @@ application.register("calendar", CalendarController)
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
+import ModalController from "./modal_controller"
+application.register("modal", ModalController)
+
 import SearchController from "./search_controller"
 application.register("search", SearchController)
 

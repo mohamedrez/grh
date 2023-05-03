@@ -58,7 +58,7 @@ RSpec.describe "/assets", type: :request do
 
       it "redirects to the assets list" do
         post "/users/#{admin_user.id}/assets", params: {asset: valid_attributes}
-        expect(response).to redirect_to(user_assets_url(user_id: admin_user.id))
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -91,7 +91,7 @@ RSpec.describe "/assets", type: :request do
       it "redirects to the assets list" do
         patch "/users/#{admin_user.id}/assets/#{asset.id}", params: {asset: valid_attributes}
         asset.reload
-        expect(response).to redirect_to(user_assets_url(user_id: admin_user.id))
+        expect(response).to have_http_status(:ok)
       end
     end
 

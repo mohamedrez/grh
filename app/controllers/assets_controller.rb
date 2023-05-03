@@ -21,7 +21,12 @@ class AssetsController < ApplicationController
     @asset.user_id = @user.id
 
     if @asset.save
-      redirect_to user_assets_url(@user.id), notice: t("flash.successfully_created")
+      flash.now[:notice] = "Asset successfully created."
+      render turbo_stream: [
+        turbo_stream.prepend("assets-list", @asset),
+        turbo_stream.replace("modal", partial: "create_button"),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
     else
       render :new, status: :unprocessable_entity
     end
@@ -30,7 +35,11 @@ class AssetsController < ApplicationController
   def update
     asset_params[:user_id] = params[:user_id]
     if @asset.update(asset_params)
-      redirect_to user_assets_url(params[:user_id]), notice: t("flash.successfully_created")
+      flash.now[:notice] = "User was successfully updated."
+      render turbo_stream: [
+        turbo_stream.replace(@asset, @asset),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
     else
       render :edit, status: :unprocessable_entity
     end
