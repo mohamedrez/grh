@@ -4,7 +4,7 @@ RSpec.describe UserRequestPolicy, type: :policy do
   let(:admin_user) { create(:user, admin: true) }
   let(:user) { create(:user) }
   let(:other_user) { create(:user) }
-  let(:user_requests) { [create(:user_request, user_id: user.id, requestable: create(:time_off_request, user_id: user.id))] }
+  let(:user_requests) { [create(:user_request, user_id: user.id, requestable: create(:time_request, user_id: user.id))] }
   subject { described_class }
 
   permissions :index? do

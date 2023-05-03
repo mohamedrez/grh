@@ -1,10 +1,10 @@
-<%= form_with(model: [user, time_off_request]) do |form| %>
+<%= form_with(model: [user, time_request]) do |form| %>
   <div class="space-y-12">
-    <% if time_off_request.errors.any? %>
+    <% if time_request.errors.any? %>
       <div style="color: red">
-        <h2><%= pluralize(time_off_request.errors.count, "error") %> prohibited this time_off_request from being saved:</h2>
+        <h2><%= pluralize(time_request.errors.count, "error") %> prohibited this time_request from being saved:</h2>
         <ul>
-          <% time_off_request.errors.each do |error| %>
+          <% time_request.errors.each do |error| %>
             <li><%= error.full_message %></li>
           <% end %>
         </ul>
@@ -26,7 +26,7 @@
       <div class="sm:col-span-3 sm:col-start-1">
         <%= form.label :category %>
         <div class="mt-2">
-          <%= form.select :category, options_for_select(TimeOffRequest.categories.map {|key, value| [key.humanize, key]}, @time_off_request.category) %>
+          <%= form.select :category, options_for_select(TimeRequest.categories.map {|key, value| [key.humanize, key]}, @time_request.category) %>
         </div>
       </div>
     </div>

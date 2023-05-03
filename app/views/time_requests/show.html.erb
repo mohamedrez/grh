@@ -1,7 +1,7 @@
 
 
 <div class="flex items-center justify-between gap-x-6 bg-indigo-600 px-6 py-5 sm:pr-3.5 lg:pl-8 rounded-lg">
-  <p class="text-2xl font-extrabold leading-none tracking-tight text-gray-900">Time Off Request <mark class="px-2 text-white bg-gray-500 rounded"><%= @time_off_request.category.humanize %></mark></p>
+  <p class="text-2xl font-extrabold leading-none tracking-tight text-gray-900">Time Off Request <mark class="px-2 text-white bg-gray-500 rounded"><%= @time_request.category.humanize %></mark></p>
   <div class="flex items-center gap-x-5 mr-5">
     <% if @user_request.approved? %>
       <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-green-100 text-green-800">
@@ -48,15 +48,15 @@
       </div>
     </div>
     <div class="flex items-center gap-x-4 text-lg font-medium">
-      <div class="text-indigo-600"><%= @time_off_request.start_date %></div>
+      <div class="text-indigo-600"><%= @time_request.start_date %></div>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-4 h-4">
         <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
       </svg>
-      <div class="text-indigo-600"><%= @time_off_request.end_date %></div>
+      <div class="text-indigo-600"><%= @time_request.end_date %></div>
     </div>
     <hr class="border border-gray-200 my-5 w-3/4 mx-auto">
     <div class="group relative">
-      <p class="mt-5 line-clamp-3 text-base font-medium leading-6 text-gray-900"><%= @time_off_request.content %></p>
+      <p class="mt-5 line-clamp-3 text-base font-medium leading-6 text-gray-900"><%= @time_request.content %></p>
     </div>
   </div>
 </div>
@@ -80,8 +80,8 @@
       <% Time.days_in_month(Time.current.month, Time.current.year).times do |i| %>
         <div class="border-t border-gray-200 py-2">
           <p class="mx-auto flex h-8 w-8 items-center justify-center rounded-full
-            <%= ((@time_off_request.start_date.day == i + 1 || @time_off_request.end_date.day == i + 1) && (Time.zone.today.day == i + 1)) ? 'font-semibold bg-gray-900 text-indigo-600' :
-              (@time_off_request.start_date.day == i + 1) || (@time_off_request.end_date.day == i + 1) ? 'bg-gray-900 font-semibold text-white' :
+            <%= ((@time_request.start_date.day == i + 1 || @time_request.end_date.day == i + 1) && (Time.zone.today.day == i + 1)) ? 'font-semibold bg-gray-900 text-indigo-600' :
+              (@time_request.start_date.day == i + 1) || (@time_request.end_date.day == i + 1) ? 'bg-gray-900 font-semibold text-white' :
               (Time.zone.today.day == i + 1) ? 'font-semibold text-indigo-600 hover:bg-gray-200' : 'text-gray-900 hover:bg-gray-200' %>">
             <%= i + 1 %>
           </p>
@@ -99,7 +99,7 @@
     <ol class="mt-4 space-y-1 text-sm leading-6 text-gray-500">
     <% @overlapping_requests.each do |request| %>
       <% user = User.find(request.user_request.user_id) %>
-      <%= link_to user_time_off_request_path(user_id: user.id, id: request.id) do %>
+      <%= link_to user_time_request_path(user_id: user.id, id: request.id) do %>
         <li class="group flex items-center space-x-4 rounded-xl px-4 py-2 focus-within:bg-gray-100 hover:bg-gray-100">
           <%= image_tag user.avatar_url_or_default, class: "h-10 w-10 rounded-full flex-none bg-gray-50" %>
           <div class="flex-auto">
