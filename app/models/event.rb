@@ -3,7 +3,7 @@ class Event < ApplicationRecord
   belongs_to :user
   def color
     case eventable_type
-    when "TimeOffRequest"
+    when "TimeRequest"
       "#853131"
     when "WorkFromHomeRequest"
       "#28a745"

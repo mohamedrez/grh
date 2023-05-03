@@ -15,7 +15,7 @@
           <tbody class="divide-y divide-gray-200 bg-white">
           <% user_requests.each do |request| %>
             <tr>
-              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= (request.requestable_type == "TimeOffRequest") ? "Time Off Request" : "Request" %></td>
+              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= (request.requestable_type == "TimeRequest") ? "Time Off Request" : "Request" %></td>
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= request.state.humanize %></td>
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= (request.managed_by_id.present?) ? User.find(request.managed_by_id).full_name : "No one yet" %></td>
               <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= time_ago_in_words(request.created_at) %></td>

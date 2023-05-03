@@ -1,4 +1,4 @@
-class TimeOffRequestPolicy < ApplicationPolicy
+class TimeRequestPolicy < ApplicationPolicy
   def index?
     user.admin || user == record.first.user_request.user
   end
