@@ -1,20 +1,22 @@
 class RequestMailer < ApplicationMailer
-  def emailing_the_request
+  def mailing
     @request = params[:request]
-    @user = User.find(@request.user_id)
-    @manger = User.find(@user.manager_id)
-    @email_manager = @manger.email
-
-    @request_message = request_message(@user)
+    @request_message = params[:request_message]
     @request_url = request_url(@request)
-    mail(to: @email_manager, subject: "A new request by #{@user.full_name}")
+
+    @employee = User.find(@request.user_id)
+    @manager = User.find(@employee.manager_id)
+
+    if @request.pending?
+      @email = @manager.email
+      mail(to: @email, subject: "A new request by #{@employee.full_name}")
+    else
+      @email = @employee.email
+      mail(to: @email, subject: "Your request has been reviewd by #{@manager.full_name}")
+    end
   end
 
   private
-
-  def request_message(user)
-    "We wanted to let you know that there is a new request by #{user.full_name} waiting for you."
-  end
 
   def request_url(request)
     user_time_request_url(user_id: request.user.id, id: request.requestable_id)
