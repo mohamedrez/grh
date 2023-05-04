@@ -1,7 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "/time_requests", type: :request do
-  let(:user) { create(:user, admin: true) }
+  let(:manager) { create(:user, admin: true) }
+  let(:user) { create(:user, manager_id: manager.id, admin: true) }
   let(:time_request) { create(:time_request, user_id: user.id) }
 
   let(:valid_attributes) do

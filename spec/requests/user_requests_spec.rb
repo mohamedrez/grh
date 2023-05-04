@@ -1,7 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "UserRequests", type: :request do
-  let(:admin_user) { create(:user, admin: true) }
+  let(:manager) { create(:user, admin: true) }
+  let(:admin_user) { create(:user, manager_id: manager.id, admin: true) }
   let(:user) { create(:user) }
   let(:time_request) { create(:time_request, user_id: admin_user.id, start_date: Date.today, end_date: (Date.today + 7)) }
 
