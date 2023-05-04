@@ -1,4 +1,21 @@
+<%= form_with method: :get, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |form| %>
+<div class="grid mb-5 max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
+  <div class="sm:col-span-3">
+    <%= form.label :service %>
+    <div class="mt-2">
+      <%= form.select :service, options_for_select(User.services.map {|key, value| [key.humanize, key]}.insert(0, "")  ) %>
+    </div>
+  </div>
+  <div class="sm:col-span-3">
+    <%= form.label :site %>
+    <div class="mt-2">
+      <%= form.select :site, options_for_select(Site.pluck(:name, :id).insert(0, "")) %>
+    </div>
+  </div>
+</div>
+<% end %>
+<%= turbo_frame_tag "search-results" do %>
 <div data-controller='calendar' >
-
   <div id='calendar' ></div>
 </div>
+<% end %>

@@ -48,46 +48,46 @@ RSpec.describe "/emergency_contacts", type: :request do
   end
 
   describe "POST /create" do
-    context 'when the emergency contact is successfully created' do
+    context "when the emergency contact is successfully created" do
       before do
         post "/users/#{user.id}/emergency_contacts", params: {emergency_contact: valid_attributes}
       end
 
-      it 'creates a new emergency contact' do
+      it "creates a new emergency contact" do
         expect(EmergencyContact.count).to eq(1)
       end
 
-      it 'returns a successful response' do
+      it "returns a successful response" do
         expect(response).to have_http_status(:ok)
       end
 
-      it 'sets the flash notice' do
-        expect(flash[:notice]).to eq('Emergency contact successfully created.')
+      it "sets the flash notice" do
+        expect(flash[:notice]).to eq("Emergency contact successfully created.")
       end
     end
 
-    context 'when the emergency contact fails to save' do
+    context "when the emergency contact fails to save" do
       before do
         post "/users/#{user.id}/emergency_contacts", params: {emergency_contact: invalid_attributes}
       end
 
-      it 'does not create a new emergency contact' do
+      it "does not create a new emergency contact" do
         expect(EmergencyContact.count).to eq(0)
       end
 
-      it 'returns an unprocessable entity status' do
+      it "returns an unprocessable entity status" do
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
   describe "PATCH /update" do
-    context 'when the emergency contact is successfully updated' do
+    context "when the emergency contact is successfully updated" do
       before do
         patch "/users/#{user.id}/emergency_contacts/#{emergency_contact.id}", params: {emergency_contact: valid_attributes}
       end
 
-      it 'returns a successful response' do
+      it "returns a successful response" do
         expect(response).to have_http_status(:ok)
       end
 
@@ -99,33 +99,33 @@ RSpec.describe "/emergency_contacts", type: :request do
         expect(emergency_contact.email).to eq("james@gmail.com")
       end
 
-      it 'sets the flash notice' do
-        expect(flash[:notice]).to eq('User was successfully updated.')
+      it "sets the flash notice" do
+        expect(flash[:notice]).to eq("User was successfully updated.")
       end
     end
 
-    context 'when the emergency contact fails to update' do
+    context "when the emergency contact fails to update" do
       before do
         patch "/users/#{user.id}/emergency_contacts/#{emergency_contact.id}", params: {emergency_contact: invalid_attributes}
       end
 
-      it 'returns an unprocessable entity status' do
+      it "returns an unprocessable entity status" do
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end
 
-  describe 'DELETE /destroy' do
+  describe "DELETE /destroy" do
     before do
       delete "/users/#{user.id}/emergency_contacts/#{emergency_contact.id}"
     end
 
-    it 'destroys the emergency contact' do
+    it "destroys the emergency contact" do
       expect(EmergencyContact.count).to eq(0)
     end
 
-    it 'sets the flash notice' do
-      expect(flash[:notice]).to eq('emergency contact was successfully destroyed.')
+    it "sets the flash notice" do
+      expect(flash[:notice]).to eq("emergency contact was successfully destroyed.")
     end
   end
 end

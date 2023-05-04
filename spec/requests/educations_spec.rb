@@ -11,8 +11,8 @@ RSpec.describe "/educations", type: :request do
       city: "Boston",
       education_level: :bachelor,
       study_field: :software_engineering,
-      start_date: '2018-01-01',
-      end_date: '2022-12-31',
+      start_date: "2018-01-01",
+      end_date: "2022-12-31",
       still_on_this_course: false
     }
   end
@@ -21,8 +21,8 @@ RSpec.describe "/educations", type: :request do
     {
       school: "",
       city: "",
-      start_date: '',
-      end_date: ''
+      start_date: "",
+      end_date: ""
     }
   end
 
