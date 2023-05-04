@@ -88,12 +88,6 @@
               <%= form.number_field :employee_number, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-3">
-            <%= form.label :manager_id %>
-            <div class="mt-2">
-              <%= form.select :manager_id, options_for_select(@manager_select.to_h, @user.manager_id) %>
-            </div>
-          </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :site_id %>
             <div class="mt-2">
@@ -104,6 +98,18 @@
             <%= form.label :service %>
             <div class="mt-2">
               <%= form.select :service, options_for_select(User.services.map {|key, value| [key.humanize, key]}, @user.service) %>
+            </div>
+          </div>
+          <div class="sm:col-span-3 sm:col-start-1">
+            <%= form.label :manager_id %>
+            <div class="mt-2">
+              <%= form.select :manager_id, options_for_select(@manager_select.to_h, @user.manager_id) %>
+            </div>
+          </div>
+          <div class="sm:col-span-3">
+            <%= form.label :contract %>
+            <div class="mt-2">
+              <%= form.select :contract, options_for_select(User.contracts.map {|key, value| [key.humanize, key]}, @user.contract) %>
             </div>
           </div>
           <div class="sm:col-span-2 sm:col-start-1">
@@ -125,49 +131,42 @@
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
-            <%= form.label :contract %>
-            <div class="mt-2">
-              <%= form.select :contract, options_for_select(User.contracts.map {|key, value| [key.humanize, key]}, @user.contract) %>
-            </div>
-          </div>
-          <div class="sm:col-span-3">
             <%= form.label :category %>
             <div class="mt-2">
               <%= form.select :category, options_for_select(User.categories.map {|key, value| [key.humanize, key]}, @user.category) %>
             </div>
           </div>
-          <div class="sm:col-span-3 sm:col-start-1">
+          <div class="sm:col-span-3">
             <%= form.label :cnss_number, "CNSS number" %>
             <div class="mt-2">
               <%= form.number_field :cnss_number, class: "w-full" %>
             </div>
           </div>
-
-          <div class="sm:col-span-3">
+          <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :brut_salary %>
             <div class="mt-2">
               <%= form.number_field  :brut_salary, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-3 sm:col-start-1">
+          <div class="sm:col-span-3">
             <%= form.label :net_salary %>
             <div class="mt-2">
               <%= form.number_field :net_salary, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-3">
+          <div class="sm:col-span-2 sm:col-start-1">
             <%= form.label :cnss_contribution, "CNSS contribution" %>
             <div class="mt-2">
               <%= form.number_field  :cnss_contribution, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-3 sm:col-start-1">
+          <div class="sm:col-span-2">
             <%= form.label :retirement_contribution %>
             <div class="mt-2">
               <%= form.number_field  :retirement_contribution, class: "w-full" %>
             </div>
           </div>
-          <div class="sm:col-span-3">
+          <div class="sm:col-span-2">
             <%= form.label :pto_number, "Paid Time Off" %>
             <div class="mt-2">
               <%= form.number_field :pto_number, class: "w-full bg-gray-100" %>
