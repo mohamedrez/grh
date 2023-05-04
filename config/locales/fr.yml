@@ -25,3 +25,6 @@ fr:
     dashboard:
       index:
         View_all_announcement: "Voir tous"
+    time_request_created: "La demande de congé a été créée avec succès."
+    time_request_updated: "La demande de congé a été mise à jour avec succès."
+    time_request_destroyed: "La demande de congé a été supprimée avec succès."

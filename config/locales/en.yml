@@ -25,3 +25,7 @@ en:
     dashboard:
       index:
         View_all_announcement: "View all"
+  time_requests:
+    time_request_created: "Time off request was successfully created."
+    time_request_updated: "Time off request was successfully updated."
+    time_request_destroyed: "Time off request was successfully destroyed."
