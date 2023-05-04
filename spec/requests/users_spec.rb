@@ -1,7 +1,7 @@
 require "rails_helper"
 
 RSpec.describe "Users", type: :request do
-  let!(:manager) { create(:user, admin: true) }
+  let(:manager) { create(:user, admin: true) }
   let!(:user) { create(:user, manager_id: manager.id, admin: true) }
   let(:site) { create(:site, id: 1) }
   let(:valid_attributes) do
