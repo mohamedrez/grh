@@ -6,6 +6,7 @@ fr:
     successfully_updated: "Il a été mis à jour avec succès."
     successfully_imported: "Les utilisateurs ont été importés avec succès."
     please_select_file: "Veuillez sélectionner un fichier à importer."
+    announcement_destroyed: "Annonce supprimée avec succès.."
   experiences:
     experience_created: "L'expérience a été créée avec succès."
     experience_updated: "L'expérience a été mise à jour avec succès."

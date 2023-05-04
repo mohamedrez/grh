@@ -21,7 +21,7 @@ class AnnouncementsController < ApplicationController
     @announcement.user_id = current_user.id
 
     if @announcement.save
-      redirect_to announcements_path, notice: t("flash.successfully_created")
+      redirect_to announcement_path(@announcement), notice: t("flash.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -37,7 +37,7 @@ class AnnouncementsController < ApplicationController
 
   def destroy
     @announcement.destroy
-    redirect_to announcements_path
+    redirect_to announcements_path, notice: t("flash.announcement_destroyed")
   end
 
   private
