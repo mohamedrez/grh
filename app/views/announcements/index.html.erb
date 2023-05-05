@@ -1,0 +1,18 @@
+ <%=link_to t("views.announcements.index.create_announcement"), new_announcement_path, class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
+ 
+ <% @announcements.each do |announcement| %>
+  <div class="m-3 p-3 border border-sky-500">
+    <h4 class="uppercase text-xl font-mono font-bold"><%=announcement.title%></h4>
+    <p class=""> status:  <%= announcement.status %> </p>
+    <span>published :<%= announcement.published_at%></span>
+    <p><%= announcement.content %></p>
+    <div class="pt-3">
+      <%=link_to "Show" , announcement_path(announcement.id) ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
+      <%=link_to "edit" , edit_announcement_path(announcement.id) ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
+      <%=link_to "delete" , announcement_path(announcement.id),data: {turbo_method: :delete, turbo_confirm: "Are you sure?" } ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
+    </div>
+  </div>
+<%end%>
+
+
+
