@@ -17,3 +17,10 @@ fr:
     time_Off_requests_created: "La demande de congé a été créée avec succès."
     time_Off_requests_updated: "La demande de congé a été mise à jour avec succès."
     time_Off_requests_destroyed: "La demande de congé a été supprimée avec succès."
+  views:
+    announcements:
+      index:
+        create_announcement: "Créer une nouvelle annonce"
+    dashboard:
+      index:
+        View_all_announcement: "Voir tous"

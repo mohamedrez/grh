@@ -17,3 +17,10 @@ en:
     time_Off_requests_created: "Time off request was successfully created."
     time_Off_requests_updated: "Time off request was successfully updated."
     time_Off_requests_destroyed: "Time off request was successfully destroyed."
+  views:
+    announcements:
+      index:
+        create_announcement: "Create new Announcement"
+    dashboard:
+      index:
+        View_all_announcement: "View all"

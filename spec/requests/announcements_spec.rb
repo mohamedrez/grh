@@ -85,9 +85,9 @@ RSpec.describe "Announcements", type: :request do
     end
   end 
 
-  describe "PATCH /update" do
-    context "with valid parameters" do
-      it "updates the requested announcement" do 
+  describe 'PATCH /update' do
+    context 'with valid parameters' do
+      it 'updates the requested announcement' do 
         patch announcement_url(id: announcement.id), params: {announcement: valid_attributes}
         announcement.reload
         expect(announcement.title).to eq("New Title")
@@ -95,10 +95,20 @@ RSpec.describe "Announcements", type: :request do
         expect(announcement.published_at).to eq(Date.new(2023, 05, 04))
       end
 
-      it "redirects to the announcement" do
+      it 'redirects to the announcement' do
         patch announcement_path(id: announcement.id), params: {announcement: valid_attributes}
         announcement.reload
         expect(@response).to redirect_to(announcements_path)  
+      end
+    end
+
+    context 'when the announcement fails to update' do
+      before do
+        patch "/announcements/#{announcement.id}", params: {announcement: invalid_attributes}
+      end
+
+      it 'returns an unprocessable entity status' do
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
   end

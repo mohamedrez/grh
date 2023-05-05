@@ -179,10 +179,7 @@
                   <li class="py-5">
                     <div class="relative focus-within:ring-2 focus-within:ring-cyan-500">
                       <h3 class="text-sm font-semibold text-gray-800">
-                        <!--<a href="#" class="hover:underline focus:outline-none">
-                          <span class="absolute inset-0" aria-hidden="true"></span>
-                        </a>-->
-                          <%=link_to announcement.title.titleize, announcement_path(announcement.id) , class:"hover:underline focus:outline-none"%>
+                        <%=link_to announcement.title.titleize, announcement_path(announcement.id) , class:"hover:underline focus:outline-none"%>
                       </h3>
                       <span class="m-1 line-clamp-2 text-sm text-gray-600"><%= announcement.status.titleize %></span>
                       <%= announcement.content.to_plain_text[0, 50]... %>
@@ -192,7 +189,7 @@
                 </ul>
               </div>
               <div class="mt-6">
-                <%=link_to "View all" ,announcements_path , class: "flex w-full items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"%>
+                <%=link_to t("views.dashboard.index.View_all_announcement") ,announcements_path , class: "flex w-full items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"%>
               </div>
             </div>
           </div>
