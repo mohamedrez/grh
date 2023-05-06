@@ -4,6 +4,7 @@ en:
       not_authorized: "You are not authorized to perform this action."
     successfully_created: "It was successfully created."
     successfully_updated: "It was successfully updated."
+    successfully_destroyed: "It was successfully destroyed."
     successfully_imported : "Users imported successfully."
     please_select_file: "Please select a file to import."
   experiences:

@@ -4,6 +4,7 @@ fr:
       not_authorized: "Vous n'êtes pas autorisé(e) à effectuer cette action."
     successfully_created: "Il a été créé avec succès."
     successfully_updated: "Il a été mis à jour avec succès."
+    successfully_destroyed: "Il a été supprimé avec succès."
     successfully_imported: "Les utilisateurs ont été importés avec succès."
     please_select_file: "Veuillez sélectionner un fichier à importer."
   experiences:

@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[edit update]
-  before_action :set_user_request, only: %i[index edit]
+  before_action :set_comment, only: %i[edit update destroy]
+  before_action :set_user_request, only: %i[index edit destroy]
 
   def index
     @comments = Comment.where(user_request_id: @user_request.id)
@@ -26,6 +26,12 @@ class CommentsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @comment.destroy
+
+    redirect_to comments_url(user_request_id: @comment.user_request_id), notice: t("flash.successfully_destroyed")
   end
 
   private

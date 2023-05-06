@@ -43,7 +43,7 @@
                           <div data-dropdown-target="menu" class="absolute right-0 mt-2 hidden">
                             <div class="bg-white shadow rounded border overflow-hidden">
                               <%= link_to 'Edit', edit_comment_path(id: comment.id, user_request_id: comment.user_request_id), data: {action: "click->dropdown#toggle"}, class: 'no-underline block pl-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
-                              <%= link_to 'Delete', "#", data: {action: "click->dropdown#toggle"}, class: 'no-underline block px-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
+                              <%= button_to 'Delete', "/comments/#{comment.id}?user_request_id=#{comment.user_request_id}", method: :delete, data: {action: "click->dropdown#toggle", turbo_frame: "_top", turbo_confirm: "Are you sure you wanna delete this?"}, class: 'no-underline block px-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
                             </div>
                           </div>
                         </div>
