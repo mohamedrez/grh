@@ -16,7 +16,7 @@ Rails.application.routes.draw do
 
   scope "(:locale)", locale: /en|fr/ do
     resources :announcements
-
+    resources :comments
     resources :holidays
     resources :home, only: [:index]
 
