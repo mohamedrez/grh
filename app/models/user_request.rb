@@ -19,13 +19,14 @@ class UserRequest < ApplicationRecord
   end
 
   def mailing_manager
-    employee = User.find(user_id)
-    RequestMailer.with(request: self, request_message: "We wanted to let you know that there is a new request by #{employee.full_name} waiting for you.").mailing.deliver_now
+    subject = "You have a new request"
+    email = user.email
+    NotificationMailerJob.perform_later(self, subject, email)
   end
 
   def mailing_employee
-    employee = User.find(user_id)
-    manager = User.find(employee.manager_id)
-    RequestMailer.with(request: self, request_message: "We wanted to let you know that your request was #{state} by #{manager.full_name}.").mailing.deliver_now
+    subject = "Your request has been reviewd"
+    email = user.manager.email
+    NotificationMailerJob.perform_later(self, subject, email)
   end
 end
