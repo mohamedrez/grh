@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   before_action :set_comment, only: %i[edit update]
-  before_action :set_user_request, only: %i[index edit]
+  before_action :set_user_request, only: %i[index edit create update]
 
   def index
     @comments = Comment.where(user_request_id: @user_request.id)
@@ -12,19 +12,21 @@ class CommentsController < ApplicationController
 
   def create
     @comment = Comment.new(comment_params)
+    @comment.author_id = current_user.id
+    @comment.user_request_id = @user_request.id
+
     if @comment.save
-      redirect_to comments_url(user_request_id: @comment.user_request_id), notice: t("flash.successfully_created")
+      redirect_to comments_url(user_request_id: @user_request.id), notice: t("flash.successfully_created")
     else
-      render :new, status: :unprocessable_entity
+      redirect_to comments_url(user_request_id: @user_request.id), alert: t("flash.comment_cant_be_blank")
     end
   end
 
   def update
-    @user_request = UserRequest.find(params[:comment][:user_request_id])
     if @comment.update(comment_params)
-      redirect_to comments_url(user_request_id: @comment.user_request_id), notice: t("flash.successfully_updated")
+      redirect_to comments_url(user_request_id: @user_request.id), notice: t("flash.successfully_updated")
     else
-      render :edit, status: :unprocessable_entity
+      redirect_to comments_url(user_request_id: @user_request.id), alert: t("flash.comment_cant_be_blank")
     end
   end
 
