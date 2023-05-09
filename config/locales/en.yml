@@ -14,10 +14,10 @@ en:
   educations:
     education_created: "Education was successfully created."
     education_updated: "Education was successfully updated."
-  time_Off_requests:
-    time_Off_requests_created: "Time off request was successfully created."
-    time_Off_requests_updated: "Time off request was successfully updated."
-    time_Off_requests_destroyed: "Time off request was successfully destroyed."
+  time_requests:
+    time_request_created: "Time off request was successfully created."
+    time_request_updated: "Time off request was successfully updated."
+    time_request_destroyed: "Time off request was successfully destroyed."
   views:
     announcements:
       index:
