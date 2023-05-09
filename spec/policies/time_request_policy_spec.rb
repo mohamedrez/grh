@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe TimeRequestPolicy, type: :policy do
   let(:admin) { create(:user, admin: true) }
-  let(:user) { create(:user) }
+  let(:user) { create(:user, manager_id: admin.id) }
   let(:other_user) { create(:user) }
   let(:records) { [create(:time_request, user_id: user.id)] }
   let(:record) { create(:time_request, user_id: user.id) }

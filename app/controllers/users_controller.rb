@@ -10,6 +10,7 @@ class UsersController < ApplicationController
 
   def show
     authorize @user
+    @manager = User.find(@user.manager_id)
   end
 
   def new

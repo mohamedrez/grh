@@ -6,6 +6,8 @@ fr:
     successfully_updated: "Il a été mis à jour avec succès."
     successfully_imported: "Les utilisateurs ont été importés avec succès."
     please_select_file: "Veuillez sélectionner un fichier à importer."
+    announcement_destroyed: "Annonce supprimée avec succès.."
+    comment_cant_be_blank: "Le commentaire ne peut pas être vide."
   experiences:
     experience_created: "L'expérience a été créée avec succès."
     experience_updated: "L'expérience a été mise à jour avec succès."
@@ -13,6 +15,13 @@ fr:
     education_created: "L'éducation a été créée avec succès."
     education_updated: "L'éducation a été mise à jour avec succès."
   time_Off_requests:
-    time_Off_requests_created: "La demande de congé a été créée avec succès."
-    time_Off_requests_updated: "La demande de congé a été mise à jour avec succès."
-    time_Off_requests_destroyed: "La demande de congé a été supprimée avec succès."
+    time_request_created: "La demande de congé a été créée avec succès."
+    time_request_updated: "La demande de congé a été mise à jour avec succès."
+    time_request_destroyed: "La demande de congé a été supprimée avec succès."
+  views:
+    announcements:
+      index:
+        create_announcement: "Créer une nouvelle annonce"
+    dashboard:
+      index:
+        View_all_announcement: "Voir tous"

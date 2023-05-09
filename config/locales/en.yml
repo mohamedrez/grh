@@ -6,13 +6,22 @@ en:
     successfully_updated: "It was successfully updated."
     successfully_imported : "Users imported successfully."
     please_select_file: "Please select a file to import."
+    announcement_destroyed: "Announcement was successfully destroyed."
+    comment_cant_be_blank: "Comment can't be blank"
   experiences:
     experience_created: "Experience was successfully created."
     experience_updated: "Experience was successfully updated."
   educations:
     education_created: "Education was successfully created."
     education_updated: "Education was successfully updated."
-  time_Off_requests:
-    time_Off_requests_created: "Time off request was successfully created."
-    time_Off_requests_updated: "Time off request was successfully updated."
-    time_Off_requests_destroyed: "Time off request was successfully destroyed."
+  time_requests:
+    time_request_created: "Time off request was successfully created."
+    time_request_updated: "Time off request was successfully updated."
+    time_request_destroyed: "Time off request was successfully destroyed."
+  views:
+    announcements:
+      index:
+        create_announcement: "Create new Announcement"
+    dashboard:
+      index:
+        View_all_announcement: "View all"
