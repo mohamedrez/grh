@@ -2,8 +2,6 @@ fr:
   flash:
     application_controller:
       not_authorized: "Vous n'êtes pas autorisé(e) à effectuer cette action."
-    successfully_created: "Il a été créé avec succès."
-    successfully_updated: "Il a été mis à jour avec succès."
     successfully_imported: "Les utilisateurs ont été importés avec succès."
     please_select_file: "Veuillez sélectionner un fichier à importer."
     announcement_destroyed: "Annonce supprimée avec succès.."
@@ -25,3 +23,24 @@ fr:
     dashboard:
       index:
         View_all_announcement: "Voir tous"
+
+  buttons:
+    cancel: "Annuler"
+    save: "Enregistrer"
+    edit: "Modifier"
+    specific:
+      create_asset: "Créer un élément"
+  attributes:
+    asset:
+      category: "Catégorie"
+      serial: "Numéro de série"
+      date_assigned: "Date d'affectation"
+      date_returned: "Date de retour"
+      description: "Description"
+  views:
+    assets:
+      title_assets: "Éléments"
+      assets_list: "Liste des éléments qui vous ont été affectés."
+  flash:
+    successfully_created: "Création effectuée avec succès."
+    successfully_updated: "Mise à jour effectuée avec succès."

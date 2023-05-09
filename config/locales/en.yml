@@ -2,8 +2,6 @@ en:
   flash:
     application_controller:
       not_authorized: "You are not authorized to perform this action."
-    successfully_created: "It was successfully created."
-    successfully_updated: "It was successfully updated."
     successfully_imported : "Users imported successfully."
     please_select_file: "Please select a file to import."
     announcement_destroyed: "Announcement was successfully destroyed."
@@ -25,3 +23,25 @@ en:
     dashboard:
       index:
         View_all_announcement: "View all"
+
+  buttons:
+    cancel: "Cancel"
+    save: "Save"
+    edit: "Edit"
+    specific:
+      create_asset: "Create asset"
+  attributes:
+    asset:
+      category: "Category"
+      serial: "Serial #"
+      date_assigned: "Date assigned"
+      date_returned: "Date returned"
+      description: "Description"
+  views:
+    assets:
+      title_assets: "Assets"
+      assets_list: "List of assets assigned to you."
+  flash:
+    successfully_created: "Successfully created."
+    successfully_updated: "Successfully updated."
+  

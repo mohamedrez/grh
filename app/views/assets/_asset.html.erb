@@ -4,24 +4,24 @@
     <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
     <div class="text-sm font-medium leading-6 text-gray-900"><%= asset.serial %></div>
     <div class="relative ml-auto">
-      <%= link_to "Edit", edit_user_asset_path(user_id: asset.user_id, id: asset.id), class: "hidden rounded-md bg-white px-5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block" %>
+      <%= link_to t("buttons.edit"), edit_user_asset_path(user_id: asset.user_id, id: asset.id), class: "hidden rounded-md bg-white px-5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block" %>
     </div>
   </div>
     <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
       <div class="flex justify-between gap-x-4 py-3">
-        <dt class="text-gray-500">Category</dt>
+        <dt class="text-gray-500"><%= t("attributes.asset.category") %></dt>
         <dd class="font-medium text-gray-900"><%= asset.category&.humanize %></dd>
       </div>
       <div class="flex justify-between gap-x-4 py-3">
-        <dt class="text-gray-500">Date assigned</dt>
+        <dt class="text-gray-500"><%= t("attributes.asset.date_assigned") %></dt>
         <dd class="font-medium text-gray-900"><%= asset.date_assigned %></dd>
       </div>
       <div class="flex justify-between gap-x-4 py-3">
-        <dt class="text-gray-500">Date returned</dt>
+        <dt class="text-gray-500"><%= t("attributes.asset.date_returned") %></dt>
         <dd class="font-medium text-gray-900"><%= asset.date_returned %></dd>
       </div>
       <div class="flex justify-between gap-x-4 py-3">
-        <dt class="text-gray-500">Description</dt>
+        <dt class="text-gray-500"><%= t("attributes.asset.description") %></dt>
         <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 ml-10">
           <p class="text-sm leading-6 text-gray-500"><%= asset.description %></p>
         </div>
