@@ -3,28 +3,28 @@ require "rails_helper"
 RSpec.describe "/experiences", type: :request do
   let(:admin_user) { create(:user, admin: true) }
   let(:experience) { create(:experience, user_id: admin_user.id) }
-  
+
   let(:valid_attributes) do
     {
-      job_title: 'Software Developer',
-      company_name: 'Acme Inc.',
+      job_title: "Software Developer",
+      company_name: "Acme Inc.",
       employment_type: :contractor,
-      start_date: '2022-01-01',
-      end_date: '2022-12-31',
+      start_date: "2022-01-01",
+      end_date: "2022-12-31",
       city: "New City",
       country: :usa,
-      work_description: 'Worked on a variety of projects using Ruby on Rails and React'
+      work_description: "Worked on a variety of projects using Ruby on Rails and React"
     }
   end
 
   let(:invalid_attributes) do
     {
-      job_title: '',
-      company_name: '',
-      start_date: '',
-      end_date: '',
+      job_title: "",
+      company_name: "",
+      start_date: "",
+      end_date: "",
       city: "",
-      work_description: 'Worked on a variety of projects using Ruby on Rails and React'
+      work_description: "Worked on a variety of projects using Ruby on Rails and React"
     }
   end
 

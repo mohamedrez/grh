@@ -1,4 +1,23 @@
 fr:
+  activerecord:
+    attributes:
+      time_request:
+        start_date: "Date de début"
+        end_date: "Date de fin"
+        category: "Catégorie"
+    enums:
+      time_request:
+        category:
+          vacation_time: "Temps de vacances"
+          sick_time: "Congé de maladie"
+          bereavement_time: "Congé pour décès"
+          parental_leave: "Congé parental"
+          remote_work: "Travail à distance"
+          personal_time: "Temps personnel"
+  errors:
+    messages:
+      greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
+      blank: "ne peut pas être vide"
   flash:
     application_controller:
       not_authorized: "Vous n'êtes pas autorisé(e) à effectuer cette action."
