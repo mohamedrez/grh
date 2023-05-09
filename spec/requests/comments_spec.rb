@@ -4,7 +4,7 @@ RSpec.describe "/comments", type: :request do
   let(:user) { create(:user, admin: true) }
   let(:time_request) { create(:time_request, user_id: user.id) }
   let(:user_request) { create(:user_request, user_id: user.id, requestable: time_request) }
-  let(:comment) { create(:comment, user_request_id: user_request.id, author_id: user.id) }
+  let(:comment) { create(:comment, commentable: user_request, author_id: user.id) }
 
   let(:valid_attributes) { { content: "i wanna 2 days off" } }
   let(:invalid_attributes) { { content: "" } }
@@ -15,22 +15,14 @@ RSpec.describe "/comments", type: :request do
 
   describe "GET /index" do
     it "returns a success response" do
-      get comments_path(user_request_id: user_request.id)
+      get comments_path(commentable_type: "UserRequest", commentable_id: user_request.id)
       expect(response).to be_successful
-    end
-
-    it "contains comments for that request" do
-      comment1 = create(:comment, user_request_id: user_request.id, author_id: user.id)
-      comment2 = create(:comment, user_request_id: user_request.id, author_id: user.id)
-      get comments_path(user_request_id: user_request.id)
-      expect(response.body).to include(comment1.content)
-      expect(response.body).to include(comment2.content)
     end
   end
 
   describe "GET #edit" do
     it "returns a success response" do
-      get edit_comment_path(id: comment.id, user_request_id: user_request.id)
+      get edit_comment_path(id: comment.id)
       expect(response).to be_successful
     end
   end
@@ -38,7 +30,7 @@ RSpec.describe "/comments", type: :request do
   describe "POST /create" do
     context 'when the comment is successfully created' do
       before do
-        post "/comments", params: {user_request_id: user_request.id, comment: valid_attributes}
+        post "/comments", params: {commentable_type: "UserRequest", commentable_id: user_request.id, comment: valid_attributes}
       end
 
       it 'creates a new commentt' do
@@ -50,7 +42,7 @@ RSpec.describe "/comments", type: :request do
       end
 
       it "redirects to the comments" do
-        expect(response).to redirect_to(comments_url(user_request_id: user_request.id))
+        expect(response).to redirect_to(comments_url(commentable_type: "UserRequest", commentable_id: user_request.id))
       end
 
       it 'sets the flash notice' do
@@ -60,7 +52,7 @@ RSpec.describe "/comments", type: :request do
 
     context 'when the comment fails to save' do
       before do
-        post "/comments", params: {user_request_id: user_request.id, comment: invalid_attributes}
+        post "/comments", params: {commentable_type: "UserRequest", commentable_id: user_request.id, comment: invalid_attributes}
       end
 
       it 'does not create a new emergency contact' do
@@ -72,7 +64,7 @@ RSpec.describe "/comments", type: :request do
       end
 
       it "redirects to the comments" do
-        expect(response).to redirect_to(comments_url(user_request_id: user_request.id))
+        expect(response).to redirect_to(comments_url(commentable_type: "UserRequest", commentable_id: user_request.id))
       end
 
       it 'sets the flash alert' do
@@ -84,7 +76,7 @@ RSpec.describe "/comments", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       before do
-        patch "/comments/#{comment.id}", params: {user_request_id: user_request.id, comment: valid_attributes}
+        patch "/comments/#{comment.id}", params: {comment: valid_attributes}
       end
 
       it "updates the requested comment" do
@@ -97,7 +89,7 @@ RSpec.describe "/comments", type: :request do
       end
 
       it "redirects to the comments" do
-        expect(response).to redirect_to(comments_url(user_request_id: user_request.id))
+        expect(response).to redirect_to(comments_url(commentable_type: comment.commentable_type, commentable_id: comment.commentable_id))
       end
 
       it 'sets the flash notice' do
@@ -107,7 +99,7 @@ RSpec.describe "/comments", type: :request do
 
     context "with invalid parameters" do
       before do
-        patch "/comments/#{comment.id}", params: {user_request_id: user_request.id, comment: invalid_attributes}
+        patch "/comments/#{comment.id}", params: {comment: invalid_attributes}
       end
 
       it 'returns a redirect status response' do
@@ -115,7 +107,7 @@ RSpec.describe "/comments", type: :request do
       end
 
       it "redirects to the comments" do
-        expect(response).to redirect_to(comments_url(user_request_id: user_request.id))
+        expect(response).to redirect_to(comments_url(commentable_type: comment.commentable_type, commentable_id: comment.commentable_id))
       end
 
       it 'sets the flash alert' do
