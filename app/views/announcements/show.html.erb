@@ -1,0 +1,10 @@
+<h1>Edit the Announcement</h1>
+
+<div class="m-4" >
+    <h2 class="uppercase text-xl font-mono font-bold"><%= @announcement.title %></h2>
+    <p><%= @announcement.status %></p>
+    <p><%= @announcement.published_at %></p>
+    <p><%= @announcement.content %></p>
+</div>
+
+<%= link_to "Back", announcements_path, class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>

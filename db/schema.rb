@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_03_191259) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_08_145646) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -60,6 +60,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_191259) do
     t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
+  create_table "announcements", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.integer "status"
+    t.bigint "user_id", null: false
+    t.date "published_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_announcements_on_user_id"
+  end
+
   create_table "assets", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.integer "category"
     t.text "description"
@@ -70,6 +80,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_191259) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_assets_on_user_id"
+  end
+
+  create_table "comments", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "content"
+    t.bigint "author_id", null: false
+    t.string "commentable_type", null: false
+    t.bigint "commentable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_comments_on_author_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable"
   end
 
   create_table "educations", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -414,7 +435,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_03_191259) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
+  add_foreign_key "announcements", "users"
   add_foreign_key "assets", "users"
+  add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "educations", "users"
   add_foreign_key "emergency_contacts", "users"
   add_foreign_key "experiences", "users"
