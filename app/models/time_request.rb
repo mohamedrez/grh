@@ -7,10 +7,15 @@ class TimeRequest < ApplicationRecord
   validates_comparison_of :end_date, greater_than_or_equal_to: :start_date
   validates :start_date, :end_date, :category, presence: true
 
-  enum :category, {
-    vacation_time: 0, sick_time: 1, bereavement_time: 3, parental_leave: 4,
-    remote_work: 5, personal_time: 6
+  enum category: {
+    vacation_time: 0,
+    sick_time: 1,
+    bereavement_time: 3,
+    parental_leave: 4,
+    remote_work: 5,
+    personal_time: 6
   }
+
   delegate :user, to: :user_request
 
   attr_accessor :user_id

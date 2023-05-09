@@ -1,4 +1,23 @@
 en:
+  activerecord:
+    attributes:
+      time_request:
+        start_date: "Start Date"
+        end_date: "End Date"
+        category: "Category"
+    enums:
+      time_request:
+        category:
+          vacation_time: "Vacation Time"
+          sick_time: "Sick Time"
+          bereavement_time: "Bereavement Time"
+          parental_leave: "Parental Leave"
+          remote_work: "Remote Work"
+          personal_time: "Personal Time"
+  errors:
+    messages:
+      greater_than_or_equal_to: "must be greater than or equal to %{count}"
+      blank: "can't be blank"
   flash:
     application_controller:
       not_authorized: "You are not authorized to perform this action."
