@@ -9,7 +9,7 @@
     <div class="absolute inset-x-0 bottom-0 flex justify-between py-2 pl-3 pr-2">
       <div class="flex items-center space-x-5"></div>
       <div class="flex items-center justify-between">
-        <%= link_to 'Cancel', comments_url(user_request_id: user_request.id), class: "rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" %>
+        <%= link_to 'Cancel', comments_url(commentable_type: commentable_type, commentable_id: commentable_id), class: "rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" %>
         <%= form.submit ((action_name != 'edit') ? "Comment" : "Edit"), class: "ml-2 rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
       </div>
     </div>

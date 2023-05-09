@@ -59,7 +59,7 @@
       <p class="mt-5 line-clamp-3 text-base font-medium leading-6 text-gray-900"><%= @time_request.content %></p>
     </div>
   </div>
-  <%= turbo_frame_tag "comments", src: comments_path(user_request_id: @user_request.id) %>
+  <%= turbo_frame_tag "comments", src: comments_path(commentable_type: "UserRequest", commentable_id: @user_request.id) %>
 </div>
 
 <hr class="border border-gray-200 my-10 w-3/4 mx-auto">

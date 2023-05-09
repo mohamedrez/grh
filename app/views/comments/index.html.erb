@@ -42,7 +42,7 @@
                           </div>
                           <div data-dropdown-target="menu" class="absolute right-0 mt-2 hidden">
                             <div class="bg-white shadow rounded border overflow-hidden">
-                              <%= link_to 'Edit', edit_comment_path(id: comment.id, user_request_id: comment.user_request_id), data: {action: "click->dropdown#toggle"}, class: 'no-underline block px-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
+                              <%= link_to 'Edit', edit_comment_path(comment), data: {action: "click->dropdown#toggle"}, class: 'no-underline block px-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
                             </div>
                           </div>
                         </div>
@@ -55,7 +55,7 @@
           <% end %>
         </ul>
       </div>
-      <%= render partial: "form", locals: {comment: Comment.new, user_request: @user_request, author: current_user, url: "/comments?user_request_id=#{@user_request.id}"} %>
+      <%= render partial: "form", locals: {comment: Comment.new, commentable_type: @commentable_type, commentable_id: @commentable_id, author: current_user, url: @url} %>
     </div>
   </div>
 <% end %>
