@@ -19,7 +19,7 @@ class EmergencyContactsController < ApplicationController
     @emergency_contact.user_id = @user.id
 
     if @emergency_contact.save
-      flash.now[:notice] = "Emergency contact successfully created."
+      flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
         turbo_stream.prepend("emergency_contacts", @emergency_contact),
         turbo_stream.replace("new-emergency-contact-form", partial: "form", locals: {user: @user, emergency_contact: EmergencyContact.new}),
@@ -33,7 +33,7 @@ class EmergencyContactsController < ApplicationController
   def update
     emergency_contact_params[:user_id] = params[:user_id]
     if @emergency_contact.update(emergency_contact_params)
-      flash.now[:notice] = "User was successfully updated."
+      flash.now[:notice] = t("flash.successfully_updated")
       render turbo_stream: [
         turbo_stream.replace(@emergency_contact, @emergency_contact),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
@@ -45,7 +45,7 @@ class EmergencyContactsController < ApplicationController
 
   def destroy
     @emergency_contact.destroy
-    flash.now[:notice] = "emergency contact was successfully destroyed."
+    flash.now[:notice] = t("flash.successfully_destroyed")
     render turbo_stream: [
       turbo_stream.remove(@emergency_contact),
       turbo_stream.replace("notification_alert", partial: "layouts/alert")

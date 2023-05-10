@@ -21,9 +21,8 @@ en:
     cancel: "Cancel"
     save: "Save"
     edit: "Edit"
+    add: "Add"
     comment: "Comment"
-    specific:
-      create_asset: "Create asset"
   attributes:
     asset:
       category: "Category"
@@ -41,6 +40,11 @@ en:
       company_name: "Company name"
       employment_type: "Employment type"
       work_description: "Work description"
+    emergency_contact:
+      name: "Name"
+      email: "Email"
+      relationship: "Relationship"
+      phone: "Phone"
     shared:
       start_date: "Start date"
       end_date: "End date"
@@ -58,9 +62,13 @@ en:
       add_education: "Add new education"
     experiences:
       add_experience: "Add new experience"
+    emergency_contacts:
+      title_emergency_contact: "Emergency contacts"
+      emergency_contacts_list: "A list of all of your emergency contacts."
   flash:
     successfully_created: "Successfully created"
     successfully_updated: "Successfully updated"
+    successfully_destroyed: "Successfully destroyed"
   errors:
     comment_cant_be_blank: "Comment can't be blank"
     prohibited: "prohibited it from being saved:"

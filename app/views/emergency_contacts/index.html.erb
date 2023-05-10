@@ -5,16 +5,16 @@
   <div class="px-4 sm:px-6 lg:px-8 mt-10">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1 class="text-base font-semibold leading-6 text-indigo-500">Emergency contacts</h1>
-        <p class="mt-2 text-sm text-gray-700">A list of all of your emergency contacts.</p>
+        <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.emergency_contacts.title_emergency_contact") %></h1>
+        <p class="mt-2 text-sm text-gray-700"><%= t("views.emergency_contacts.emergency_contacts_list") %></p>
       </div>
     </div>
     <div class="min-w-full my-8">
       <div class="table-4 font-medium text-sm min-w-full rounded-tr-lg rounded-tl-lg">
-        <div>Name</div>
-        <div>Email</div>
-        <div>Relationship</div>
-        <div>Phone</div>
+        <div><%= t("attributes.emergency_contact.name") %></div>
+        <div><%= t("attributes.emergency_contact.email") %></div>
+        <div><%= t("attributes.emergency_contact.relationship") %></div>
+        <div><%= t("attributes.emergency_contact.phone") %></div>
         <div></div>
       </div>
       <%= turbo_frame_tag "new-emergency-contact-form", src: new_user_emergency_contact_path(@user.id) %>

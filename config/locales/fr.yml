@@ -21,9 +21,8 @@ fr:
     cancel: "Annuler"
     save: "Enregistrer"
     edit: "Modifier"
+    add: "Ajouter"
     comment: "Commentaire"
-    specific:
-      create_asset: "Créer un élément"
   attributes:
     asset:
       category: "Catégorie"
@@ -41,6 +40,11 @@ fr:
       company_name: "Nom de l'entreprise"
       employment_type: "Type d'emploi"
       work_description: "Description du travail"
+    emergency_contact:
+      name: "Nom"
+      email: "E-mail"
+      relationship: "Relation"
+      phone: "Téléphone"
     shared:
       start_date: "Date de début"
       end_date: "Date de fin"
@@ -58,9 +62,13 @@ fr:
       add_education: "Ajouter une nouvelle formation"
     experiences:
       add_experience: "Ajouter une nouvelle expérience"
+    emergency_contacts:
+      title_emergency_contact: "Contacts d'urgence"
+      emergency_contacts_list: "Une liste de tous vos contacts d'urgence."
   flash:
     successfully_created: "Création effectuée avec succès."
     successfully_updated: "Mise à jour effectuée avec succès."
+    successfully_destroyed: "Supprimé(e) avec succès"
   errors:
     comment_cant_be_blank: "Commentaire ne peut pas être vide."
     prohibited: "ont empêché(e)s son enregistrement :"

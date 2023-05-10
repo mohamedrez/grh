@@ -62,7 +62,7 @@ RSpec.describe "/emergency_contacts", type: :request do
       end
 
       it 'sets the flash notice' do
-        expect(flash[:notice]).to eq('Emergency contact successfully created.')
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_created"))
       end
     end
 
@@ -100,7 +100,7 @@ RSpec.describe "/emergency_contacts", type: :request do
       end
 
       it 'sets the flash notice' do
-        expect(flash[:notice]).to eq('User was successfully updated.')
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_updated"))
       end
     end
 
@@ -125,7 +125,7 @@ RSpec.describe "/emergency_contacts", type: :request do
     end
 
     it 'sets the flash notice' do
-      expect(flash[:notice]).to eq('emergency contact was successfully destroyed.')
+      expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
     end
   end
 end
