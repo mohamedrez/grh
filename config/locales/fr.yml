@@ -41,11 +41,11 @@ fr:
       employment_type: "Type d'emploi"
       work_description: "Description du travail"
     emergency_contact:
-      name: "Nom"
       email: "E-mail"
       relationship: "Relation"
       phone: "Téléphone"
     shared:
+      name: "Nom"
       start_date: "Date de début"
       end_date: "Date de fin"
       country: "Pays"
@@ -65,6 +65,11 @@ fr:
     emergency_contacts:
       title_emergency_contact: "Contacts d'urgence"
       emergency_contacts_list: "Une liste de tous vos contacts d'urgence."
+    holidays:
+      title_holidays: "Vacances"
+      holidays_list: "Liste des vacances pour cette année"
+      add_holiday: "Ajouter un nouveau jour férié"
+      edit_holiday: "Modifier le jour férié"
   flash:
     successfully_created: "Création effectuée avec succès."
     successfully_updated: "Mise à jour effectuée avec succès."
