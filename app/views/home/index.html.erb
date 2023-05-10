@@ -1,5 +1,0 @@
-<% if current_user %>
-    <%= render partial: "sign_user", locals: {active_step: @active_step, active_course: @active_course, in_progress: @in_progress, completed_courses: @completed_courses} %>
-<% else %>
-    <%= render partial: "unsign_user" %>
-<% end %>

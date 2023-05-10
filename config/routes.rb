@@ -18,7 +18,6 @@ Rails.application.routes.draw do
     resources :announcements
     resources :comments
     resources :holidays
-    resources :home, only: [:index]
 
     devise_for :users, path: "/auth"
 
