@@ -1,5 +1,4 @@
 class EmergencyContactsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_user, only: %i[index new edit create update]
   before_action :set_emergency_contact, only: %i[edit update destroy]
 

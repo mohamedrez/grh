@@ -70,6 +70,19 @@ en:
       holidays_list: "List of holidays for this year"
       add_holiday: "Add new holiday"
       edit_holiday: "Edit the holiday"
+    layouts:
+      main:
+        dashboard: "Dashboard"
+        employees: "Employees"
+        requests: "Requests"
+        calendar: "Calendar"
+        organization: "Organization"
+        settings: "Settings"
+      dropdown:
+        profile: "Profile"
+        password: "Password"
+      shared:
+        sign_out: "Sign out"
   flash:
     successfully_created: "Successfully created"
     successfully_updated: "Successfully updated"

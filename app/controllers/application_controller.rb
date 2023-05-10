@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :pundishing_user
 
   before_action :set_locale, :set_user
+  before_action :authenticate_user!
 
   def after_sign_in_path_for(resource)
     dashboard_path

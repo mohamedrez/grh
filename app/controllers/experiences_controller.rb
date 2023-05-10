@@ -1,6 +1,4 @@
 class ExperiencesController < ApplicationController
-  before_action :authenticate_user!
-
   def new
     @experience = Experience.new
     @user = User.find(params[:user_id])

@@ -1,6 +1,4 @@
 class EducationsController < ApplicationController
-  before_action :authenticate_user!
-
   def new
     @education = Education.new
     @user = User.find(params[:user_id])

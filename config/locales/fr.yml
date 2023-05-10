@@ -70,6 +70,19 @@ fr:
       holidays_list: "Liste des vacances pour cette année"
       add_holiday: "Ajouter un nouveau jour férié"
       edit_holiday: "Modifier le jour férié"
+    layouts:
+      main:
+        dashboard: "Dashboard"
+        employees: "Employés"
+        requests: "Demandes"
+        calendar: "Calendrier"
+        organization: "Organisation"
+        settings: "Paramètrage"
+      dropdown:
+        profile: "Profil"
+        password: "Mot de passe"
+      shared:
+        sign_out: "Se déconnecter"
   flash:
     successfully_created: "Création effectuée avec succès."
     successfully_updated: "Mise à jour effectuée avec succès."
