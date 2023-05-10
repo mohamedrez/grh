@@ -3,14 +3,14 @@
   <%= form_with model: comment, class: "relative flex-auto", url: url do |form| %>
     <div class="overflow-hidden rounded-lg pb-12 shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-indigo-600">
       <%= form.label :content, class: "sr-only" %>
-      <%= form.text_area :content, class: "block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6", rows: "3", placeholder: "Add your comment..." %>
+      <%= form.text_area :content, class: "block w-full resize-none border-0 bg-transparent py-1.5 text-gray-900 placeholder:text-gray-400 focus:ring-0 sm:text-sm sm:leading-6", rows: "3", placeholder: t("views.comments.add_comment_placeholder") %>
     </div>
 
     <div class="absolute inset-x-0 bottom-0 flex justify-between py-2 pl-3 pr-2">
       <div class="flex items-center space-x-5"></div>
       <div class="flex items-center justify-between">
-        <%= link_to 'Cancel', comments_url(commentable_type: commentable_type, commentable_id: commentable_id), class: "rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" %>
-        <%= form.submit ((action_name != 'edit') ? "Comment" : "Edit"), class: "ml-2 rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
+        <%= link_to t("buttons.cancel"), comments_url(commentable_type: commentable_type, commentable_id: commentable_id), class: "rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50" %>
+        <%= form.submit ((action_name != 'edit') ? t("buttons.comment") : t("buttons.edit")), class: "ml-2 rounded-md bg-blue-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500" %>
       </div>
     </div>
   <% end %>

@@ -4,7 +4,7 @@ class CommentsController < ApplicationController
 
   def index
     @comments = Comment.where(commentable_type: @commentable_type, commentable_id: @commentable_id)
-    @url = "/comments?commentable_type=#{@commentable_type}&commentable_id=#{@commentable_id}"
+    @url = "/comments?commentable_type=#{@commentable_type}&commentable_id=#{@commentable_id}&locale=#{params[:locale]}"
   end
 
   def edit
@@ -18,12 +18,11 @@ class CommentsController < ApplicationController
     @comment.author_id = current_user.id
     @comment.commentable_type = @commentable_type
     @comment.commentable_id = @commentable_id
-    @url = "/comments/#{@comment.id}?commentable_type=#{@commentable_type}&commentable_id=#{@commentable_id}"
 
     if @comment.save
       redirect_to comments_url(commentable_type: @commentable_type, commentable_id: @commentable_id), notice: t("flash.successfully_created")
     else
-      redirect_to comments_url(commentable_type: @commentable_type, commentable_id: @commentable_id), alert: t("flash.comment_cant_be_blank")
+      redirect_to comments_url(commentable_type: @commentable_type, commentable_id: @commentable_id), alert: t("flash.specific.comment_cant_be_blank")
     end
   end
 
@@ -34,7 +33,7 @@ class CommentsController < ApplicationController
     if @comment.update(comment_params)
       redirect_to comments_url(commentable_type: @commentable_type, commentable_id: @commentable_id), notice: t("flash.successfully_updated")
     else
-      redirect_to comments_url(commentable_type: @commentable_type, commentable_id: @commentable_id), alert: t("flash.comment_cant_be_blank")
+      redirect_to comments_url(commentable_type: @commentable_type, commentable_id: @commentable_id), alert: t("flash.specific.comment_cant_be_blank")
     end
   end
 

@@ -5,7 +5,6 @@ en:
     successfully_imported : "Users imported successfully."
     please_select_file: "Please select a file to import."
     announcement_destroyed: "Announcement was successfully destroyed."
-    comment_cant_be_blank: "Comment can't be blank"
   experiences:
     experience_created: "Experience was successfully created."
     experience_updated: "Experience was successfully updated."
@@ -28,6 +27,7 @@ en:
     cancel: "Cancel"
     save: "Save"
     edit: "Edit"
+    comment: "Comment"
     specific:
       create_asset: "Create asset"
   attributes:
@@ -41,7 +41,13 @@ en:
     assets:
       title_assets: "Assets"
       assets_list: "List of assets assigned to you."
+    comments:
+      commented: "Commented"
+      edited: "Edited"
+      add_comment_placeholder: "Add your comment..."
   flash:
-    successfully_created: "Successfully created."
-    successfully_updated: "Successfully updated."
+    successfully_created: "Successfully created"
+    successfully_updated: "Successfully updated"
+    specific:
+      comment_cant_be_blank: "Comment can't be blank"
   

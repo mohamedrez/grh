@@ -5,7 +5,6 @@ fr:
     successfully_imported: "Les utilisateurs ont été importés avec succès."
     please_select_file: "Veuillez sélectionner un fichier à importer."
     announcement_destroyed: "Annonce supprimée avec succès.."
-    comment_cant_be_blank: "Le commentaire ne peut pas être vide."
   experiences:
     experience_created: "L'expérience a été créée avec succès."
     experience_updated: "L'expérience a été mise à jour avec succès."
@@ -28,6 +27,7 @@ fr:
     cancel: "Annuler"
     save: "Enregistrer"
     edit: "Modifier"
+    comment: "Commentaire"
     specific:
       create_asset: "Créer un élément"
   attributes:
@@ -41,6 +41,12 @@ fr:
     assets:
       title_assets: "Éléments"
       assets_list: "Liste des éléments qui vous ont été affectés."
+    comments:
+      commented: "Commenté"
+      edited: "Modifié"
+      add_comment_placeholder: "Ajouter votre commentaire..."
   flash:
     successfully_created: "Création effectuée avec succès."
     successfully_updated: "Mise à jour effectuée avec succès."
+    specific:
+      comment_cant_be_blank: "Commentaire ne peut pas être vide."
