@@ -12,7 +12,7 @@ class EducationsController < ApplicationController
     @education.user_id = @user.id
 
     if @education.save
-      redirect_to user_url(@education.user), notice: t("educations.education_created")
+      redirect_to user_url(@education.user), notice: t("flash.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end

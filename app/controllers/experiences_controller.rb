@@ -12,7 +12,7 @@ class ExperiencesController < ApplicationController
     @experience.user_id = @user.id
 
     if @experience.save
-      redirect_to user_url(@experience.user), notice: t("experiences.experience_created")
+      redirect_to user_url(@experience.user), notice: t("flash.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end

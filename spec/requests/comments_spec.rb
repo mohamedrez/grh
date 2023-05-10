@@ -68,7 +68,7 @@ RSpec.describe "/comments", type: :request do
       end
 
       it 'sets the flash alert' do
-        expect(flash[:alert]).to eq(I18n.t("flash.specific.comment_cant_be_blank"))
+        expect(flash[:alert]).to eq(I18n.t("errors.comment_cant_be_blank"))
       end
     end
   end
@@ -111,7 +111,7 @@ RSpec.describe "/comments", type: :request do
       end
 
       it 'sets the flash alert' do
-        expect(flash[:alert]).to eq(I18n.t("flash.specific.comment_cant_be_blank"))
+        expect(flash[:alert]).to eq(I18n.t("errors.comment_cant_be_blank"))
       end
     end
   end

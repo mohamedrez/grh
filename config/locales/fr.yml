@@ -5,12 +5,6 @@ fr:
     successfully_imported: "Les utilisateurs ont été importés avec succès."
     please_select_file: "Veuillez sélectionner un fichier à importer."
     announcement_destroyed: "Annonce supprimée avec succès.."
-  experiences:
-    experience_created: "L'expérience a été créée avec succès."
-    experience_updated: "L'expérience a été mise à jour avec succès."
-  educations:
-    education_created: "L'éducation a été créée avec succès."
-    education_updated: "L'éducation a été mise à jour avec succès."
   time_Off_requests:
     time_request_created: "La demande de congé a été créée avec succès."
     time_request_updated: "La demande de congé a été mise à jour avec succès."
@@ -37,6 +31,21 @@ fr:
       date_assigned: "Date d'affectation"
       date_returned: "Date de retour"
       description: "Description"
+    education:
+      school: "École"
+      education_level: "Niveau d'éducation"
+      study_field: "Domaine d'études"
+      still_on_this_course: "Êtes-vous toujours en cours de formation ?"
+    experience:
+      job_title: "Intitulé du poste"
+      company_name: "Nom de l'entreprise"
+      employment_type: "Type d'emploi"
+      work_description: "Description du travail"
+    shared:
+      start_date: "Date de début"
+      end_date: "Date de fin"
+      country: "Pays"
+      city: "Ville"
   views:
     assets:
       title_assets: "Éléments"
@@ -45,8 +54,13 @@ fr:
       commented: "Commenté"
       edited: "Modifié"
       add_comment_placeholder: "Ajouter votre commentaire..."
+    educations:
+      add_education: "Ajouter une nouvelle formation"
+    experiences:
+      add_experience: "Ajouter une nouvelle expérience"
   flash:
     successfully_created: "Création effectuée avec succès."
     successfully_updated: "Mise à jour effectuée avec succès."
-    specific:
-      comment_cant_be_blank: "Commentaire ne peut pas être vide."
+  errors:
+    comment_cant_be_blank: "Commentaire ne peut pas être vide."
+    prohibited: "ont empêché(e)s son enregistrement :"

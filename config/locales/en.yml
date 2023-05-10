@@ -5,12 +5,6 @@ en:
     successfully_imported : "Users imported successfully."
     please_select_file: "Please select a file to import."
     announcement_destroyed: "Announcement was successfully destroyed."
-  experiences:
-    experience_created: "Experience was successfully created."
-    experience_updated: "Experience was successfully updated."
-  educations:
-    education_created: "Education was successfully created."
-    education_updated: "Education was successfully updated."
   time_requests:
     time_request_created: "Time off request was successfully created."
     time_request_updated: "Time off request was successfully updated."
@@ -37,6 +31,21 @@ en:
       date_assigned: "Date assigned"
       date_returned: "Date returned"
       description: "Description"
+    education:
+      school: "School"
+      education_level: "Education level"
+      study_field: "Study field"
+      still_on_this_course: "Still on this course?"
+    experience:
+      job_title: "Job title"
+      company_name: "Company name"
+      employment_type: "Employment type"
+      work_description: "Work description"
+    shared:
+      start_date: "Start date"
+      end_date: "End date"
+      country: "Country"
+      city: "City"
   views:
     assets:
       title_assets: "Assets"
@@ -45,9 +54,13 @@ en:
       commented: "Commented"
       edited: "Edited"
       add_comment_placeholder: "Add your comment..."
+    educations:
+      add_education: "Add new education"
+    experiences:
+      add_experience: "Add new experience"
   flash:
     successfully_created: "Successfully created"
     successfully_updated: "Successfully updated"
-    specific:
-      comment_cant_be_blank: "Comment can't be blank"
-  
+  errors:
+    comment_cant_be_blank: "Comment can't be blank"
+    prohibited: "prohibited it from being saved:"
