@@ -77,12 +77,15 @@ en:
         requests: "Requests"
         calendar: "Calendar"
         organization: "Organization"
-        settings: "Settings"
       dropdown:
         profile: "Profile"
-        password: "Password"
-      shared:
-        sign_out: "Sign out"
+    settings:
+      setting_desc: "These information will be displayed on your profile."
+      employee_picture: "Employee picture"
+    shared:
+      settings: "Settings"
+      password: "Password"
+      sign_out: "Sign out"
   flash:
     successfully_created: "Successfully created"
     successfully_updated: "Successfully updated"
@@ -90,3 +93,11 @@ en:
   errors:
     comment_cant_be_blank: "Comment can't be blank"
     prohibited: "prohibited it from being saved:"
+  devise:
+    registrations:
+      edit:
+        change_password: "Change your password"
+        current_password: "Current password"
+    shared:
+      characters_minimum: "Characters minimum"
+      password_confirmation: "Password confirmation"

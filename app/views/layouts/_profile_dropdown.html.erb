@@ -9,8 +9,8 @@
     <div data-dropdown-target="menu" class="absolute right-0 mt-2 hidden">
       <div class="bg-white shadow rounded border overflow-hidden">
         <%= link_to t("views.layouts.dropdown.profile"),  user_path(current_user), data: {action: "click->dropdown#toggle"}, class: 'no-underline block pl-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap'%>
-        <%= link_to t("views.layouts.dropdown.password"), url_for(edit_user_registration_url), data: {action: "click->dropdown#toggle"}, class: 'no-underline block px-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
-        <%= link_to t("views.layouts.shared.sign_out"), destroy_user_session_path, data: { action: "click->dropdown#toggle", "turbo-method": :delete }, class: 'no-underline block px-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
+        <%= link_to t("views.shared.password"), url_for(edit_user_registration_url), data: {action: "click->dropdown#toggle"}, class: 'no-underline block px-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
+        <%= link_to t("views.shared.sign_out"), destroy_user_session_path, data: { action: "click->dropdown#toggle", "turbo-method": :delete }, class: 'no-underline block px-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
       </div>
     </div>
   </div>

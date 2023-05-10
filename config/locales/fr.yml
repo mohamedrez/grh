@@ -77,12 +77,15 @@ fr:
         requests: "Demandes"
         calendar: "Calendrier"
         organization: "Organisation"
-        settings: "Paramètrage"
       dropdown:
         profile: "Profil"
-        password: "Mot de passe"
-      shared:
-        sign_out: "Se déconnecter"
+    settings:
+      setting_desc: "Ces informations seront affichées sur votre profil."
+      employee_picture: "Photo de l'employé"
+    shared:
+      settings: "Paramètrage"
+      password: "Mot de passe"
+      sign_out: "Se déconnecter"
   flash:
     successfully_created: "Création effectuée avec succès."
     successfully_updated: "Mise à jour effectuée avec succès."
@@ -90,3 +93,11 @@ fr:
   errors:
     comment_cant_be_blank: "Commentaire ne peut pas être vide."
     prohibited: "ont empêché(e)s son enregistrement :"
+  devise:
+    registrations:
+      edit:
+        change_password: "Changer votre mot de passe"
+        current_password: "Mot de passe actuel"
+    shared:
+      characters_minimum: "Nombre de caractères minimum"
+      password_confirmation: "Confirmation du mot de passe"
