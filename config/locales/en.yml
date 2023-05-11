@@ -1,17 +1,4 @@
 en:
-  flash:
-    application_controller:
-      not_authorized: "You are not authorized to perform this action."
-    select_csv: "Select a file to import."
-    announcement_destroyed: "Announcement was successfully destroyed."
-  views:
-    announcements:
-      index:
-        create_announcement: "Create new Announcement"
-    dashboard:
-      index:
-        View_all_announcement: "View all"
-
   buttons:
     cancel: "Cancel"
     save: "Save"
@@ -83,6 +70,8 @@ en:
       city: "City"
       created_at: "Created at"
   views:
+    announcements:
+      add_announcement: "Create new Announcement"
     assets:
       title_assets: "Assets"
       assets_list: "List of assets assigned to you."
@@ -90,6 +79,9 @@ en:
       commented: "Commented"
       edited: "Edited"
       add_comment_placeholder: "Add your comment..."
+    dashboard:
+      announcements_title: "Announcements"
+      announcements_button: "View All Announcement"
     educations:
       add_education: "Add new education"
     experiences:
@@ -134,7 +126,6 @@ en:
       import_employees: "Import employees through CSV file"
       employees_title: "Employees"
       employees_list: "List of all the employees."
-      view_profile: "View profile"
       search_by: "Name, email, or employee number "
     layouts:
       main:
@@ -153,7 +144,13 @@ en:
       pending: "Pending"
       approve: "Approve"
       deny: "Deny"
+      view_profile: "View profile"
+      user_overview:
+        welcome: "Welcome back,"
+        edit_profile: "Edit profile"
+        time_off_days: "Time off days left"
   flash:
+    not_authorized: "You are not authorized to perform this action."
     successfully_created: "Successfully created"
     successfully_updated: "Successfully updated"
     successfully_destroyed: "Successfully destroyed"

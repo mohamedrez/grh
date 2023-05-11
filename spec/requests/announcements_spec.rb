@@ -123,7 +123,7 @@ RSpec.describe "Announcements", type: :request do
     end
 
     it 'sets the flash notice' do
-      expect(flash[:notice]).to eq( I18n.t("flash.announcement_destroyed"))
+      expect(flash[:notice]).to eq( I18n.t("flash.successfully_destroyed"))
     end
   end
 end

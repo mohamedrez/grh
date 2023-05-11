@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pundishing_user
-    flash[:notice] = t("flash.application_controller.not_authorized")
+    flash[:notice] = t("flash.not_authorized")
     redirect_to dashboard_path
   end
 end

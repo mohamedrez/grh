@@ -172,7 +172,7 @@
         <section aria-labelledby="announcements-title">
           <div class="overflow-hidden rounded-lg bg-white shadow">
             <div class="p-6">
-              <h2 class="text-base font-medium text-gray-900" id="announcements-title">Announcements</h2>
+              <h2 class="text-base font-medium text-gray-900" id="announcements-title"><%= t("views.dashboard.announcements_title") %></h2>
               <div class="mt-6 flow-root">
                 <ul role="list" class="-my-5 divide-y divide-gray-200">
                   <%@annoucements.each do |announcement|%>
@@ -189,7 +189,7 @@
                 </ul>
               </div>
               <div class="mt-6">
-                <%=link_to t("views.dashboard.index.View_all_announcement") ,announcements_path , class: "flex w-full items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"%>
+                <%=link_to t("views.dashboard.announcements_button") ,announcements_path , class: "flex w-full items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"%>
               </div>
             </div>
           </div>

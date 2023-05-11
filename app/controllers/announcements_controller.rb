@@ -36,7 +36,7 @@ class AnnouncementsController < ApplicationController
 
   def destroy
     @announcement.destroy
-    redirect_to announcements_path, notice: t("flash.announcement_destroyed")
+    redirect_to announcements_path, notice: t("flash.successfully_destroyed")
   end
 
   private

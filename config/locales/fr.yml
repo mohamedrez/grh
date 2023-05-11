@@ -1,17 +1,4 @@
 fr:
-  flash:
-    application_controller:
-      not_authorized: "Vous n'êtes pas autorisé(e) à effectuer cette action."
-    successfully_imported: "Les utilisateurs ont été importés avec succès."
-    announcement_destroyed: "Annonce supprimée avec succès.."
-  views:
-    announcements:
-      index:
-        create_announcement: "Créer une nouvelle annonce"
-    dashboard:
-      index:
-        View_all_announcement: "Voir tous"
-
   buttons:
     cancel: "Annuler"
     save: "Enregistrer"
@@ -83,6 +70,8 @@ fr:
       city: "Ville"
       created_at: "Créé le"
   views:
+    announcements:
+      add_announcement: "Créer une nouvelle annonce"
     assets:
       title_assets: "Éléments"
       assets_list: "Liste des éléments qui vous ont été affectés."
@@ -90,6 +79,9 @@ fr:
       commented: "Commenté"
       edited: "Modifié"
       add_comment_placeholder: "Ajouter votre commentaire..."
+    dashboard:
+      announcements_title: "Annonces"
+      announcements_button: "Voir toutes les annonces"
     educations:
       add_education: "Ajouter une nouvelle formation"
     experiences:
@@ -134,7 +126,6 @@ fr:
       import_employees: "Importer des employés via un fichier CSV"
       employees_title: "Employés"
       employees_list: "Liste de tous les employés."
-      view_profile: "Voir le profil"
       search_by: "Nom, email ou numéro d'employé"
     layouts:
       main:
@@ -153,7 +144,13 @@ fr:
       pending: "En attente"
       approve: "Approuver"
       deny: "Refuser"
+      view_profile: "Voir le profil"
+      user_overview:
+        welcome: "Bienvenue de retour,"
+        edit_profile: "Modifier le profil"
+        time_off_days: "Jours de congé restants"
   flash:
+    not_authorized: "Vous n'êtes pas autorisé(e) à effectuer cette action."
     successfully_created: "Création effectuée avec succès."
     successfully_updated: "Mise à jour effectuée avec succès."
     successfully_destroyed: "Supprimé(e) avec succès"
