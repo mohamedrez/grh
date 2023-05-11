@@ -5,10 +5,6 @@ fr:
     successfully_imported: "Les utilisateurs ont été importés avec succès."
     please_select_file: "Veuillez sélectionner un fichier à importer."
     announcement_destroyed: "Annonce supprimée avec succès.."
-  time_Off_requests:
-    time_request_created: "La demande de congé a été créée avec succès."
-    time_request_updated: "La demande de congé a été mise à jour avec succès."
-    time_request_destroyed: "La demande de congé a été supprimée avec succès."
   views:
     announcements:
       index:
@@ -46,15 +42,18 @@ fr:
       phone: "Téléphone"
     time_request:
       category: "Catégorie"
+      content: "Contenu"
+    user_request:
+      request_type: "Type de demande"
       state: "État"
       managed_by: "Gérée par"
-      content: "Contenu"
     shared:
       name: "Nom"
       start_date: "Date de début"
       end_date: "Date de fin"
       country: "Pays"
       city: "Ville"
+      created_at: "Créé le"
   views:
     assets:
       title_assets: "Éléments"
@@ -82,6 +81,12 @@ fr:
       no_one_out: "Personne d'autre de l'équipe ne sera absent."
       add_time_off: "Ajouter une nouvelle demande de congé"
       edit_time_off: "Modifier la demande de congé"
+    settings:
+      setting_desc: "Ces informations seront affichées sur votre profil."
+      employee_picture: "Photo de l'employé"
+    user_requests:
+      title_user_request: "Demandes d'utilisateurs"
+      user_requests_list: "Liste de toutes les demandes que vous avez effectuées."
     layouts:
       main:
         dashboard: "Dashboard"
@@ -91,9 +96,6 @@ fr:
         organization: "Organisation"
       dropdown:
         profile: "Profil"
-    settings:
-      setting_desc: "Ces informations seront affichées sur votre profil."
-      employee_picture: "Photo de l'employé"
     shared:
       settings: "Paramètrage"
       password: "Mot de passe"

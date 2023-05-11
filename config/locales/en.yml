@@ -5,10 +5,6 @@ en:
     successfully_imported : "Users imported successfully."
     please_select_file: "Please select a file to import."
     announcement_destroyed: "Announcement was successfully destroyed."
-  time_requests:
-    time_request_created: "Time off request was successfully created."
-    time_request_updated: "Time off request was successfully updated."
-    time_request_destroyed: "Time off request was successfully destroyed."
   views:
     announcements:
       index:
@@ -46,15 +42,18 @@ en:
       phone: "Phone"
     time_request:
       category: "Category"
+      content: "Content"
+    user_request:
+      request_type: "Request type"
       state: "State"
       managed_by: "Managed by"
-      content: "Content"
     shared:
       name: "Name"
       start_date: "Start date"
       end_date: "End date"
       country: "Country"
       city: "City"
+      created_at: "Created at"
   views:
     assets:
       title_assets: "Assets"
@@ -82,6 +81,12 @@ en:
       no_one_out.: "No one else on the team will be out."
       add_time_off: "Add new time off request"
       edit_time_off: "Edit the time off request"
+    settings:
+      setting_desc: "These information will be displayed on your profile."
+      employee_picture: "Employee picture"
+    user_requests:
+      title_user_request: "Users requests"
+      user_requests_list: "List of all requests requested by you."
     layouts:
       main:
         dashboard: "Dashboard"
@@ -91,9 +96,6 @@ en:
         organization: "Organization"
       dropdown:
         profile: "Profile"
-    settings:
-      setting_desc: "These information will be displayed on your profile."
-      employee_picture: "Employee picture"
     shared:
       settings: "Settings"
       password: "Password"

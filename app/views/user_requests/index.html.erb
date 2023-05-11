@@ -4,21 +4,21 @@
   <div class="px-4 sm:px-6 lg:px-8 mt-10">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1 class="text-base font-semibold leading-6 text-indigo-500">Users requests</h1>
-        <p class="mt-2 text-sm text-gray-700">A list of all of your requests.</p>
+        <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.user_requests.title_user_request") %></h1>
+        <p class="mt-2 text-sm text-gray-700"><%= t("views.user_requests.user_requests_list") %></p>
       </div>
     </div>
     <div class="min-w-full my-8">
       <div data-controller="tabs" data-tabs-active-tab="border-purple-500 text-purple-600 whitespace-nowrap border-b-2">
         <ul class="list-reset flex border-b -mb-px mb-5 mt-2 flex space-x-8">
           <li class="-mb-px mr-1" data-tabs-target="tab" data-action="click->tabs#change">
-            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#">Pending</a>
+            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#"><%= t("views.shared.pending") %></a>
           </li>
           <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
-            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#">Approved</a>
+            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#"><%= t("views.shared.approved") %></a>
           </li>
           <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
-            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#">Rejected</a>
+            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#"><%= t("views.shared.rejected") %></a>
           </li>
         </ul>
 
