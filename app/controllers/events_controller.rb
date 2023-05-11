@@ -1,15 +1,44 @@
 class EventsController < ApplicationController
   def index
-    events_response = []
-    @events = Event.all
-    @events.each do |event|
-      events_response << {
-        id: event.id, title: event.eventable_type, start: event.start_at,
-        end: event.end_at,
-        avatar: event.user.avatar_url_or_default,
-        user: event.user.full_name, color: event.color
+    @events = []
+    @events += holidays
+    @events += time_requests
+
+    render json: @events
+  end
+
+  private
+
+  def time_requests
+    @time_requests ||= TimeRequest.all.includes(:user_request).includes(user_request: :user)
+    if params["service"].present?
+      @time_requests = @time_requests.where(user_requests: {users: {service: params[:service]}})
+    end
+    if params["site"].present?
+      @time_requests = @time_requests.where(user_requests: {users: {site_id: params[:site]}})
+    end
+    @time_requests.map do |time_request|
+      {
+        id: time_request.id,
+        title: time_request.user.full_name,
+        start: time_request.start_date,
+        end: time_request.end_date,
+        avatar: time_request.user.avatar_url_or_default,
+        color: time_request.color
       }
     end
-    render json: events_response
+  end
+
+  def holidays
+    @holidays ||= Holiday.all
+    @holidays.map do |holiday|
+      {
+        id: holiday.id,
+        title: holiday.name,
+        start: holiday.start_date,
+        end: holiday.end_date,
+        color: "green"
+      }
+    end
   end
 end

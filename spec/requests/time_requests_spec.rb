@@ -112,10 +112,9 @@ RSpec.describe "/time_requests", type: :request do
       delete "/users/#{user.id}/time_requests/#{time_request.id}"
     end
 
-    it 'destroys the time off request' do
+    it "destroys the time off request" do
       expect(TimeRequest.count).to eq(0)
     end
-
     it 'sets the flash notice' do
       expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
     end

@@ -5,12 +5,22 @@ import timeGridPlugin from '@fullcalendar/timegrid';
 import listPlugin from '@fullcalendar/list';
 
 // Connects to data-controller="calendar"
-function  eventHtml(event) {
-  var content = '<img class="inline-block rounded-full h-8 w-8 align-middle" src="'+ event.avatar +'">'
-  content += '<span class="ml-2">' + event.user + '</span>';
-  return content;
+
+function fetchUrlWithCurrentQueryParams(){
+  var url = new URL(window.location.href);
+  var params = new URLSearchParams(url.search);
+  return 'events.json' + "?" + params.toString();
 }
-function   renderCalendar(events){
+function eventHtml(event) {
+  var content = '';
+  if (event.extendedProps.avatar){
+    console.log(event.extendedProps.avatar)
+    content += '<img class="inline-block rounded-full h-8 w-8 align-middle" src="'+ event.extendedProps.avatar +'">'
+  }
+  content += '<span class="ml-2">' + event.title   + '</span>';
+  return '<div class="">'+ content +'</div>';
+}
+function  renderCalendar(events){
   var calendarEl = document.getElementById('calendar');
   var calendar = new Calendar(
     calendarEl, {
@@ -23,7 +33,7 @@ function   renderCalendar(events){
     initialView: 'dayGridMonth',
     events: events,
     eventContent: function( info ) {
-      return {html: eventHtml(info.event.extendedProps)};
+      return {html: eventHtml(info.event)};
     },
   }
   );
@@ -32,7 +42,7 @@ function   renderCalendar(events){
 export default class extends Controller {
 
   connect() {
-    fetch('/events.json')
+    fetch(fetchUrlWithCurrentQueryParams())
       .then(function(response) {
         return response.json();
       })

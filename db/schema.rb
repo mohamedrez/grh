@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_08_145646) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_04_093712) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -117,18 +117,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_08_145646) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_emergency_contacts_on_user_id"
-  end
-
-  create_table "events", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.datetime "start_at"
-    t.datetime "end_at"
-    t.string "eventable_type", null: false
-    t.bigint "eventable_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.integer "user_id"
-    t.index ["eventable_type", "eventable_id"], name: "index_events_on_eventable"
-    t.index ["user_id"], name: "index_events_on_user_id"
   end
 
   create_table "experiences", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|

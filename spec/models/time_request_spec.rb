@@ -5,6 +5,24 @@ RSpec.describe TimeRequest, type: :model do
   let(:user) { create(:user, manager_id: manager.id, admin: true) }
   let(:time_request) { create(:time_request, user_id: user.id, start_date: Date.today, end_date: (Date.today + 7)) }
 
+  describe "#color" do
+    it "returns the correct color for each category" do
+      request = TimeRequest.new(category: :vacation_time)
+      expect(request.color).to eq("#FFD700")
+
+      request = TimeRequest.new(category: :sick_time)
+      expect(request.color).to eq("#FF0000")
+
+      request = TimeRequest.new(category: :personal_time)
+      expect(request.color).to eq("#00FF00")
+
+      request = TimeRequest.new(category: :bereavement_time)
+      expect(request.color).to eq("#0000FF")
+
+      request = TimeRequest.new(category: :parental_leave)
+      expect(request.color).to eq("#FF00FF")
+    end
+  end
   describe "#create_user_request" do
     it "creates a UserRequest object" do
       expect { time_request.create_user_request }.to change { UserRequest.count }.by(2)
