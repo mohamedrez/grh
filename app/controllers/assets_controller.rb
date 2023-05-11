@@ -1,5 +1,4 @@
 class AssetsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_locals, only: %i[edit update]
 
   def index
@@ -21,7 +20,7 @@ class AssetsController < ApplicationController
     @asset.user_id = @user.id
 
     if @asset.save
-      flash.now[:notice] = "Asset successfully created."
+      flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
         turbo_stream.prepend("assets-list", @asset),
         turbo_stream.replace("modal", partial: "create_button"),
@@ -35,7 +34,7 @@ class AssetsController < ApplicationController
   def update
     asset_params[:user_id] = params[:user_id]
     if @asset.update(asset_params)
-      flash.now[:notice] = "User was successfully updated."
+      flash.now[:notice] = t("flash.successfully_updated")
       render turbo_stream: [
         turbo_stream.replace(@asset, @asset),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")

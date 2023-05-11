@@ -1,154 +1,154 @@
 <div class="px-4 sm:px-6 lg:px-8 mt-10">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500">Personal details</h1>
-      <p class="mt-2 text-sm text-gray-700">A list of personal details about you.</p>
+      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.personal_details_section") %></h1>
+      <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_personal_details") %></p>
     </div>
   </div>
   <div class="my-8 border-t border-gray-100">
     <dl class="divide-y divide-gray-100">
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Full name</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.name") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.full_name %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">CIN</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.cin") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.cin %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Birthday</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.birthday") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.birthdate %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Gender</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.gender") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.gender&.humanize %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Phone</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.phone") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.phone %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Email</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.email") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.email %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Marital status</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.marital_status") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.marital_status&.humanize %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Children number</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.children_number") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.children_number %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">About</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.about") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.about %></dd>
       </div>
     </dl>
   </div>
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500">Job details</h1>
-      <p class="mt-2 text-sm text-gray-700">A list of details about your job.</p>
+      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.job_details_section") %></h1>
+      <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_job_details") %></p>
     </div>
   </div>
   <div class="my-8 border-t border-gray-100">
     <dl class="divide-y divide-gray-100">
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Job title</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.job_title") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.job_title&.humanize %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Employee ID</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.employee_number") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.employee_number %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Site</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.site") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.site&.name %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Service</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.service") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.service&.humanize %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Manager</dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @manager.full_name %></dd>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.manager") %></dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @manager.present? ? @manager.full_name : "You don't have a manager" %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Contract</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.contract") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.contract %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Start date</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.shared.start_date") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.start_date %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Joining date</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.joining_date") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.joining_date %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">End date</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.shared.end_date") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.end_date %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Category</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.category") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.category&.humanize %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">CNSS number</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.cnss_number") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.cnss_number %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Brut salary</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.brut_salary") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.brut_salary %> DH</dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Net salary</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.net_salary") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.net_salary %> DH</dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">CNSS contribution</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.cnss_contribution") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.cnss_contribution %> DH</dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Retirement contribution</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.retirement_contribution") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.retirement_contribution %> DH</dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Paid Time Off</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.pto") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.pto_number %></dd>
       </div>
     </dl>
   </div>
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500">Address details</h1>
-      <p class="mt-2 text-sm text-gray-700">Details about your address.</p>
+      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.address_details_section") %></h1>
+      <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_address_details") %></p>
     </div>
   </div>
   <div class="my-8 border-t border-gray-100">
     <dl class="divide-y divide-gray-100">
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Street address</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.street_address") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.street %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">Country</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.shared.country") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.country&.humanize %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">City</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.shared.city") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.city %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900">ZIP / Postal code</dt>
+        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.zip") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.address&.zipcode %></dd>
       </div>
     </dl>
   </div>
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500">Experiences</h1>
-      <p class="mt-2 text-sm text-gray-700">A list of all of your experiences</p>
+      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.experiences_section") %></h1>
+      <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_experiences") %></p>
     </div>
   </div>
   <div class="my-8 flow-root">
@@ -177,7 +177,7 @@
                   <p class="font-normal text-base text-gray-500"><%= experience.city&.humanize %>, <%= experience.country&.humanize %></p>
                   <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 mt-3">
                     <div class="flex justify-between gap-x-4">
-                      <p class="font-normal text-base text-gray-900">Work description</p>
+                      <p class="font-normal text-base text-gray-900"><%= t("attributes.experience.work_description") %></p>
                     </div>
                     <p class="text-sm leading-6 text-gray-500"><%= experience.work_description&.humanize %></p>
                   </div>
@@ -194,15 +194,15 @@
           <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          Add new experience
+          <%= t("views.users.add_experience") %>
         <% end %>
       </div>
     <% end %>
   </div>
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500">Academic background</h1>
-      <p class="mt-2 text-sm text-gray-700">A list of your academic background</p>
+      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.educations_section") %></h1>
+      <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_educations") %></p>
     </div>
   </div>
   <div class="my-8 flow-root">
@@ -230,7 +230,7 @@
                   <p class="font-normal text-base text-gray-500"><%= education.city.humanize %>, <%= education.country.humanize %></p>
                 </div>
                 <div class="whitespace-nowrap text-right text-sm text-gray-500">
-                  <p class="font-normal text-base text-gray-500 mb-1">Stil On This Course?</p>
+                  <p class="font-normal text-base text-gray-500 mb-1"><%= t("attributes.education.still_on_this_course") %></p>
                   <% if education.still_on_this_course %>
                     <span  class="bg-indigo-500 relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
                       <span aria-hidden="true" class="translate-x-5 inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
@@ -253,7 +253,7 @@
           <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>
-          Add new education
+          <%= t("views.users.add_education") %>
         <% end %>
       </div>
     <% end %>

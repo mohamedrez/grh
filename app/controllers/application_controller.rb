@@ -5,6 +5,7 @@ class ApplicationController < ActionController::Base
   rescue_from Pundit::NotAuthorizedError, with: :pundishing_user
 
   before_action :set_locale, :set_user
+  before_action :authenticate_user!
 
   def after_sign_in_path_for(resource)
     dashboard_path
@@ -29,7 +30,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pundishing_user
-    flash[:notice] = t("flash.application_controller.not_authorized")
+    flash[:notice] = t("flash.not_authorized")
     redirect_to dashboard_path
   end
 end

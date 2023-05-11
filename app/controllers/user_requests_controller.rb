@@ -1,6 +1,4 @@
 class UserRequestsController < ApplicationController
-  before_action :authenticate_user!
-
   def index
     user_id = params[:user_id]
     @user = User.find(user_id)

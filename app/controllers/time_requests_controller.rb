@@ -1,5 +1,4 @@
 class TimeRequestsController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_locals, only: %i[show edit update destroy]
 
   def index
@@ -33,7 +32,7 @@ class TimeRequestsController < ApplicationController
     @time_request.user_id = @user.id
 
     if @time_request.save
-      redirect_to user_time_request_url(@user, @time_request), notice: t("time_requests.time_request_created")
+      redirect_to user_time_request_url(@user, @time_request), notice: t("flash.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -44,7 +43,7 @@ class TimeRequestsController < ApplicationController
     time_request_params[:user_id] = params[:user_id]
 
     if @time_request.update(time_request_params)
-      redirect_to user_time_request_url(@user, @time_request), notice: t("time_requests.time_request_updated")
+      redirect_to user_time_request_url(@user, @time_request), notice: t("flash.successfully_updated")
     else
       render :edit, status: :unprocessable_entity
     end
@@ -52,7 +51,7 @@ class TimeRequestsController < ApplicationController
 
   def destroy
     @time_request.destroy
-    flash.now[:notice] = t("time_requests.time_request_destroyed")
+    flash.now[:notice] = t("flash.successfully_destroyed")
     render turbo_stream: [
       turbo_stream.remove(@time_request),
       turbo_stream.replace("notification_alert", partial: "layouts/alert")

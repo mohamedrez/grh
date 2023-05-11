@@ -3,171 +3,171 @@
     <div class="space-y-12">
       <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
         <div class="sm:flex-auto">
-          <h1 class="text-base font-semibold leading-6 text-indigo-500">Personal details</h1>
-          <p class="mt-2 text-sm text-gray-700">A list of personal details about you.</p>
+          <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.personal_details_section") %></h1>
+          <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_personal_details") %></p>
         </div>
         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
           <div class="sm:col-span-3">
-            <%= form.label :first_name %>
+            <%= form.label :first_name, t("attributes.user.first_name") %>
             <div class="mt-2">
               <%= form.text_field :first_name, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3">
-            <%= form.label :last_name %>
+            <%= form.label :last_name, t("attributes.user.last_name") %>
             <div class="mt-2">
               <%= form.text_field :last_name, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
-            <%= form.label :email %>
+            <%= form.label :email, t("attributes.user.email") %>
             <div class="mt-2">
               <%= form.text_field :email, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3">
-            <%= form.label :phone %>
+            <%= form.label :phone, t("attributes.user.phone") %>
             <div class="mt-2">
               <%= form.text_field :phone, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
-            <%= form.label :cin, "CIN" %>
+            <%= form.label :cin, t("attributes.user.cin") %>
             <div class="mt-2">
               <%= form.text_field :cin, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3">
-            <%= form.label :birthdate %>
+            <%= form.label :birthdate, t("attributes.user.birthday") %>
             <div class="mt-2">
               <%= form.date_field :birthdate, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-2 sm:col-start-1">
-            <%= form.label :gender %>
+            <%= form.label :gender, t("attributes.user.gender") %>
             <div class="mt-2">
               <%= form.select :gender, options_for_select(User.genders.map {|key, value| [key.humanize, key]}, @user.gender) %>
             </div>
           </div>
           <div class="sm:col-span-2">
-            <%= form.label :marital_status %>
+            <%= form.label :marital_status, t("attributes.user.marital_status") %>
             <div class="mt-2">
               <%= form.select :marital_status, options_for_select(User.marital_statuses.map {|key, value| [key.humanize, key]}, @user.marital_status) %>
             </div>
           </div>
           <div class="sm:col-span-2">
-            <%= form.label :children_number %>
+            <%= form.label :children_number, t("attributes.user.children_number") %>
             <div class="mt-2">
               <%= form.select :children_number, (1..5).to_a %>
             </div>
           </div>
           <div class="col-span-full">
-            <%= form.label :about %>
+            <%= form.label :about, t("attributes.user.about") %>
             <div class="mt-2">
               <%= form.rich_text_area :about, class: "block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
             </div>
-            <p class="mt-3 text-sm leading-6 text-gray-600">Write a few sentences about yourself.</p>
+            <p class="mt-3 text-sm leading-6 text-gray-600"><%=  t("views.users.sentences_about_yourself") %></p>
           </div>
         </div>
       </div>
       <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
         <div class="sm:flex-auto">
-          <h1 class="text-base font-semibold leading-6 text-indigo-500">Job details</h1>
-          <p class="mt-2 text-sm text-gray-700">A list of details about your job.</p>
+          <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.job_details_section") %></h1>
+          <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_job_details") %></p>
         </div>
         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
           <div class="sm:col-span-3">
-            <%= form.label :job_title %>
+            <%= form.label :job_title, t("attributes.user.job_title") %>
             <div class="mt-2">
               <%= form.select :job_title, options_for_select(User.job_titles.map {|key, value| [key.humanize, key]}, @user.job_title) %>
             </div>
           </div>
           <div class="sm:col-span-3">
-            <%= form.label :employee_number %>
+            <%= form.label :employee_number, t("attributes.user.employee_number") %>
             <div class="mt-2">
               <%= form.number_field :employee_number, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
-            <%= form.label :site_id %>
+            <%= form.label :site_id, t("attributes.user.site") %>
             <div class="mt-2">
               <%= form.select :site_id, options_for_select(Site.pluck(:name, :id), @user.site_id) %>
             </div>
           </div>
           <div class="sm:col-span-3">
-            <%= form.label :service %>
+            <%= form.label :service, t("attributes.user.service") %>
             <div class="mt-2">
               <%= form.select :service, options_for_select(User.services.map {|key, value| [key.humanize, key]}, @user.service) %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
-            <%= form.label :manager_id %>
+            <%= form.label :manager_id, t("attributes.user.manager") %>
             <div class="mt-2">
               <%= form.select :manager_id, options_for_select(@manager_select.to_h, @user.manager_id) %>
             </div>
           </div>
           <div class="sm:col-span-3">
-            <%= form.label :contract %>
+            <%= form.label :contract, t("attributes.user.contract") %>
             <div class="mt-2">
               <%= form.select :contract, options_for_select(User.contracts.map {|key, value| [key.humanize, key]}, @user.contract) %>
             </div>
           </div>
           <div class="sm:col-span-2 sm:col-start-1">
-            <%= form.label :start_date %>
+            <%= form.label :start_date, t("attributes.shared.start_date") %>
             <div class="mt-2">
               <%= form.date_field :start_date, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-2">
-            <%= form.label :joining_date %>
+            <%= form.label :joining_date, t("attributes.user.joining_date") %>
             <div class="mt-2">
               <%= form.date_field :joining_date, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-2">
-            <%= form.label :end_date %>
+            <%= form.label :end_date, t("attributes.shared.end_date") %>
             <div class="mt-2">
               <%= form.date_field :end_date, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
-            <%= form.label :category %>
+            <%= form.label :category, t("attributes.user.category") %>
             <div class="mt-2">
               <%= form.select :category, options_for_select(User.categories.map {|key, value| [key.humanize, key]}, @user.category) %>
             </div>
           </div>
           <div class="sm:col-span-3">
-            <%= form.label :cnss_number, "CNSS number" %>
+            <%= form.label :cnss_number, t("attributes.user.cnss_number") %>
             <div class="mt-2">
               <%= form.number_field :cnss_number, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
-            <%= form.label :brut_salary %>
+            <%= form.label :brut_salary, t("attributes.user.brut_salary") %>
             <div class="mt-2">
-              <%= form.number_field  :brut_salary, class: "w-full" %>
+              <%= form.number_field :brut_salary, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-3">
-            <%= form.label :net_salary %>
+            <%= form.label :net_salary, t("attributes.user.net_salary") %>
             <div class="mt-2">
               <%= form.number_field :net_salary, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-2 sm:col-start-1">
-            <%= form.label :cnss_contribution, "CNSS contribution" %>
+            <%= form.label :cnss_contribution, t("attributes.user.cnss_contribution") %>
             <div class="mt-2">
               <%= form.number_field  :cnss_contribution, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-2">
-            <%= form.label :retirement_contribution %>
+            <%= form.label :retirement_contribution, t("attributes.user.retirement_contribution") %>
             <div class="mt-2">
               <%= form.number_field  :retirement_contribution, class: "w-full" %>
             </div>
           </div>
           <div class="sm:col-span-2">
-            <%= form.label :pto_number, "Paid Time Off" %>
+            <%= form.label :pto_number, t("attributes.user.pto") %>
             <div class="mt-2">
               <%= form.number_field :pto_number, class: "w-full bg-gray-100" %>
             </div>
@@ -176,31 +176,31 @@
       </div>
       <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
         <div class="sm:flex-auto">
-          <h1 class="text-base font-semibold leading-6 text-indigo-500">Address details</h1>
-          <p class="mt-2 text-sm text-gray-700">Details about your address.</p>
+          <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.address_details_section") %></h1>
+          <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_address_details") %></p>
         </div>
         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
           <%= form.fields_for :address do |f| %>
             <div class="sm:col-span-4">
-              <%= f.label :street, "Street address" %>
+              <%= f.label :street, t("attributes.user.street_address") %>
               <div class="mt-2">
                 <%= f.text_field :street, class: "w-full" %>
               </div>
             </div>
             <div class="sm:col-span-2">
-              <%= f.label :country %>
+              <%= f.label :country, t("attributes.shared.country") %>
               <div>
                 <%= f.select :country, options_for_select(Address.countries.map {|key, value| [key.humanize, key]}, @user.address.country) %>
               </div>
             </div>
             <div class="col-span-3 sm:col-start-1">
-              <%= f.label :city %>
+              <%= f.label :city, t("attributes.shared.city") %>
               <div class="mt-2">
                 <%= f.text_field :city, class: "w-full" %>
               </div>
             </div>
             <div class="sm:col-span-3">
-              <%= f.label :zipcode, "ZIP / Postal code" %>
+              <%= f.label :zipcode, t("attributes.user.zip") %>
               <div class="mt-2">
                 <%= f.text_field :zipcode, class: "w-full" %>
               </div>
@@ -211,55 +211,55 @@
       <% if action_name == 'edit' %>
         <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
           <div class="sm:flex-auto">
-          <h1 class="text-base font-semibold leading-6 text-indigo-500">Experiences</h1>
-          <p class="mt-2 text-sm text-gray-700">A list of all of your experiences</p>
-        </div>
+            <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.experiences_section") %></h1>
+            <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_experiences") %></p>
+          </div>
           <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
             <%= form.fields_for :experiences do |f| %>
               <div class="sm:col-span-3">
-                <%= f.label :job_title %>
+                <%= f.label :job_title, t("attributes.experience.job_title") %>
                 <div class="mt-2">
                   <%= f.text_field :job_title, class: "w-full" %>
                 </div>
               </div>
               <div class="sm:col-span-3 ">
-                <%= f.label :company_name %>
+                <%= f.label :company_name, t("attributes.experience.company_name") %>
                 <div class="mt-2">
                   <%= f.text_field :company_name, class: "w-full" %>
                 </div>
               </div>
               <div class="sm:col-span-3 sm:col-start-1">
-                <%= f.label :country %>
+                <%= f.label :country, t("attributes.shared.country") %>
                 <div class="mt-2">
                   <%= f.select :country, options_for_select(Experience.countries.map {|key, value| [key.humanize, key]}, f.object.country) %>
                 </div>
               </div>
               <div class="sm:col-span-3">
-                <%= f.label :city %>
+                <%= f.label :city, t("attributes.shared.city") %>
                 <div class="mt-2">
                   <%= f.text_field :city, class: "w-full" %>
                 </div>
               </div>
               <div class="sm:col-span-2 sm:col-start-1">
-                <%= f.label :employment_type %>
+                <%= f.label :employment_type, t("attributes.experience.employment_type") %>
                 <div class="mt-2">
                   <%= f.select :employment_type, options_for_select(Experience.employment_types.map {|key, value| [key.humanize, key]}, f.object.employment_type) %>
                 </div>
               </div>
               <div class="sm:col-span-2">
-                <%= f.label :start_date %>
+                <%= f.label :start_date, t("attributes.shared.start_date") %>
                 <div class="mt-2">
                   <%= f.date_field :start_date, class: "w-full" %>
                 </div>
               </div>
               <div class="sm:col-span-2">
-                <%= f.label :end_date %>
+                <%= f.label :end_date, t("attributes.shared.end_date") %>
                 <div class="mt-2">
                   <%= f.date_field :end_date, class: "w-full" %>
                 </div>
               </div>
               <div class="col-span-full">
-                <%= f.label :work_description %>
+                <%= f.label :work_description, t("attributes.experience.work_description") %>
                 <div class="mt-2">
                   <%= f.text_area :work_description, class: "w-full block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6", rows: 5 %>
                 </div>
@@ -270,49 +270,49 @@
         </div>
         <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-12 md:grid-cols-3">
           <div class="sm:flex-auto">
-            <h1 class="text-base font-semibold leading-6 text-indigo-500">Academic background</h1>
-            <p class="mt-2 text-sm text-gray-700">A list of your academic background</p>
+            <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.educations_section") %></h1>
+            <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_educations") %></p>
           </div>
           <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
             <%= form.fields_for :educations do |f| %>
               <div class="sm:col-span-3">
-                <%= f.label :school %>
+                <%= f.label :school, t("attributes.education.school") %>
                 <div class="mt-2">
                   <%= f.text_field :school, class: "w-full" %>
                 </div>
               </div>
               <div class="sm:col-span-3">
-                <%= f.label :education_level %>
+                <%= f.label :education_level, t("attributes.education.education_level") %>
                 <div class="mt-2">
                   <%= f.select :education_level, options_for_select(Education.education_levels.map {|key, value| [key.humanize, key]}, f.object.education_level) %>
                 </div>
               </div>
               <div class="sm:col-span-2">
-                <%= f.label :study_field %>
+                <%= f.label :study_field, t("attributes.education.study_field") %>
                 <div class="mt-2">
                   <%= f.select :study_field, options_for_select(Education.study_fields.map {|key, value| [key.humanize, key]}, f.object.study_field) %>
                 </div>
               </div>
               <div class="sm:col-span-2">
-                <%= f.label :start_date %>
+                <%= f.label :start_date, t("attributes.shared.start_date") %>
                 <div class="mt-2">
                   <%= f.date_field :start_date, class: "w-full" %>
                 </div>
               </div>
               <div class="sm:col-span-2">
-                <%= f.label :end_date %>
+                <%= f.label :end_date, t("attributes.shared.end_date") %>
                 <div class="mt-2">
                   <%= f.date_field :end_date, class: "w-full" %>
                 </div>
               </div>
               <div class="sm:col-span-3">
-                <%= f.label :country %>
+                <%= f.label :country, t("attributes.shared.country") %>
                 <div class="mt-2">
                   <%= f.select :country, options_for_select(Education.countries.map {|key, value| [key.humanize, key]}, f.object.country) %>
                 </div>
               </div>
               <div class="sm:col-span-3">
-                <%= f.label :city %>
+                <%= f.label :city, t("attributes.shared.city") %>
                 <div class="mt-2">
                   <%= f.text_field :city, class: "w-full" %>
                 </div>
@@ -320,7 +320,7 @@
               <div class="sm:col-span-3">
                 <div class="sm:col-span-4 flex items-center">
                   <%= f.check_box :still_on_this_course, class: "mx-2 h-5 w-5 rounded text-indigo-500 focus:ring-indigo-500 focus:border-indigo-500", checked: f.object.still_on_this_course %>
-                  <%= f.label :still_on_this_course %>
+                  <%= f.label :still_on_this_course, t("attributes.education.still_on_this_course") %>
                 </div>
               </div>
               <div class="sm:col-span-1"></div><hr class="border border-gray-200 sm:col-span-4">
@@ -330,8 +330,8 @@
       <% end %>
     </div>
     <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
-      <%= link_to "Cancel", @user, class: "text-sm font-semibold leading-6 text-gray-900" %>
-      <%= form.submit "Save", class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+      <%= link_to t("buttons.cancel"), (action_name == 'edit' ? user_path(@user) : dashboard_path), class: "text-sm font-semibold leading-6 text-gray-900" %>
+      <%= form.submit t("buttons.save"), class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
     </div>
   <% end %>
 </section>

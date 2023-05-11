@@ -1,46 +1,169 @@
 fr:
-  activerecord:
-    attributes:
-      time_request:
-        start_date: "Date de début"
-        end_date: "Date de fin"
-        category: "Catégorie"
-    enums:
-      time_request:
-        category:
-          vacation_time: "Temps de vacances"
-          sick_time: "Congé de maladie"
-          bereavement_time: "Congé pour décès"
-          parental_leave: "Congé parental"
-          remote_work: "Travail à distance"
-          personal_time: "Temps personnel"
-  errors:
-    messages:
-      greater_than_or_equal_to: "doit être supérieur ou égal à %{count}"
-      blank: "ne peut pas être vide"
-  flash:
-    application_controller:
-      not_authorized: "Vous n'êtes pas autorisé(e) à effectuer cette action."
-    successfully_created: "Il a été créé avec succès."
-    successfully_updated: "Il a été mis à jour avec succès."
-    successfully_imported: "Les utilisateurs ont été importés avec succès."
-    please_select_file: "Veuillez sélectionner un fichier à importer."
-    announcement_destroyed: "Annonce supprimée avec succès.."
-    comment_cant_be_blank: "Le commentaire ne peut pas être vide."
-  experiences:
-    experience_created: "L'expérience a été créée avec succès."
-    experience_updated: "L'expérience a été mise à jour avec succès."
-  educations:
-    education_created: "L'éducation a été créée avec succès."
-    education_updated: "L'éducation a été mise à jour avec succès."
-  time_Off_requests:
-    time_request_created: "La demande de congé a été créée avec succès."
-    time_request_updated: "La demande de congé a été mise à jour avec succès."
-    time_request_destroyed: "La demande de congé a été supprimée avec succès."
+  buttons:
+    cancel: "Annuler"
+    save: "Enregistrer"
+    edit: "Modifier"
+    add: "Ajouter"
+    comment: "Commentaire"
+    import: "Importer"
+  attributes:
+    asset:
+      category: "Catégorie"
+      serial: "Numéro de série"
+      date_assigned: "Date d'affectation"
+      date_returned: "Date de retour"
+      description: "Description"
+    education:
+      school: "École"
+      education_level: "Niveau d'éducation"
+      study_field: "Domaine d'études"
+      still_on_this_course: "Êtes-vous toujours en cours de formation ?"
+    experience:
+      job_title: "Intitulé du poste"
+      company_name: "Nom de l'entreprise"
+      employment_type: "Type d'emploi"
+      work_description: "Description du travail"
+    emergency_contact:
+      email: "E-mail"
+      relationship: "Relation"
+      phone: "Téléphone"
+    time_request:
+      category: "Catégorie"
+      content: "Contenu"
+    user_request:
+      request_type: "Type de demande"
+      state: "État"
+      managed_by: "Gérée par"
+    user:
+      first_name: "Prénom"
+      last_name: "Nom de famille"
+      name: "Nom"
+      cin: "CIN"
+      birthday: "Date de naissance"
+      gender: "Genre"
+      phone: "Téléphone"
+      email: "E-mail"
+      marital_status: "État civil"
+      children_number: "Nombre d'enfants"
+      about: "À propos"
+      job_title: "Poste"
+      employee_number: "Numéro d'employé"
+      site: "Site"
+      service: "Service"
+      manager: "Manager"
+      contract: "Contrat"
+      joining_date: "Date d'embauche"
+      category: "Catégorie"
+      cnss_number: "Numéro de CNSS"
+      brut_salary: "Salaire brut"
+      net_salary: "Salaire net"
+      cnss_contribution: "Cotisation CNSS"
+      retirement_contribution: "Cotisation retraite"
+      pto: "Congé payé"
+      street_address: "Adresse"
+      zip: "ZIP / Code postal"
+    shared:
+      name: "Nom"
+      start_date: "Date de début"
+      end_date: "Date de fin"
+      country: "Pays"
+      city: "Ville"
+      created_at: "Créé le"
   views:
     announcements:
-      index:
-        create_announcement: "Créer une nouvelle annonce"
+      add_announcement: "Créer une nouvelle annonce"
+    assets:
+      title_assets: "Éléments"
+      assets_list: "Liste des éléments qui vous ont été affectés."
+    comments:
+      commented: "Commenté"
+      edited: "Modifié"
+      add_comment_placeholder: "Ajouter votre commentaire..."
     dashboard:
-      index:
-        View_all_announcement: "Voir tous"
+      announcements_title: "Annonces"
+      announcements_button: "Voir toutes les annonces"
+    educations:
+      add_education: "Ajouter une nouvelle formation"
+    experiences:
+      add_experience: "Ajouter une nouvelle expérience"
+    emergency_contacts:
+      title_emergency_contact: "Contacts d'urgence"
+      emergency_contacts_list: "Liste de tous vos contacts d'urgence."
+    holidays:
+      title_holidays: "Vacances"
+      holidays_list: "Liste des vacances pour cette année"
+      add_holiday: "Ajouter un nouveau jour férié"
+      edit_holiday: "Modifier le jour férié"
+    time_requests:
+      title_time_request: "Demandes de congé"
+      time_requests_list: "Liste des demandes de congé demandées par vous."    
+      who_out: "Qui d'autre sera absent ?"
+      no_one_out: "Personne d'autre de l'équipe ne sera absent."
+      add_time_off: "Ajouter une nouvelle demande de congé"
+      edit_time_off: "Modifier la demande de congé"
+    settings:
+      setting_desc: "Ces informations seront affichées sur votre profil."
+      employee_picture: "Photo de l'employé"
+    user_requests:
+      title_user_request: "Demandes d'utilisateurs"
+      user_requests_list: "Liste de toutes les demandes que vous avez effectuées."
+    users:
+      personal_details_section: "Détails personnels"
+      list_personal_details: "Liste des détails personnels vous concernant."
+      job_details_section: "Détails du travail"
+      list_job_details: "Liste des détails concernant votre travail."
+      address_details_section: "Détails de l'adresse"
+      list_address_details: "Détails concernant votre adresse."
+      experiences_section: "Expériences"
+      list_experiences: "Liste de toutes vos expériences."
+      educations_section: "Formation académique"
+      list_educations: "Liste de votre formation académique."
+      add_experience: "Ajouter une nouvelle expérience"
+      add_education: "Ajouter une nouvelle formation"
+      add_employee: "Ajouter un employé"
+      edit_employee: "Modifier l'employé"
+      sentences_about_yourself: "Écrivez quelques phrases à propos de vous-même."
+      import_employees: "Importer des employés via un fichier CSV"
+      employees_title: "Employés"
+      employees_list: "Liste de tous les employés."
+      search_by: "Nom, email ou numéro d'employé"
+    layouts:
+      main:
+        dashboard: "Dashboard"
+        employees: "Employés"
+        requests: "Demandes"
+        calendar: "Calendrier"
+        organization: "Organisation"
+    shared:
+      settings: "Paramètrage"
+      profile: "Profil"
+      password: "Mot de passe"
+      sign_out: "Se déconnecter"
+      approved:  "Approuvé"
+      rejected: "Rejeté"
+      pending: "En attente"
+      approve: "Approuver"
+      deny: "Refuser"
+      view_profile: "Voir le profil"
+      user_overview:
+        welcome: "Bienvenue de retour,"
+        edit_profile: "Modifier le profil"
+        time_off_days: "Jours de congé restants"
+  flash:
+    not_authorized: "Vous n'êtes pas autorisé(e) à effectuer cette action."
+    successfully_created: "Création effectuée avec succès."
+    successfully_updated: "Mise à jour effectuée avec succès."
+    successfully_destroyed: "Supprimé(e) avec succès"
+    successfully_imported : "Importation réussie"
+  errors:
+    comment_cant_be_blank: "Commentaire ne peut pas être vide."
+    prohibited: "ont empêché(e)s son enregistrement :"
+    select_csv: "Sélectionnez un fichier CSV à importer."
+  devise:
+    registrations:
+      edit:
+        change_password: "Changer votre mot de passe"
+        current_password: "Mot de passe actuel"
+    shared:
+      characters_minimum: "Nombre de caractères minimum"
+      password_confirmation: "Confirmation du mot de passe"

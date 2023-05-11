@@ -1,46 +1,169 @@
 en:
-  activerecord:
-    attributes:
-      time_request:
-        start_date: "Start Date"
-        end_date: "End Date"
-        category: "Category"
-    enums:
-      time_request:
-        category:
-          vacation_time: "Vacation Time"
-          sick_time: "Sick Time"
-          bereavement_time: "Bereavement Time"
-          parental_leave: "Parental Leave"
-          remote_work: "Remote Work"
-          personal_time: "Personal Time"
-  errors:
-    messages:
-      greater_than_or_equal_to: "must be greater than or equal to %{count}"
-      blank: "can't be blank"
-  flash:
-    application_controller:
-      not_authorized: "You are not authorized to perform this action."
-    successfully_created: "It was successfully created."
-    successfully_updated: "It was successfully updated."
-    successfully_imported : "Users imported successfully."
-    please_select_file: "Please select a file to import."
-    announcement_destroyed: "Announcement was successfully destroyed."
-    comment_cant_be_blank: "Comment can't be blank"
-  experiences:
-    experience_created: "Experience was successfully created."
-    experience_updated: "Experience was successfully updated."
-  educations:
-    education_created: "Education was successfully created."
-    education_updated: "Education was successfully updated."
-  time_requests:
-    time_request_created: "Time off request was successfully created."
-    time_request_updated: "Time off request was successfully updated."
-    time_request_destroyed: "Time off request was successfully destroyed."
+  buttons:
+    cancel: "Cancel"
+    save: "Save"
+    edit: "Edit"
+    add: "Add"
+    comment: "Comment"
+    import: "Import"
+  attributes:
+    asset:
+      category: "Category"
+      serial: "Serial #"
+      date_assigned: "Date assigned"
+      date_returned: "Date returned"
+      description: "Description"
+    education:
+      school: "School"
+      education_level: "Education level"
+      study_field: "Study field"
+      still_on_this_course: "Still on this course?"
+    experience:
+      job_title: "Job title"
+      company_name: "Company name"
+      employment_type: "Employment type"
+      work_description: "Work description"
+    emergency_contact:
+      email: "Email"
+      relationship: "Relationship"
+      phone: "Phone"
+    time_request:
+      category: "Category"
+      content: "Content"
+    user_request:
+      request_type: "Request type"
+      state: "State"
+      managed_by: "Managed by"
+    user:
+      first_name: "First name"
+      last_name: "Last name"
+      name: "Name"
+      cin: "CIN"
+      birthday: "Birthday"
+      gender: "Gender"
+      phone: "Phone"
+      Email: "Email"
+      marital_status: "Marital status"
+      children_number: "Children number"
+      about: "About"
+      job_title: "Job title"
+      employee_number: "Employee number"
+      site: "Site"
+      service: "Service"
+      manager: "Manager"
+      contract: "Contract"
+      joining_date: "Joining date"
+      category: "Category"
+      cnss_number: "CNSS number"
+      brut_salary: "Brut salary"
+      net_salary: "Net salary"
+      cnss_contribution: "CNSS contribution"
+      retirement_contribution: "Retirement contribution"
+      pto: "Paid Time Off"
+      street_address: "Street address"
+      zip: "ZIP / Postal code"
+    shared:
+      name: "Name"
+      start_date: "Start date"
+      end_date: "End date"
+      country: "Country"
+      city: "City"
+      created_at: "Created at"
   views:
     announcements:
-      index:
-        create_announcement: "Create new Announcement"
+      add_announcement: "Create new Announcement"
+    assets:
+      title_assets: "Assets"
+      assets_list: "List of assets assigned to you."
+    comments:
+      commented: "Commented"
+      edited: "Edited"
+      add_comment_placeholder: "Add your comment..."
     dashboard:
-      index:
-        View_all_announcement: "View all"
+      announcements_title: "Announcements"
+      announcements_button: "View All Announcement"
+    educations:
+      add_education: "Add new education"
+    experiences:
+      add_experience: "Add new experience"
+    emergency_contacts:
+      title_emergency_contact: "Emergency contacts"
+      emergency_contacts_list: "List of all of your emergency contacts."
+    holidays:
+      title_holidays: "Holidays"
+      holidays_list: "List of holidays for this year"
+      add_holiday: "Add new holiday"
+      edit_holiday: "Edit the holiday"
+    time_requests:
+      title_time_request: "Time off requests"
+      time_requests_list: "List of time off requests requested by you."
+      who_out: "Who else will be out?"
+      no_one_out.: "No one else on the team will be out."
+      add_time_off: "Add new time off request"
+      edit_time_off: "Edit the time off request"
+    settings:
+      setting_desc: "These information will be displayed on your profile."
+      employee_picture: "Employee picture"
+    user_requests:
+      title_user_request: "Users requests"
+      user_requests_list: "List of all requests requested by you."
+    users:
+      personal_details_section: "Personal details"
+      list_personal_details: "List of personal details about you."
+      job_details_section: "Job details"
+      list_job_details: "List of details about your job."
+      address_details_section: "Address details"
+      list_address_details: "Details about your address."
+      experiences_section: "Experiences"
+      list_experiences: "List of all of your experiences"
+      educations_section: "Academic background"
+      list_educations: "List of your academic background"
+      add_experience: "Add new experience"
+      add_education: "Add new education"
+      add_employee: "Add an employee"
+      edit_employee: "Edit the employee"
+      sentences_about_yourself: "Write a few sentences about yourself."
+      import_employees: "Import employees through CSV file"
+      employees_title: "Employees"
+      employees_list: "List of all the employees."
+      search_by: "Name, email, or employee number "
+    layouts:
+      main:
+        dashboard: "Dashboard"
+        employees: "Employees"
+        requests: "Requests"
+        calendar: "Calendar"
+        organization: "Organization"
+    shared:
+      settings: "Settings"
+      profile: "Profile"
+      password: "Password"
+      sign_out: "Sign out"
+      approved: "Approved"
+      rejected: "Rejected"
+      pending: "Pending"
+      approve: "Approve"
+      deny: "Deny"
+      view_profile: "View profile"
+      user_overview:
+        welcome: "Welcome back,"
+        edit_profile: "Edit profile"
+        time_off_days: "Time off days left"
+  flash:
+    not_authorized: "You are not authorized to perform this action."
+    successfully_created: "Successfully created"
+    successfully_updated: "Successfully updated"
+    successfully_destroyed: "Successfully destroyed"
+    successfully_imported : "Successfully imported"
+  errors:
+    comment_cant_be_blank: "Comment can't be blank"
+    prohibited: "prohibited it from being saved:"
+    select_csv: "Select a CSV file to import."
+  devise:
+    registrations:
+      edit:
+        change_password: "Change your password"
+        current_password: "Current password"
+    shared:
+      characters_minimum: "Characters minimum"
+      password_confirmation: "Password confirmation"

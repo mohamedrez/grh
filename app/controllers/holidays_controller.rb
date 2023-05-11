@@ -1,5 +1,4 @@
 class HolidaysController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_holiday, only: %i[edit update]
 
   def index

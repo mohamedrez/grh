@@ -1,5 +1,4 @@
 class UsersController < ApplicationController
-  before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update]
 
   def index
@@ -10,7 +9,7 @@ class UsersController < ApplicationController
 
   def show
     authorize @user
-    @manager = User.find(@user.manager_id)
+    @manager = @user.manager_id.present? ? User.find(@user.manager_id) : nil
   end
 
   def new
@@ -54,7 +53,7 @@ class UsersController < ApplicationController
       User.import(params[:file])
       redirect_to users_path, notice: t("flash.successfully_imported")
     else
-      redirect_to users_path, alert: t("flash.please_select_file")
+      redirect_to users_path, alert: t("errors.select_csv")
     end
   end
 

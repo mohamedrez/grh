@@ -61,8 +61,8 @@ RSpec.describe "/emergency_contacts", type: :request do
         expect(response).to have_http_status(:ok)
       end
 
-      it "sets the flash notice" do
-        expect(flash[:notice]).to eq("Emergency contact successfully created.")
+      it 'sets the flash notice' do
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_created"))
       end
     end
 
@@ -99,8 +99,8 @@ RSpec.describe "/emergency_contacts", type: :request do
         expect(emergency_contact.email).to eq("james@gmail.com")
       end
 
-      it "sets the flash notice" do
-        expect(flash[:notice]).to eq("User was successfully updated.")
+      it 'sets the flash notice' do
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_updated"))
       end
     end
 
@@ -124,8 +124,8 @@ RSpec.describe "/emergency_contacts", type: :request do
       expect(EmergencyContact.count).to eq(0)
     end
 
-    it "sets the flash notice" do
-      expect(flash[:notice]).to eq("emergency contact was successfully destroyed.")
+    it 'sets the flash notice' do
+      expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
     end
   end
 end
