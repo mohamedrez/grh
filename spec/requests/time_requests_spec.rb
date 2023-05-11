@@ -117,7 +117,7 @@ RSpec.describe "/time_requests", type: :request do
     end
 
     it 'sets the flash notice' do
-      expect(flash[:notice]).to eq(I18n.t("time_requests.time_request_destroyed"))
+      expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
     end
   end
 end

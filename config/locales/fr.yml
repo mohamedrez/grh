@@ -44,6 +44,11 @@ fr:
       email: "E-mail"
       relationship: "Relation"
       phone: "Téléphone"
+    time_request:
+      category: "Catégorie"
+      state: "État"
+      managed_by: "Gérée par"
+      content: "Contenu"
     shared:
       name: "Nom"
       start_date: "Date de début"
@@ -64,12 +69,19 @@ fr:
       add_experience: "Ajouter une nouvelle expérience"
     emergency_contacts:
       title_emergency_contact: "Contacts d'urgence"
-      emergency_contacts_list: "Une liste de tous vos contacts d'urgence."
+      emergency_contacts_list: "Liste de tous vos contacts d'urgence."
     holidays:
       title_holidays: "Vacances"
       holidays_list: "Liste des vacances pour cette année"
       add_holiday: "Ajouter un nouveau jour férié"
       edit_holiday: "Modifier le jour férié"
+    time_requests:
+      title_time_request: "Demandes de congé"
+      time_requests_list: "Liste des demandes de congé demandées par vous."    
+      who_out: "Qui d'autre sera absent ?"
+      no_one_out: "Personne d'autre de l'équipe ne sera absent."
+      add_time_off: "Ajouter une nouvelle demande de congé"
+      edit_time_off: "Modifier la demande de congé"
     layouts:
       main:
         dashboard: "Dashboard"
@@ -86,6 +98,11 @@ fr:
       settings: "Paramètrage"
       password: "Mot de passe"
       sign_out: "Se déconnecter"
+      approved:  "Approuvé"
+      rejected: "Rejeté"
+      pending: "En attente"
+      approve: "Approuver"
+      deny: "Refuser"
   flash:
     successfully_created: "Création effectuée avec succès."
     successfully_updated: "Mise à jour effectuée avec succès."

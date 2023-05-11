@@ -44,6 +44,11 @@ en:
       email: "Email"
       relationship: "Relationship"
       phone: "Phone"
+    time_request:
+      category: "Category"
+      state: "State"
+      managed_by: "Managed by"
+      content: "Content"
     shared:
       name: "Name"
       start_date: "Start date"
@@ -64,12 +69,19 @@ en:
       add_experience: "Add new experience"
     emergency_contacts:
       title_emergency_contact: "Emergency contacts"
-      emergency_contacts_list: "A list of all of your emergency contacts."
+      emergency_contacts_list: "List of all of your emergency contacts."
     holidays:
       title_holidays: "Holidays"
       holidays_list: "List of holidays for this year"
       add_holiday: "Add new holiday"
       edit_holiday: "Edit the holiday"
+    time_requests:
+      title_time_request: "Time off requests"
+      time_requests_list: "List of time off requests requested by you."
+      who_out: "Who else will be out?"
+      no_one_out.: "No one else on the team will be out."
+      add_time_off: "Add new time off request"
+      edit_time_off: "Edit the time off request"
     layouts:
       main:
         dashboard: "Dashboard"
@@ -86,6 +98,11 @@ en:
       settings: "Settings"
       password: "Password"
       sign_out: "Sign out"
+      approved: "Approved"
+      rejected: "Rejected"
+      pending: "Pending"
+      approve: "Approve"
+      deny: "Deny"
   flash:
     successfully_created: "Successfully created"
     successfully_updated: "Successfully updated"

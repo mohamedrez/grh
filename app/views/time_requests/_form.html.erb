@@ -2,7 +2,7 @@
   <div class="space-y-12">
     <% if time_request.errors.any? %>
       <div style="color: red">
-        <h2><%= pluralize(time_request.errors.count, "error") %> prohibited this time_request from being saved:</h2>
+        <h2><%= pluralize(time_request.errors.count, "error") %> <%= t("errors.prohibited") %></h2>
         <ul>
           <% time_request.errors.each do |error| %>
             <li><%= error.full_message %></li>
@@ -11,32 +11,32 @@
       </div>
     <% end %>
     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-      <div class="sm:col-span-3 sm:col-start-1">
-        <%= form.label :start_date, style: "display: block" %>
+      <div class="sm:col-span-2 sm:col-start-1">
+        <%= form.label :start_date, t("attributes.shared.start_date") %>
         <div class="mt-2">
           <%= form.date_field :start_date, class: "w-full" %>
         </div>
       </div>
-      <div class="sm:col-span-3">
-        <%= form.label :end_date, style: "display: block" %>
+      <div class="sm:col-span-2">
+        <%= form.label :end_date, t("attributes.shared.end_date") %>
         <div class="mt-2">
           <%= form.date_field :end_date, class: "w-full" %>
         </div>
       </div>
-      <div class="sm:col-span-3 sm:col-start-1">
-        <%= form.label :category %>
+      <div class="sm:col-span-2">
+        <%= form.label :category, t("attributes.time_request.category") %>
         <div class="mt-2">
           <%= form.select :category, options_for_select(TimeRequest.categories.map {|key, value| [key.humanize, key]}, @time_request.category) %>
         </div>
       </div>
     </div>
     <div>
-      <%= form.label :content, style: "display: block" %>
+      <%= form.label :content, t("attributes.time_request.content") %>
       <%= form.rich_text_area :content, class: "block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
     </div>
     <div>
       <%= form.hidden_field :user_id, value: @user_id %>
-      <%= form.submit %>
+      <%= form.submit (action_name == 'new' ? t("buttons.add") : t("buttons.edit")) %>
     </div>
   </div>
 <% end %>
