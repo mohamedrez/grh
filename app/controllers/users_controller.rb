@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def show
     authorize @user
-    @manager = User.find(@user.manager_id)
+    @manager = @user.manager_id.present? ? User.find(@user.manager_id) : nil
   end
 
   def new
