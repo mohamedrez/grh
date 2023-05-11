@@ -180,7 +180,7 @@ RSpec.describe "Users", type: :request do
         post import_users_path
 
         expect(response).to redirect_to(users_path)
-        expect(flash[:alert]).to eq(I18n.t("flash.please_select_file"))
+        expect(flash[:alert]).to eq(I18n.t("errors.select_csv"))
       end
     end
   end

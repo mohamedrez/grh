@@ -53,7 +53,7 @@ class UsersController < ApplicationController
       User.import(params[:file])
       redirect_to users_path, notice: t("flash.successfully_imported")
     else
-      redirect_to users_path, alert: t("flash.please_select_file")
+      redirect_to users_path, alert: t("errors.select_csv")
     end
   end
 

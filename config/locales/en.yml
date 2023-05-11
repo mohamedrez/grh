@@ -2,8 +2,7 @@ en:
   flash:
     application_controller:
       not_authorized: "You are not authorized to perform this action."
-    successfully_imported : "Users imported successfully."
-    please_select_file: "Please select a file to import."
+    select_csv: "Select a file to import."
     announcement_destroyed: "Announcement was successfully destroyed."
   views:
     announcements:
@@ -19,6 +18,7 @@ en:
     edit: "Edit"
     add: "Add"
     comment: "Comment"
+    import: "Import"
   attributes:
     asset:
       category: "Category"
@@ -50,7 +50,7 @@ en:
     user:
       first_name: "First name"
       last_name: "Last name"
-      full_name: "Full name"
+      name: "Name"
       cin: "CIN"
       birthday: "Birthday"
       gender: "Gender"
@@ -60,7 +60,7 @@ en:
       children_number: "Children number"
       about: "About"
       job_title: "Job title"
-      employee_id: "Employee ID"
+      employee_number: "Employee number"
       site: "Site"
       service: "Service"
       manager: "Manager"
@@ -128,8 +128,14 @@ en:
       list_educations: "List of your academic background"
       add_experience: "Add new experience"
       add_education: "Add new education"
+      add_employee: "Add an employee"
       edit_employee: "Edit the employee"
       sentences_about_yourself: "Write a few sentences about yourself."
+      import_employees: "Import employees through CSV file"
+      employees_title: "Employees"
+      employees_list: "List of all the employees."
+      view_profile: "View profile"
+      search_by: "Name, email, or employee number "
     layouts:
       main:
         dashboard: "Dashboard"
@@ -151,9 +157,11 @@ en:
     successfully_created: "Successfully created"
     successfully_updated: "Successfully updated"
     successfully_destroyed: "Successfully destroyed"
+    successfully_imported : "Successfully imported"
   errors:
     comment_cant_be_blank: "Comment can't be blank"
     prohibited: "prohibited it from being saved:"
+    select_csv: "Select a CSV file to import."
   devise:
     registrations:
       edit:

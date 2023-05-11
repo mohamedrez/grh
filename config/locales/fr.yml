@@ -3,7 +3,6 @@ fr:
     application_controller:
       not_authorized: "Vous n'êtes pas autorisé(e) à effectuer cette action."
     successfully_imported: "Les utilisateurs ont été importés avec succès."
-    please_select_file: "Veuillez sélectionner un fichier à importer."
     announcement_destroyed: "Annonce supprimée avec succès.."
   views:
     announcements:
@@ -19,6 +18,7 @@ fr:
     edit: "Modifier"
     add: "Ajouter"
     comment: "Commentaire"
+    import: "Importer"
   attributes:
     asset:
       category: "Catégorie"
@@ -50,7 +50,7 @@ fr:
     user:
       first_name: "Prénom"
       last_name: "Nom de famille"
-      full_name: "Nom complet"
+      name: "Nom"
       cin: "CIN"
       birthday: "Date de naissance"
       gender: "Genre"
@@ -60,7 +60,7 @@ fr:
       children_number: "Nombre d'enfants"
       about: "À propos"
       job_title: "Poste"
-      employee_id: "ID de l'employé"
+      employee_number: "Numéro d'employé"
       site: "Site"
       service: "Service"
       manager: "Manager"
@@ -128,8 +128,14 @@ fr:
       list_educations: "Liste de votre formation académique."
       add_experience: "Ajouter une nouvelle expérience"
       add_education: "Ajouter une nouvelle formation"
+      add_employee: "Ajouter un employé"
       edit_employee: "Modifier l'employé"
       sentences_about_yourself: "Écrivez quelques phrases à propos de vous-même."
+      import_employees: "Importer des employés via un fichier CSV"
+      employees_title: "Employés"
+      employees_list: "Liste de tous les employés."
+      view_profile: "Voir le profil"
+      search_by: "Nom, email ou numéro d'employé"
     layouts:
       main:
         dashboard: "Dashboard"
@@ -151,9 +157,11 @@ fr:
     successfully_created: "Création effectuée avec succès."
     successfully_updated: "Mise à jour effectuée avec succès."
     successfully_destroyed: "Supprimé(e) avec succès"
+    successfully_imported : "Importation réussie"
   errors:
     comment_cant_be_blank: "Commentaire ne peut pas être vide."
     prohibited: "ont empêché(e)s son enregistrement :"
+    select_csv: "Sélectionnez un fichier CSV à importer."
   devise:
     registrations:
       edit:
