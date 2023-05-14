@@ -72,7 +72,7 @@ turbo-frame:nth-child(even) .table-4 .table-5 {
   line-height: 1.12;
 }
 h1 {
-  @apply mt-3 text-3xl font-extrabold tracking-tight text-slate-900 mb-5
+  @apply mt-3 text-3xl font-extrabold tracking-tight text-slate-900
 }
 /* @layer components {
   .page-container {
