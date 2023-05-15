@@ -65,7 +65,8 @@ COPY --from=node /rails/node_modules /rails/node_modules
 COPY --link . .
 
 # Precompile bootsnap code for faster boot times
-# RUN bundle exec bootsnap precompile app/ lib/
+RUN bundle install --deployment --without development test
+RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
 RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
