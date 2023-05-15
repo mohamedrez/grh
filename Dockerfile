@@ -5,4 +5,5 @@ RUN bundle install
 ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 EXPOSE 4000
+CMD [ "bundle", "exec", "puma", "-C", "config/puma.rb" ]
 
