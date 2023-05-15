@@ -82,7 +82,7 @@ group :test do
   gem "rspec_junit_formatter"
   gem "simplecov-cobertura", require: false
   gem "codecov"
-  gem "pundit-matchers", "~> 1.8.4"
+  gem "pundit-matchers", "~> 2.2.0"
   gem "selenium-webdriver", "4.9.0"
   gem "webdrivers"
   gem "database_cleaner"
