@@ -20,7 +20,7 @@ default: &default
 
 development:
   <<: *default
-  host: <%= ENV.fetch("DB_HOST") %>
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
   database: maktabah_development
 
 # Warning: The database defined as "test" will be erased and
