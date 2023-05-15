@@ -61,9 +61,9 @@ RSpec.describe "/time_requests", type: :request do
         }.to change(TimeRequest, :count).by(1)
       end
 
-      it "redirects to the created time_request" do
+      it "successfully creates time_request" do
         post "/users/#{user.id}/time_requests", params: {time_request: valid_attributes}
-        expect(response).to redirect_to(user_time_request_url(user, TimeRequest.last))
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -92,10 +92,10 @@ RSpec.describe "/time_requests", type: :request do
         expect(time_request.category).to eq("personal_time")
       end
 
-      it "redirects to the time_request" do
+      it "successfully updates time_request" do
         patch "/users/#{user.id}/time_requests/#{time_request.id}", params: {time_request: valid_attributes}
         time_request.reload
-        expect(response).to redirect_to(user_time_request_url(user, time_request))
+        expect(response).to have_http_status(:ok)
       end
     end
 
