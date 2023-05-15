@@ -3,8 +3,12 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  get "calendar", to: "calendar#index"
+  get "organization", to: "organization#index"
   get "organization/csv", to: "organization#csv"
   get "events", to: "events#index"
+
+  root to: "dashboard#index"
 
   authenticate :user, ->(user) { user.admin? } do
     mount Motor::Admin => "/motor_admin"
@@ -12,10 +16,7 @@ Rails.application.routes.draw do
   end
 
   scope "(:locale)", locale: /en|fr/ do
-    root to: "dashboard#index"
     get "dashboard", to: "dashboard#index"
-    get "organization", to: "organization#index"
-    get "calendar", to: "calendar#index"
 
     resources :announcements
     resources :comments
