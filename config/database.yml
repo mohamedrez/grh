@@ -13,10 +13,10 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch("DB_USER") %>
-  password: <%= ENV.fetch("DB_PASSWORD") %>
-  socket: <%= ENV.fetch("DB_SOCKET") %>
-  host: <%= ENV.fetch("DB_HOST") %>
+  username: <%= ENV.fetch("DB_USER", "user") %>
+  password: <%= ENV.fetch("DB_PASSWORD", "password") %>
+  socket: <%= ENV.fetch("DB_SOCKET", "socket") %>
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
 
 development:
   <<: *default
