@@ -2,7 +2,7 @@
 
 # Make sure RUBY_VERSION matches the Ruby version in .ruby-version and Gemfile
 ARG RUBY_VERSION=3.1.0
-FROM quay.io/evl.ms/fullstaq-ruby:${RUBY_VERSION}-jemalloc as base
+FROM quay.io/evl.ms/fullstaq-ruby:${RUBY_VERSION}-slim as base
 
 # Rails app lives here
 WORKDIR /rails
@@ -21,9 +21,7 @@ RUN gem update --system --no-document && \
 FROM base as prebuild
 
 # Install packages needed to build gems and node modules
-RUN --mount=type=cache,id=dev-apt-cache,sharing=locked,target=/var/cache/apt \
-    --mount=type=cache,id=dev-apt-lib,sharing=locked,target=/var/lib/apt \
-    apt-get update -qq && \
+RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential curl default-libmysqlclient-dev libvips node-gyp pkg-config python-is-python3
 
 
@@ -40,23 +38,16 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
 
 # Install node modules
 COPY --link package.json yarn.lock ./
-RUN --mount=type=cache,id=bld-yarn-cache,target=/root/.yarn \
-    YARN_CACHE_FOLDER=/root/.yarn yarn install --frozen-lockfile
+RUN yarn install --frozen-lockfile
 
 
 FROM prebuild as build
 
 # Install application gems
 COPY --link Gemfile Gemfile.lock ./
-RUN --mount=type=cache,id=bld-gem-cache,sharing=locked,target=/srv/vendor \
-    bundle config set app_config .bundle && \
-    bundle config set path /srv/vendor && \
-    bundle install && \
+RUN bundle install && \
     bundle exec bootsnap precompile --gemfile && \
-    bundle clean && \
-    mkdir -p vendor && \
-    bundle config set path vendor && \
-    cp -ar /srv/vendor .
+    rm -rf ~/.bundle/ $BUNDLE_PATH/ruby/*/cache $BUNDLE_PATH/ruby/*/bundler/gems/*/.git
 
 # Copy node modules
 COPY --from=node /rails/node_modules /rails/node_modules
@@ -65,7 +56,6 @@ COPY --from=node /rails/node_modules /rails/node_modules
 COPY --link . .
 
 # Precompile bootsnap code for faster boot times
-RUN bundle install --deployment --without development test
 RUN bundle exec bootsnap precompile app/ lib/
 
 # Precompiling assets for production without requiring secret RAILS_MASTER_KEY
@@ -76,10 +66,9 @@ RUN SECRET_KEY_BASE=DUMMY ./bin/rails assets:precompile
 FROM base
 
 # Install packages needed for deployment
-RUN --mount=type=cache,id=dev-apt-cache,sharing=locked,target=/var/cache/apt \
-    --mount=type=cache,id=dev-apt-lib,sharing=locked,target=/var/lib/apt \
-    apt-get update -qq && \
-    apt-get install --no-install-recommends -y default-mysql-client imagemagick libvips
+RUN apt-get update -qq && \
+    apt-get install --no-install-recommends -y default-mysql-client imagemagick libvips && \
+    rm -rf /var/lib/apt/lists /var/cache/apt/archives
 
 # Run and own the application files as a non-root user for security
 RUN useradd rails --home /rails --shell /bin/bash
@@ -91,8 +80,7 @@ COPY --from=build --chown=rails:rails /rails /rails
 
 # Deployment options
 ENV RAILS_LOG_TO_STDOUT="1" \
-    RAILS_SERVE_STATIC_FILES="true" \
-    RUBY_YJIT_ENABLE="1"
+    RAILS_SERVE_STATIC_FILES="true"
 
 # Entrypoint prepares the database.
 ENTRYPOINT ["/rails/bin/docker-entrypoint"]

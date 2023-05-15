@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
@@ -78,7 +76,7 @@ Rails.application.configure do
   config.active_support.report_deprecations = false
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
-  config.log_formatter = Logger::Formatter.new
+  config.log_formatter = ::Logger::Formatter.new
 
   # Use a different logger for distributed setups.
   # require "syslog/logger"
@@ -92,5 +90,4 @@ Rails.application.configure do
 
   # Do not dump schema after migrations.
   config.active_record.dump_schema_after_migration = false
-  config.lograge.enabled = true
 end
