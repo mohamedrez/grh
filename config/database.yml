@@ -28,7 +28,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  host: <%= ENV.fetch("DB_HOST") %>
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
   database: maktabah_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
