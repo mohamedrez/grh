@@ -17,15 +17,12 @@ RUN gem update --system --no-document && \
     gem install -N bundler
 
 
-# Throw-away build stages to reduce size of final image
-FROM base as prebuild
+# Throw-away build stage to reduce size of final image
+FROM base as build
 
 # Install packages needed to build gems and node modules
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y build-essential curl default-libmysqlclient-dev libvips node-gyp pkg-config python-is-python3
-
-
-FROM prebuild as node
 
 # Install JavaScript dependencies
 ARG NODE_VERSION=19.6.0
@@ -36,21 +33,15 @@ RUN curl -sL https://github.com/nodenv/node-build/archive/master.tar.gz | tar xz
     npm install -g yarn@$YARN_VERSION && \
     rm -rf /tmp/node-build-master
 
-# Install node modules
-COPY --link package.json yarn.lock ./
-RUN yarn install --frozen-lockfile
-
-
-FROM prebuild as build
-
 # Install application gems
 COPY --link Gemfile Gemfile.lock ./
 RUN bundle install && \
     bundle exec bootsnap precompile --gemfile && \
     rm -rf ~/.bundle/ $BUNDLE_PATH/ruby/*/cache $BUNDLE_PATH/ruby/*/bundler/gems/*/.git
 
-# Copy node modules
-COPY --from=node /rails/node_modules /rails/node_modules
+# Install node modules
+COPY --link package.json yarn.lock ./
+RUN yarn install --frozen-lockfile
 
 # Copy application code
 COPY --link . .
