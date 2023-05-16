@@ -10,7 +10,11 @@ class EducationsController < ApplicationController
     @education.user_id = @user.id
 
     if @education.save
-      redirect_to user_url(@education.user), notice: t("flash.successfully_created")
+      flash.now[:notice] = t("flash.successfully_created")
+      render turbo_stream: [
+        turbo_stream.append("educations", partial: "educations/education", locals: {education: @education, user: @user}),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
     else
       render :new, status: :unprocessable_entity
     end

@@ -10,7 +10,11 @@ class ExperiencesController < ApplicationController
     @experience.user_id = @user.id
 
     if @experience.save
-      redirect_to user_url(@experience.user), notice: t("flash.successfully_created")
+      flash.now[:notice] = t("flash.successfully_created")
+      render turbo_stream: [
+        turbo_stream.append("experiences", partial: "experiences/experience", locals: {experience: @experience, user: @user}),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
     else
       render :new, status: :unprocessable_entity
     end
