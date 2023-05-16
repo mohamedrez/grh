@@ -6,7 +6,7 @@ RSpec.describe "/holidays", type: :request do
 
   let(:valid_attributes) do
     {
-      name: "First Holiday",
+      name: "Summer Holiday",
       start_date: "2023-04-01",
       end_date: "2023-04-06"
     }
@@ -62,9 +62,19 @@ RSpec.describe "/holidays", type: :request do
         }.to change(Holiday, :count).by(1)
       end
 
-      it "redirects to the the index page" do
+      before do
         post holidays_url, params: {holiday: valid_attributes}
-        expect(response).to redirect_to(holidays_url)
+      end
+
+      it "renders the Turbo Stream response" do
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("prepend")
+        expect(response.body).to include("holidays")
+      end
+
+      it "sets a success flash message" do
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_created"))
       end
     end
 
@@ -84,18 +94,25 @@ RSpec.describe "/holidays", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      it "updates the requested holiday" do
+      before do
         patch holiday_url(id: holiday.id), params: {holiday: valid_attributes}
+      end
+
+      it "updates the requested holiday" do
         holiday.reload
-        expect(holiday.name).to eq("First Holiday")
+        expect(holiday.name).to eq("Summer Holiday")
         expect(holiday.start_date).to eq(Date.new(2023, 0o4, 0o1))
         expect(holiday.end_date).to eq(Date.new(2023, 0o4, 0o6))
       end
 
-      it "redirects to the holiday" do
-        patch holiday_url(id: holiday.id), params: {holiday: valid_attributes}
-        holiday.reload
-        expect(response).to redirect_to(holidays_url)
+      it "renders the Turbo Stream response" do
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("replace")
+      end
+
+      it "sets a success flash message" do
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_updated"))
       end
     end
 
