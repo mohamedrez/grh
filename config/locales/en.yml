@@ -150,7 +150,6 @@ en:
         edit_profile: "Edit profile"
         time_off_days: "Time off days left"
   flash:
-    not_authorized: "You are not authorized to perform this action."
     there_is_an_error_in_your_file: "There is an error in your file."
     successfully_created: "Successfully created"
     successfully_updated: "Successfully updated"

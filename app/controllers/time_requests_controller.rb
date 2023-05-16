@@ -3,16 +3,12 @@ class TimeRequestsController < ApplicationController
 
   def index
     user_id = params[:user_id]
-    ids = UserRequest.where(
-      user_id: user_id, requestable_type: "TimeRequest"
-    ).pluck(:requestable_id)
+    ids = UserRequest.where(user_id: user_id, requestable_type: "TimeRequest").pluck(:requestable_id)
     @time_requests = TimeRequest.where(id: ids)
-    authorize @time_requests
     @user = User.find(user_id)
   end
 
   def show
-    authorize @time_request
     @overlapping_requests = @time_request.overlapping_requests
     @user_request = @time_request.user_request
   end
@@ -23,7 +19,6 @@ class TimeRequestsController < ApplicationController
   end
 
   def edit
-    authorize @time_request
   end
 
   def create
@@ -44,7 +39,6 @@ class TimeRequestsController < ApplicationController
   end
 
   def update
-    authorize @time_request
     time_request_params[:user_id] = params[:user_id]
 
     if @time_request.update(time_request_params)
