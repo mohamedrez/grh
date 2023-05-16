@@ -32,7 +32,11 @@ class TimeRequestsController < ApplicationController
     @time_request.user_id = @user.id
 
     if @time_request.save
-      redirect_to user_time_request_url(@user, @time_request), notice: t("flash.successfully_created")
+      flash.now[:notice] = t("flash.successfully_created")
+      render turbo_stream: [
+        turbo_stream.append("time_requests", @time_request),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
     else
       render :new, status: :unprocessable_entity
     end
@@ -43,7 +47,11 @@ class TimeRequestsController < ApplicationController
     time_request_params[:user_id] = params[:user_id]
 
     if @time_request.update(time_request_params)
-      redirect_to user_time_request_url(@user, @time_request), notice: t("flash.successfully_updated")
+      flash.now[:notice] = t("flash.successfully_updated")
+      render turbo_stream: [
+        turbo_stream.replace(@time_request, @time_request),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
     else
       render :edit, status: :unprocessable_entity
     end
