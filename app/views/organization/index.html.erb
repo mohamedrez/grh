@@ -2,21 +2,22 @@
     <script src="https://cdn.jsdelivr.net/npm/d3-org-chart@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/d3-flextree@2.1.2/build/d3-flextree.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.3.1/jspdf.umd.min.js"></script>
-    <div class="org-chart-layout relative">
+    <h1 class="mb-10">Organization chart</h1>
+    <div class="org-chart-layout relative" style="background: #fbfafa;border: 1px solid #f4f4f3;height: 100%;overflow: hidden;position: relative;">
       <div class="chart-container">
       </div>
-      <div class="chart-controls absolute top-0 right-20">
-        <div onclick="chart.zoomIn()" class="chart-controls__title">
+      <div class="chart-controls absolute" style="top: 15px;right: 15px;">
+        <div onclick="chart.zoomIn()" class="chart-controls__title mb-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM10.5 7.5v6m3-3h-6" />
           </svg>
         </div>
-        <div onclick="chart.zoomOut()" class="chart-controls__title">
+        <div onclick="chart.zoomOut()" class="chart-controls__title mb-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607zM13.5 10.5h-6" />
           </svg>
         </div>
-        <div onclick="downloadPdf()" class="chart-controls__title">
+        <div onclick="downloadPdf()" class="chart-controls__title mb-2">
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" />
           </svg>
@@ -46,7 +47,7 @@
             }px;border-radius:2px;overflow:visible">
               <div style="height:${
                 d.height - 32
-              }px;padding-top:0px;background-color:white;border:1px solid lightgray;">
+              }px;padding-top:0px;background-color:white;border: 4px solid lightgray;border-radius: 13px;">
 
                 <img src=" ${
                   d.data.imageUrl
@@ -54,10 +55,10 @@
 
 
                <div style="padding:20px; padding-top:35px;text-align:center">
-                   <div style="color:#111672;font-size:16px;font-weight:bold"> ${
+                   <div style="font-size:20px;font-weight:bold"> ${
                      d.data.name
                    } </div>
-                   <div style="color:#404040;font-size:16px;margin-top:4px"> ${
+                   <div style="font-size:20px;margin-top:4px"> ${
                      d.data.positionName
                    } </div>
                </div>
