@@ -152,6 +152,7 @@ fr:
         time_off_days: "Jours de congé restants"
   flash:
     not_authorized: "Vous n'êtes pas autorisé(e) à effectuer cette action."
+    there_is_an_error_in_your_file: "Il y a une erreur dans votre fichier."
     successfully_created: "Création effectuée avec succès."
     successfully_updated: "Mise à jour effectuée avec succès."
     successfully_destroyed: "Supprimé(e) avec succès"

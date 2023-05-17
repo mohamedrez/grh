@@ -1,8 +1,7 @@
 <div class="px-4 sm:px-6 lg:px-8 mt-10">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.personal_details_section") %></h1>
-      <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_personal_details") %></p>
+      <h1>Personal details</h1>
     </div>
   </div>
   <div class="my-8 border-t border-gray-100">
@@ -70,8 +69,8 @@
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.service&.humanize %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
-        <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.manager") %></dt>
-        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @manager.present? ? @manager.full_name : "You don't have a manager" %></dd>
+        <dt class="text-sm font-medium leading-6 text-gray-900">Manager</dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @manager&.full_name %></dd>
       </div>
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
         <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.user.contract") %></dt>
@@ -189,7 +188,7 @@
       <% end %>
     </ul>
     <% if @user.experiences.blank? %>
-      <div class="my-5 mx-10"> 
+      <div class="my-5 mx-10">
         <%= link_to new_user_experience_path(@user), data: {turbo_frame: "_top"}, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
           <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -248,7 +247,7 @@
       <% end %>
     </ul>
     <% if @user.educations.blank? %>
-      <div class="my-5 mx-10"> 
+      <div class="my-5 mx-10">
         <%= link_to new_user_education_path(@user), data: {turbo_frame: "_top"}, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
           <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />

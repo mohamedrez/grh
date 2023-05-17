@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def show
     authorize @user
-    @manager = @user.manager_id.present? ? User.find(@user.manager_id) : nil
+    @manager = User.find_by(id: @user.manager_id)
   end
 
   def new
@@ -55,6 +55,9 @@ class UsersController < ApplicationController
     else
       redirect_to users_path, alert: t("errors.select_csv")
     end
+  rescue => e
+    Rails.logger.error e.message
+    redirect_to users_path, alert: t("flash.there_is_an_error_in_your_file")
   end
 
   private
