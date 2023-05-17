@@ -6,6 +6,7 @@ fr:
     add: "Ajouter"
     comment: "Commentaire"
     import: "Importer"
+    delete: "Supprimer"
   attributes:
     asset:
       category: "Catégorie"
