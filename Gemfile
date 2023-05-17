@@ -61,6 +61,7 @@ gem "sidekiq", "~> 7.1"
 gem "noticed", "~> 1.6"
 gem "kaminari", "~> 1.2"
 gem "ransack", "~> 4.0"
+gem "action_policy"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

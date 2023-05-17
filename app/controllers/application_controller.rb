@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   before_action :set_locale, :set_user
   before_action :authenticate_user!
 
+  rescue_from ActionPolicy::Unauthorized do |exception|
+    redirect_to dashboard_path, alert: t("flash.not_authorized")
+  end
+
   def after_sign_in_path_for(resource)
     dashboard_path
   end
