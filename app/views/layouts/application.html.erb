@@ -6,11 +6,11 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_include_tag "/assets/application.js", "data-turbo-track": "reload", defer: true %>
+    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
     <script src="https://kit.fontawesome.com/6526cfd35e.js" crossorigin="anonymous"></script>  </head>
 
-  <body class="h-full">
-
+  <body data-controller="right" class="h-full">
+    <%= render partial: "shared/right" %>
     <%= render partial: "layouts/alert" %>
     <% if current_user %>
       <%= render partial: "layouts/main" %>

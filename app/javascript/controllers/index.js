@@ -24,3 +24,6 @@ application.register("search", SearchController)
 
 import SidebarMenuController from "./sidebar_menu_controller"
 application.register("sidebar-menu", SidebarMenuController)
+
+import Autosave from "stimulus-rails-autosave"
+application.register("autosave", Autosave)

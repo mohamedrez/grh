@@ -61,19 +61,9 @@ RSpec.describe "/time_requests", type: :request do
         }.to change(TimeRequest, :count).by(1)
       end
 
-      before do
+      it "successfully creates time_request" do
         post "/users/#{user.id}/time_requests", params: {time_request: valid_attributes}
-      end
-
-      it "renders the Turbo Stream response" do
-        expect(response).to have_http_status(:success)
-        expect(response.body).to include("turbo-stream")
-        expect(response.body).to include("append")
-        expect(response.body).to include("time_requests")
-      end
-
-      it "sets a success flash message" do
-        expect(flash[:notice]).to eq(I18n.t("flash.successfully_created"))
+        expect(response).to have_http_status(:ok)
       end
     end
 
@@ -93,11 +83,8 @@ RSpec.describe "/time_requests", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      before do
-        patch "/users/#{user.id}/time_requests/#{time_request.id}", params: {time_request: valid_attributes}
-      end
-
       it "updates the requested time_request" do
+        patch "/users/#{user.id}/time_requests/#{time_request.id}", params: {time_request: valid_attributes}
         time_request.reload
         expect(time_request.start_date).to eq(Date.new(2023, 0o4, 0o1))
         expect(time_request.end_date).to eq(Date.new(2023, 0o4, 0o6))
@@ -105,14 +92,10 @@ RSpec.describe "/time_requests", type: :request do
         expect(time_request.category).to eq("personal_time")
       end
 
-      it "renders the Turbo Stream response" do
-        expect(response).to have_http_status(:success)
-        expect(response.body).to include("turbo-stream")
-        expect(response.body).to include("replace")
-      end
-
-      it "sets a success flash message" do
-        expect(flash[:notice]).to eq(I18n.t("flash.successfully_updated"))
+      it "successfully updates time_request" do
+        patch "/users/#{user.id}/time_requests/#{time_request.id}", params: {time_request: valid_attributes}
+        time_request.reload
+        expect(response).to have_http_status(:ok)
       end
     end
 

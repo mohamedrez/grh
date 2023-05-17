@@ -32,9 +32,10 @@ class TimeRequestsController < ApplicationController
     @time_request.user_id = @user.id
 
     if @time_request.save
-      flash.now[:notice] = t("flash.successfully_created")
+      flash.now[:notice] = "Successfully created."
       render turbo_stream: [
-        turbo_stream.append("time_requests", @time_request),
+        turbo_stream.prepend("time-request-list", @time_request),
+        turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else
@@ -47,9 +48,10 @@ class TimeRequestsController < ApplicationController
     time_request_params[:user_id] = params[:user_id]
 
     if @time_request.update(time_request_params)
-      flash.now[:notice] = t("flash.successfully_updated")
+      flash.now[:notice] = "Successfully updated."
       render turbo_stream: [
         turbo_stream.replace(@time_request, @time_request),
+        turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else
