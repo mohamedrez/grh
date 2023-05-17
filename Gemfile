@@ -62,6 +62,10 @@ gem "noticed", "~> 1.6"
 gem "kaminari", "~> 1.2"
 gem "ransack", "~> 4.0"
 gem "action_policy"
+gem "bootsnap", require: false
+gem "redis", "~> 5.0"
+gem "sentry-ruby"
+gem "sentry-rails"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -88,6 +92,7 @@ group :test do
 end
 
 group :development do
+  gem "dockerfile-rails", ">= 1.2"
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
   gem "overcommit"

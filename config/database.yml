@@ -13,14 +13,13 @@ default: &default
   adapter: mysql2
   encoding: utf8mb4
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  username: <%= ENV.fetch("DB_USER") %>
-  password: <%= ENV.fetch("DB_PASSWORD") %>
-  socket: <%= ENV.fetch("DB_SOCKET") %>
-  host: <%= ENV.fetch("DB_HOST") %>
 
 development:
   <<: *default
-  host: <%= ENV.fetch("DB_HOST") %>
+  username: <%= ENV.fetch("DB_USER", "user") %>
+  password: <%= ENV.fetch("DB_PASSWORD", "password") %>
+  socket: <%= ENV.fetch("DB_SOCKET", "socket") %>
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
   database: maktabah_development
 
 # Warning: The database defined as "test" will be erased and
@@ -28,7 +27,10 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  host: <%= ENV.fetch("DB_HOST") %>
+  username: <%= ENV.fetch("DB_USER", "user") %>
+  password: <%= ENV.fetch("DB_PASSWORD", "password") %>
+  socket: <%= ENV.fetch("DB_SOCKET", "socket") %>
+  host: <%= ENV.fetch("DB_HOST", "localhost") %>
   database: maktabah_test
 
 # As with config/credentials.yml, you never want to store sensitive information,
@@ -53,6 +55,4 @@ test:
 #
 production:
   <<: *default
-  database: maktabah_production
-  username: maktabah
-  password: <%= ENV["MAKTABAH_DATABASE_PASSWORD"] %>
+  url: <%= ENV["DATABASE_URL"] %>
