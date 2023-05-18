@@ -52,8 +52,9 @@ RSpec.describe "/educations", type: :request do
       it "renders the Turbo Stream response" do
         expect(response).to have_http_status(:success)
         expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("remove")
         expect(response.body).to include("append")
-        expect(response.body).to include("educations")
+        expect(response.body).to include("education-list")
       end
 
       it "sets a success flash message" do

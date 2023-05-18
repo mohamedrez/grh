@@ -147,7 +147,7 @@
       <h1><%= t("views.users.experiences_section") %></h1>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <%= link_to new_user_experience_path(@user), data: { turbo_frame: "right-drawer" }, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+      <%= link_to new_user_experience_path(@user), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", data: { turbo_frame: "right_content", action: "right#show" } do %>
         <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
@@ -156,13 +156,13 @@
     </div>
   </div>
   <div class="my-8 flow-root">
-    <ul role="list" id="experiences" class="-mb-8">
+    <ul role="list" id="experience-list" class="-mb-8">
       <% @user.experiences.each do |experience| %>
         <%= render partial: "experiences/experience", locals: {experience: experience, user: @user} %>
       <% end %>
     </ul>
     <% unless @user.experiences.any? %>
-      <div class="w-1/2 mt-10">
+      <div class="w-1/2 mt-10" id="no-experiences">
         <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
           There's no experiences here yet.
         </div>
@@ -174,7 +174,7 @@
       <h1><%= t("views.users.educations_section") %></h1>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <%= link_to new_user_education_path(@user), data: { turbo_frame: "right-drawer" }, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+      <%= link_to new_user_education_path(@user), class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", data: { turbo_frame: "right_content", action: "right#show" } do %>
         <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
@@ -183,13 +183,13 @@
     </div>
   </div>
   <div class="my-8 flow-root">
-    <ul role="list" id="educations" class="-mb-8">
+    <ul role="list" id="education-list" class="-mb-8">
       <% @user.educations.each do |education| %>
         <%= render partial: "educations/education", locals: {education: education, user: @user} %>
       <% end %>
     </ul>
     <% unless @user.educations.any? %>
-      <div class="w-1/2 mt-10">
+      <div class="w-1/2 mt-10" id="no-academic-backgrounds">
         <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
           There's no academic backgrounds here yet.
         </div>

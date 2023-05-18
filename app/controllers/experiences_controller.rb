@@ -12,7 +12,9 @@ class ExperiencesController < ApplicationController
     if @experience.save
       flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
-        turbo_stream.append("experiences", partial: "experiences/experience", locals: {experience: @experience, user: @user}),
+        turbo_stream.remove("no-experiences"),
+        turbo_stream.append("experience-list", partial: "experiences/experience", locals: {experience: @experience, user: @user}),
+        turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else

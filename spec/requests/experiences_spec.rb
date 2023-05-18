@@ -54,8 +54,9 @@ RSpec.describe "/experiences", type: :request do
       it "renders the Turbo Stream response" do
         expect(response).to have_http_status(:success)
         expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("remove")
         expect(response.body).to include("append")
-        expect(response.body).to include("experiences")
+        expect(response.body).to include("experience-list")
       end
 
       it "sets a success flash message" do

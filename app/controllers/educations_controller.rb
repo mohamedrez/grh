@@ -12,7 +12,9 @@ class EducationsController < ApplicationController
     if @education.save
       flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
-        turbo_stream.append("educations", partial: "educations/education", locals: {education: @education, user: @user}),
+        turbo_stream.remove("no-academic-backgrounds"),
+        turbo_stream.append("education-list", partial: "educations/education", locals: {education: @education, user: @user}),
+        turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else
