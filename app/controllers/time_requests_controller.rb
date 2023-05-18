@@ -7,7 +7,6 @@ class TimeRequestsController < ApplicationController
       user_id: user_id, requestable_type: "TimeRequest"
     ).pluck(:requestable_id)
     @time_requests = TimeRequest.where(id: ids)
-    authorize @time_requests
     @user = User.find(user_id)
   end
 

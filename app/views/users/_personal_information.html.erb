@@ -1,8 +1,7 @@
 <div class="px-4 sm:px-6 lg:px-8 mt-10">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.personal_details_section") %></h1>
-      <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_personal_details") %></p>
+      <h1><%= t("views.users.personal_details_section") %></h1>
     </div>
   </div>
   <div class="my-8 border-t border-gray-100">
@@ -47,8 +46,7 @@
   </div>
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.job_details_section") %></h1>
-      <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_job_details") %></p>
+      <h1><%= t("views.users.job_details_section") %></h1>
     </div>
   </div>
   <div class="my-8 border-t border-gray-100">
@@ -121,8 +119,7 @@
   </div>
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.address_details_section") %></h1>
-      <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_address_details") %></p>
+      <h1><%= t("views.users.address_details_section") %></h1>
     </div>
   </div>
   <div class="my-8 border-t border-gray-100">
@@ -147,8 +144,7 @@
   </div>
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.experiences_section") %></h1>
-      <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_experiences") %></p>
+      <h1><%= t("views.users.experiences_section") %></h1>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
       <%= link_to new_user_experience_path(@user), data: { turbo_frame: "right-drawer" }, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
@@ -175,8 +171,7 @@
   </div>
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.users.educations_section") %></h1>
-      <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_educations") %></p>
+      <h1><%= t("views.users.educations_section") %></h1>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
       <%= link_to new_user_education_path(@user), data: { turbo_frame: "right-drawer" }, class: "inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
