@@ -18,7 +18,8 @@ class HolidaysController < ApplicationController
     if @holiday.save
       flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
-        turbo_stream.prepend("holidays", @holiday),
+        turbo_stream.prepend("holiday-list", @holiday),
+        turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else
@@ -31,6 +32,7 @@ class HolidaysController < ApplicationController
       flash.now[:notice] = t("flash.successfully_updated")
       render turbo_stream: [
         turbo_stream.replace(@holiday, @holiday),
+        turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else

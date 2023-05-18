@@ -7,6 +7,6 @@
     <span class="inline-flex rounded-full bg-indigo-100 px-2 text-xs font-semibold leading-5 text-indigo-800"><%= holiday.end_date %></span>
   </td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
-    <%= link_to t("buttons.edit"), edit_holiday_path(holiday), class: "text-indigo-600 hover:text-indigo-900", data: {turbo_frame: "right-drawer" } %>
+    <%= link_to t("buttons.edit"), edit_holiday_path(holiday), class: "text-indigo-600 hover:text-indigo-900", data: { turbo_frame: "right_content", action: "right#show" } %>
   </td>
 </tr>

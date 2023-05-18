@@ -5,7 +5,7 @@
       <p class="mt-2 text-sm text-gray-700"><%= t("views.holidays.holidays_list") %></p>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <%= link_to new_holiday_path, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", data: { turbo_frame: "right-drawer" } do %>
+      <%= link_to new_holiday_path, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", data: { turbo_frame: "right_content", action: "right#show" } do %>
         <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
@@ -27,7 +27,7 @@
               </th>
             </tr>
           </thead>
-          <tbody id="holidays" class="divide-y divide-gray-200 bg-white">
+          <tbody id="holiday-list" class="divide-y divide-gray-200 bg-white">
             <%= render @holidays %>
           </tbody>
         </table>
