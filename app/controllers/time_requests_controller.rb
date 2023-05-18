@@ -33,7 +33,7 @@ class TimeRequestsController < ApplicationController
     if @time_request.save
       flash.now[:notice] = "Successfully created."
       render turbo_stream: [
-        turbo_stream.prepend("time-request-list", @time_request),
+        turbo_stream.append("time-request-list", @time_request),
         turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
