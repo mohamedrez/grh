@@ -1,6 +1,5 @@
 class AddAuthorIdToNotes < ActiveRecord::Migration[7.0]
   def change
-    add_column :notes, :author_id, :bigint
-    add_index :notes, :author_id
+    add_reference :notes, :author, null: false, foreign_key: { to_table: :users }
   end
 end
