@@ -61,9 +61,19 @@ RSpec.describe "/time_requests", type: :request do
         }.to change(TimeRequest, :count).by(1)
       end
 
-      it "successfully creates time_request" do
+      before do
         post "/users/#{user.id}/time_requests", params: {time_request: valid_attributes}
+      end
+
+      it "successfully creates time_request" do
         expect(response).to have_http_status(:ok)
+      end
+
+      it "renders the Turbo Stream response" do
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("append")
+        expect(response.body).to include("time-request-list")
       end
     end
 
@@ -92,10 +102,19 @@ RSpec.describe "/time_requests", type: :request do
         expect(time_request.category).to eq("personal_time")
       end
 
-      it "successfully updates time_request" do
+      before do
         patch "/users/#{user.id}/time_requests/#{time_request.id}", params: {time_request: valid_attributes}
+      end
+
+      it "successfully updates time_request" do
         time_request.reload
         expect(response).to have_http_status(:ok)
+      end
+
+      it "renders the Turbo Stream response" do
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("replace")
       end
     end
 

@@ -12,6 +12,12 @@ export default class extends Controller {
     enter(this.rightContainerTarget)
   }
 
+  submitEnd(e) {
+    if (e.detail.success) {
+      this.hide()
+    }
+  }
+
   hide() {
     Promise.all([
       leave(this.rightContainerTarget),

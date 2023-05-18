@@ -1,0 +1,32 @@
+<li>
+  <div class="relative pb-10 w-1/2">
+    <% unless experience == user.experiences.last %>
+      <span class="absolute left-10 top-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+    <% end %>
+    <div class="relative flex space-x-3">
+      <div>
+        <span class="h-20 w-20 rounded-full bg-indigo-50 flex items-center justify-center ring-8 ring-white">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" class="h-12 w-12 text-white">
+            <path fill="#2b3344" d="M21.5 22h-7a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM12.5 22h-9a.5.5 0 0 1 0-1h9a.5.5 0 0 1 0 1z" class="color2b3344 svgShape"></path>
+            <path fill="#2b3344" d="M14.5 22a.5.5 0 0 1-.5-.5V4H6V21.5a.5.5 0 0 1-1 0V3.5A.5.5 0 0 1 5.5 3h9a.5.5 0 0 1 .5.5v18A.5.5 0 0 1 14.5 22zM19.5 22a.5.5 0 0 1-.5-.5V7.86L16.34 7A.49.49 0 0 1 16 6.34.51.51 0 0 1 16.66 6l3 1A.49.49 0 0 1 20 7.5v14A.5.5 0 0 1 19.5 22z" class="color2b3344 svgShape"></path>
+            <path fill="#2b3344" d="M11 22a.5.5 0 0 1-.5-.5V19h-1V21.5a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 9 18h2a.5.5 0 0 1 .5.5v3A.5.5 0 0 1 11 22zM9 16h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 16H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 13h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 13H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 10h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 10H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 7h-1a.5.5 0 0 1 0-1H9A.5.5 0 0 1 9 7zM12.06 7H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM17.5 19h-1a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zM17.5 16h-1a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5h1a.51.51 0 0 1 .5.5A.5.5 0 0 1 17.5 16zM17.5 13h-1a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zM17.5 10h-1a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5A.51.51 0 0 1 17.5 10z" class="color2b3344 svgShape"></path>
+          </svg>
+        </span>
+      </div>
+      <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+        <div>
+          <p class="font-medium text-lg text-gray-900"><%= experience.job_title&.humanize %></p>
+          <p class="font-normal text-base text-gray-900"><%= experience.company_name&.humanize %> . <%= experience.employment_type&.humanize %></p>
+          <p class="font-normal text-base text-gray-500"><%= experience.start_date %> - <%= experience.end_date %></p>
+          <p class="font-normal text-base text-gray-500"><%= experience.city&.humanize %>, <%= experience.country&.humanize %></p>
+          <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 mt-3">
+            <div class="flex justify-between gap-x-4">
+              <p class="font-normal text-base text-gray-900"><%= t("attributes.experience.work_description") %></p>
+            </div>
+            <p class="text-sm leading-6 text-gray-500"><%= experience.work_description&.humanize %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

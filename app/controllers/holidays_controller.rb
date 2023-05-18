@@ -16,7 +16,12 @@ class HolidaysController < ApplicationController
     @holiday = Holiday.new(holiday_params)
 
     if @holiday.save
-      redirect_to holidays_path, notice: t("flash.successfully_created")
+      flash.now[:notice] = t("flash.successfully_created")
+      render turbo_stream: [
+        turbo_stream.prepend("holiday-list", @holiday),
+        turbo_stream.replace("right", partial: "shared/right"),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
     else
       render :new, status: :unprocessable_entity
     end
@@ -24,7 +29,12 @@ class HolidaysController < ApplicationController
 
   def update
     if @holiday.update(holiday_params)
-      redirect_to holidays_path, notice: t("flash.successfully_updated")
+      flash.now[:notice] = t("flash.successfully_updated")
+      render turbo_stream: [
+        turbo_stream.replace(@holiday, @holiday),
+        turbo_stream.replace("right", partial: "shared/right"),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
     else
       render :edit, status: :unprocessable_entity
     end

@@ -63,6 +63,7 @@ gem "kaminari", "~> 1.2"
 gem "ransack", "~> 4.0"
 gem "action_policy"
 gem "bootsnap", require: false
+
 gem "redis", "~> 5.0"
 gem "sentry-ruby"
 gem "sentry-rails"
