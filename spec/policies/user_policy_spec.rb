@@ -1,85 +1,83 @@
 require "rails_helper"
 
-RSpec.describe UserPolicy, type: :policy do
-  subject { described_class }
+describe UserPolicy do
   let(:admin_user) { create(:user, admin: true) }
-  let(:user) { create(:user) }
+  let(:manager_user) { create(:user) }
+  let(:regular_user) { create(:user, manager_id: manager_user.id) }
+  let(:other_user) { create(:user) }
 
-  permissions :index? do
-    xit "grants access if user is an admin" do
-      expect(subject).to permit(admin_user)
+  describe "#index?" do
+    subject { policy.apply(:index?) }
+    let(:records) { [admin_user, manager_user, regular_user, other_user] }
+
+    context "when the user is admin" do
+      let(:policy) { described_class.new(records, user: admin_user) }
+      it { is_expected.to eq true }
     end
 
-    xit "denies access if user is not an admin" do
-      expect(subject).not_to permit(user)
-    end
-  end
-
-  permissions :show? do
-    xit "grants access if user is an admin" do
-      expect(subject).to permit(admin_user)
-    end
-
-    xit "grants access if user is the same as the record" do
-      record = user
-      expect(subject).to permit(user, record)
-    end
-
-    xit "denies access if user is not an admin or the same as the record" do
-      record = admin_user
-      expect(subject).not_to permit(user, record)
+    context "when the user not admin" do
+      let(:policy) { described_class.new(records, user: regular_user) }
+      it { is_expected.to eq false }
     end
   end
 
-  permissions :create? do
-    xit "grants access if user is an admin" do
-      expect(subject).to permit(admin_user)
+  describe "#show?" do
+    subject { policy.apply(:show?) }
+    let(:record) { regular_user }
+
+    context "when the user is admin" do
+      let(:policy) { described_class.new(record, user: admin_user) }
+      it { is_expected.to eq true }
     end
 
-    xit "denies access if user is not an admin" do
-      expect(subject).not_to permit(user)
-    end
-  end
-
-  permissions :new? do
-    xit "grants access if user is an admin" do
-      expect(subject).to permit(admin_user)
+    context "when the user is the manager" do
+      let(:policy) { described_class.new(record, user: manager_user) }
+      it { is_expected.to eq true }
     end
 
-    xit "denies access if user is not an admin" do
-      expect(subject).not_to permit(user)
-    end
-  end
-
-  permissions :update? do
-    xit "grants access if user is an admin" do
-      expect(subject).to permit(admin_user)
+    context "when the user is the same as the record" do
+      let(:policy) { described_class.new(record, user: regular_user) }
+      it { is_expected.to eq true }
     end
 
-    xit "grants access if user is the same as the record" do
-      record = user
-      expect(subject).to permit(user, record)
-    end
-
-    xit "denies access if user is not an admin or the same as the record" do
-      record = admin_user
-      expect(subject).not_to permit(user, record)
+    context "when the user is onther one" do
+      let(:policy) { described_class.new(record, user: other_user) }
+      it { is_expected.to eq false }
     end
   end
 
-  permissions :edit? do
-    xit "grants access if user is an admin" do
-      expect(subject).to permit(admin_user)
+  describe "#create?" do
+    subject { policy.apply(:create?) }
+    let(:record) { regular_user }
+
+    context "when the user is admin" do
+      let(:policy) { described_class.new(record, user: admin_user) }
+      it { is_expected.to eq true }
     end
 
-    xit "grants access if user is the same as the record" do
-      record = user
-      expect(subject).to permit(user, record)
+    context "when the user not admin" do
+      let(:policy) { described_class.new(record, user: regular_user) }
+      it { is_expected.to eq false }
+    end
+  end
+
+  describe "#update?" do
+    subject { policy.apply(:update?) }
+    let(:record) { regular_user }
+
+    context "when the user is admin" do
+      let(:policy) { described_class.new(record, user: admin_user) }
+      it { is_expected.to eq true }
     end
 
-    xit "denies access if user is not an admin or the same as the record" do
-      record = admin_user
-      expect(subject).not_to permit(user, record)
+    context "when the user is the same as the record" do
+      let(:policy) { described_class.new(record, user: regular_user) }
+      it { is_expected.to eq true }
+    end
+
+    context "when the user is onther one" do
+      let(:policy) { described_class.new(record, user: other_user) }
+      it { is_expected.to eq false }
     end
   end
 end

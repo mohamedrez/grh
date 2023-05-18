@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  include Pundit::Authorization
-  rescue_from Pundit::NotAuthorizedError, with: :pundishing_user
-
   before_action :set_locale, :set_user
   before_action :authenticate_user!
+
+  rescue_from ActionPolicy::Unauthorized do |exception|
+    redirect_to dashboard_path, alert: t("flash.not_authorized")
+  end
 
   def after_sign_in_path_for(resource)
     dashboard_path
@@ -27,10 +28,5 @@ class ApplicationController < ActionController::Base
 
   def set_user
     cookies[:username] = current_user&.email || "guest"
-  end
-
-  def pundishing_user
-    flash[:notice] = t("flash.not_authorized")
-    redirect_to dashboard_path
   end
 end

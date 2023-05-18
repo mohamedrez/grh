@@ -59,11 +59,12 @@ gem "devise"
 gem "motor-admin"
 gem "sidekiq", "~> 7.1"
 gem "noticed", "~> 1.6"
-gem "pundit", "~> 2.3"
 gem "kaminari", "~> 1.2"
 gem "ransack", "~> 4.0"
-gem "redis", "~> 5.0"
+gem "action_policy"
+gem "bootsnap", require: false
 
+gem "redis", "~> 5.0"
 gem "sentry-ruby"
 gem "sentry-rails"
 
@@ -86,7 +87,6 @@ group :test do
   gem "rspec_junit_formatter"
   gem "simplecov-cobertura", require: false
   gem "codecov"
-  gem "pundit-matchers", "~> 1.8.4"
   gem "selenium-webdriver", "4.9.0"
   gem "webdrivers"
   gem "database_cleaner"

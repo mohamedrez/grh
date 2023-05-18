@@ -27,8 +27,7 @@ end
 SimpleCov.start "rails" do
   add_filter "spec"
 end
-require "pundit/matchers"
-require "pundit/rspec"
+
 require "devise"
 require "selenium/webdriver"
 require "support/capybara"
@@ -109,9 +108,6 @@ RSpec.configure do |config|
   #   # test failures related to randomization by passing the same `--seed` value
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
-
-  # Pundit matchers
-  config.include Pundit::Matchers
 
   # Including Devise test helpers
   config.include Devise::Test::ControllerHelpers, type: :controller

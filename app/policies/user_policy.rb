@@ -1,25 +1,27 @@
 class UserPolicy < ApplicationPolicy
+  # See https://actionpolicy.evilmartians.io/#/writing_policies
+
   def index?
-    true
+    user.admin?
   end
 
   def show?
-    true
+    user.admin? || user == record || user == record.manager
   end
 
   def create?
-    true
-  end
-
-  def new?
-    true
+    user.admin?
   end
 
   def update?
-    true
+    user.admin? || user == record
   end
 
-  def edit?
-    true
-  end
+  # Scoping
+  # See https://actionpolicy.evilmartians.io/#/scoping
+  #
+  # relation_scope do |relation|
+  #   next relation if user.admin?
+  #   relation.where(user: user)
+  # end
 end

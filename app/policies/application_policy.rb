@@ -1,53 +1,34 @@
-# frozen_string_literal: true
-
-class ApplicationPolicy
-  attr_reader :user, :record
-
-  def initialize(user, record)
-    @user = user
-    @record = record
-  end
-
-  def index?
-    false
-  end
-
-  def show?
-    false
-  end
-
-  def create?
-    false
-  end
+# Base class for application policies
+class ApplicationPolicy < ActionPolicy::Base
+  # Configure additional authorization contexts here
+  # (`user` is added by default).
+  #
+  #   authorize :account, optional: true
+  #
+  # Read more about authorization context: https://actionpolicy.evilmartians.io/#/authorization_context
 
   def new?
     create?
-  end
-
-  def update?
-    false
   end
 
   def edit?
     update?
   end
 
-  def destroy?
+  def create?
     false
   end
 
-  class Scope
-    def initialize(user, scope)
-      @user = user
-      @scope = scope
-    end
-
-    def resolve
-      raise NotImplementedError, "You must define #resolve in #{self.class}"
-    end
-
-    private
-
-    attr_reader :user, :scope
+  def update?
+    false
   end
+
+  private
+
+  # Define shared methods useful for most policies.
+  # For example:
+  #
+  #  def owner?
+  #    record.user_id == user.id
+  #  end
 end
