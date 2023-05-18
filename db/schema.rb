@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_15_204910) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_18_102649) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -117,6 +117,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_204910) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_emergency_contacts_on_user_id"
+  end
+
+  create_table "expenses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.date "date"
+    t.integer "category"
+    t.float "amount"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
   create_table "experiences", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -428,6 +438,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_15_204910) do
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "educations", "users"
   add_foreign_key "emergency_contacts", "users"
+  add_foreign_key "expenses", "users"
   add_foreign_key "experiences", "users"
   add_foreign_key "motor_alert_locks", "motor_alerts", column: "alert_id"
   add_foreign_key "motor_alerts", "motor_queries", column: "query_id"
