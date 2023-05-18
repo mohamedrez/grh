@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :users do
       resources :assets
       resources :emergency_contacts
+      resources :expenses
       resources :time_requests
       resources :user_requests
       patch "/user_requests/:id", to: "user_requests#update", as: "user_request_update"

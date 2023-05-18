@@ -1,0 +1,47 @@
+<div class="mt-8 flow-root">
+  <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+    <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+      <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+        <table class="min-w-full divide-y divide-gray-300">
+          <thead class="bg-gray-50">
+            <tr>
+              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-medium text-gray-900 sm:pl-6">Employee</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900">Date</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900">Category</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900">Description</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900">Amount</th>
+              <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900"></th>
+              <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"></th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-200 bg-white">
+          <% expenses.each do |expense| %>
+            <tr>
+              <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= @user.full_name %></td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.date %></td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.category %></td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.description %></td>
+              <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.amount %> DH</td>
+              <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+                <%= link_to user_expense_path(@user, expense), data: { turbo_frame: "right_content", action: "right#show" } do %>
+                  <svg class="inline-block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                  </svg>
+                <% end %>
+                <% if expense.pending? %>
+                  <%= link_to edit_user_expense_path(@user, expense), data: { turbo_frame: "right_content", action: "right#show" } do %>
+                    <svg class="inline-block ml-4 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                    </svg>
+                  <% end %>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
