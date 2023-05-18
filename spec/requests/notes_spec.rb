@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Notes", type: :request do
   let(:user) { create(:user) } 
-  let(:note) { create(:note, user_id: user.id) }
-
+  let(:author) { create(:user)}
+  let(:note) { create(:note, user_id: user.id, author_id: author.id) }
   let(:valid_attributes) { { content: "He's a good employee" } }
   let(:invalid_attributes) { { content: "" } }
 
