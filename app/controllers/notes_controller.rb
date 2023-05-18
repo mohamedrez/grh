@@ -16,6 +16,7 @@ class NotesController < ApplicationController
   def create
     @note = Note.new(note_params)
     @note.user_id = @user.id
+    @note.author_id = current_user.id
 
     if @note.save
       redirect_to user_notes_path(params[:user_id]), notice: t("flash.successfully_created")
