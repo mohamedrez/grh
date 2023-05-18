@@ -7,7 +7,6 @@ class TimeRequestsController < ApplicationController
       user_id: user_id, requestable_type: "TimeRequest"
     ).pluck(:requestable_id)
     @time_requests = TimeRequest.where(id: ids)
-    authorize @time_requests
     @user = User.find(user_id)
   end
 
@@ -34,7 +33,7 @@ class TimeRequestsController < ApplicationController
     if @time_request.save
       flash.now[:notice] = "Successfully created."
       render turbo_stream: [
-        turbo_stream.prepend("time-request-list", @time_request),
+        turbo_stream.append("time-request-list", @time_request),
         turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]

@@ -3,7 +3,6 @@ class UserRequestsController < ApplicationController
     user_id = params[:user_id]
     @user = User.find(user_id)
     @user_requests = UserRequest.where(user_id: user_id)
-    authorize @user_requests
   end
 
   def update

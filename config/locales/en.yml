@@ -105,7 +105,7 @@ en:
       setting_desc: "These information will be displayed on your profile."
       employee_picture: "Employee picture"
     user_requests:
-      title_user_request: "Users requests"
+      title_user_request: "User requests"
       user_requests_list: "List of all requests requested by you."
     users:
       personal_details_section: "Personal details"

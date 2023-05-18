@@ -1,40 +1,35 @@
-<%= form_with(model: holiday) do |form| %>
-  <% if holiday.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(holiday.errors.count, "error") %> <%= t("errors.prohibited") %></h2>
-      <ul>
-        <% holiday.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-    <div class="sm:col-span-2 sm:col-start-1">
-      <%= form.label :name, t("attributes.shared.name"), class: "block" %>
-      <div class="mt-2">
-        <%= form.text_field :name, class: "w-full" %>
+<%= form_with(model: holiday, class: "mt-5 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2") do |form| %>
+  <div class="px-4 py-6 sm:p-8">
+    <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="sm:col-span-full">
+        <%= form.label :name, t("attributes.shared.name"), class: "block" %>
+        <div class="mt-2">
+          <%= form.text_field :name, class: "w-full" %>
+          <%= inline_error_for(:name, holiday).html_safe %>
+        </div>
       </div>
-    </div>
 
-    <div class="sm:col-span-2">
-      <%= form.label :start_date, t("attributes.shared.start_date"), class: "block" %>
-      <div class="mt-2">
-        <%= form.date_field :start_date, class: "w-full" %>
+      <div class="sm:col-span-full">
+        <%= form.label :start_date, t("attributes.shared.start_date"), class: "block" %>
+        <div class="mt-2">
+          <%= form.date_field :start_date, class: "w-full" %>
+          <%= inline_error_for(:start_date, holiday).html_safe %>
+        </div>
       </div>
-    </div>
 
-    <div class="sm:col-span-2">
-      <%= form.label :end_date, t("attributes.shared.end_date"), class: "block" %>
-      <div class="mt-2">
-        <%= form.date_field :end_date, class: "w-full" %>
+      <div class="sm:col-span-full">
+        <%= form.label :end_date, t("attributes.shared.end_date"), class: "block" %>
+        <div class="mt-2">
+          <%= form.date_field :end_date, class: "w-full" %>
+          <%= inline_error_for(:end_date, holiday).html_safe %>
+        </div>
       </div>
     </div>
   </div>
-
-  <div class="flex items-center justify-end gap-x-6 px-4 py-4 sm:px-8">
-    <%= link_to t("buttons.cancel"), holidays_path, class: "rounded-md bg-white px-5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block mr-2" %>
+  <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+    <button data-action="click->right#hide" type="button" class= "text-sm font-semibold leading-6 text-gray-900">
+      <%= t("buttons.cancel") %>
+    </button>
     <%= form.submit (action_name == 'new' ? t("buttons.add") : t("buttons.edit") ) %>
   </div>
 <% end %>

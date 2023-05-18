@@ -1,0 +1,37 @@
+<li>
+  <div class="relative pb-10 w-1/2">
+    <% unless education == @user.educations.last %>
+      <span class="absolute left-10 top-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+    <% end %>
+    <div class="relative flex space-x-3">
+      <div>
+        <span class="h-20 w-20 rounded-full bg-indigo-50 flex items-center justify-center ring-8 ring-white">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="h-12 w-12 text-white">
+            <path d="m512.868 650.199-440-240.3 440-240.4 440 240.3-440 240.4zm-377.4-240.3 377.4 206.1 377.4-206.2-377.4-206.1-377.4 206.2z" fill="#000000" class="color000 svgShape"></path>
+            <path d="m511.868 855.299-299-155v-247.1l299 162.9 299-162.9v247.2l-299 154.9zm-269-173.2 269 139.4 269-139.4v-178.4l-269 146.5-269-146.5v178.4zM906.868 410.499h30v199h-30z" fill="#000000" class="color000 svgShape"></path>
+          </svg>
+        </span>
+      </div>
+      <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+        <div>
+          <p class="font-medium text-lg text-gray-900"><%= education.school.humanize %></p>
+          <p class="font-normal text-base text-gray-900"><%= education.education_level.humanize %> . <%= education.study_field.humanize %></p>
+          <p class="font-normal text-base text-gray-500"><%= education.start_date %> - <%= education.end_date %></p>
+          <p class="font-normal text-base text-gray-500"><%= education.city.humanize %>, <%= education.country.humanize %></p>
+        </div>
+        <div class="whitespace-nowrap text-right text-sm text-gray-500">
+          <p class="font-normal text-base text-gray-500 mb-1"><%= t("attributes.education.still_on_this_course") %></p>
+          <% if education.still_on_this_course %>
+            <span  class="bg-indigo-500 relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
+              <span aria-hidden="true" class="translate-x-5 inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+            </span>
+          <% else %>
+            <span  class="bg-gray-100 relative inline-flex h-6 w-11 flex-shrink-0 rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2">
+              <span aria-hidden="true" class="translate-x-0 inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out"></span>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</li>

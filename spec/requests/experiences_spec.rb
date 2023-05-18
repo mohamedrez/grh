@@ -47,9 +47,20 @@ RSpec.describe "/experiences", type: :request do
         }.to change(Experience, :count).by(1)
       end
 
-      it "redirects to the user profile" do
+      before do
         post user_experiences_url(user_id: admin_user.id), params: {experience: valid_attributes}
-        expect(response).to redirect_to(user_url(admin_user))
+      end
+
+      it "renders the Turbo Stream response" do
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("remove")
+        expect(response.body).to include("append")
+        expect(response.body).to include("experience-list")
+      end
+
+      it "sets a success flash message" do
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_created"))
       end
     end
 

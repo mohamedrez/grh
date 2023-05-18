@@ -62,7 +62,6 @@ gem "noticed", "~> 1.6"
 gem "pundit", "~> 2.3"
 gem "kaminari", "~> 1.2"
 gem "ransack", "~> 4.0"
-gem "bootsnap", require: false
 gem "redis", "~> 5.0"
 
 gem "sentry-ruby"
