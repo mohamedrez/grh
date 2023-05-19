@@ -1,0 +1,22 @@
+<tr id="<%= dom_id expense %>">
+  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= @user.full_name %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.date %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.category %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= truncate(expense.description, length: 50) %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.amount %> DH</td>
+  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+    <%= link_to user_expense_path(@user, expense), data: { turbo_frame: "right_content", action: "right#show" } do %>
+      <svg class="inline-block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    <% end %>
+    <% if expense.pending? %>
+      <%= link_to edit_user_expense_path(@user, expense), data: { turbo_frame: "right_content", action: "right#show" } do %>
+        <svg class="inline-block ml-4 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+        </svg>
+      <% end %>
+    <% end %>
+  </td>
+</tr>
