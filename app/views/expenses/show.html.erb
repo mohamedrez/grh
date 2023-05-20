@@ -1,3 +1,112 @@
 <%= turbo_frame_tag "right_content" do %>
+  <div class="overflow-hidden bg-white shadow sm:rounded-lg">
 
+    <div class="px-4 py-6 sm:px-6">
+      <div class="flex items-center justify-between gap-x-6 bg-indigo-600 px-6 py-5 sm:pr-3.5 lg:pl-8 rounded-lg">
+        <div>
+        <p class="text-2xl font-extrabold leading-none tracking-tight text-gray-900">Expense Details</p>
+        </div>
+        <div class="flex items-center gap-x-5 mr-5">
+          
+          <% if @expense.pending? %>
+            <% if current_user.admin? %>
+              <%= button_to t("views.shared.approve"), user_update_status_expense_path(@user, @expense, status: "approved"), method: :patch, class: "rounded-md bg-gray-900 px-5 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" %>
+              <%= button_to t("views.shared.deny"), user_update_status_expense_path(@user, @expense, status: "rejected"), method: :patch, class: "rounded-md bg-white px-5 py-2 ttext-base font-medium text-gray-900 shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" %>
+            <% else %>
+              <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-blue-100 text-blue-800">
+                <svg class="mr-1.5 h-2 w-2 text-blue-400" fill="currentColor" viewBox="0 0 8 8">
+                  <circle cx="4" cy="4" r="3" />
+                </svg>
+                <%= t("views.shared.pending") %>
+              </span>
+            <% end %>
+          <% elsif @expense.rejected? %>
+            <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-red-100 text-red-800">
+              <svg class="mr-1.5 h-2 w-2 text-red-400" fill="currentColor" viewBox="0 0 8 8">
+                <circle cx="4" cy="4" r="3" />
+              </svg>
+              <%= t("views.shared.rejected") %>
+            </span>
+          <% elsif @expense.approved? %>
+            <% if current_user.admin? %>
+              <%= button_to t("views.shared.paid"), user_update_status_expense_path(@user, @expense, status: "paid"), method: :patch, class: "rounded-md bg-gray-900 px-5 py-2 text-base font-medium text-white shadow-sm hover:bg-gray-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" %>
+            <% else %>
+              <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-green-100 text-green-800">
+                <svg class="mr-1.5 h-2 w-2 text-green-400" fill="currentColor" viewBox="0 0 8 8">
+                  <circle cx="4" cy="4" r="3" />
+                </svg>
+                <%= t("views.shared.approved") %>
+              </span>
+            <% end %>
+          <% elsif @expense.paid? %>
+            <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-green-100 text-green-800">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="mr-1.5 h-5 w-5 text-green-400">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+              </svg>
+              <%= t("views.shared.paid") %>
+            </span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <div class="border-t border-gray-100">
+      <dl class="divide-y divide-gray-100">
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-900">Employee</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @user.full_name %></dd>
+        </div>
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-900">Category</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @expense.category %></dd>
+        </div>
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-900">Date</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @expense.date.strftime("%Y-%m-%d") %></dd>
+        </div>
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-900">Amount</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @expense.amount %> DH</dd>
+        </div>
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-900">Description</dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @expense.description %></dd>
+        </div>
+        <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium leading-6 text-gray-900">Attachments</dt>
+          <% if @expense.receipts.any? %>
+            <dd class="mt-2 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+              <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200">
+                <% @expense.receipts.each do |receipt| %>
+                  <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+                    <div class="flex w-0 flex-1 items-center">
+                      <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+                      </svg>
+                      <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                        <span class="truncate font-medium"><%= receipt.filename %></span>
+                        <span class="flex-shrink-0 text-gray-400"><%= number_to_human_size(receipt.byte_size) %></span>
+                      </div>
+                    </div>
+                    <div class="ml-4 flex-shrink-0">
+                      <%= link_to (receipt.content_type.start_with?('image/') || receipt.content_type == 'application/pdf' ? "View" : "Download"), rails_blob_path(receipt), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+                    </div>
+                  </li>
+                <% end %>
+              </ul>
+            </dd>
+          <% else %>
+            <div class="flex w-0 flex-1 items-center">
+              <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+              </svg>
+              <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                <span class="flex-shrink-0 font-medium">No Attachments</span>
+              </div>
+            </div>
+          <% end %>
+        </div>
+      </dl>
+    </div>
+  </div>
 <% end %>

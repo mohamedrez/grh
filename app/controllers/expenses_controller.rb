@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
   before_action :set_user
-  before_action :set_expense, only: %i[show edit update]
+  before_action :set_expense, only: %i[show edit update update_status]
 
   def index
     @expenses = Expense.where(user_id: @user.id)
@@ -46,6 +46,12 @@ class ExpensesController < ApplicationController
     end
   end
 
+  def update_status
+    status = params[:status]
+    @expense.update!(status: status)
+    redirect_to user_expense_path(@user, @expense), notice: t("flash.status_successfully_updated")
+  end
+
   private
 
   def set_user
@@ -57,6 +63,6 @@ class ExpensesController < ApplicationController
   end
 
   def expense_params
-    params.require(:expense).permit(:date, :category, :description, :amount, :status, receipts: [])
+    params.require(:expense).permit(:date, :category, :description, :amount, receipts: [])
   end
 end

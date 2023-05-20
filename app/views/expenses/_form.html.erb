@@ -43,10 +43,11 @@
                 <div class="mt-4 flex text-sm leading-6 text-gray-600">
                   <%= form.label :receipts, class: "relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500" do %>
                     <span>Upload files</span>
-                     <%= form.file_field :receipts, multiple: true, class: "sr-only" %>
+                     <%= form.file_field :receipts, accept: "image/*, .pdf", multiple: true, class: "sr-only" %>
                   <% end %>
                   <p class="pl-1">or drag and drop</p>
                 </div>
+                <p class="text-xs leading-5 text-gray-600">Image, PDF</p>
               </div>
           </div>
         </div>
