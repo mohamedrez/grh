@@ -1,7 +1,6 @@
 <%= turbo_frame_tag "right_content" do %>
-  <div class="overflow-hidden bg-white shadow sm:rounded-lg">
-
-    <div class="px-4 py-6 sm:px-6">
+  <div>
+    <div class="py-6">
       <div class="flex items-center justify-between gap-x-6 bg-indigo-600 px-6 py-5 sm:pr-3.5 lg:pl-8 rounded-lg">
         <div>
         <p class="text-2xl font-extrabold leading-none tracking-tight text-gray-900">Expense Details</p>
@@ -84,12 +83,30 @@
                         <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
                       </svg>
                       <div class="ml-4 flex min-w-0 flex-1 gap-2">
-                        <span class="truncate font-medium"><%= receipt.filename %></span>
+                        <%= link_to rails_blob_path(receipt), target: '_blank' do %>
+                          <span class="truncate font-medium"><%= truncate(receipt.filename.to_s, length: 20) %></span>
+                        <% end %>
                         <span class="flex-shrink-0 text-gray-400"><%= number_to_human_size(receipt.byte_size) %></span>
                       </div>
                     </div>
                     <div class="ml-4 flex-shrink-0">
-                      <%= link_to (receipt.content_type.start_with?('image/') || receipt.content_type == 'application/pdf' ? "View" : "Download"), rails_blob_path(receipt), class: "font-medium text-indigo-600 hover:text-indigo-500" %>
+
+                      <div class="inline-block text-sm px-4 py-2 leading-none rounded no-underline text-gray hover:text-gray-900 hover:bg-white mt-4 lg:mt-0">
+                        <div class="relative" data-controller="dropdown">
+                          <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" data-dropdown-target="button" tabindex="0" class="inline-block select-none">
+                            <span class="appearance-none flex items-center inline-block text-gray-700">
+                              <span class="sr-only">Open options</span>
+                              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                              </svg>
+                            </span>
+                          </div>
+                          <div data-dropdown-target="menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                            <%= link_to (receipt.content_type.start_with?('image/') || receipt.content_type == 'application/pdf' ? "View" : "Download"), rails_blob_path(receipt), target: '_blank', data: {action: "click->dropdown#toggle"}, class: 'no-underline block px-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
+                            <%= button_to 'Delete', user_delete_receipt_expense_path(user_id: @user.id, id: @expense.id, receipt_id: receipt.id), method: :delete, data: {turbo_confirm: "Are you sure you wanna delete this?", action: "click->dropdown#toggle"}, class: 'no-underline block px-8 py-3 border-t text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </li>
                 <% end %>

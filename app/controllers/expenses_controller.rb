@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
   before_action :set_user
-  before_action :set_expense, only: %i[show edit update update_status]
+  before_action :set_expense, only: %i[show edit update update_status delete_receipt]
 
   def index
     @expenses = Expense.where(user_id: @user.id)
@@ -50,6 +50,12 @@ class ExpensesController < ApplicationController
     status = params[:status]
     @expense.update!(status: status)
     redirect_to user_expense_path(@user, @expense), notice: t("flash.status_successfully_updated")
+  end
+
+  def delete_receipt
+    receipt = ActiveStorage::Attachment.find(params[:receipt_id])
+    receipt.destroy
+    redirect_to user_expense_path(@user, @expense), notice: t("flash.receipt_successfully_deleted")
   end
 
   private
