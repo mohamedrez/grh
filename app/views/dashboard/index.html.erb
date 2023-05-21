@@ -175,16 +175,26 @@
               <h2 class="text-base font-medium text-gray-900" id="announcements-title"><%= t("views.dashboard.announcements_title") %></h2>
               <div class="mt-6 flow-root">
                 <ul role="list" class="-my-5 divide-y divide-gray-200">
-                  <%@annoucements.each do |announcement|%>
-                  <li class="py-5">
-                    <div class="relative focus-within:ring-2 focus-within:ring-cyan-500">
-                      <h3 class="text-sm font-semibold text-gray-800">
-                        <%=link_to announcement.title.titleize, announcement_path(announcement.id) , class:"hover:underline focus:outline-none"%>
-                      </h3>
-                      <span class="m-1 line-clamp-2 text-sm text-gray-600"><%= announcement.status.titleize %></span>
-                      <%= announcement.content.to_plain_text[0, 50]... %>
+                  <% unless @annoucements.any? %>
+                     <div class="rounded-md bg-blue-50 my-1 ">
+                      <div class="flex">
+                        <div class="ml-3 flex-1 md:flex md:justify-between">
+                          <p class="text-sm text-blue-700"><%= t("views.announcements.no_annoucement_exists")%></p>
+                        </div>
+                      </div>
                     </div>
-                  </li>
+                  <%else%>
+                    <%@annoucements.each do |announcement|%>
+                    <li class="py-5">
+                      <div class="relative focus-within:ring-2 focus-within:ring-cyan-500">
+                        <h3 class="text-sm font-semibold text-gray-800">
+                          <%=link_to announcement.title.titleize, announcement_path(announcement.id) , class:"hover:underline focus:outline-none"%>
+                        </h3>
+                        <span class="m-1 line-clamp-2 text-sm text-gray-600"><%= announcement.status.titleize %></span>
+                        <%= announcement.content.to_plain_text[0, 50]... %>
+                      </div>
+                    </li>
+                    <%end%>
                   <%end%>
                 </ul>
               </div>

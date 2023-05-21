@@ -9,5 +9,5 @@
   </div>
 <% end %>
 
-<h1 class="mt-4"><%= I18n.t("views.announcements.index.create_announcement")%></h1>
+<h1 class="mt-4"><%= t("views.announcements.index.create_announcement")%></h1>
 <%= render partial: "form", locals: {announcement: @announcement} %>
