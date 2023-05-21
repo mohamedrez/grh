@@ -72,6 +72,7 @@ en:
   views:
     announcements:
       add_announcement: "Create new Announcement"
+      no_annoucement_exists: "There is no announcement for the moment." 
     assets:
       title_assets: "Assets"
       assets_list: "List of assets assigned to you."
