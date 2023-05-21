@@ -7,6 +7,7 @@
         <%= link_to t("views.user_requests.title_user_request"), user_user_requests_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
         <%= link_to t("views.time_requests.title_time_request"), user_time_requests_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
         <%= link_to t("views.assets.title_assets"), user_assets_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+        <%= link_to "Expenses", user_expenses_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
       </nav>
     </div>
   </div>
