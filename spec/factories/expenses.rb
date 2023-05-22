@@ -5,6 +5,6 @@ FactoryBot.define do
     category { 1 }
     description { "MyText" }
     amount { 1.5 }
-    status { 1 }
+    status { 0 }
   end
 end
