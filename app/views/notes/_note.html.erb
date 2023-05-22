@@ -1,0 +1,10 @@
+<div class="bg-white shadow sm:rounded-lg mb-10">
+  <h3 class="text-base font-semibold leading-6 text-gray-900"><%= current_user.full_name %></h3>
+  <div class="mt-2 max-w-xl text-sm text-gray-500">
+    <p><%= note.content %></p>
+  </div>
+  <div class="mt-5">
+    <%= link_to t("buttons.edit"), edit_user_note_path(note.user_id, note.id), class: "inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500" %>
+    <%= link_to t("buttons.delete") , user_note_path(note.user_id, note.id) ,data: { turbo_method: :delete,turbo_confirm: "Are you sure?" }, class: "inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500" %>
+  </div>
+</div>

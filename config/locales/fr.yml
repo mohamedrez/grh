@@ -82,6 +82,7 @@ fr:
   views:
     announcements:
       add_announcement: "Créer une nouvelle annonce"
+      no_annoucement_exists: "Il n'y a pas d'annonce pour le moment." 
     assets:
       title_assets: "Éléments"
       assets_list: "Liste des éléments qui vous ont été affectés."

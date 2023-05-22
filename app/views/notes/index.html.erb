@@ -1,0 +1,12 @@
+<h1><%= @user.full_name %></h1>
+<%= link_to t("buttons.add"), new_user_note_path(@user), class: "inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white hover:text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"%>
+<h2>Notes</h2>
+<div class="bg-white shadow sm:rounded-lg ">
+  <div class="px-4 py-5 sm:p-6 ">
+    <% unless @notes.any? %>
+      <h2>the user have no notes<h2>
+    <% else %>
+      <%= render @notes %>
+    <% end %>
+  </div>
+</div>
