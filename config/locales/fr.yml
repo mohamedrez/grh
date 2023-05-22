@@ -6,6 +6,9 @@ fr:
     add: "Ajouter"
     comment: "Commentaire"
     import: "Importer"
+    view: "Afficher"
+    download: "Télécharger"
+    delete: "Supprimer"
   attributes:
     asset:
       category: "Catégorie"
@@ -18,6 +21,13 @@ fr:
       education_level: "Niveau d'éducation"
       study_field: "Domaine d'études"
       still_on_this_course: "Êtes-vous toujours en cours de formation ?"
+    expense:
+      employee: "Employé"
+      date: "Date"
+      category: "Catégorie"
+      description: "Description"
+      amount: "Montant"
+      attach_a_receipt: "Joindre un reçu"
     experience:
       job_title: "Intitulé du poste"
       company_name: "Nom de l'entreprise"
@@ -84,6 +94,18 @@ fr:
       announcements_button: "Voir toutes les annonces"
     educations:
       add_education: "Ajouter une nouvelle formation"
+    expenses:
+      title_expenses: "Dépenses"
+      add_expense: "Ajouter une dépense"
+      paid: "Payé"
+      you_have_files_uploaded: "Vous avez %{nbr_files} téléchargés"
+      upload_more_files: "Télécharger plus de fichiers"
+      upload_files: "Télécharger des fichiers"
+      drag_drop: "ou faites glisser-déposer"
+      files_type: "IMAGES, PDFs"
+      edit_expense: "Modifier la dépense"
+      receipts: "Reçus"
+      no_receipts: "Aucun reçu"
     experiences:
       add_experience: "Ajouter une nouvelle expérience"
     emergency_contacts:
@@ -156,6 +178,8 @@ fr:
     successfully_updated: "Mise à jour effectuée avec succès."
     successfully_destroyed: "Supprimé(e) avec succès"
     successfully_imported : "Importation réussie"
+    status_successfully_updated: "Le statut de la dépense a été mis à jour avec succès."
+    receipt_successfully_deleted: "Le reçu a été supprimé avec succès."
   errors:
     comment_cant_be_blank: "Commentaire ne peut pas être vide."
     prohibited: "ont empêché(e)s son enregistrement :"

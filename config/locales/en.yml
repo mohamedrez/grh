@@ -6,6 +6,9 @@ en:
     add: "Add"
     comment: "Comment"
     import: "Import"
+    view: "View"
+    download: "Download"
+    delete: "Delete"
   attributes:
     asset:
       category: "Category"
@@ -18,6 +21,13 @@ en:
       education_level: "Education level"
       study_field: "Study field"
       still_on_this_course: "Still on this course?"
+    expense:
+      employee: "Employee"
+      date: "Date"
+      category: "Category"
+      description: "Description"
+      amount: "Amount"
+      attach_a_receipt: "Attach a receipt"
     experience:
       job_title: "Job title"
       company_name: "Company name"
@@ -84,6 +94,18 @@ en:
       announcements_button: "View All Announcement"
     educations:
       add_education: "Add new education"
+    expenses:
+      title_expenses: "Expenses"
+      add_expense: "Add expense"
+      paid: "Paid"
+      you_have_files_uploaded: "You have %{nbr_files} uploaded"
+      upload_more_files: "Upload more files"
+      upload_files: "Upload files"
+      drag_drop: "or drag and drop"
+      files_type: "IMAGEs, PDFs"
+      edit_expense: "Edit expense"
+      receipts: "Receipts"
+      no_receipts: "No receipts"
     experiences:
       add_experience: "Add new experience"
     emergency_contacts:
@@ -156,6 +178,8 @@ en:
     successfully_updated: "Successfully updated"
     successfully_destroyed: "Successfully destroyed"
     successfully_imported : "Successfully imported"
+    status_successfully_updated: "The status of the expense was successfully updated."
+    receipt_successfully_deleted: "The receipt was successfully deleted."
   errors:
     comment_cant_be_blank: "Comment can't be blank"
     prohibited: "prohibited it from being saved:"
