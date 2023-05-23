@@ -5,6 +5,10 @@ class UserRequestsController < ApplicationController
     @user_requests = UserRequest.where(user_id: user_id)
   end
 
+  def all_requests
+    @user_requests = UserRequest.all
+  end
+
   def update
     @user_request = UserRequest.find(params[:id])
     @user_request.update(managed_by_id: current_user.id, state: params[:state])

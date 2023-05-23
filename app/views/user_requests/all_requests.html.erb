@@ -1,9 +1,7 @@
-<%= render partial: 'users/submenu', locals: {user: @user} %>
-<%= turbo_frame_tag "tabbed-content" do %>
-  <div class="px-4 sm:px-6 lg:px-8 mt-10">
+<div class="px-4 sm:px-6 lg:px-8 mt-10">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1><%= t("views.user_requests.title_user_request") %></h1>
+        <h1>All the requests</h1>
       </div>
     </div>
     <div class="min-w-full my-8">
@@ -22,22 +20,21 @@
 
         <div data-tabs-target="panel">
           <div class="mt-10">
-            <%= render partial: 'list_item', locals: {user_requests: @user_requests.pending, from_all_requests: false} %>
+            <%= render partial: 'list_item', locals: {user_requests: @user_requests.pending, from_all_requests: true} %>
           </div>
         </div>
 
         <div data-tabs-target="panel">
           <div class="mt-10">
-            <%= render partial: 'list_item', locals: {user_requests: @user_requests.approved, from_all_requests: false} %>
+            <%= render partial: 'list_item', locals: {user_requests: @user_requests.approved, from_all_requests: true} %>
           </div>
         </div>
 
         <div data-tabs-target="panel">
           <div class="mt-10">
-            <%= render partial: 'list_item', locals: {user_requests: @user_requests.rejected, from_all_requests: false} %>
+            <%= render partial: 'list_item', locals: {user_requests: @user_requests.rejected, from_all_requests: true} %>
           </div>
         </div>
       </div>
     </div>
-  </div>
-<% end %>
+</div>

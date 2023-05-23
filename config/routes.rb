@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :announcements
     resources :comments
     resources :holidays
+    get "requests", to: "user_requests#all_requests", as: "requests"
 
     devise_for :users, path: "/auth"
 
