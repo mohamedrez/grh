@@ -35,6 +35,7 @@ en:
       request_type: "Request type"
       state: "State"
       managed_by: "Managed by"
+      employee: "Employee"
     user:
       first_name: "First name"
       last_name: "Last name"
@@ -71,8 +72,6 @@ en:
       city: "City"
       created_at: "Created at"
   views:
-    notes:
-      
     announcements:
       add_announcement: "Create new Announcement"
       no_annoucement_exists: "There is no announcement for the moment." 
@@ -111,6 +110,7 @@ en:
     user_requests:
       title_user_request: "User requests"
       user_requests_list: "List of all requests requested by you."
+      all_requests: "All the requests"
     users:
       personal_details_section: "Personal details"
       list_personal_details: "List of personal details about you."
@@ -135,6 +135,7 @@ en:
       main:
         dashboard: "Dashboard"
         employees: "Employees"
+        my_requests: "My requests"
         requests: "Requests"
         calendar: "Calendar"
         organization: "Organization"

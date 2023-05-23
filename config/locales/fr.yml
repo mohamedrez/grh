@@ -35,6 +35,7 @@ fr:
       request_type: "Type de demande"
       state: "État"
       managed_by: "Gérée par"
+      employee: "Employé(e)"
     user:
       first_name: "Prénom"
       last_name: "Nom de famille"
@@ -109,6 +110,7 @@ fr:
     user_requests:
       title_user_request: "Demandes d'utilisateur"
       user_requests_list: "Liste de toutes les demandes que vous avez effectuées."
+      all_requests: "Toutes les demandes"
     users:
       personal_details_section: "Détails personnels"
       list_personal_details: "Liste des détails personnels vous concernant."
@@ -133,6 +135,7 @@ fr:
       main:
         dashboard: "Dashboard"
         employees: "Employés"
+        my_requests: "Mes demandes"
         requests: "Demandes"
         calendar: "Calendrier"
         organization: "Organisation"
