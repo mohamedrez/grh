@@ -134,8 +134,10 @@ en:
     layouts:
       main:
         dashboard: "Dashboard"
+        my_profile: "My Profile"
         employees: "Employees"
         my_requests: "My requests"
+        my_calendar: "My calendar"
         requests: "Requests"
         calendar: "Calendar"
         organization: "Organization"

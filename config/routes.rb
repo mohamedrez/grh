@@ -4,7 +4,6 @@ require "sidekiq/web"
 
 Rails.application.routes.draw do
   get "calendar", to: "calendar#index"
-  get "organization", to: "organization#index"
   get "organization/csv", to: "organization#csv"
   get "events", to: "events#index"
 
@@ -17,6 +16,7 @@ Rails.application.routes.draw do
 
   scope "(:locale)", locale: /en|fr/ do
     get "dashboard", to: "dashboard#index"
+    get "organization", to: "organization#index"
 
     resources :announcements
     resources :comments
