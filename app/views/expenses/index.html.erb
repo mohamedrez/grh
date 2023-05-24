@@ -1,0 +1,55 @@
+<%= render partial: 'users/submenu', locals: {user: @user} %>
+<%= turbo_frame_tag "tabbed-content" do %>
+  <div class="px-4 sm:px-6 lg:px-8 mt-10">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1><%= t("views.expenses.title_expenses") %></h1>
+      </div>
+      <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+        <%= link_to t("views.expenses.add_expense"), new_user_expense_path(@user.id), class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", data: { turbo_frame: "right_content", action: "right#show" } %>
+      </div>
+    </div>
+    <div class="min-w-full my-8">
+      <div data-controller="tabs" data-tabs-active-tab="border-purple-500 text-purple-600 whitespace-nowrap border-b-2">
+        <ul class="list-reset flex border-b -mb-px mb-5 mt-2 flex space-x-8">
+          <li class="-mb-px mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#"><%= t("views.shared.pending") %></a>
+          </li>
+          <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#"><%= t("views.shared.approved") %></a>
+          </li>
+          <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#"><%= t("views.shared.rejected") %></a>
+          </li>
+          <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
+            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#"><%= t("views.expenses.paid") %></a>
+          </li>
+        </ul>
+
+        <div data-tabs-target="panel">
+          <div class="mt-10">
+            <%= render partial: 'list_item', locals: {expenses: @expenses.pending} %>
+          </div>
+        </div>
+
+        <div data-tabs-target="panel">
+          <div class="mt-10">
+            <%= render partial: 'list_item', locals: {expenses: @expenses.approved} %>
+          </div>
+        </div>
+
+        <div data-tabs-target="panel">
+          <div class="mt-10">
+            <%= render partial: 'list_item', locals: {expenses: @expenses.rejected} %>
+          </div>
+        </div>
+
+        <div data-tabs-target="panel">
+          <div class="mt-10">
+            <%= render partial: 'list_item', locals: {expenses: @expenses.paid} %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

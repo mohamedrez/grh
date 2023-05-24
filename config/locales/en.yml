@@ -6,6 +6,8 @@ en:
     add: "Add"
     comment: "Comment"
     import: "Import"
+    view: "View"
+    download: "Download"
     delete: "Delete"
   attributes:
     asset:
@@ -19,6 +21,21 @@ en:
       education_level: "Education level"
       study_field: "Study field"
       still_on_this_course: "Still on this course?"
+    expense:
+      employee: "Employee"
+      date: "Date"
+      category: "Category"
+      description: "Description"
+      amount: "Amount"
+      attach_a_receipt: "Attach a receipt"
+      categories:
+        none: "-- None --"
+        travel: "Travel Expenses"
+        meal_entertainment: "Meal and Entertainment Expenses"
+        training_development: "Training and Development Expenses"
+        office_equipment: "Office Supplies and Equipment Expenses"
+        employee_benefits: "Employee Benefits Expenses"
+        miscellaneous: "Miscellaneous Expenses"
     experience:
       job_title: "Job title"
       company_name: "Company name"
@@ -87,6 +104,19 @@ en:
       announcements_button: "View All Announcement"
     educations:
       add_education: "Add new education"
+    expenses:
+      title_expenses: "Expenses"
+      add_expense: "Add expense"
+      paid: "Paid"
+      you_have_files_uploaded: "You have %{nbr_files} uploaded"
+      upload_more_files: "Upload more files"
+      upload_files: "Upload files"
+      drag_drop: "or drag and drop"
+      files_type: "IMAGEs, PDFs"
+      edit_expense: "Edit expense"
+      receipts: "Receipts"
+      no_receipts: "No receipts"
+      mark_as_paid: "Mark as paid"
     experiences:
       add_experience: "Add new experience"
     emergency_contacts:
@@ -163,10 +193,13 @@ en:
     successfully_updated: "Successfully updated"
     successfully_destroyed: "Successfully destroyed"
     successfully_imported : "Successfully imported"
+    status_successfully_updated: "The status of the expense was successfully updated."
+    receipt_successfully_deleted: "The receipt was successfully deleted."
   errors:
     comment_cant_be_blank: "Comment can't be blank"
     prohibited: "prohibited it from being saved:"
     select_csv: "Select a CSV file to import."
+    not_allowing_none: "cannot be 'None'"
   devise:
     registrations:
       edit:
