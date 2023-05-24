@@ -29,7 +29,7 @@ en:
       amount: "Amount"
       attach_a_receipt: "Attach a receipt"
       categories:
-        none: "--None--"
+        none: "-- None --"
         travel: "Travel Expenses"
         meal_entertainment: "Meal and Entertainment Expenses"
         training_development: "Training and Development Expenses"
@@ -115,6 +115,7 @@ en:
       edit_expense: "Edit expense"
       receipts: "Receipts"
       no_receipts: "No receipts"
+      mark_as_paid: "Mark as paid"
     experiences:
       add_experience: "Add new experience"
     emergency_contacts:

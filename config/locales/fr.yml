@@ -29,7 +29,7 @@ fr:
       amount: "Montant"
       attach_a_receipt: "Joindre un reçu"
       categories:
-        none: "--Aucune--"
+        none: "-- Aucune --"
         travel: "Frais de déplacement"
         meal_entertainment: "Frais de repas et divertissements"
         training_development: "Frais de formation et développement"
@@ -115,6 +115,7 @@ fr:
       edit_expense: "Modifier la dépense"
       receipts: "Reçus"
       no_receipts: "Aucun reçu"
+      mark_as_paid: "Marquer comme payé"
     experiences:
       add_experience: "Ajouter une nouvelle expérience"
     emergency_contacts:
