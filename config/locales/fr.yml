@@ -28,6 +28,14 @@ fr:
       description: "Description"
       amount: "Montant"
       attach_a_receipt: "Joindre un reçu"
+      categories:
+        none: "--Aucune--"
+        travel: "Frais de déplacement"
+        meal_entertainment: "Frais de repas et divertissements"
+        training_development: "Frais de formation et développement"
+        office_equipment: "Frais de fournitures et équipements de bureau"
+        employee_benefits: "Frais d'avantages pour les employés"
+        miscellaneous: "Frais divers"
     experience:
       job_title: "Intitulé du poste"
       company_name: "Nom de l'entreprise"
@@ -185,6 +193,7 @@ fr:
     comment_cant_be_blank: "Commentaire ne peut pas être vide."
     prohibited: "ont empêché(e)s son enregistrement :"
     select_csv: "Sélectionnez un fichier CSV à importer."
+    not_allowing_none: "ne peut pas être 'Aucun'"
   devise:
     registrations:
       edit:

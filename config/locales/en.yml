@@ -28,6 +28,14 @@ en:
       description: "Description"
       amount: "Amount"
       attach_a_receipt: "Attach a receipt"
+      categories:
+        none: "--None--"
+        travel: "Travel Expenses"
+        meal_entertainment: "Meal and Entertainment Expenses"
+        training_development: "Training and Development Expenses"
+        office_equipment: "Office Supplies and Equipment Expenses"
+        employee_benefits: "Employee Benefits Expenses"
+        miscellaneous: "Miscellaneous Expenses"
     experience:
       job_title: "Job title"
       company_name: "Company name"
@@ -79,9 +87,7 @@ en:
       country: "Country"
       city: "City"
       created_at: "Created at"
-  views:
-    notes:
-      
+  views: 
     announcements:
       add_announcement: "Create new Announcement"
       no_annoucement_exists: "There is no announcement for the moment." 
@@ -187,6 +193,7 @@ en:
     comment_cant_be_blank: "Comment can't be blank"
     prohibited: "prohibited it from being saved:"
     select_csv: "Select a CSV file to import."
+    not_allowing_none: "cannot be 'None'"
   devise:
     registrations:
       edit:

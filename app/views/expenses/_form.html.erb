@@ -4,7 +4,8 @@
         <div class="sm:col-span-full">
           <%= form.label :category, t("attributes.expense.category") %>
           <div class="mt-2">
-            <%= form.select :category, options_for_select(Expense.categories.map {|key, value| [key.humanize, key]}, @expense.category) %>
+            <%# form.select :category, options_for_select(Expense.categories.map {|key, value| [key.humanize, key]}, @expense.category) %>
+            <%= form.select :category, Expense.categories.keys.collect { |category| [Expense.human_enum_name(:category, category), category] } %>
             <%= inline_error_for(:category, @expense).html_safe %>
           </div>
         </div>
