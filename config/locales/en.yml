@@ -171,6 +171,7 @@ en:
         requests: "Requests"
         calendar: "Calendar"
         organization: "Organization"
+        hr_tools: "HR Tools"
     shared:
       settings: "Settings"
       profile: "Profile"
