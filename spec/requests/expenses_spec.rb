@@ -7,7 +7,7 @@ RSpec.describe "/expenses", type: :request do
   let(:valid_attributes) do
     {
       date: Date.new(2023, 05, 22),
-      category: "Travel Expenses",
+      category: :travel,
       description: "My description is too long.",
       amount: 145.45
     }
@@ -101,7 +101,7 @@ RSpec.describe "/expenses", type: :request do
       it "updates the requested time_request" do
         expense.reload
         expect(expense.date).to eq(Date.new(2023, 05, 22))
-        expect(expense.category).to eq("Travel Expenses")
+        expect(expense.category).to eq("travel")
         expect(expense.description).to eq("My description is too long.")
         expect(expense.amount).to eq(145.45)
       end
