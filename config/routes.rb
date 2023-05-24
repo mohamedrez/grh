@@ -28,6 +28,9 @@ Rails.application.routes.draw do
       resources :notes, except: %i[show]
       resources :assets
       resources :emergency_contacts
+      resources :expenses
+      patch "/expenses/:id/:status", to: "expenses#update_status", as: "update_status_expense"
+      delete "/expenses/:id/receipts/:receipt_id", to: "expenses#delete_receipt", as: "delete_receipt_expense"
       resources :time_requests
       resources :user_requests
       patch "/user_requests/:id", to: "user_requests#update", as: "user_request_update"

@@ -6,6 +6,8 @@ fr:
     add: "Ajouter"
     comment: "Commentaire"
     import: "Importer"
+    view: "Afficher"
+    download: "Télécharger"
     delete: "Supprimer"
   attributes:
     asset:
@@ -19,6 +21,21 @@ fr:
       education_level: "Niveau d'éducation"
       study_field: "Domaine d'études"
       still_on_this_course: "Êtes-vous toujours en cours de formation ?"
+    expense:
+      employee: "Employé"
+      date: "Date"
+      category: "Catégorie"
+      description: "Description"
+      amount: "Montant"
+      attach_a_receipt: "Joindre un reçu"
+      categories:
+        none: "-- Aucune --"
+        travel: "Frais de déplacement"
+        meal_entertainment: "Frais de repas et divertissements"
+        training_development: "Frais de formation et développement"
+        office_equipment: "Frais de fournitures et équipements de bureau"
+        employee_benefits: "Frais d'avantages pour les employés"
+        miscellaneous: "Frais divers"
     experience:
       job_title: "Intitulé du poste"
       company_name: "Nom de l'entreprise"
@@ -86,6 +103,19 @@ fr:
       announcements_button: "Voir toutes les annonces"
     educations:
       add_education: "Ajouter une nouvelle formation"
+    expenses:
+      title_expenses: "Dépenses"
+      add_expense: "Ajouter une dépense"
+      paid: "Payé"
+      you_have_files_uploaded: "Vous avez %{nbr_files} téléchargés"
+      upload_more_files: "Télécharger plus de fichiers"
+      upload_files: "Télécharger des fichiers"
+      drag_drop: "ou faites glisser-déposer"
+      files_type: "IMAGES, PDFs"
+      edit_expense: "Modifier la dépense"
+      receipts: "Reçus"
+      no_receipts: "Aucun reçu"
+      mark_as_paid: "Marquer comme payé"
     experiences:
       add_experience: "Ajouter une nouvelle expérience"
     emergency_contacts:
@@ -158,10 +188,13 @@ fr:
     successfully_updated: "Mise à jour effectuée avec succès."
     successfully_destroyed: "Supprimé(e) avec succès"
     successfully_imported : "Importation réussie"
+    status_successfully_updated: "Le statut de la dépense a été mis à jour avec succès."
+    receipt_successfully_deleted: "Le reçu a été supprimé avec succès."
   errors:
     comment_cant_be_blank: "Commentaire ne peut pas être vide."
     prohibited: "ont empêché(e)s son enregistrement :"
     select_csv: "Sélectionnez un fichier CSV à importer."
+    not_allowing_none: "ne peut pas être 'Aucun'"
   devise:
     registrations:
       edit:
