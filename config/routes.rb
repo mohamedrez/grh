@@ -22,6 +22,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :holidays
     resources :performance, only: :index
+    resources :reviews, only: :index
 
     devise_for :users, path: "/auth"
 
