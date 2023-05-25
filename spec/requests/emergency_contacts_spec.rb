@@ -64,6 +64,13 @@ RSpec.describe "/emergency_contacts", type: :request do
       it 'sets the flash notice' do
         expect(flash[:notice]).to eq(I18n.t("flash.successfully_created"))
       end
+
+      it "renders the Turbo Stream response" do
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("append")
+        expect(response.body).to include("emergency-contact-list")
+      end
     end
 
     context "when the emergency contact fails to save" do
@@ -101,6 +108,12 @@ RSpec.describe "/emergency_contacts", type: :request do
 
       it 'sets the flash notice' do
         expect(flash[:notice]).to eq(I18n.t("flash.successfully_updated"))
+      end
+
+      it "renders the Turbo Stream response" do
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("replace")
       end
     end
 

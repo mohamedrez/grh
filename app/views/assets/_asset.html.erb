@@ -1,31 +1,27 @@
-<%= turbo_frame_tag asset do %>
-<li class="overflow-hidden rounded-xl border border-gray-200">
-  <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
-    <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
-    <div class="text-sm font-medium leading-6 text-gray-900"><%= asset.serial %></div>
-    <div class="relative ml-auto">
-      <%= link_to t("buttons.edit"), edit_user_asset_path(user_id: asset.user_id, id: asset.id), class: "hidden rounded-md bg-white px-5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block" %>
+<tr id="<%= dom_id asset %>">
+  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= asset.serial %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= Asset.human_enum_name(:category, asset.category) %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= truncate(asset.description, length: 50) %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= asset.date_assigned %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= asset.date_returned %></td>
+  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
+    <div class="flex justify-center">
+      <%= link_to user_asset_path(asset.user_id, asset.id), data: { turbo_frame: "right_content", action: "right#show" } do %>
+        <svg class="inline-block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+        </svg>
+      <% end %>
+      <%= link_to edit_user_asset_path(asset.user_id, asset.id), data: {turbo_frame: "right_content", action: "right#show"} do %>
+        <svg class="inline-block ml-4 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+        </svg>
+      <% end %>
+      <%= button_to "/users/#{@user.id}/assets/#{asset.id}", method: :delete, form_class: "inline-block ml-4", data: { turbo_confirm: "Are you sure you wanna delete this?" } do %>
+        <svg class="inline-block w-6 h-6 text-red-500" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+        </svg>
+      <% end %>
     </div>
-  </div>
-    <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
-      <div class="flex justify-between gap-x-4 py-3">
-        <dt class="text-gray-500"><%= t("attributes.asset.category") %></dt>
-        <dd class="font-medium text-gray-900"><%= asset.category&.humanize %></dd>
-      </div>
-      <div class="flex justify-between gap-x-4 py-3">
-        <dt class="text-gray-500"><%= t("attributes.asset.date_assigned") %></dt>
-        <dd class="font-medium text-gray-900"><%= asset.date_assigned %></dd>
-      </div>
-      <div class="flex justify-between gap-x-4 py-3">
-        <dt class="text-gray-500"><%= t("attributes.asset.date_returned") %></dt>
-        <dd class="font-medium text-gray-900"><%= asset.date_returned %></dd>
-      </div>
-      <div class="flex justify-between gap-x-4 py-3">
-        <dt class="text-gray-500"><%= t("attributes.asset.description") %></dt>
-        <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 ml-10">
-          <p class="text-sm leading-6 text-gray-500"><%= asset.description %></p>
-        </div>
-      </div>
-    </dl>
-  </li>
-<% end %>
+  </td>
+</tr>

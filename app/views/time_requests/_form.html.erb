@@ -18,7 +18,7 @@
       <div class="sm:col-span-full sm:col-start-1">
         <%= form.label :category, t("attributes.time_request.category") %>
         <div class="mt-2">
-          <%= form.select :category, options_for_select(TimeRequest.categories.map {|key, value| [key.humanize, key]}, @time_request.category) %>
+          <%= form.select :category, TimeRequest.categories.keys.collect { |category| [TimeRequest.human_enum_name(:category, category), category] } %>
           <%= inline_error_for(:category, time_request).html_safe %>
         </div>
       </div>

@@ -16,6 +16,16 @@ fr:
       date_assigned: "Date d'affectation"
       date_returned: "Date de retour"
       description: "Description"
+      categories:
+        none: "-- Aucune --"
+        computers: "Ordinateurs"
+        peripherals: "Périphériques"
+        office_equipment: "Équipement de bureau"
+        software_licenses: "Licences logicielles"
+        mobile_devices: "Appareils mobiles"
+        networking_equipment: "Équipement réseau"
+        security_systems: "Systèmes de sécurité"
+        other: "Autre"
     education:
       school: "École"
       education_level: "Niveau d'éducation"
@@ -45,13 +55,36 @@ fr:
       email: "E-mail"
       relationship: "Relation"
       phone: "Téléphone"
+      relationships:
+        none: "-- Aucune --"
+        brother: "Frère"
+        daughter: "Fille"
+        father: "Père"
+        friend: "Ami"
+        husband: "Mari"
+        mother: "Mère"
+        sister: "Sœur"
+        son: "Fils"
+        wife: "Épouse"
     time_request:
       category: "Catégorie"
       content: "Contenu"
+      categories:
+        none: "-- Aucune --"
+        vacation_time: "Congés"
+        sick_time: "Congés maladie"
+        bereavement_time: "Congés pour décès"
+        parental_leave: "Congé parental"
+        remote_work: "Travail à distance"
+        personal_time: "Temps personnel"
     user_request:
       request_type: "Type de demande"
       state: "État"
       managed_by: "Gérée par"
+      states:
+        pending: "En attente"
+        approved: "Approuvé"
+        rejected: "Rejeté"
     user:
       first_name: "Prénom"
       last_name: "Nom de famille"
@@ -94,6 +127,10 @@ fr:
     assets:
       title_assets: "Éléments"
       assets_list: "Liste des éléments qui vous ont été affectés."
+      create_asset: "Create élément"
+      add_asset: "Ajouter un élément"
+      edit_asset: "Modifier l'élément"
+      asset_details: "Détails de élément"
     comments:
       commented: "Commenté"
       edited: "Modifié"
@@ -116,11 +153,15 @@ fr:
       receipts: "Reçus"
       no_receipts: "Aucun reçu"
       mark_as_paid: "Marquer comme payé"
+      expense_details: "Détails des dépenses"
     experiences:
       add_experience: "Ajouter une nouvelle expérience"
     emergency_contacts:
       title_emergency_contact: "Contacts d'urgence"
       emergency_contacts_list: "Liste de tous vos contacts d'urgence."
+      create_emergency_contact: "Créer un contact d'urgence"
+      add_emergency_contact: "Ajouter un contact d'urgence"
+      edit_emergency_contact: "Modifier le contact d'urgence"
     holidays:
       title_holidays: "Vacances"
       holidays_list: "Liste des vacances pour cette année"
@@ -133,12 +174,15 @@ fr:
       no_one_out: "Personne d'autre de l'équipe ne sera absent."
       add_time_off: "Ajouter une nouvelle demande de congé"
       edit_time_off: "Modifier la demande de congé"
+      create_time_request: "Créer une demande de congé"
     settings:
       setting_desc: "Ces informations seront affichées sur votre profil."
       employee_picture: "Photo de l'employé"
     user_requests:
       title_user_request: "Demandes d'utilisateur"
       user_requests_list: "Liste de toutes les demandes que vous avez effectuées."
+      no_one_yet: "Personne pour l'instant"
+      request: "Demande"
     users:
       personal_details_section: "Détails personnels"
       list_personal_details: "Liste des détails personnels vous concernant."
