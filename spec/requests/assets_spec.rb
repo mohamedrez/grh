@@ -102,4 +102,17 @@ RSpec.describe "/assets", type: :request do
       end
     end
   end
+
+  describe "DELETE /destroy" do
+    before do
+      delete "/users/#{admin_user.id}/assets/#{asset.id}"
+    end
+
+    it "destroys the expense" do
+      expect(Asset.count).to eq(0)
+    end
+    it 'sets the flash notice' do
+      expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
+    end
+  end
 end
