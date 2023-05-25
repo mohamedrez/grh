@@ -145,6 +145,7 @@ en:
       no_one_out.: "No one else on the team will be out."
       add_time_off: "Add new time off request"
       edit_time_off: "Edit the time off request"
+      create_time_request: "Create time off request"
     settings:
       setting_desc: "These information will be displayed on your profile."
       employee_picture: "Employee picture"
