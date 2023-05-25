@@ -1,29 +1,30 @@
 class AssetsController < ApplicationController
-  before_action :set_locals, only: %i[edit update]
+  before_action :set_user
+  before_action :set_asset, only: %i[show edit update destroy]
 
   def index
-    @user = User.find(params[:user_id])
     @assets = Asset.where(user_id: @user.id)
+  end
+
+  def show
   end
 
   def new
     @asset = Asset.new
-    @user = User.find(params[:user_id])
   end
 
   def edit
   end
 
   def create
-    @user = User.find(params[:user_id])
     @asset = Asset.new(asset_params)
     @asset.user_id = @user.id
 
     if @asset.save
       flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
-        turbo_stream.prepend("assets-list", @asset),
-        turbo_stream.replace("modal", partial: "create_button"),
+        turbo_stream.prepend("asset-list", @asset),
+        turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else
@@ -37,6 +38,7 @@ class AssetsController < ApplicationController
       flash.now[:notice] = t("flash.successfully_updated")
       render turbo_stream: [
         turbo_stream.replace(@asset, @asset),
+        turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else
@@ -44,11 +46,23 @@ class AssetsController < ApplicationController
     end
   end
 
+  def destroy
+    @asset.destroy
+    flash.now[:notice] = t("flash.successfully_destroyed")
+    render turbo_stream: [
+      turbo_stream.remove(@asset),
+      turbo_stream.replace("notification_alert", partial: "layouts/alert")
+    ]
+  end
+
   private
 
-  def set_locals
-    @asset = Asset.find(params[:id])
+  def set_user
     @user = User.find(params[:user_id])
+  end
+
+  def set_asset
+    @asset = Asset.find(params[:id])
   end
 
   def asset_params

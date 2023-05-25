@@ -126,6 +126,19 @@ RSpec.describe "/expenses", type: :request do
     end
   end
 
+  describe "DELETE /destroy" do
+    before do
+      delete "/users/#{user.id}/expenses/#{expense.id}"
+    end
+
+    it "destroys the expense" do
+      expect(Expense.count).to eq(0)
+    end
+    it 'sets the flash notice' do
+      expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
+    end
+  end
+
   describe "PATCH /update_status" do
     before do
       patch user_update_status_expense_path(user_id: user.id, id: expense.id, status: "approved")
