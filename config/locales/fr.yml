@@ -59,6 +59,10 @@ fr:
       request_type: "Type de demande"
       state: "État"
       managed_by: "Gérée par"
+      states:
+        pending: "En attente"
+        approved: "Approuvé"
+        rejected: "Rejeté"
     user:
       first_name: "Prénom"
       last_name: "Nom de famille"
@@ -123,6 +127,7 @@ fr:
       receipts: "Reçus"
       no_receipts: "Aucun reçu"
       mark_as_paid: "Marquer comme payé"
+      expense_details: "Détails des dépenses"
     experiences:
       add_experience: "Ajouter une nouvelle expérience"
     emergency_contacts:
@@ -146,6 +151,8 @@ fr:
     user_requests:
       title_user_request: "Demandes d'utilisateur"
       user_requests_list: "Liste de toutes les demandes que vous avez effectuées."
+      no_one_yet: "Personne pour l'instant"
+      request: "Demande"
     users:
       personal_details_section: "Détails personnels"
       list_personal_details: "Liste des détails personnels vous concernant."
