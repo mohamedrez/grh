@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_123153) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_25_122459) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -144,6 +144,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_123153) do
     t.integer "country"
     t.string "city"
     t.index ["user_id"], name: "index_experiences_on_user_id"
+  end
+
+  create_table "goals", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.bigint "owner_id", null: false
+    t.integer "status"
+    t.date "start_date"
+    t.date "due_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_goals_on_owner_id"
   end
 
   create_table "holidays", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -452,6 +463,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_123153) do
   add_foreign_key "emergency_contacts", "users"
   add_foreign_key "expenses", "users"
   add_foreign_key "experiences", "users"
+  add_foreign_key "goals", "users", column: "owner_id"
   add_foreign_key "motor_alert_locks", "motor_alerts", column: "alert_id"
   add_foreign_key "motor_alerts", "motor_queries", column: "query_id"
   add_foreign_key "motor_note_tag_tags", "motor_note_tags", column: "tag_id"
