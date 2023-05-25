@@ -16,6 +16,16 @@ fr:
       date_assigned: "Date d'affectation"
       date_returned: "Date de retour"
       description: "Description"
+      categories:
+        none: "-- Aucune --"
+        computers: "Ordinateurs"
+        peripherals: "Périphériques"
+        office_equipment: "Équipement de bureau"
+        software_licenses: "Licences logicielles"
+        mobile_devices: "Appareils mobiles"
+        networking_equipment: "Équipement réseau"
+        security_systems: "Systèmes de sécurité"
+        other: "Autre"
     education:
       school: "École"
       education_level: "Niveau d'éducation"
@@ -117,6 +127,10 @@ fr:
     assets:
       title_assets: "Éléments"
       assets_list: "Liste des éléments qui vous ont été affectés."
+      create_asset: "Create élément"
+      add_asset: "Ajouter un élément"
+      edit_asset: "Modifier l'élément"
+      asset_details: "Détails de élément"
     comments:
       commented: "Commenté"
       edited: "Modifié"

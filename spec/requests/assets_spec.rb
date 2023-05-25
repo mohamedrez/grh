@@ -8,7 +8,7 @@ RSpec.describe "/assets", type: :request do
     {
       category: :computers,
       description: "Dell Latitude E7450 Laptop, Intel Core i5, 8GB RAM, 256GB SSD, Windows 10 Pro",
-      serial: "#12345678",
+      serial: "12345678",
       date_assigned: "2022-04-27",
       date_returned: "2023-04-27"
     }
@@ -83,7 +83,7 @@ RSpec.describe "/assets", type: :request do
         asset.reload
         expect(asset.category).to eq("computers")
         expect(asset.description).to eq("Dell Latitude E7450 Laptop, Intel Core i5, 8GB RAM, 256GB SSD, Windows 10 Pro")
-        expect(asset.serial).to eq("#12345678")
+        expect(asset.serial).to eq("12345678")
         expect(asset.date_assigned).to eq(Date.new(2022, 4, 27))
         expect(asset.date_returned).to eq(Date.new(2023, 4, 27))
       end

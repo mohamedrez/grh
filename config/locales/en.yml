@@ -16,6 +16,16 @@ en:
       date_assigned: "Date assigned"
       date_returned: "Date returned"
       description: "Description"
+      categories:
+        none: "-- None --"
+        computers: "Computers"
+        peripherals: "Peripherals"
+        office_equipment: "Office equipment"
+        software_licenses: "Software licenses"
+        mobile_devices: "Mobile devices"
+        networking_equipment: "Networking equipment"
+        security_systems: "Security systems"
+        other: "Other"
     education:
       school: "School"
       education_level: "Education level"
@@ -117,6 +127,10 @@ en:
     assets:
       title_assets: "Assets"
       assets_list: "List of assets assigned to you."
+      create_asset: "Create asset"
+      add_asset: "Add asset"
+      edit_asset: "Edit asset"
+      asset_details: "Asset details"
     comments:
       commented: "Commented"
       edited: "Edited"
