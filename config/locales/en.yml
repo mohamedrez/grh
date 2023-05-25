@@ -48,6 +48,13 @@ en:
     time_request:
       category: "Category"
       content: "Content"
+      categories:
+        vacation_time: "Vacation time"
+        sick_time: "Sick time"
+        bereavement_time: "Bereavement time"
+        parental_leave: "Parental leave"
+        remote_work: "Remote work"
+        personal_time: "Personal time"
     user_request:
       request_type: "Request type"
       state: "State"

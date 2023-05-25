@@ -48,6 +48,13 @@ fr:
     time_request:
       category: "Catégorie"
       content: "Contenu"
+      categories:
+        vacation_time: "Congés"
+        sick_time: "Congés maladie"
+        bereavement_time: "Congés pour décès"
+        parental_leave: "Congé parental"
+        remote_work: "Travail à distance"
+        personal_time: "Temps personnel"
     user_request:
       request_type: "Type de demande"
       state: "État"
