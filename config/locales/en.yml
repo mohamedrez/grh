@@ -45,10 +45,22 @@ en:
       email: "Email"
       relationship: "Relationship"
       phone: "Phone"
+      relationships:
+        none: "-- None --"
+        brother: "Brother"
+        daughter: "Daughter"
+        father: "Father"
+        friend: "Friend"
+        husband: "Husband"
+        mother: "Mother"
+        sister: "Sister"
+        son: "Son"
+        wife: "Wife"
     time_request:
       category: "Category"
       content: "Content"
       categories:
+        none: "-- None --"
         vacation_time: "Vacation time"
         sick_time: "Sick time"
         bereavement_time: "Bereavement time"
@@ -133,6 +145,9 @@ en:
     emergency_contacts:
       title_emergency_contact: "Emergency contacts"
       emergency_contacts_list: "List of all of your emergency contacts."
+      create_emergency_contact: "Create emergency contact"
+      add_emergency_contact: "Add emergency contact"
+      edit_emergency_contact: "Edit emergency contact"
     holidays:
       title_holidays: "Holidays"
       holidays_list: "List of holidays for this year"

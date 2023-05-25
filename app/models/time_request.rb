@@ -4,17 +4,11 @@ class TimeRequest < ApplicationRecord
 
   after_create :create_user_request
 
+  enum :category, %i[none vacation_time sick_time bereavement_time parental_leave remote_work personal_time], prefix: :category
+
   validates_comparison_of :end_date, greater_than_or_equal_to: :start_date
   validates :start_date, :end_date, :category, presence: true
-
-  enum category: {
-    vacation_time: 0,
-    sick_time: 1,
-    bereavement_time: 3,
-    parental_leave: 4,
-    remote_work: 5,
-    personal_time: 6
-  }
+  validates :category, exclusion: {in: ["none"], message: I18n.t("errors.not_allowing_none")}
 
   delegate :user, to: :user_request
 

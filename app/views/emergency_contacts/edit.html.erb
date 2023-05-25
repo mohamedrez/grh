@@ -1,3 +1,4 @@
-<%= turbo_frame_tag @emergency_contact  do %>
+<%= turbo_frame_tag "right_content" do %>
+  <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight"><%= t("views.emergency_contacts.edit_emergency_contact") %></h2>
   <%= render partial: "form", locals: {user: @user, emergency_contact: @emergency_contact} %>
 <% end %>

@@ -20,8 +20,8 @@ class EmergencyContactsController < ApplicationController
     if @emergency_contact.save
       flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
-        turbo_stream.prepend("emergency_contacts", @emergency_contact),
-        turbo_stream.replace("new-emergency-contact-form", partial: "form", locals: {user: @user, emergency_contact: EmergencyContact.new}),
+        turbo_stream.append("emergency-contact-list", @emergency_contact),
+        turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else
@@ -35,6 +35,7 @@ class EmergencyContactsController < ApplicationController
       flash.now[:notice] = t("flash.successfully_updated")
       render turbo_stream: [
         turbo_stream.replace(@emergency_contact, @emergency_contact),
+        turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else

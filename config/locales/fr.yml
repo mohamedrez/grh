@@ -45,10 +45,22 @@ fr:
       email: "E-mail"
       relationship: "Relation"
       phone: "Téléphone"
+      relationships:
+        none: "-- Aucune --"
+        brother: "Frère"
+        daughter: "Fille"
+        father: "Père"
+        friend: "Ami"
+        husband: "Mari"
+        mother: "Mère"
+        sister: "Sœur"
+        son: "Fils"
+        wife: "Épouse"
     time_request:
       category: "Catégorie"
       content: "Contenu"
       categories:
+        none: "-- Aucune --"
         vacation_time: "Congés"
         sick_time: "Congés maladie"
         bereavement_time: "Congés pour décès"
@@ -133,6 +145,9 @@ fr:
     emergency_contacts:
       title_emergency_contact: "Contacts d'urgence"
       emergency_contacts_list: "Liste de tous vos contacts d'urgence."
+      create_emergency_contact: "Créer un contact d'urgence"
+      add_emergency_contact: "Ajouter un contact d'urgence"
+      edit_emergency_contact: "Modifier le contact d'urgence"
     holidays:
       title_holidays: "Vacances"
       holidays_list: "Liste des vacances pour cette année"
