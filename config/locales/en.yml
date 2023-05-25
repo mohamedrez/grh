@@ -66,6 +66,21 @@ en:
         sister: "Sister"
         son: "Son"
         wife: "Wife"
+    goal:
+      title: "Title"
+      owner: "Owner"
+      status: "Status"
+      description: "Description"
+      start_date: "Start date"
+      due_date: "Due date"
+      statuses:
+        none: "-- None --"
+        not_started: "Not started"
+        on_track: "On track"
+        progressing: "Progressing"
+        off_track: "Off track"
+        completed: "Completed"
+        incomplete: "Incomplete"
     time_request:
       category: "Category"
       content: "Content"
@@ -162,6 +177,11 @@ en:
       create_emergency_contact: "Create emergency contact"
       add_emergency_contact: "Add emergency contact"
       edit_emergency_contact: "Edit emergency contact"
+    goals:
+      title_goals: "Goals"
+      create_goal: "Create goal"
+      add_goal: "Add goal"
+      edit_goal: "Edit goal"
     holidays:
       title_holidays: "Holidays"
       holidays_list: "List of holidays for this year"

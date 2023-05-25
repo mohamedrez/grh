@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :announcements
     resources :comments
     resources :holidays
+    resources :goals
 
     devise_for :users, path: "/auth"
 
@@ -39,7 +40,6 @@ Rails.application.routes.draw do
       patch "settings", to: "settings#update"
       resources :experiences, only: [:new, :create]
       resources :educations, only: [:new, :create]
-      resources :goals
     end
 
     get "user_notifications", to: "user_notifications#index"

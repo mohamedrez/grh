@@ -149,7 +149,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_122459) do
   create_table "goals", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.bigint "owner_id", null: false
-    t.integer "status"
+    t.integer "status", default: 1
     t.date "start_date"
     t.date "due_date"
     t.datetime "created_at", null: false

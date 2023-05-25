@@ -66,6 +66,21 @@ fr:
         sister: "Sœur"
         son: "Fils"
         wife: "Épouse"
+    goal:
+      title: "Titre"
+      owner: "Propriétaire"
+      status: "Statut"
+      description: "Description"
+      start_date: "Date de début"
+      due_date: "Date d'échéance"
+      statuses:
+        none: "-- Aucun --"
+        not_started: "Non démarré"
+        on_track: "Sur la bonne voie"
+        progressing: "En cours"
+        off_track: "Hors piste"
+        completed: "Terminé"
+        incomplete: "Incomplet"
     time_request:
       category: "Catégorie"
       content: "Contenu"
@@ -162,6 +177,11 @@ fr:
       create_emergency_contact: "Créer un contact d'urgence"
       add_emergency_contact: "Ajouter un contact d'urgence"
       edit_emergency_contact: "Modifier le contact d'urgence"
+    goals:
+      title_goals: "Objectifs"
+      create_goal: "Créer un objectif"
+      add_goal: "Ajouter un objectif"
+      edit_goal: "Modifier l'objectif"
     holidays:
       title_holidays: "Vacances"
       holidays_list: "Liste des vacances pour cette année"
