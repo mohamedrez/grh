@@ -19,36 +19,10 @@
     </div>
   </div>
   <div class="mt-8 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
-
-    <%= render partial: "end_goal_form", locals: {goal: @goal} %>
-
-    <div class="lg:flex lg:flex-auto lg:justify-center">
-      <div class="overflow-hidden bg-white shadow sm:rounded-lg max-w-xl">
-        <div class="border-t border-gray-100">
-          <dl class="divide-y divide-gray-100">
-            <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
-              <dt class="px-5 text-sm font-medium leading-6 text-gray-900">Owned by</dt>
-              <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @owner.full_name %></dd>
-            </div>
-            <div class="bg-gray-50 px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
-              <dt class="px-5 text-sm font-medium leading-6 text-gray-900">Status</dt>
-              <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @goal.what_is_the_status? %></dd>
-            </div>
-            <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
-              <dt class="px-5 text-sm font-medium leading-6 text-gray-900">Start date</dt>
-              <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @goal.start_date %></dd>
-            </div>
-            <div class="bg-gray-50 px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
-              <dt class="px-5 text-sm font-medium leading-6 text-gray-900">Due date</dt>
-              <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @goal.due_date %></dd>
-            </div>
-            <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
-              <dt class="px-5 text-sm font-medium leading-6 text-gray-900">Description</dt>
-              <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @goal.description %></dd>
-            </div>
-          </dl>
-        </div>
-      </div>
-    </div>
+    <% if @goal.status.blank? %>
+      <%= render partial: "blank_status", locals: {owner: @owner, goal: @goal} %>
+    <% else %>
+      <%= render partial: "goal_attributes", locals: {owner: @owner, goal: @goal} %>
+    <% end %>
   </div>
 </div>

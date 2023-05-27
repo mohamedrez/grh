@@ -1,0 +1,24 @@
+<div class="border-t border-gray-100">
+  <dl class="divide-y divide-gray-100">
+    <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+      <dt class="px-5 text-sm font-medium leading-6 text-gray-900">Owned by</dt>
+      <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= owner.full_name %></dd>
+    </div>
+    <div class="bg-gray-50 px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+      <dt class="px-5 text-sm font-medium leading-6 text-gray-900">Status</dt>
+      <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= goal.what_is_the_status? %></dd>
+    </div>
+    <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+      <dt class="px-5 text-sm font-medium leading-6 text-gray-900">Start date</dt>
+      <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= goal.start_date %></dd>
+    </div>
+    <div class="bg-gray-50 px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+      <dt class="px-5 text-sm font-medium leading-6 text-gray-900">Due date</dt>
+      <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= goal.due_date %></dd>
+    </div>
+    <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+      <dt class="px-5 text-sm font-medium leading-6 text-gray-900">Description</dt>
+      <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= goal.description %></dd>
+    </div>
+  </dl>
+</div>

@@ -50,9 +50,9 @@ class GoalsController < ApplicationController
     @status = params[:goal][:status]
 
     if @goal.update!(end_goal_description: @end_goal_description, status: @status)
-      redirect_to goals_path, notice: t("flash.successfully_end_goal")
+      redirect_to goal_path(@goal), notice: t("flash.goal_successfully_unded")
     else
-      redirect_to goal_path(@goal), alert: t("flash.must_have_description")
+      redirect_to goal_path(@goal), alert: t("flash.description_or_status_error")
     end
   end
 
