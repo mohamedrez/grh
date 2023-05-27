@@ -49,6 +49,9 @@
       </div>
     </div>
   </div>
+  <% if action_name == 'edit' %>
+    <%= hidden_field_tag :from_view, @from_view %>
+  <% end %>
   <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
     <button data-action="click->right#hide" type="button" class= "text-sm font-semibold leading-6 text-gray-900">
       <%= t("buttons.cancel") %>

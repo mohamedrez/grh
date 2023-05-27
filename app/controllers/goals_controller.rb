@@ -14,6 +14,7 @@ class GoalsController < ApplicationController
   end
 
   def edit
+    @from_view = params[:from_view]
   end
 
   def create
@@ -33,13 +34,24 @@ class GoalsController < ApplicationController
   end
 
   def update
+    @from_view = params[:from_view]
     if @goal.update(goal_params)
       flash.now[:notice] = t("flash.successfully_updated")
-      render turbo_stream: [
-        turbo_stream.replace(@goal, @goal),
-        turbo_stream.replace("right", partial: "shared/right"),
-        turbo_stream.replace("notification_alert", partial: "layouts/alert")
-      ]
+
+      if @from_view == "index"
+        render turbo_stream: [
+          turbo_stream.replace(@goal, @goal),
+          turbo_stream.replace("right", partial: "shared/right"),
+          turbo_stream.replace("notification_alert", partial: "layouts/alert")
+        ]
+      elsif @from_view == "show"
+        render turbo_stream: [
+          turbo_stream.replace(@goal, partial: "goals/show_partial", locals: {owner: @goal.owner, goal: @goal}),
+          turbo_stream.replace("right", partial: "shared/right"),
+          turbo_stream.replace("notification_alert", partial: "layouts/alert")
+        ]
+      end
+
     else
       render :edit, status: :unprocessable_entity
     end
