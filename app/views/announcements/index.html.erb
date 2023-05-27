@@ -1,25 +1,48 @@
- <%=link_to t("views.announcements.add_announcement"), new_announcement_path, class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
- 
-<% unless @announcements.any?%>
-  <div class="rounded-md bg-blue-50 p-4 m-6">
-    <div class="flex">
-      <div class="ml-3 flex-1 md:flex md:justify-between">
-        <p class="text-sm text-blue-700"><%= t("views.announcements.no_annoucement_exists")%></p>
+<%= turbo_frame_tag "tabbed-content" do %>
+  <div class="px-4 sm:px-6 lg:px-8 mt-10">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1><%= t("views.announcements.title_announcements") %></h1>
       </div>
+      <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+        <%= link_to t("views.announcements.create_announcement"), new_announcement_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", data: { turbo_frame: "right_content", action: "right#show" } %>
+      </div>
+    </div>
+
+    <div>
+      <% @announcements.each do |announcement| %>
+        <div class="overflow-hidden bg-white shadow sm:rounded-lg p-5 my-5">
+          <div class="flex items-center gap-x-4 text-xs">
+            <%= announcement.published_at %>
+            <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"> <%= announcement.status %></span>
+          </div>
+          <div class="group relative max-w-xl">
+            <h3 class="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
+              <a href="#">
+                <span class="absolute inset-0"></span>
+                <%= announcement.title %>
+              </a>
+            </h3>
+            <p class="mt-5 text-sm leading-6 text-gray-600"><%= announcement.content %></p>
+          </div>
+          <div class="mt-6 flex border-t border-gray-900/5 pt-6">
+            <div class="relative flex items-center gap-x-4">
+             <%= image_tag announcement.user.avatar_url_or_default, class: " w-8 rounded-full" %>
+              <div class="text-sm leading-6">
+                <p class="font-semibold text-gray-900">
+                  <a href="#">
+                    <span class="absolute inset-0"></span>
+                    
+                  </a>
+                </p>
+                <p class="text-gray-600"><%= announcement.user.full_name %></p>
+              </div>
+               <%=link_to "edit" , edit_announcement_path(announcement.id) ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
+               <%=link_to "delete" , announcement_path(announcement.id),data: {turbo_method: :delete, turbo_confirm: "Are you sure?" } ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
     </div>
   </div>
-<% else %>
-  <% @announcements.each do |announcement| %>
-    <div class="m-3 p-3 border border-sky-500">
-      <h4 class="uppercase text-xl font-mono font-bold"><%=announcement.title%></h4>
-      <p class=""> status:  <%= announcement.status %> </p>
-      <span>published :<%= announcement.published_at%></span>
-      <p><%= announcement.content %></p>
-      <div class="pt-3">
-        <%=link_to "Show" , announcement_path(announcement.id) ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
-        <%=link_to "edit" , edit_announcement_path(announcement.id) ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
-        <%=link_to "delete" , announcement_path(announcement.id),data: {turbo_method: :delete, turbo_confirm: "Are you sure?" } ,class: "bg-white hover:bg-gray-100 text-gray-800 font-semibold py-2 px-4 border border-gray-400 rounded shadow" %>
-      </div>
-    </div>
-  <%end%>
-<%end%>
+<% end %>

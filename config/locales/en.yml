@@ -122,6 +122,10 @@ en:
       created_at: "Created at"
   views: 
     announcements:
+      content: "Content"
+      published_at: "Published At"
+      title: "Title"
+      status: "Status"
       add_announcement: "Create new Announcement"
       no_annoucement_exists: "There is no announcement for the moment." 
     assets:

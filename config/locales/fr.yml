@@ -122,6 +122,11 @@ fr:
       created_at: "Créé le"
   views:
     announcements:
+      draft: "Draft"
+      content: "Contenu"
+      published_at: "Publié à"
+      title: "Titre"
+      status: "Etat"
       add_announcement: "Créer une nouvelle annonce"
       no_annoucement_exists: "Il n'y a pas d'annonce pour le moment." 
     assets:
