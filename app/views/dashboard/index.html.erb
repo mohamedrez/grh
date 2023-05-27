@@ -187,11 +187,12 @@
                     <%@annoucements.each do |announcement|%>
                     <li class="py-5">
                       <div class="relative focus-within:ring-2 focus-within:ring-cyan-500">
-                        <h3 class="text-sm font-semibold text-gray-800">
-                          <%=link_to announcement.title.titleize, announcement_path(announcement.id) , class:"hover:underline focus:outline-none"%>
-                        </h3>
-                        <span class="m-1 line-clamp-2 text-sm text-gray-600"><%= announcement.status.titleize %></span>
-                        <%= announcement.content.to_plain_text[0, 50]... %>
+                        <div class="flex items-center gap-x-4 text-xs">
+                          <h3 class="text-sm font-semibold text-indigo-500"><%= announcement.title.titleize %></h3>
+                          <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"> <%= announcement.published_at.strftime('%b %d, %Y') %></span>
+                        </div>
+                        <p class="mt-2"><%= announcement.content.to_plain_text[0, 80]... %></p>
+                        
                       </div>
                     </li>
                     <%end%>
@@ -199,7 +200,7 @@
                 </ul>
               </div>
               <div class="mt-6">
-                <%=link_to t("views.dashboard.announcements_button") ,announcements_path , class: "flex w-full items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"%>
+                <%=link_to t("views.dashboard.announcements_button"), announcements_path, class: "flex w-full items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"%>
               </div>
             </div>
           </div>
@@ -214,13 +215,12 @@
                 <ul role="list" class="-my-5 divide-y divide-gray-200">
                   <% @users.each do |user|%>
                     <li class="py-4">
-                      <div class="flex items-center space-x-4">
-                          <div class="flex-shrink-0">
-                            <%= image_tag user.avatar_url_or_default, class: " w-5 rounded-full" %>
-                          </div>
-                          <div class="min-w-0 flex-1">
-                            <p class="truncate text-sm font-medium text-gray-900"><%= user.full_name %></p>
-                          </div>
+                      <div class="relative flex items-center gap-x-4">
+                        <%= image_tag user.avatar_url_or_default, class: "rounded-full h-10 w-10 align-middle" %>
+                        <div class="text-sm leading-6">
+                          <p class="font-semibold text-gray-900"><%= user.full_name %></p>
+                          <p class="text-gray-600"><%= user.job_title.humanize %></p>
+                        </div>
                       </div>
                     </li>
                   <% end %>
