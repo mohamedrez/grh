@@ -10,6 +10,10 @@ en:
     download: "Download"
     delete: "Delete"
   attributes:
+    announcement:
+      statuses:
+        draft: "Draft"
+        published: "Published"
     asset:
       category: "Category"
       serial: "Serial #"
