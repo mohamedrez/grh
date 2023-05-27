@@ -1,8 +1,9 @@
 class GoalsController < ApplicationController
-  before_action :set_goal, only: %i[show edit update destroy]
+  before_action :set_goal, only: %i[show edit update end_goal archive]
+  before_action :set_owner, only: %i[show edit]
 
   def index
-    @goals = Goal.all
+    @goals = Goal.where(archived: false)
   end
 
   def show
@@ -13,11 +14,11 @@ class GoalsController < ApplicationController
   end
 
   def edit
-    @owner = @goal.owner
   end
 
   def create
     @goal = Goal.new(goal_params)
+    @goal.author_id = current_user.id
 
     if @goal.save
       flash.now[:notice] = t("flash.successfully_created")
@@ -44,13 +45,20 @@ class GoalsController < ApplicationController
     end
   end
 
-  def destroy
-    @goal.destroy
-    flash.now[:notice] = t("flash.successfully_destroyed")
-    render turbo_stream: [
-      turbo_stream.remove(@goal),
-      turbo_stream.replace("notification_alert", partial: "layouts/alert")
-    ]
+  def end_goal
+    @end_goal_description = params[:goal][:end_goal_description]
+    @status = params[:goal][:status]
+
+    if @goal.update!(end_goal_description: @end_goal_description, status: @status)
+      redirect_to goals_path, notice: t("flash.successfully_end_goal")
+    else
+      redirect_to goal_path(@goal), alert: t("flash.must_have_description")
+    end
+  end
+
+  def archive
+    @goal.update!(archived: true)
+    redirect_to goals_path, notice: t("flash.successfully_archived")
   end
 
   private
@@ -59,7 +67,11 @@ class GoalsController < ApplicationController
     @goal = Goal.find(params[:id])
   end
 
+  def set_owner
+    @owner = @goal.owner
+  end
+
   def goal_params
-    params.require(:goal).permit(:title, :owner_id, :status, :start_date, :due_date, :description)
+    params.require(:goal).permit(:title, :owner_id, :status, :start_date, :due_date, :description, :level)
   end
 end

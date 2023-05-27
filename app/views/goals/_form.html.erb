@@ -18,6 +18,14 @@
       </div>
 
       <div class="sm:col-span-full">
+        <%= form.label :level, t("attributes.goal.level"), class: "block" %>
+        <div class="mt-2">
+          <%= form.select :level, Goal.levels.keys.collect { |level| [Goal.human_enum_name(:level, level), level] } %>
+          <%= inline_error_for(:level, goal).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
         <%= form.label :start_date, t("attributes.goal.start_date"), class: "block" %>
         <div class="mt-2">
           <%= form.date_field :start_date, class: "w-full" %>

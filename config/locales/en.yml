@@ -69,18 +69,21 @@ en:
     goal:
       title: "Title"
       owner: "Owner"
+      level: "Level"
       status: "Status"
       description: "Description"
       start_date: "Start date"
       due_date: "Due date"
       statuses:
-        none: "-- None --"
-        not_started: "Not started"
-        on_track: "On track"
-        progressing: "Progressing"
-        off_track: "Off track"
-        completed: "Completed"
+        no_feedback: "No feedback yet"
         incomplete: "Incomplete"
+        completed: "Completed"
+        overpass: "Overpass"
+      levels:
+        none: "-- None --"
+        important: "Important"
+        very_important: "Very important"
+        critical: "Critical"
     time_request:
       category: "Category"
       content: "Content"

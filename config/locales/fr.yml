@@ -69,18 +69,21 @@ fr:
     goal:
       title: "Titre"
       owner: "Propriétaire"
+      level: "Niveau"
       status: "Statut"
       description: "Description"
       start_date: "Date de début"
       due_date: "Date d'échéance"
       statuses:
-        none: "-- Aucun --"
-        not_started: "Non démarré"
-        on_track: "Sur la bonne voie"
-        progressing: "En cours"
-        off_track: "Hors piste"
-        completed: "Terminé"
+        no_feedback: "Aucun retour pour le moment"
         incomplete: "Incomplet"
+        completed: "Terminé"
+        overpass: "Surpassement"
+      levels:
+        none: "-- Aucun --"
+        important: "Important"
+        very_important: "Très important"
+        critical: "Critique"
     time_request:
       category: "Catégorie"
       content: "Contenu"
