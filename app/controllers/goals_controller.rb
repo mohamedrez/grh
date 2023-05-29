@@ -8,7 +8,7 @@ class GoalsController < ApplicationController
 
   def show
     @end_goal_errors = params[:end_goal_errors] || {}
-    @end_goal_description = params[:end_goal_description] || ""
+    @end_goal_description = params[:end_goal_description]
     @status = params[:status]
   end
 
@@ -49,7 +49,7 @@ class GoalsController < ApplicationController
         ]
       elsif @from_view == "show"
         render turbo_stream: [
-          turbo_stream.replace(@goal, partial: "goals/show_partial", locals: {owner: @goal.owner, goal: @goal}),
+          turbo_stream.replace(@goal, partial: "goals/show_partial", locals: {owner: @goal.owner, goal: @goal, end_goal_errors: {}}),
           turbo_stream.replace("right", partial: "shared/right"),
           turbo_stream.replace("notification_alert", partial: "layouts/alert")
         ]
@@ -77,7 +77,17 @@ class GoalsController < ApplicationController
 
   def archive
     @goal.update!(archived: true)
-    redirect_to goals_path, notice: t("flash.successfully_archived")
+
+    @from_view = params[:from_view]
+    if @from_view == "index"
+      flash.now[:notice] = t("flash.successfully_archived")
+      render turbo_stream: [
+        turbo_stream.remove(@goal),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
+    elsif @from_view == "show"
+      redirect_to goals_path, notice: t("flash.successfully_archived")
+    end
   end
 
   private

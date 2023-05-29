@@ -266,6 +266,9 @@ en:
     status_successfully_updated: "The status of the expense was successfully updated."
     receipt_successfully_deleted: "The receipt was successfully deleted."
     goal_successfully_ended: "Goal successfully ended"
+    successfully_archived: "Successfully archived"
+  popups:
+    message_archive: "Are you sure you wanna archive this?"
   errors:
     comment_cant_be_blank: "Comment can't be blank"
     prohibited: "prohibited it from being saved:"

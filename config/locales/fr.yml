@@ -266,6 +266,9 @@ fr:
     status_successfully_updated: "Le statut de la dépense a été mis à jour avec succès."
     receipt_successfully_deleted: "Le reçu a été supprimé avec succès."
     goal_successfully_ended: objectif terminé avec succès
+    successfully_archived: "Archivé avec succès"
+  popups:
+    message_archive: "Êtes-vous sûr de vouloir archiver ceci ?"
   errors:
     comment_cant_be_blank: "Commentaire ne peut pas être vide."
     prohibited: "ont empêché(e)s son enregistrement :"

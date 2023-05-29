@@ -1,4 +1,4 @@
-<%= render partial: "end_goal_form", locals: {goal: @goal} %>
+<%= render partial: "end_goal_form", locals: {goal: @goal, end_goal_errors: end_goal_errors} %>
 <div class="lg:flex lg:flex-auto lg:justify-center">
   <div class="overflow-hidden bg-white shadow sm:rounded-lg max-w-xl">
      <%= render partial: "goal_attributes", locals: {owner: owner, goal: goal} %>

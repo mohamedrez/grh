@@ -156,7 +156,7 @@ RSpec.describe "/goals", type: :request do
     context "submitting the end_goal_form with invalid parameters" do
       context "without end_goal_description && status" do
         before do
-          patch "/goals/#{goal.id}/end_goal", params: { goal: { end_goal_description: nil, status: nil } }
+          patch end_goal_path(id: goal.id), params: { goal: { end_goal_description: nil, status: nil } }
         end
 
         it "returns a 302 response" do
@@ -215,6 +215,54 @@ RSpec.describe "/goals", type: :request do
           end_goal_errors = { status: "Should provide a status" }
           expect(response).to redirect_to goal_path(goal, end_goal_errors: end_goal_errors, end_goal_description: "The goal was ended fully", status: nil)
         end
+      end
+    end
+  end
+
+  describe "PATCH /archive" do
+    context "from index page" do
+      before do
+        patch archive_goal_url(id: goal.id, from_view: "index")
+      end
+  
+      it "returns a successful response" do
+        expect(response).to have_http_status(:ok)
+      end
+  
+      it "archived the goal" do
+        goal.reload
+        expect(goal.archived).to eq(true)
+      end
+  
+      it 'sets the flash notice' do
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_archived"))
+      end
+  
+      it "renders the Turbo Stream response" do
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("remove")
+      end
+    end
+    context "from show page" do
+      before do
+        patch archive_goal_url(id: goal.id, from_view: "show")
+      end
+  
+      it "returns a 302 response" do
+        expect(response).to have_http_status 302
+      end
+  
+      it "archived the goal" do
+        goal.reload
+        expect(goal.archived).to eq(true)
+      end
+  
+      it 'sets the flash notice' do
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_archived"))
+      end
+  
+      it "redirects to the goals" do
+        expect(response).to redirect_to goals_path
       end
     end
   end

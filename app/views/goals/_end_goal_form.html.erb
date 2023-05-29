@@ -4,7 +4,7 @@
       <%= form.label :end_goal_description, t("attributes.goal.end_goal_description"), class: "block" %>
       <div class="mt-2">
         <%= form.text_area :end_goal_description, rows:3, value: @end_goal_description, placeholder: t("views.goals.end_goal_description_placeholder"), class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-        <p class="text-red-400 text-xs m-0 p-0 text-right mb-2"><%= @end_goal_errors[:end_goal_description] %></p>
+        <p class="text-red-400 text-xs m-0 p-0 text-right mb-2"><%= end_goal_errors[:end_goal_description] %></p>
       </div>
     </div>
 
@@ -32,7 +32,7 @@
           </div>
         <% end %>
       </dl>
-      <p class="text-red-400 text-xs m-0 p-0 text-right mb-2"><%= @end_goal_errors[:status] %></p>
+      <p class="text-red-400 text-xs m-0 p-0 text-right mb-2"><%= end_goal_errors[:status] %></p>
     </div>
 
     <div class="my-4">
