@@ -10,6 +10,14 @@ en:
     download: "Download"
     delete: "Delete"
   attributes:
+    announcement:
+      content: "Content"
+      published_at: "Published At"
+      title: "Title"
+      status: "Status"
+      statuses:
+        draft: "Draft"
+        published: "Published"
     asset:
       category: "Category"
       serial: "Serial #"
@@ -123,7 +131,10 @@ en:
   views: 
     announcements:
       add_announcement: "Create new Announcement"
-      no_annoucement_exists: "There is no announcement for the moment." 
+      no_announcement_exists: "There is no announcement for the moment."
+      title_announcements: "Announcements"
+      create_announcement: "Create announcement"
+      edit_announcement: "Edit announcement"
     assets:
       title_assets: "Assets"
       assets_list: "List of assets assigned to you."
@@ -136,6 +147,7 @@ en:
       edited: "Edited"
       add_comment_placeholder: "Add your comment..."
     dashboard:
+      recent_hires: "Recent Hires"
       announcements_title: "Announcements"
       announcements_button: "View All Announcement"
     educations:
@@ -239,6 +251,8 @@ en:
     prohibited: "prohibited it from being saved:"
     select_csv: "Select a CSV file to import."
     not_allowing_none: "cannot be 'None'"
+  popups:
+    message_delete: "Are you sure you wanna delete this?"
   devise:
     registrations:
       edit:

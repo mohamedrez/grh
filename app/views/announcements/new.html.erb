@@ -1,13 +1,4 @@
-<% if @announcement.errors.any? %>
-  <div style="color: red">
-    <h2><%= pluralize(@announcement.errors.count, "error") %> prohibited this announcement from being saved:</h2>
-    <ul>
-    <% @announcement.errors.each do |error| %>
-        <li><%= error.full_message %></li>
-    <% end %>
-    </ul>
-  </div>
+<%= turbo_frame_tag "right_content" do %>
+  <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl"><%= t("views.announcements.add_announcement")%></p>
+  <%= render partial: "form", locals: {announcement: @announcement} %>
 <% end %>
-
-<h1 class="mt-4"><%= t("views.announcements.index.create_announcement")%></h1>
-<%= render partial: "form", locals: {announcement: @announcement} %>

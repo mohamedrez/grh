@@ -16,7 +16,7 @@
             <div class="rounded-tl-lg rounded-tr-lg sm:rounded-tr-none group relative bg-white p-6 focus-within:ring-2 focus-within:ring-inset focus-within:ring-cyan-500">
               <div>
                 <span class="inline-flex rounded-lg p-3 bg-teal-50 text-teal-700 ring-4 ring-white">
-                  <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                 <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 </span>
@@ -179,7 +179,7 @@
                      <div class="rounded-md bg-blue-50 my-1 ">
                       <div class="flex">
                         <div class="ml-3 flex-1 md:flex md:justify-between">
-                          <p class="text-sm text-blue-700"><%= t("views.announcements.no_annoucement_exists")%></p>
+                          <p class="text-sm text-blue-700"><%= t("views.announcements.no_announcement_exists")%></p>
                         </div>
                       </div>
                     </div>
@@ -187,11 +187,12 @@
                     <%@annoucements.each do |announcement|%>
                     <li class="py-5">
                       <div class="relative focus-within:ring-2 focus-within:ring-cyan-500">
-                        <h3 class="text-sm font-semibold text-gray-800">
-                          <%=link_to announcement.title.titleize, announcement_path(announcement.id) , class:"hover:underline focus:outline-none"%>
-                        </h3>
-                        <span class="m-1 line-clamp-2 text-sm text-gray-600"><%= announcement.status.titleize %></span>
-                        <%= announcement.content.to_plain_text[0, 50]... %>
+                        <div class="flex items-center gap-x-4 text-xs">
+                          <h3 class="text-sm font-semibold text-indigo-500"><%= announcement.title.titleize %></h3>
+                          <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"> <%= announcement.published_at.strftime('%b %d, %Y') %></span>
+                        </div>
+                        <p class="mt-2"><%= announcement.content.to_plain_text[0, 80]... %></p>
+                        
                       </div>
                     </li>
                     <%end%>
@@ -199,7 +200,7 @@
                 </ul>
               </div>
               <div class="mt-6">
-                <%=link_to t("views.dashboard.announcements_button") ,announcements_path , class: "flex w-full items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"%>
+                <%=link_to t("views.dashboard.announcements_button"), announcements_path, class: "flex w-full items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"%>
               </div>
             </div>
           </div>
@@ -209,72 +210,21 @@
         <section aria-labelledby="recent-hires-title">
           <div class="overflow-hidden rounded-lg bg-white shadow">
             <div class="p-6">
-              <h2 class="text-base font-medium text-gray-900" id="recent-hires-title">Recent Hires</h2>
+              <h2 class="text-base font-medium text-gray-900" id="recent-hires-title"><%= t("views.dashboard.recent_hires") %></h2>
               <div class="mt-6 flow-root">
                 <ul role="list" class="-my-5 divide-y divide-gray-200">
-                  <li class="py-4">
-                    <div class="flex items-center space-x-4">
-                      <div class="flex-shrink-0">
-                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1519345182560-3f2917c472ef?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                  <% @users.each do |user|%>
+                    <li class="py-4">
+                      <div class="relative flex items-center gap-x-4">
+                        <%= image_tag user.avatar_url_or_default, class: "rounded-full h-10 w-10 align-middle" %>
+                        <div class="text-sm leading-6">
+                          <p class="font-semibold text-gray-900"><%= user.full_name  %></p>
+                          <p class="text-gray-600"><%= user.job_title&.humanize %></p>
+                        </div>
                       </div>
-                      <div class="min-w-0 flex-1">
-                        <p class="truncate text-sm font-medium text-gray-900">Leonard Krasner</p>
-                        <p class="truncate text-sm text-gray-500">@leonardkrasner</p>
-                      </div>
-                      <div>
-                        <a href="#" class="inline-flex items-center rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">View</a>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="py-4">
-                    <div class="flex items-center space-x-4">
-                      <div class="flex-shrink-0">
-                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                      </div>
-                      <div class="min-w-0 flex-1">
-                        <p class="truncate text-sm font-medium text-gray-900">Floyd Miles</p>
-                        <p class="truncate text-sm text-gray-500">@floydmiles</p>
-                      </div>
-                      <div>
-                        <a href="#" class="inline-flex items-center rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">View</a>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="py-4">
-                    <div class="flex items-center space-x-4">
-                      <div class="flex-shrink-0">
-                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                      </div>
-                      <div class="min-w-0 flex-1">
-                        <p class="truncate text-sm font-medium text-gray-900">Emily Selman</p>
-                        <p class="truncate text-sm text-gray-500">@emilyselman</p>
-                      </div>
-                      <div>
-                        <a href="#" class="inline-flex items-center rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">View</a>
-                      </div>
-                    </div>
-                  </li>
-
-                  <li class="py-4">
-                    <div class="flex items-center space-x-4">
-                      <div class="flex-shrink-0">
-                        <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
-                      </div>
-                      <div class="min-w-0 flex-1">
-                        <p class="truncate text-sm font-medium text-gray-900">Kristin Watson</p>
-                        <p class="truncate text-sm text-gray-500">@kristinwatson</p>
-                      </div>
-                      <div>
-                        <a href="#" class="inline-flex items-center rounded-full bg-white px-2.5 py-1 text-xs font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">View</a>
-                      </div>
-                    </div>
-                  </li>
+                    </li>
+                  <% end %>
                 </ul>
-              </div>
-              <div class="mt-6">
-                <a href="#" class="flex w-full items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">View all</a>
               </div>
             </div>
           </div>

@@ -30,13 +30,6 @@ RSpec.describe "Announcements", type: :request do
     end
   end
 
-  describe "GET /show" do
-    it "renders a successful reponse" do
-      get announcement_url(id: announcement.id)
-      expect(response).to be_successful
-    end  
-  end
-
   describe "GET /new" do
     it "renders a successful reponse" do
       get new_announcement_path(id: announcement.id)
@@ -61,12 +54,12 @@ RSpec.describe "Announcements", type: :request do
         expect(Announcement.count).to eq(1)
       end
 
-      it 'returns a successful response' do
-        expect(response).to have_http_status(:found)
-      end
-
-      it 'sets the flash notice' do
-        expect(flash[:notice]).to eq( I18n.t("flash.successfully_created"))
+      it 'renders the Turbo Stream response' do
+        # expect(response).to have_http_status(:found)
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("append")
+        expect(response.body).to include("announcement-list")
       end
     end
 
@@ -86,19 +79,26 @@ RSpec.describe "Announcements", type: :request do
   end 
 
   describe 'PATCH /update' do
+    before do 
+      patch announcement_url(id: announcement.id), params: {announcement: valid_attributes}
+    end
     context 'with valid parameters' do
       it 'updates the requested announcement' do 
-        patch announcement_url(id: announcement.id), params: {announcement: valid_attributes}
         announcement.reload
         expect(announcement.title).to eq("New Title")
         expect(announcement.status).to eq("published")
         expect(announcement.published_at).to eq(Date.new(2023, 05, 04))
       end
 
-      it 'redirects to the announcement' do
-        patch announcement_path(id: announcement.id), params: {announcement: valid_attributes}
+      it 'successfully updates expense' do
         announcement.reload
-        expect(@response).to redirect_to(announcements_path)  
+        expect(response).to have_http_status(:ok)
+      end
+
+      it "renders the Turbo Stream response" do
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("replace")
       end
     end
 
