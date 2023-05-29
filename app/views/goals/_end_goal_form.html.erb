@@ -3,7 +3,7 @@
     <div class="col-span-full">
       <%= form.label :end_goal_description, t("attributes.goal.end_goal_description"), class: "block" %>
       <div class="mt-2">
-        <%= form.text_area :end_goal_description, rows:3, value: @end_goal_description, placeholder: "Provide information on anything that has changed since the last update", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        <%= form.text_area :end_goal_description, rows:3, value: @end_goal_description, placeholder: t("views.goals.end_goal_description_placeholder"), class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
         <p class="text-red-400 text-xs m-0 p-0 text-right mb-2"><%= @end_goal_errors[:end_goal_description] %></p>
       </div>
     </div>
@@ -19,12 +19,12 @@
                   <%= b.text %>
                 </dd>
                 <dt class="text-base leading-7 text-gray-600">
-                  <% if b.text == "Incomplete" %>
-                    Goal wasn't completed by the due date.
-                  <% elsif b.text == "Completed" %>
-                    Goal was completed by the due date.
-                  <% else %>
-                    Goal achieved with additional work or enhancements.
+                  <% if b.text == "Incomplete" || b.text == "Incomplet" %>
+                    <%= t("views.goals.goal_not_completed") %>
+                  <% elsif b.text == "Completed" || b.text == "Terminé" %>
+                    <%= t("views.goals.goal_completed") %>
+                  <% elsif b.text == "Overpass" || b.text == "Surpassement" %>
+                    <%= t("views.goals.goal_overpass") %>
                   <% end %>
                 </dt>
               </div>
@@ -36,7 +36,7 @@
     </div>
 
     <div class="my-4">
-      <%= form.submit "End Goal", class: "block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+      <%= form.submit t("views.goals.end_goal"), class: "block w-full rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
     </div>
   </div>
 <% end %>

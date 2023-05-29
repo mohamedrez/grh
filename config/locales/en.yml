@@ -9,6 +9,7 @@ en:
     view: "View"
     download: "Download"
     delete: "Delete"
+    archive: "Archive"
   attributes:
     asset:
       category: "Category"
@@ -74,6 +75,8 @@ en:
       description: "Description"
       start_date: "Start date"
       due_date: "Due date"
+      owned_by: "Owned by"
+      end_goal_description: "End goal description"
       statuses:
         no_feedback: "No feedback yet"
         incomplete: "Incomplete"
@@ -185,6 +188,11 @@ en:
       create_goal: "Create goal"
       add_goal: "Add goal"
       edit_goal: "Edit goal"
+      end_goal_description_placeholder: "Provide information on anything to end the goal."
+      goal_not_completed: "Goal wasn't completed by the due date."
+      goal_completed: "Goal was completed by the due date."
+      goal_overpass: "Goal achieved with additional work or enhancements."
+      end_goal: "End Goal"
     holidays:
       title_holidays: "Holidays"
       holidays_list: "List of holidays for this year"

@@ -9,6 +9,7 @@ fr:
     view: "Afficher"
     download: "Télécharger"
     delete: "Supprimer"
+    archive: "Archiver"
   attributes:
     asset:
       category: "Catégorie"
@@ -74,6 +75,8 @@ fr:
       description: "Description"
       start_date: "Date de début"
       due_date: "Date d'échéance"
+      owned_by: "Possédé par"
+      end_goal_description: "Description de l'objectif final"
       statuses:
         no_feedback: "Aucun retour pour le moment"
         incomplete: "Incomplet"
@@ -185,6 +188,11 @@ fr:
       create_goal: "Créer un objectif"
       add_goal: "Ajouter un objectif"
       edit_goal: "Modifier l'objectif"
+      end_goal_description_placeholder: "Fournissez des informations sur tout ce qui concerne la finalisation de l'objectif."
+      goal_not_completed: "L'objectif n'a pas été réalisé avant la date d'échéance."
+      goal_completed: "L'objectif a été réalisé avant la date d'échéance."
+      goal_overpass: "L'objectif a été atteint avec un travail supplémentaire ou des améliorations."
+      end_goal: "Finalisation de l'objectif"
     holidays:
       title_holidays: "Vacances"
       holidays_list: "Liste des vacances pour cette année"
