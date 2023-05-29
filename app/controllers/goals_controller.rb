@@ -69,9 +69,9 @@ class GoalsController < ApplicationController
     end_goal_errors[:status] = "Should provide a status" if Goal.statuses.map { |key, value| key }.exclude?(status)
 
     if end_goal_errors.blank? && @goal.update!(end_goal_description: end_goal_description, status: status)
-      redirect_to goal_path(@goal), notice: t("flash.goal_successfully_unded")
+      redirect_to goal_path(@goal), notice: t("flash.goal_successfully_ended")
     else
-      redirect_to goal_path(@goal, end_goal_errors: end_goal_errors, end_goal_description: end_goal_description, status: status), alert: t("flash.error")
+      redirect_to goal_path(@goal, end_goal_errors: end_goal_errors, end_goal_description: end_goal_description, status: status)
     end
   end
 
