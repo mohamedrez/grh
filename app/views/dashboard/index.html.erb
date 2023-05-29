@@ -218,8 +218,8 @@
                       <div class="relative flex items-center gap-x-4">
                         <%= image_tag user.avatar_url_or_default, class: "rounded-full h-10 w-10 align-middle" %>
                         <div class="text-sm leading-6">
-                          <p class="font-semibold text-gray-900"><%= user.full_name %></p>
-                          <p class="text-gray-600"><%= user.job_title.humanize %></p>
+                          <p class="font-semibold text-gray-900"><%= user.full_name  %></p>
+                          <p class="text-gray-600"><%= user.job_title&.humanize %></p>
                         </div>
                       </div>
                     </li>

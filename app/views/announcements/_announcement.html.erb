@@ -3,7 +3,7 @@
     <div class="relative w-3/4">
       <div class="flex items-center gap-x-4 text-xs">
         <%= announcement.published_at.strftime('%b %d, %Y') %>
-        <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"> <%= Announcement.human_enum_name(:status, announcement.status) %></span>
+        <span class="relative rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"> <%= Announcement.human_enum_name(:status, announcement.status) %></span>
       </div>
       <div class="group relative max-w-xl">
         <h3 class="mt-3 text-lg font-semibold leading-6 text-indigo-500 group-hover:text-gray-600"><%= announcement.title %></h3>
