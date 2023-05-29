@@ -2,7 +2,7 @@
   <div class="px-4 py-6 sm:p-8">
     <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
         <div class="sm:col-span-full">
-          <%= form.label :status, t("views.announcements.status") %>
+          <%= form.label :status, t("attributes.announcement.status") %>
           <div class="mt-2">
             <%= form.select :status, Announcement.statuses.keys.collect { |status| [Announcement.human_enum_name(:status, status), status] } %>
             <%= inline_error_for(:status, announcement).html_safe %>
@@ -10,7 +10,7 @@
         </div>
 
         <div class="sm:col-span-full">
-          <%= form.label :title, t("views.announcements.title") %>
+          <%= form.label :title, t("attributes.announcement.title") %>
           <div class="mt-2">
             <%= form.text_field :title, class: "w-full" %>
             <%= inline_error_for(:title, announcement).html_safe %>
@@ -18,7 +18,7 @@
         </div>
 
         <div class="col-span-full">
-          <%= form.label :published_at, t("views.announcements.published_at") %>
+          <%= form.label :published_at, t("attributes.announcement.published_at") %>
           <div class="mt-2">
             <%= form.date_field :published_at, class: "w-full" %>
             <%= inline_error_for(:published_at, announcement).html_safe %>
@@ -26,7 +26,7 @@
         </div>
 
         <div class="col-span-full">
-          <%= form.label :content, t("views.announcements.content") %>
+          <%= form.label :content, t("attributes.announcement.content") %>
           <div class="mt-2">
             <%= form.rich_text_area :content, class: "block h-40 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
           </div>

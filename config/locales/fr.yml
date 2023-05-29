@@ -10,6 +10,14 @@ fr:
     download: "Télécharger"
     delete: "Supprimer"
   attributes:
+    announcement:
+      title: "Titre"
+      status: "Statut"
+      content: "contenu"
+      published_at: "Publié à"
+      statuses:
+        draft: "Projet"
+        published: "Publé"
     asset:
       category: "Catégorie"
       serial: "Numéro de série"
@@ -122,13 +130,9 @@ fr:
       created_at: "Créé le"
   views:
     announcements:
-      draft: "Draft"
-      content: "Contenu"
-      published_at: "Publié à"
-      title: "Titre"
-      status: "Etat"
       add_announcement: "Créer une nouvelle annonce"
-      no_annoucement_exists: "Il n'y a pas d'annonce pour le moment." 
+      no_annoucement_exists: "Il n'y a pas d'annonce pour le moment."
+      edit_announcement: "Modifier l'annonce"
     assets:
       title_assets: "Éléments"
       assets_list: "Liste des éléments qui vous ont été affectés."
@@ -141,6 +145,7 @@ fr:
       edited: "Modifié"
       add_comment_placeholder: "Ajouter votre commentaire..."
     dashboard:
+      recent_hires: "Recrutements récents"
       announcements_title: "Annonces"
       announcements_button: "Voir toutes les annonces"
     educations:
@@ -244,6 +249,8 @@ fr:
     prohibited: "ont empêché(e)s son enregistrement :"
     select_csv: "Sélectionnez un fichier CSV à importer."
     not_allowing_none: "ne peut pas être 'Aucun'"
+  popups:
+    message_delete: "Êtes-vous sûr de vouloir supprimer ceci ?"
   devise:
     registrations:
       edit:
