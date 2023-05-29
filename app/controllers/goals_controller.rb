@@ -7,6 +7,9 @@ class GoalsController < ApplicationController
   end
 
   def show
+    @end_goal_errors = params[:end_goal_errors] || {}
+    @end_goal_description = params[:end_goal_description] || ""
+    @status = params[:status]
   end
 
   def new
@@ -58,13 +61,17 @@ class GoalsController < ApplicationController
   end
 
   def end_goal
-    @end_goal_description = params[:goal][:end_goal_description]
-    @status = params[:goal][:status]
+    end_goal_description = params[:goal][:end_goal_description]
+    status = params[:goal][:status]
 
-    if @goal.update!(end_goal_description: @end_goal_description, status: @status)
+    end_goal_errors = {}
+    end_goal_errors[:end_goal_description] = "Should provide a description for the ending goal." if end_goal_description.blank?
+    end_goal_errors[:status] = "Should provide a status" if Goal.statuses.map { |key, value| key }.exclude?(status)
+
+    if end_goal_errors.blank? && @goal.update!(end_goal_description: end_goal_description, status: status)
       redirect_to goal_path(@goal), notice: t("flash.goal_successfully_unded")
     else
-      redirect_to goal_path(@goal), alert: t("flash.description_or_status_error")
+      redirect_to goal_path(@goal, end_goal_errors: end_goal_errors, end_goal_description: end_goal_description, status: status), alert: t("flash.error")
     end
   end
 

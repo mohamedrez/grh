@@ -3,14 +3,14 @@
     <div class="col-span-full">
       <%= form.label :end_goal_description, t("attributes.goal.end_goal_description"), class: "block" %>
       <div class="mt-2">
-        <%= form.text_area :end_goal_description, rows:3, placeholder: "Provide information on anything that has changed since the last update", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
-        <%= inline_error_for(:end_goal_description, goal).html_safe %>
+        <%= form.text_area :end_goal_description, rows:3, value: @end_goal_description, placeholder: "Provide information on anything that has changed since the last update", class: "block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        <p class="text-red-400 text-xs m-0 p-0 text-right mb-2"><%= @end_goal_errors[:end_goal_description] %></p>
       </div>
     </div>
 
     <div class="my-4 mx-auto max-w-7xl py-5">
       <dl class="grid grid-cols-1 gap-x-8 gap-y-8 lg:grid-cols-3">
-        <%= form.collection_radio_buttons :status, Goal.statuses.map {|key, value| [key, Goal.human_enum_name(:status, key)]}, :first, :last do |b| %>
+        <%= form.collection_radio_buttons :status, Goal.statuses.map {|key, value| [key, Goal.human_enum_name(:status, key)]}, :first, :last, checked: @status do |b| %>
           <div class="shadow overflow-hidden rounded-xl border border-gray-200 p-3">
             <%= b.label class: "hover:cursor-pointer" do %> 
               <div class="mx-auto flex max-w-xs flex-col gap-y-4">
@@ -32,6 +32,7 @@
           </div>
         <% end %>
       </dl>
+      <p class="text-red-400 text-xs m-0 p-0 text-right mb-2"><%= @end_goal_errors[:status] %></p>
     </div>
 
     <div class="my-4">
