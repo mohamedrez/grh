@@ -131,7 +131,9 @@ fr:
   views:
     announcements:
       add_announcement: "Créer une nouvelle annonce"
-      no_annoucement_exists: "Il n'y a pas d'annonce pour le moment."
+      no_announcement_exists: "Il n'y a pas d'annonce pour le moment."
+      title_announcements: "Annonces"
+      create_announcement: "Créer une annonce"
       edit_announcement: "Modifier l'annonce"
     assets:
       title_assets: "Éléments"

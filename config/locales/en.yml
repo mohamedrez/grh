@@ -131,8 +131,10 @@ en:
   views: 
     announcements:
       add_announcement: "Create new Announcement"
-      no_annoucement_exists: "There is no announcement for the moment." 
-      edit_announcement: "Modifier l'annonce"
+      no_announcement_exists: "There is no announcement for the moment."
+      title_announcements: "Announcements"
+      create_announcement: "Create announcement"
+      edit_announcement: "Edit announcement"
     assets:
       title_assets: "Assets"
       assets_list: "List of assets assigned to you."
