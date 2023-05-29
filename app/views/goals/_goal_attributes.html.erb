@@ -1,8 +1,12 @@
 <div class="border-t border-gray-100">
   <dl class="divide-y divide-gray-100">
-    <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+    <div class="bg-gray-50 px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
       <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.goal.owned_by") %></dt>
       <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= owner.full_name %></dd>
+    </div>
+    <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+      <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.goal.level") %></dt>
+      <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= Goal.human_enum_name(:level, goal.level) %></dd>
     </div>
     <div class="bg-gray-50 px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
       <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.goal.status") %></dt>
