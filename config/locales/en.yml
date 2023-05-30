@@ -9,6 +9,7 @@ en:
     view: "View"
     download: "Download"
     delete: "Delete"
+    archive: "Archive"
   attributes:
     announcement:
       content: "Content"
@@ -74,6 +75,26 @@ en:
         sister: "Sister"
         son: "Son"
         wife: "Wife"
+    goal:
+      title: "Title"
+      owner: "Owner"
+      level: "Level"
+      status: "Status"
+      description: "Description"
+      start_date: "Start date"
+      due_date: "Due date"
+      owned_by: "Owned by"
+      end_goal_description: "End goal description"
+      statuses:
+        no_feedback: "No feedback yet"
+        incomplete: "Incomplete"
+        completed: "Completed"
+        overpass: "Overpass"
+      levels:
+        none: "-- None --"
+        important: "Important"
+        very_important: "Very important"
+        critical: "Critical"
     time_request:
       category: "Category"
       content: "Content"
@@ -174,6 +195,16 @@ en:
       create_emergency_contact: "Create emergency contact"
       add_emergency_contact: "Add emergency contact"
       edit_emergency_contact: "Edit emergency contact"
+    goals:
+      title_goals: "Goals"
+      create_goal: "Create goal"
+      add_goal: "Add goal"
+      edit_goal: "Edit goal"
+      end_goal_description_placeholder: "Provide information on anything to end the goal."
+      goal_not_completed: "Goal wasn't completed by the due date."
+      goal_completed: "Goal was completed by the due date."
+      goal_overpass: "Goal achieved with additional work or enhancements."
+      end_goal: "End Goal"
     holidays:
       title_holidays: "Holidays"
       holidays_list: "List of holidays for this year"
@@ -246,13 +277,18 @@ en:
     successfully_imported : "Successfully imported"
     status_successfully_updated: "The status of the expense was successfully updated."
     receipt_successfully_deleted: "The receipt was successfully deleted."
+    goal_successfully_ended: "Goal successfully ended"
+    successfully_archived: "Successfully archived"
   errors:
     comment_cant_be_blank: "Comment can't be blank"
     prohibited: "prohibited it from being saved:"
     select_csv: "Select a CSV file to import."
     not_allowing_none: "cannot be 'None'"
+    end_goal_description: "Should provide a description for the ending goal."
+    should_provide_status: "Should provide a status"
   popups:
     message_delete: "Are you sure you wanna delete this?"
+    message_archive: "Are you sure you wanna archive this?"
   devise:
     registrations:
       edit:
