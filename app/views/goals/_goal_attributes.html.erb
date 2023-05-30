@@ -10,7 +10,17 @@
     </div>
     <div class="bg-gray-50 px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
       <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.goal.status") %></dt>
-      <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= goal.what_is_the_status? %></dd>
+      <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
+        <% if goal.status_incomplete? %>
+          <span class="inline-flex items-center rounded-full bg-red-50 px-1.5 py-0.5 text-xs font-medium text-red-700 ring-1 ring-inset ring-red-600/10"><%= goal.what_is_the_status? %></span>
+        <% elsif goal.status_completed? %>
+          <span class="inline-flex items-center rounded-full bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700 ring-1 ring-inset ring-green-600/20"><%= goal.what_is_the_status? %></span>
+        <% elsif goal.status_overpass? %>
+          <span class="inline-flex items-center rounded-full bg-indigo-50 px-1.5 py-0.5 text-xs font-medium text-indigo-700 ring-1 ring-inset ring-indigo-700/10"><%= goal.what_is_the_status? %></span>
+        <% elsif goal.status.nil? %>
+          <span class="inline-flex items-center rounded-full bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"><%= goal.what_is_the_status? %></span>
+        <% end %>
+      </dd>
     </div>
     <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
       <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.goal.start_date") %></dt>
