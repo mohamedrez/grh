@@ -93,27 +93,54 @@ RSpec.describe "/goals", type: :request do
 
   describe "PATCH /update" do
     context "with valid parameters" do
-      before do
-        patch "/goals/#{goal.id}", params: {from_view: "index", goal: valid_attributes}
+      context "from index page" do
+        before do
+          patch "/goals/#{goal.id}", params: {from_view: "index", goal: valid_attributes}
+        end
+
+        it "updates the goal" do
+          goal.reload
+          expect(goal.title).to eq("Mastering Hotwire")
+          expect(goal.owner_id).to eq(user.id)
+          expect(goal.level).to eq("very_important")
+          expect(goal.start_date).to eq(Date.new(2023, 05, 25))
+          expect(goal.due_date).to eq(Date.new(2024, 05, 25))
+        end
+
+        it 'sets the flash notice' do
+          expect(flash[:notice]).to eq(I18n.t("flash.successfully_updated"))
+        end
+
+        it "renders the Turbo Stream response" do
+          expect(response).to have_http_status(:success)
+          expect(response.body).to include("turbo-stream")
+          expect(response.body).to include("replace")
+        end
       end
 
-      it "updates the goal" do
-        goal.reload
-        expect(goal.title).to eq("Mastering Hotwire")
-        expect(goal.owner_id).to eq(user.id)
-        expect(goal.level).to eq("very_important")
-        expect(goal.start_date).to eq(Date.new(2023, 05, 25))
-        expect(goal.due_date).to eq(Date.new(2024, 05, 25))
-      end
+      context "from show page" do
+        before do
+          patch "/goals/#{goal.id}", params: {from_view: "show", goal: valid_attributes}
+        end
 
-      it 'sets the flash notice' do
-        expect(flash[:notice]).to eq(I18n.t("flash.successfully_updated"))
-      end
+        it "updates the goal" do
+          goal.reload
+          expect(goal.title).to eq("Mastering Hotwire")
+          expect(goal.owner_id).to eq(user.id)
+          expect(goal.level).to eq("very_important")
+          expect(goal.start_date).to eq(Date.new(2023, 05, 25))
+          expect(goal.due_date).to eq(Date.new(2024, 05, 25))
+        end
 
-      it "renders the Turbo Stream response" do
-        expect(response).to have_http_status(:success)
-        expect(response.body).to include("turbo-stream")
-        expect(response.body).to include("replace")
+        it 'sets the flash notice' do
+          expect(flash[:notice]).to eq(I18n.t("flash.successfully_updated"))
+        end
+
+        it "renders the Turbo Stream response" do
+          expect(response).to have_http_status(:success)
+          expect(response.body).to include("turbo-stream")
+          expect(response.body).to include("replace")
+        end
       end
     end
 
@@ -170,7 +197,7 @@ RSpec.describe "/goals", type: :request do
         end
 
         it "redirects to the goal" do
-          end_goal_errors = { end_goal_description: "Should provide a description for the ending goal.", status:"Should provide a status" }
+          end_goal_errors = { end_goal_description: I18n.t("errors.end_goal_description"), status: I18n.t("errors.should_provide_status") }
           expect(response).to redirect_to goal_path(goal, end_goal_errors: end_goal_errors, end_goal_description: nil, status: nil)
         end
       end
@@ -191,7 +218,7 @@ RSpec.describe "/goals", type: :request do
         end
 
         it "redirects to the goal" do
-          end_goal_errors = { end_goal_description: "Should provide a description for the ending goal." }
+          end_goal_errors = { end_goal_description: I18n.t("errors.end_goal_description") }
           expect(response).to redirect_to goal_path(goal, end_goal_errors: end_goal_errors, end_goal_description: nil, status: "completed")
         end
       end
@@ -212,7 +239,7 @@ RSpec.describe "/goals", type: :request do
         end
 
         it "redirects to the goal" do
-          end_goal_errors = { status: "Should provide a status" }
+          end_goal_errors = { status: I18n.t("errors.should_provide_status") }
           expect(response).to redirect_to goal_path(goal, end_goal_errors: end_goal_errors, end_goal_description: "The goal was ended fully", status: nil)
         end
       end

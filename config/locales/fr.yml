@@ -274,6 +274,8 @@ fr:
     prohibited: "ont empêché(e)s son enregistrement :"
     select_csv: "Sélectionnez un fichier CSV à importer."
     not_allowing_none: "ne peut pas être 'Aucun'"
+    end_goal_description: "Vous devez fournir une description pour l'objectif final."
+    should_provide_status: "Vous devez fournir un statut."
   devise:
     registrations:
       edit:

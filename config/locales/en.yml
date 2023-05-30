@@ -274,6 +274,8 @@ en:
     prohibited: "prohibited it from being saved:"
     select_csv: "Select a CSV file to import."
     not_allowing_none: "cannot be 'None'"
+    end_goal_description: "Should provide a description for the ending goal."
+    should_provide_status: "Should provide a status"
   devise:
     registrations:
       edit:
