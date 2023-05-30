@@ -11,6 +11,14 @@ en:
     delete: "Delete"
     archive: "Archive"
   attributes:
+    announcement:
+      content: "Content"
+      published_at: "Published At"
+      title: "Title"
+      status: "Status"
+      statuses:
+        draft: "Draft"
+        published: "Published"
     asset:
       category: "Category"
       serial: "Serial #"
@@ -144,7 +152,10 @@ en:
   views: 
     announcements:
       add_announcement: "Create new Announcement"
-      no_annoucement_exists: "There is no announcement for the moment." 
+      no_announcement_exists: "There is no announcement for the moment."
+      title_announcements: "Announcements"
+      create_announcement: "Create announcement"
+      edit_announcement: "Edit announcement"
     assets:
       title_assets: "Assets"
       assets_list: "List of assets assigned to you."
@@ -157,6 +168,7 @@ en:
       edited: "Edited"
       add_comment_placeholder: "Add your comment..."
     dashboard:
+      recent_hires: "Recent Hires"
       announcements_title: "Announcements"
       announcements_button: "View All Announcement"
     educations:
@@ -267,8 +279,6 @@ en:
     receipt_successfully_deleted: "The receipt was successfully deleted."
     goal_successfully_ended: "Goal successfully ended"
     successfully_archived: "Successfully archived"
-  popups:
-    message_archive: "Are you sure you wanna archive this?"
   errors:
     comment_cant_be_blank: "Comment can't be blank"
     prohibited: "prohibited it from being saved:"
@@ -276,6 +286,9 @@ en:
     not_allowing_none: "cannot be 'None'"
     end_goal_description: "Should provide a description for the ending goal."
     should_provide_status: "Should provide a status"
+  popups:
+    message_delete: "Are you sure you wanna delete this?"
+    message_archive: "Are you sure you wanna archive this?"
   devise:
     registrations:
       edit:
