@@ -1,6 +1,6 @@
-<div class="flex items-center">
-  <div class="max-w-lg w-full lg:max-w-xs">
-    <%= search_form_for @q, method: :get, url: goals_path, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
+<%= search_form_for @q, method: :get, url: goals_path, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
+  <div class="flex items-center">
+    <div class="max-w-lg w-full lg:max-w-xs">
       <%= f.label :title_or_owner_first_name_or_owner_last_name_cont, "Search goals by title, or owner", class: "sr-only" %>
       <div class="relative">
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -10,12 +10,8 @@
         </div>
         <%= f.search_field :title_or_owner_first_name_or_owner_last_name_cont, class: "block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-100 placeholder-gray-600 focus:outline-none sm:text-sm transition duration-150 ease-in-out", placeholder: t("views.goals.search_bar") %>
       </div>
-    <% end %>
-  </div>
-</div>
-<div class="flex items-center">
-  <div class="max-w-lg w-full lg:max-w-xs">
-    <%= search_form_for @q, method: :get, url: goals_path, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
+    </div>
+    <div class="max-w-lg w-full lg:max-w-xs">
       <%= f.label :status_eq, "Search goals by status", class: "sr-only" %>
       <div class="ml-4">
         <% 
@@ -28,9 +24,6 @@
         %>
         <%= f.select :status_eq, options_for_select(humanized_statuses), include_blank: true %>
       </div>
-    <% end %>
-  </div>
-</div>
-
-
-
+    </div>
+  </div> 
+<% end %>

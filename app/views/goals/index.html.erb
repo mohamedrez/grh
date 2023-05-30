@@ -7,12 +7,8 @@
       </div>
     </div>
 
-
-
     <div class="lg:flex items-center justify-between mt-10">
-      <div class="flex items-center">
-        <%= render partial: "search_form" %>
-      </div>
+      <%= render partial: "search_form" %>
       <div class="lg:flex-1 lg:flex justify-center lg:px-2 lg:ml-6 lg:justify-end mt-2">
         <%= link_to t("views.goals.create_goal"), new_goal_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", data: { turbo_frame: "right_content", action: "right#show" } %>
       </div>
