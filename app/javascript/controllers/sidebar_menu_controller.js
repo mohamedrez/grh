@@ -27,7 +27,9 @@ export default class extends Controller {
     this.overlayTarget.classList.remove("hidden");
     this.sidebarTarget.classList.remove("sm:hidden");
     this.sidebarTarget.classList.remove("hidden");
+    this.sidebarTarget.classList.add("flex");
     this.sidebarContainerTarget.classList.remove("hidden");
+    this.sidebarContainerTarget.classList.add("flex");
     this.sidebarContainerTarget.classList.remove("sm:hidden");
     enter(this.sidebarTarget);
     enter(this.overlayTarget);
