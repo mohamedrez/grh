@@ -1,0 +1,36 @@
+<div class="flex items-center">
+  <div class="max-w-lg w-full lg:max-w-xs">
+    <%= search_form_for @q, method: :get, url: goals_path, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
+      <%= f.label :title_or_owner_first_name_or_owner_last_name_cont, "Search goals by title, or owner", class: "sr-only" %>
+      <div class="relative">
+        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+          <svg class="h-5 w-5 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+          </svg>
+        </div>
+        <%= f.search_field :title_or_owner_first_name_or_owner_last_name_cont, class: "block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-100 placeholder-gray-600 focus:outline-none sm:text-sm transition duration-150 ease-in-out", placeholder: t("views.goals.search_bar") %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="flex items-center">
+  <div class="max-w-lg w-full lg:max-w-xs">
+    <%= search_form_for @q, method: :get, url: goals_path, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
+      <%= f.label :status_eq, "Search goals by status", class: "sr-only" %>
+      <div class="ml-4">
+        <% 
+          statuses = Goal.statuses
+          humanized_statuses = {} 
+          statuses.each do |key, value|
+            status = Goal.human_enum_name(:status, key)
+            humanized_statuses[status] = value
+          end 
+        %>
+        <%= f.select :status_eq, options_for_select(humanized_statuses), include_blank: true %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+
+

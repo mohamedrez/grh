@@ -10,6 +10,14 @@ class Goal < ApplicationRecord
 
   has_rich_text :description
 
+  def self.ransackable_attributes(auth_object = nil)
+    ["title", "status", "status_eq", "title_or_owner_first_name_or_owner_last_name_cont"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["owner"]
+  end
+
   def what_is_the_status?
     if status.nil?
       Goal.human_enum_name(:status, "no_feedback")

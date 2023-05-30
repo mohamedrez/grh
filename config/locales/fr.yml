@@ -205,6 +205,9 @@ fr:
       goal_completed: "L'objectif a été réalisé avant la date d'échéance."
       goal_overpass: "L'objectif a été atteint avec un travail supplémentaire ou des améliorations."
       end_goal: "Finalisation de l'objectif"
+      goals_description: "Gérez les objectifs à travers votre entreprise pour aligner et développer votre équipe"
+      search_bar: "Titre, ou propriétaire"
+      all: "Tout"
     holidays:
       title_holidays: "Vacances"
       holidays_list: "Liste des vacances pour cette année"
