@@ -1,9 +1,0 @@
-<% if goal.status_incomplete? %>
-  <span class="goal-status bg-red-50 text-red-700 ring-red-600/10"><%= goal.what_is_the_status? %></span>
-<% elsif goal.status_completed? %>
-  <span class="goal-status bg-green-50 text-green-700 ring-green-600/10"><%= goal.what_is_the_status? %></span>
-<% elsif goal.status_overpass? %>
-  <span class="goal-status bg-indigo-50 text-indigo-700 ring-indigo-600/10"><%= goal.what_is_the_status? %></span>
-<% elsif goal.status.nil? %>
-  <span class="goal-status bg-gray-50 text-gray-700 ring-gray-600/10"><%= goal.what_is_the_status? %></span>
-<% end %>
