@@ -3,7 +3,8 @@ class GoalsController < ApplicationController
   before_action :set_owner, only: %i[show edit]
 
   def index
-    @goals = Goal.where(archived: false)
+    @q = Goal.ransack(params[:q])
+    @goals = @q.result(distinct: true).where(archived: false)
   end
 
   def show
