@@ -24,6 +24,7 @@ Rails.application.routes.draw do
     resources :goals, except: :destroy
     patch "/goals/:id/archive", to: "goals#archive", as: "archive_goal"
     patch "/goals/:id/end_goal", to: "goals#end_goal", as: "end_goal"
+    get "objectives", to: "goals#objectives"
 
     devise_for :users, path: "/auth"
 

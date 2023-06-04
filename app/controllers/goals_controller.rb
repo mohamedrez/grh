@@ -91,6 +91,16 @@ class GoalsController < ApplicationController
     end
   end
 
+  def objectives
+    user_id = params[:user_id]
+    year = params[:year]
+    @user = User.find(user_id)
+    @goals = Goal.where(owner_id: user_id, archived: false)
+      .where("extract(year from due_date) = ?", year)
+
+    # calculate_goals(@goals)
+  end
+
   private
 
   def set_goal

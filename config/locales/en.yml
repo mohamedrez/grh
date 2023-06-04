@@ -87,9 +87,9 @@ en:
       end_goal_description: "End goal description"
       statuses:
         no_feedback: "No feedback yet"
-        incomplete: "Incomplete"
+        not_achieved: "Incomplete"
         completed: "Completed"
-        overpass: "Overpass"
+        overpassed: "Overpassed"
       levels:
         none: "-- None --"
         important: "Important"
@@ -149,7 +149,7 @@ en:
       country: "Country"
       city: "City"
       created_at: "Created at"
-  views: 
+  views:
     announcements:
       add_announcement: "Create new Announcement"
       no_announcement_exists: "There is no announcement for the moment."
@@ -203,7 +203,7 @@ en:
       end_goal_description_placeholder: "Provide information on anything to end the goal."
       goal_not_completed: "Goal wasn't completed by the due date."
       goal_completed: "Goal was completed by the due date."
-      goal_overpass: "Goal achieved with additional work or enhancements."
+      goal_overpassed: "Goal achieved with additional work or enhancements."
       end_goal: "End Goal"
       goals_description: "Manage goals across your company to align and develop your team"
       search_bar: "Title, or owner"

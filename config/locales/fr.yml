@@ -86,10 +86,11 @@ fr:
       owned_by: "Possédé par"
       end_goal_description: "Description de l'objectif final"
       statuses:
-        no_feedback: "Aucun retour pour le moment"
-        incomplete: "Incomplet"
-        completed: "Terminé"
-        overpass: "Surpassement"
+        no_feedback: "Aucun"
+        not_achieved: "Non atteint"
+        partially_achieved: "Partiellement atteint"
+        completed: "Atteint"
+        overpassed: "Dépassé"
       levels:
         none: "-- Aucun --"
         important: "Important"
@@ -203,7 +204,7 @@ fr:
       end_goal_description_placeholder: "Fournissez des informations sur tout ce qui concerne la finalisation de l'objectif."
       goal_not_completed: "L'objectif n'a pas été réalisé avant la date d'échéance."
       goal_completed: "L'objectif a été réalisé avant la date d'échéance."
-      goal_overpass: "L'objectif a été atteint avec un travail supplémentaire ou des améliorations."
+      goal_overpassed: "L'objectif a été atteint avec un travail supplémentaire ou des améliorations."
       end_goal: "Finalisation de l'objectif"
       goals_description: "Gérez les objectifs à travers votre entreprise pour aligner et développer votre équipe"
       search_bar: "Titre, ou propriétaire"
@@ -215,7 +216,7 @@ fr:
       edit_holiday: "Modifier le jour férié"
     time_requests:
       title_time_request: "Demandes de congé"
-      time_requests_list: "Liste des demandes de congé demandées par vous."    
+      time_requests_list: "Liste des demandes de congé demandées par vous."
       who_out: "Qui d'autre sera absent ?"
       no_one_out: "Personne d'autre de l'équipe ne sera absent."
       add_time_off: "Ajouter une nouvelle demande de congé"
