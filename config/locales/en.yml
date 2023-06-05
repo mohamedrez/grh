@@ -205,6 +205,9 @@ en:
       goal_completed: "Goal was completed by the due date."
       goal_overpass: "Goal achieved with additional work or enhancements."
       end_goal: "End Goal"
+      goals_description: "Manage goals across your company to align and develop your team"
+      search_bar: "Title, or owner"
+      all: "All"
     holidays:
       title_holidays: "Holidays"
       holidays_list: "List of holidays for this year"
