@@ -1,5 +1,5 @@
 class UserRequestsController < ApplicationController
-  before_action :set_breadcrumbs
+  before_action :set_breadcrumbs, only: :index
   def index
     user_id = params[:user_id]
     @user = User.find(user_id)

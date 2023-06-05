@@ -1,7 +1,7 @@
 class AssetsController < ApplicationController
   before_action :set_user
   before_action :set_asset, only: %i[show edit update destroy]
-  before_action :set_breadcrumbs
+  before_action :set_breadcrumbs, only: :index
 
   def index
     @assets = Asset.where(user_id: @user.id)

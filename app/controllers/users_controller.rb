@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
-  before_action :set_breadcrumbs
+  before_action :set_breadcrumbs, only: %i[index show new edit]
 
   def index
     @q = User.ransack(params[:q])

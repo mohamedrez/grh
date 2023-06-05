@@ -1,7 +1,7 @@
 class ExpensesController < ApplicationController
   before_action :set_user
   before_action :set_expense, only: %i[show edit update destroy update_status delete_receipt]
-  before_action :set_breadcrumbs
+  before_action :set_breadcrumbs, only: :index
 
   def index
     @expenses = Expense.where(user_id: @user.id)

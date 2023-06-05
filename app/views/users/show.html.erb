@@ -1,7 +1,5 @@
-<div class="mt-10">
-  <%= render partial: 'shared/user_overview', locals: {user: @user} %>
-  <%= render partial: 'submenu', locals: {user: @user} %>
-  <%= turbo_frame_tag 'tabbed-content' do %>
-    <%= render partial: 'personal_information', locals: {user: @user} %>
-  <% end %>
-</div>
+<%= render partial: 'shared/user_overview', locals: {user: @user} %>
+<%= render partial: 'submenu', locals: {user: @user} %>
+<%= turbo_frame_tag 'tabbed-content' do %>
+  <%= render partial: 'personal_information', locals: {user: @user} %>
+<% end %>

@@ -1,6 +1,6 @@
 class HolidaysController < ApplicationController
   before_action :set_holiday, only: %i[edit update]
-  before_action :set_breadcrumbs
+  before_action :set_breadcrumbs, only: :index
 
   def index
     @holidays = Holiday.order(start_date: :asc)

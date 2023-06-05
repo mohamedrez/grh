@@ -1,6 +1,6 @@
 class TimeRequestsController < ApplicationController
   before_action :set_locals, only: %i[show edit update destroy]
-  before_action :set_breadcrumbs
+  before_action :set_breadcrumbs, only: :index
 
   def index
     user_id = params[:user_id]

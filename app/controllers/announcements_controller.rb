@@ -1,6 +1,6 @@
 class AnnouncementsController < ApplicationController
   before_action :set_announcement, only: [:edit, :update, :destroy]
-  before_action :set_breadcrumbs
+  before_action :set_breadcrumbs, only: :index
 
   def index
     @announcements = Announcement.order(created_at: :desc)

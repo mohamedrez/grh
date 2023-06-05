@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show edit update end_goal archive]
   before_action :set_owner, only: %i[show edit]
-  before_action :set_breadcrumbs
+  before_action :set_breadcrumbs, only: %i[index show]
 
   def index
     @q = Goal.ransack(params[:q])

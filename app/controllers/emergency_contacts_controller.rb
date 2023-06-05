@@ -1,7 +1,7 @@
 class EmergencyContactsController < ApplicationController
-  before_action :set_user, except: :destroy
+  before_action :set_user, only: %i[index new edit create update]
   before_action :set_emergency_contact, only: %i[edit update destroy]
-  before_action :set_breadcrumbs
+  before_action :set_breadcrumbs, only: :index
 
   def index
     @emergency_contacts = EmergencyContact.where(user_id: @user.id)
