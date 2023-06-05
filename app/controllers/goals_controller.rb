@@ -1,6 +1,7 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show edit update end_goal archive]
   before_action :set_owner, only: %i[show edit]
+  before_action :set_breadcrumbs
 
   def index
     @goals = Goal.where(archived: false)
@@ -10,6 +11,8 @@ class GoalsController < ApplicationController
     @end_goal_errors = params[:end_goal_errors] || {}
     @end_goal_description = params[:end_goal_description]
     @status = params[:status]
+
+    add_breadcrumb(@goal.title)
   end
 
   def new
@@ -98,6 +101,10 @@ class GoalsController < ApplicationController
 
   def set_owner
     @owner = @goal.owner
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb(t("views.goals.title_goals"), goals_path)
   end
 
   def goal_params

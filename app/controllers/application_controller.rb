@@ -16,6 +16,16 @@ class ApplicationController < ActionController::Base
     new_user_session_path
   end
 
+  helper_method :breadcrumbs
+
+  def breadcrumbs
+    @breadcrumbs ||= []
+  end
+
+  def add_breadcrumb(name, path = nil)
+    breadcrumbs << Breadcrumb.new(name, path)
+  end
+
   private
 
   def set_locale
