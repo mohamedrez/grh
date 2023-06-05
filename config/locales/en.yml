@@ -21,7 +21,7 @@ en:
         published: "Published"
     asset:
       category: "Category"
-      serial: "Serial #"
+      serial: "Serial"
       date_assigned: "Date assigned"
       date_returned: "Date returned"
       description: "Description"

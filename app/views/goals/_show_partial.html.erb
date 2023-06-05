@@ -1,4 +1,7 @@
 <div id="<%= dom_id goal %>" class="mx-auto max-w-2xl lg:mx-0 lg:max-w-none">
+  <div class="mb-5">
+    <%= render partial: 'shared/breadcrumbs' %>
+  </div>
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
       <h1><%= goal.title %></h1>
