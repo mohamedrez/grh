@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
+  before_action :set_breadcrumbs
 
   def index
     @q = User.ransack(params[:q])
@@ -10,18 +11,25 @@ class UsersController < ApplicationController
   def show
     authorize! @user
     @manager = User.find_by(id: @user.manager_id)
+
+    add_breadcrumb(@user.full_name)
   end
 
   def new
     authorize!
     @user = User.new
     @user.build_address
+
+    add_breadcrumb(t("views.users.add_employee"))
   end
 
   def edit
     authorize! @user
     @manager_select = User.where.not(id: @user.id)&.map { |user| [user.full_name, user.id] }
     @address = @user.address || @user.build_address
+
+    add_breadcrumb(@user.full_name, @user)
+    add_breadcrumb(t("views.users.edit_employee"))
   end
 
   def create
@@ -64,6 +72,10 @@ class UsersController < ApplicationController
 
   def set_user
     @user = User.find(params[:id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb(t("views.users.employees_title"), users_path)
   end
 
   def user_params

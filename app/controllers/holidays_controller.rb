@@ -1,5 +1,6 @@
 class HolidaysController < ApplicationController
   before_action :set_holiday, only: %i[edit update]
+  before_action :set_breadcrumbs
 
   def index
     @holidays = Holiday.order(start_date: :asc)
@@ -44,6 +45,10 @@ class HolidaysController < ApplicationController
 
   def set_holiday
     @holiday = Holiday.find(params[:id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb(t("views.holidays.title_holidays"), holidays_path)
   end
 
   def holiday_params

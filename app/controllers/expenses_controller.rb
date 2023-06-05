@@ -1,6 +1,7 @@
 class ExpensesController < ApplicationController
   before_action :set_user
   before_action :set_expense, only: %i[show edit update destroy update_status delete_receipt]
+  before_action :set_breadcrumbs
 
   def index
     @expenses = Expense.where(user_id: @user.id)
@@ -75,6 +76,10 @@ class ExpensesController < ApplicationController
 
   def set_expense
     @expense = Expense.find(params[:id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb(t("views.expenses.title_expenses"), user_expenses_path(@user))
   end
 
   def expense_params
