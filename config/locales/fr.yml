@@ -205,6 +205,7 @@ fr:
       goal_not_completed: "L'objectif n'a pas été réalisé avant la date d'échéance."
       goal_completed: "L'objectif a été réalisé avant la date d'échéance."
       goal_overpassed: "L'objectif a été atteint avec un travail supplémentaire ou des améliorations."
+      goal_partially_achieved: "L'objectif a été partiellement atteint"
       end_goal: "Finalisation de l'objectif"
       goals_description: "Gérez les objectifs à travers votre entreprise pour aligner et développer votre équipe"
       search_bar: "Titre, ou propriétaire"

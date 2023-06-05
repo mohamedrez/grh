@@ -93,10 +93,12 @@ class GoalsController < ApplicationController
 
   def objectives
     user_id = params[:user_id]
-    year = params[:year]
-    @user = User.find(user_id)
+    @year = params[:year]
+    @user = User.find_by(id: user_id)
+    render status: :not_found unless @user
+
     @goals = Goal.where(owner_id: user_id, archived: false)
-      .where("extract(year from due_date) = ?", year)
+      .where("extract(year from due_date) = ?", @year)
 
     # calculate_goals(@goals)
   end

@@ -90,6 +90,8 @@ en:
         not_achieved: "Incomplete"
         completed: "Completed"
         overpassed: "Overpassed"
+        partially_achieved: "Partially achieved"
+
       levels:
         none: "-- None --"
         important: "Important"

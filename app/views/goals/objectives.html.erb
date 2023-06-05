@@ -1,7 +1,7 @@
 <div class="px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1>Goals </h1>
+      <h1>Goals of <%= @user.full_name %> <%= @year %> </h1>
     </div>
   </div>
 
@@ -28,7 +28,8 @@
                   </span>
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                  <%= Goal.importance_factor(goal: goal, goals: @goals) * 100 %>%
+                  <%= goal.level.humanize %>
+                  <%= number_with_precision(Goal.importance_factor(goal: goal, goals: @goals) * 100, precision: 0) %>%
                 </td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                   <%= Goal.completion_factor(goal: goal, goals: @goals).to_i  %>%
