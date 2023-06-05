@@ -1,11 +1,9 @@
 class AnnouncementsController < ApplicationController
-  before_action :set_announcement, only: [:edit, :update, :show, :destroy]
+  before_action :set_announcement, only: [:edit, :update, :destroy]
+  before_action :set_breadcrumbs, only: :index
 
   def index
-    @announcements = Announcement.all
-  end
-
-  def show
+    @announcements = Announcement.order(created_at: :desc)
   end
 
   def new
@@ -20,7 +18,12 @@ class AnnouncementsController < ApplicationController
     @announcement.user_id = current_user.id
 
     if @announcement.save
-      redirect_to announcement_path(@announcement), notice: t("flash.successfully_created")
+      flash.now[:notice] = t("flash.successfully_created")
+      render turbo_stream: [
+        turbo_stream.append("announcement-list", @announcement),
+        turbo_stream.replace("right", partial: "shared/right"),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
     else
       render :new, status: :unprocessable_entity
     end
@@ -28,7 +31,12 @@ class AnnouncementsController < ApplicationController
 
   def update
     if @announcement.update(announcement_params)
-      redirect_to announcements_path, notice: t("flash.successfully_updated")
+      flash.now[:notice] = t("flash.successfully_updated")
+      render turbo_stream: [
+        turbo_stream.replace(@announcement, @announcement),
+        turbo_stream.replace("right", partial: "shared/right"),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
     else
       render "edit", status: :unprocessable_entity
     end
@@ -36,13 +44,21 @@ class AnnouncementsController < ApplicationController
 
   def destroy
     @announcement.destroy
-    redirect_to announcements_path, notice: t("flash.successfully_destroyed")
+    flash.now[:notice] = t("flash.successfully_destroyed")
+    render turbo_stream: [
+      turbo_stream.remove(@announcement),
+      turbo_stream.replace("notification_alert", partial: "layouts/alert")
+    ]
   end
 
   private
 
   def set_announcement
     @announcement = Announcement.find(params[:id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb(t("views.announcements.title_announcements"), announcements_path)
   end
 
   def announcement_params

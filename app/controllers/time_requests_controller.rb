@@ -1,5 +1,6 @@
 class TimeRequestsController < ApplicationController
   before_action :set_locals, only: %i[show edit update destroy]
+  before_action :set_breadcrumbs, only: :index
 
   def index
     user_id = params[:user_id]
@@ -67,6 +68,12 @@ class TimeRequestsController < ApplicationController
   def set_locals
     @time_request = TimeRequest.find(params[:id])
     @user = User.find(params[:user_id])
+  end
+
+  def set_breadcrumbs
+    @user = User.find(params[:user_id])
+    add_breadcrumb(@user.full_name, @user)
+    add_breadcrumb(t("views.time_requests.title_time_request"), user_time_requests_path(@user))
   end
 
   def time_request_params

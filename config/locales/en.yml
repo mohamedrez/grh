@@ -6,19 +6,55 @@ en:
     add: "Add"
     comment: "Comment"
     import: "Import"
+    view: "View"
+    download: "Download"
     delete: "Delete"
+    archive: "Archive"
   attributes:
+    announcement:
+      content: "Content"
+      published_at: "Published At"
+      title: "Title"
+      status: "Status"
+      statuses:
+        draft: "Draft"
+        published: "Published"
     asset:
       category: "Category"
-      serial: "Serial #"
+      serial: "Serial"
       date_assigned: "Date assigned"
       date_returned: "Date returned"
       description: "Description"
+      categories:
+        none: "-- None --"
+        computers: "Computers"
+        peripherals: "Peripherals"
+        office_equipment: "Office equipment"
+        software_licenses: "Software licenses"
+        mobile_devices: "Mobile devices"
+        networking_equipment: "Networking equipment"
+        security_systems: "Security systems"
+        other: "Other"
     education:
       school: "School"
       education_level: "Education level"
       study_field: "Study field"
       still_on_this_course: "Still on this course?"
+    expense:
+      employee: "Employee"
+      date: "Date"
+      category: "Category"
+      description: "Description"
+      amount: "Amount"
+      attach_a_receipt: "Attach a receipt"
+      categories:
+        none: "-- None --"
+        travel: "Travel Expenses"
+        meal_entertainment: "Meal and Entertainment Expenses"
+        training_development: "Training and Development Expenses"
+        office_equipment: "Office Supplies and Equipment Expenses"
+        employee_benefits: "Employee Benefits Expenses"
+        miscellaneous: "Miscellaneous Expenses"
     experience:
       job_title: "Job title"
       company_name: "Company name"
@@ -28,13 +64,56 @@ en:
       email: "Email"
       relationship: "Relationship"
       phone: "Phone"
+      relationships:
+        none: "-- None --"
+        brother: "Brother"
+        daughter: "Daughter"
+        father: "Father"
+        friend: "Friend"
+        husband: "Husband"
+        mother: "Mother"
+        sister: "Sister"
+        son: "Son"
+        wife: "Wife"
+    goal:
+      title: "Title"
+      owner: "Owner"
+      level: "Level"
+      status: "Status"
+      description: "Description"
+      start_date: "Start date"
+      due_date: "Due date"
+      owned_by: "Owned by"
+      end_goal_description: "End goal description"
+      statuses:
+        no_feedback: "No feedback yet"
+        incomplete: "Incomplete"
+        completed: "Completed"
+        overpass: "Overpass"
+      levels:
+        none: "-- None --"
+        important: "Important"
+        very_important: "Very important"
+        critical: "Critical"
     time_request:
       category: "Category"
       content: "Content"
+      categories:
+        none: "-- None --"
+        vacation_time: "Vacation time"
+        sick_time: "Sick time"
+        bereavement_time: "Bereavement time"
+        parental_leave: "Parental leave"
+        remote_work: "Remote work"
+        personal_time: "Personal time"
     user_request:
       request_type: "Request type"
       state: "State"
       managed_by: "Managed by"
+      states:
+        pending: "Pending"
+        approved: "Approved"
+        rejected: "Rejected"
     user:
       first_name: "First name"
       last_name: "Last name"
@@ -70,29 +149,65 @@ en:
       country: "Country"
       city: "City"
       created_at: "Created at"
-  views:
-    notes:
-      
+  views: 
     announcements:
       add_announcement: "Create new Announcement"
-      no_annoucement_exists: "There is no announcement for the moment." 
+      no_announcement_exists: "There is no announcement for the moment."
+      title_announcements: "Announcements"
+      create_announcement: "Create announcement"
+      edit_announcement: "Edit announcement"
     assets:
       title_assets: "Assets"
       assets_list: "List of assets assigned to you."
+      create_asset: "Create asset"
+      add_asset: "Add asset"
+      edit_asset: "Edit asset"
+      asset_details: "Asset details"
     comments:
       commented: "Commented"
       edited: "Edited"
       add_comment_placeholder: "Add your comment..."
     dashboard:
+      recent_hires: "Recent Hires"
       announcements_title: "Announcements"
       announcements_button: "View All Announcement"
     educations:
       add_education: "Add new education"
+    expenses:
+      title_expenses: "Expenses"
+      add_expense: "Add expense"
+      paid: "Paid"
+      you_have_files_uploaded: "You have %{nbr_files} uploaded"
+      upload_more_files: "Upload more files"
+      upload_files: "Upload files"
+      drag_drop: "or drag and drop"
+      files_type: "IMAGEs, PDFs"
+      edit_expense: "Edit expense"
+      receipts: "Receipts"
+      no_receipts: "No receipts"
+      mark_as_paid: "Mark as paid"
+      expense_details: "Expense Details"
     experiences:
       add_experience: "Add new experience"
     emergency_contacts:
       title_emergency_contact: "Emergency contacts"
       emergency_contacts_list: "List of all of your emergency contacts."
+      create_emergency_contact: "Create emergency contact"
+      add_emergency_contact: "Add emergency contact"
+      edit_emergency_contact: "Edit emergency contact"
+    goals:
+      title_goals: "Goals"
+      create_goal: "Create goal"
+      add_goal: "Add goal"
+      edit_goal: "Edit goal"
+      end_goal_description_placeholder: "Provide information on anything to end the goal."
+      goal_not_completed: "Goal wasn't completed by the due date."
+      goal_completed: "Goal was completed by the due date."
+      goal_overpass: "Goal achieved with additional work or enhancements."
+      end_goal: "End Goal"
+      goals_description: "Manage goals across your company to align and develop your team"
+      search_bar: "Title, or owner"
+      all: "All"
     holidays:
       title_holidays: "Holidays"
       holidays_list: "List of holidays for this year"
@@ -105,12 +220,15 @@ en:
       no_one_out.: "No one else on the team will be out."
       add_time_off: "Add new time off request"
       edit_time_off: "Edit the time off request"
+      create_time_request: "Create time off request"
     settings:
       setting_desc: "These information will be displayed on your profile."
       employee_picture: "Employee picture"
     user_requests:
       title_user_request: "User requests"
       user_requests_list: "List of all requests requested by you."
+      no_one_yet: "No one yet"
+      request: "Request"
     users:
       personal_details_section: "Personal details"
       list_personal_details: "List of personal details about you."
@@ -160,10 +278,20 @@ en:
     successfully_updated: "Successfully updated"
     successfully_destroyed: "Successfully destroyed"
     successfully_imported : "Successfully imported"
+    status_successfully_updated: "The status of the expense was successfully updated."
+    receipt_successfully_deleted: "The receipt was successfully deleted."
+    goal_successfully_ended: "Goal successfully ended"
+    successfully_archived: "Successfully archived"
   errors:
     comment_cant_be_blank: "Comment can't be blank"
     prohibited: "prohibited it from being saved:"
     select_csv: "Select a CSV file to import."
+    not_allowing_none: "cannot be 'None'"
+    end_goal_description: "Should provide a description for the ending goal."
+    should_provide_status: "Should provide a status"
+  popups:
+    message_delete: "Are you sure you wanna delete this?"
+    message_archive: "Are you sure you wanna archive this?"
   devise:
     registrations:
       edit:

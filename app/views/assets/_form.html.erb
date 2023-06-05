@@ -1,45 +1,51 @@
-<%= form_with(model: [user, asset], class: "") do |form| %>
-  <div class="space-y-12">
-    <div class="overflow-hidden rounded-xl border border-gray-200">
-      <div class="flex items-center gap-x-4 border-b border-gray-900/5 bg-gray-50 p-6">
-        <img src="https://tailwindui.com/img/logos/48x48/tuple.svg" alt="Tuple" class="h-12 w-12 flex-none rounded-lg bg-white object-cover ring-1 ring-gray-900/10">
-        <div class="relative ml-auto flex">
-          <a href="#" data-action="modal#hide" class="rounded-md bg-white px-5 py-1.5 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:block mr-2">
-            <%= t("buttons.cancel") %>
-          </a>
-          <%= form.submit t("buttons.save") %>
+<%= form_with(model: [user, asset], class: "bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 my-5") do |form| %>
+  <div class="px-4 py-6 sm:p-8">
+    <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="sm:col-span-full">
+        <%= form.label :serial, t("attributes.asset.serial"), class: "block" %>
+        <div class="mt-2">
+          <%= form.text_field :serial, class: "w-full" %>
+          <%= inline_error_for(:serial, asset).html_safe %>
         </div>
       </div>
-      <dl class="-my-3 divide-y divide-gray-100 px-6 py-4 text-sm leading-6">
-        <div class="flex justify-between gap-x-4 py-3">
-          <dt class="text-gray-500"><%= t("attributes.asset.category") %></dt>
-          <dd class="font-medium text-gray-700"><%= form.select :category, options_for_select(Asset.categories.map {|key, value| [key.humanize, key]}, asset.category) %></dd>
+
+      <div class="sm:col-span-full">
+        <%= form.label :category, t("attributes.asset.category"), class: "block" %>
+        <div class="mt-2">
+          <%= form.select :category, Asset.categories.keys.collect { |category| [Asset.human_enum_name(:category, category), category] } %>
+          <%= inline_error_for(:category, asset).html_safe %>
         </div>
-        <div class="flex justify-between gap-x-4 py-3">
-          <dt class="text-gray-500"><%= t("attributes.asset.serial") %></dt>
-          <dd class="font-medium text-gray-700">
-            <%= form.text_field :serial %>
-            <%= inline_error_for(:serial, asset).html_safe %>
-          </dd>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :date_assigned, t("attributes.asset.date_assigned"), class: "block" %>
+        <div class="mt-2">
+          <%= form.date_field :date_assigned, class: "w-full" %>
+          <%= inline_error_for(:date_assigned, asset).html_safe %>
         </div>
-        <div class="flex justify-between gap-x-4 py-3">
-          <dt class="text-gray-500"><%= t("attributes.asset.date_assigned") %></dt>
-          <dd class="font-medium text-gray-700">
-            <%= form.date_field :date_assigned %>
-            <%= inline_error_for(:date_assigned, asset).html_safe %>
-          </dd>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :date_returned, t("attributes.asset.date_returned"), class: "block" %>
+        <div class="mt-2">
+          <%= form.date_field :date_returned, class: "w-full" %>
+          <%= inline_error_for(:date_returned, asset).html_safe %>
         </div>
-        <div class="flex justify-between gap-x-4 py-3">
-          <dt class="text-gray-500"><%= t("attributes.asset.date_returned") %></dt>
-          <dd class="font-medium text-gray-700"><%= form.date_field :date_returned %></dd>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :description, t("attributes.asset.description"), class: "block" %>
+        <div class="mt-2">
+          <%= form.text_area :description, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6", rows: 4 %>
+          <%= inline_error_for(:description, asset).html_safe %>
         </div>
-        <div class="flex justify-between gap-x-4 py-3">
-          <dt class="text-gray-500"><%= t("attributes.asset.description") %></dt>
-          <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 ml-10">
-            <p class="text-sm leading-6 text-gray-500"><%= form.text_area :description, class: "px-3 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6", rows: 4 %></p>
-          </div>
-        </div>
-      </dl>
+      </div>
     </div>
+  </div>
+  <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+    <button data-action="click->right#hide" type="button" class= "text-sm font-semibold leading-6 text-gray-900">
+      <%= t("buttons.cancel") %>
+    </button>
+    <%= form.submit t("buttons.save"), class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
   </div>
 <% end %>

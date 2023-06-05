@@ -6,19 +6,55 @@ fr:
     add: "Ajouter"
     comment: "Commentaire"
     import: "Importer"
+    view: "Afficher"
+    download: "Télécharger"
     delete: "Supprimer"
+    archive: "Archiver"
   attributes:
+    announcement:
+      title: "Titre"
+      status: "Statut"
+      content: "contenu"
+      published_at: "Publié à"
+      statuses:
+        draft: "Projet"
+        published: "Publé"
     asset:
       category: "Catégorie"
       serial: "Numéro de série"
       date_assigned: "Date d'affectation"
       date_returned: "Date de retour"
       description: "Description"
+      categories:
+        none: "-- Aucune --"
+        computers: "Ordinateurs"
+        peripherals: "Périphériques"
+        office_equipment: "Équipement de bureau"
+        software_licenses: "Licences logicielles"
+        mobile_devices: "Appareils mobiles"
+        networking_equipment: "Équipement réseau"
+        security_systems: "Systèmes de sécurité"
+        other: "Autre"
     education:
       school: "École"
       education_level: "Niveau d'éducation"
       study_field: "Domaine d'études"
       still_on_this_course: "Êtes-vous toujours en cours de formation ?"
+    expense:
+      employee: "Employé"
+      date: "Date"
+      category: "Catégorie"
+      description: "Description"
+      amount: "Montant"
+      attach_a_receipt: "Joindre un reçu"
+      categories:
+        none: "-- Aucune --"
+        travel: "Frais de déplacement"
+        meal_entertainment: "Frais de repas et divertissements"
+        training_development: "Frais de formation et développement"
+        office_equipment: "Frais de fournitures et équipements de bureau"
+        employee_benefits: "Frais d'avantages pour les employés"
+        miscellaneous: "Frais divers"
     experience:
       job_title: "Intitulé du poste"
       company_name: "Nom de l'entreprise"
@@ -28,13 +64,56 @@ fr:
       email: "E-mail"
       relationship: "Relation"
       phone: "Téléphone"
+      relationships:
+        none: "-- Aucune --"
+        brother: "Frère"
+        daughter: "Fille"
+        father: "Père"
+        friend: "Ami"
+        husband: "Mari"
+        mother: "Mère"
+        sister: "Sœur"
+        son: "Fils"
+        wife: "Épouse"
+    goal:
+      title: "Titre"
+      owner: "Propriétaire"
+      level: "Niveau"
+      status: "Statut"
+      description: "Description"
+      start_date: "Date de début"
+      due_date: "Date d'échéance"
+      owned_by: "Possédé par"
+      end_goal_description: "Description de l'objectif final"
+      statuses:
+        no_feedback: "Aucun retour pour le moment"
+        incomplete: "Incomplet"
+        completed: "Terminé"
+        overpass: "Surpassement"
+      levels:
+        none: "-- Aucun --"
+        important: "Important"
+        very_important: "Très important"
+        critical: "Critique"
     time_request:
       category: "Catégorie"
       content: "Contenu"
+      categories:
+        none: "-- Aucune --"
+        vacation_time: "Congés"
+        sick_time: "Congés maladie"
+        bereavement_time: "Congés pour décès"
+        parental_leave: "Congé parental"
+        remote_work: "Travail à distance"
+        personal_time: "Temps personnel"
     user_request:
       request_type: "Type de demande"
       state: "État"
       managed_by: "Gérée par"
+      states:
+        pending: "En attente"
+        approved: "Approuvé"
+        rejected: "Rejeté"
     user:
       first_name: "Prénom"
       last_name: "Nom de famille"
@@ -73,24 +152,62 @@ fr:
   views:
     announcements:
       add_announcement: "Créer une nouvelle annonce"
-      no_annoucement_exists: "Il n'y a pas d'annonce pour le moment." 
+      no_announcement_exists: "Il n'y a pas d'annonce pour le moment."
+      title_announcements: "Annonces"
+      create_announcement: "Créer une annonce"
+      edit_announcement: "Modifier l'annonce"
     assets:
       title_assets: "Éléments"
       assets_list: "Liste des éléments qui vous ont été affectés."
+      create_asset: "Create élément"
+      add_asset: "Ajouter un élément"
+      edit_asset: "Modifier l'élément"
+      asset_details: "Détails de élément"
     comments:
       commented: "Commenté"
       edited: "Modifié"
       add_comment_placeholder: "Ajouter votre commentaire..."
     dashboard:
+      recent_hires: "Recrutements récents"
       announcements_title: "Annonces"
       announcements_button: "Voir toutes les annonces"
     educations:
       add_education: "Ajouter une nouvelle formation"
+    expenses:
+      title_expenses: "Dépenses"
+      add_expense: "Ajouter une dépense"
+      paid: "Payé"
+      you_have_files_uploaded: "Vous avez %{nbr_files} téléchargés"
+      upload_more_files: "Télécharger plus de fichiers"
+      upload_files: "Télécharger des fichiers"
+      drag_drop: "ou faites glisser-déposer"
+      files_type: "IMAGES, PDFs"
+      edit_expense: "Modifier la dépense"
+      receipts: "Reçus"
+      no_receipts: "Aucun reçu"
+      mark_as_paid: "Marquer comme payé"
+      expense_details: "Détails des dépenses"
     experiences:
       add_experience: "Ajouter une nouvelle expérience"
     emergency_contacts:
       title_emergency_contact: "Contacts d'urgence"
       emergency_contacts_list: "Liste de tous vos contacts d'urgence."
+      create_emergency_contact: "Créer un contact d'urgence"
+      add_emergency_contact: "Ajouter un contact d'urgence"
+      edit_emergency_contact: "Modifier le contact d'urgence"
+    goals:
+      title_goals: "Objectifs"
+      create_goal: "Créer un objectif"
+      add_goal: "Ajouter un objectif"
+      edit_goal: "Modifier l'objectif"
+      end_goal_description_placeholder: "Fournissez des informations sur tout ce qui concerne la finalisation de l'objectif."
+      goal_not_completed: "L'objectif n'a pas été réalisé avant la date d'échéance."
+      goal_completed: "L'objectif a été réalisé avant la date d'échéance."
+      goal_overpass: "L'objectif a été atteint avec un travail supplémentaire ou des améliorations."
+      end_goal: "Finalisation de l'objectif"
+      goals_description: "Gérez les objectifs à travers votre entreprise pour aligner et développer votre équipe"
+      search_bar: "Titre, ou propriétaire"
+      all: "Tout"
     holidays:
       title_holidays: "Vacances"
       holidays_list: "Liste des vacances pour cette année"
@@ -103,12 +220,15 @@ fr:
       no_one_out: "Personne d'autre de l'équipe ne sera absent."
       add_time_off: "Ajouter une nouvelle demande de congé"
       edit_time_off: "Modifier la demande de congé"
+      create_time_request: "Créer une demande de congé"
     settings:
       setting_desc: "Ces informations seront affichées sur votre profil."
       employee_picture: "Photo de l'employé"
     user_requests:
       title_user_request: "Demandes d'utilisateur"
       user_requests_list: "Liste de toutes les demandes que vous avez effectuées."
+      no_one_yet: "Personne pour l'instant"
+      request: "Demande"
     users:
       personal_details_section: "Détails personnels"
       list_personal_details: "Liste des détails personnels vous concernant."
@@ -158,10 +278,20 @@ fr:
     successfully_updated: "Mise à jour effectuée avec succès."
     successfully_destroyed: "Supprimé(e) avec succès"
     successfully_imported : "Importation réussie"
+    status_successfully_updated: "Le statut de la dépense a été mis à jour avec succès."
+    receipt_successfully_deleted: "Le reçu a été supprimé avec succès."
+    goal_successfully_ended: objectif terminé avec succès
+    successfully_archived: "Archivé avec succès"
   errors:
     comment_cant_be_blank: "Commentaire ne peut pas être vide."
     prohibited: "ont empêché(e)s son enregistrement :"
     select_csv: "Sélectionnez un fichier CSV à importer."
+    not_allowing_none: "ne peut pas être 'Aucun'"
+    end_goal_description: "Vous devez fournir une description pour l'objectif final."
+    should_provide_status: "Vous devez fournir un statut."
+  popups:
+    message_delete: "Êtes-vous sûr de vouloir supprimer ceci ?"
+    message_archive: "Êtes-vous sûr de vouloir archiver ceci ?"
   devise:
     registrations:
       edit:

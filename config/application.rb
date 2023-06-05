@@ -38,6 +38,6 @@ module Maktabah
     config.i18n.default_locale = :en
     config.i18n.fallbacks = true
 
-    config.active_job.queue_adapter = :sidekiq
+    config.active_job.queue_adapter = :inline # todo use sidekiq later when performance is needed
   end
 end
