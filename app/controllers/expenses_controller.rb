@@ -79,6 +79,7 @@ class ExpensesController < ApplicationController
   end
 
   def set_breadcrumbs
+    add_breadcrumb(@user.full_name, @user)
     add_breadcrumb(t("views.expenses.title_expenses"), user_expenses_path(@user))
   end
 

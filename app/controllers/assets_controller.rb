@@ -67,6 +67,7 @@ class AssetsController < ApplicationController
   end
 
   def set_breadcrumbs
+    add_breadcrumb(@user.full_name, @user)
     add_breadcrumb(t("views.assets.title_assets"), user_assets_path(@user))
   end
 

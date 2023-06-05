@@ -17,6 +17,7 @@ class UserRequestsController < ApplicationController
 
   def set_breadcrumbs
     @user = User.find(params[:user_id])
+    add_breadcrumb(@user.full_name, @user)
     add_breadcrumb(t("views.user_requests.title_user_request"), user_user_requests_path(@user))
   end
 end

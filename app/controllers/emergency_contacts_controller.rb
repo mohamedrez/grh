@@ -64,6 +64,7 @@ class EmergencyContactsController < ApplicationController
   end
 
   def set_breadcrumbs
+    add_breadcrumb(@user.full_name, @user)
     add_breadcrumb(t("views.emergency_contacts.title_emergency_contact"), user_emergency_contacts_path(@user))
   end
 
