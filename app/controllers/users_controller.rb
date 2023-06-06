@@ -5,18 +5,18 @@ class UsersController < ApplicationController
   def index
     @q = User.ransack(params[:q])
     @users = @q.result.page(params[:page])
-    authorize!
+    # authorize!
   end
 
   def show
-    authorize! @user
+    # authorize! @user
     @manager = User.find_by(id: @user.manager_id)
 
     add_breadcrumb(@user.full_name)
   end
 
   def new
-    authorize!
+    # authorize!
     @user = User.new
     @user.build_address
 
@@ -24,7 +24,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    authorize! @user
+    # authorize! @user
     @manager_select = User.where.not(id: @user.id)&.map { |user| [user.full_name, user.id] }
     @address = @user.address || @user.build_address
 
@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    authorize!
+    # authorize!
     @user = User.new(user_params)
     @user.password = Devise.friendly_token.first(8)
     @user.confirmed_at = Time.now.utc
@@ -48,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize! @user
+    # authorize! @user
     if @user.update(user_params)
       redirect_to user_url(@user), notice: t("flash.successfully_updated")
     else
