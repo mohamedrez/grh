@@ -22,7 +22,7 @@ Rails.application.routes.draw do
     resources :comments
     resources :holidays
     resources :performance, only: :index
-    resources :reviews, only: :index
+    resources :reviews
     resources :goals, except: :destroy
     patch "/goals/:id/archive", to: "goals#archive", as: "archive_goal"
     patch "/goals/:id/end_goal", to: "goals#end_goal", as: "end_goal"

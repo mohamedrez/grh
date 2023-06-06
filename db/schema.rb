@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_122459) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_05_145311) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -384,11 +384,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_122459) do
     t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
+  create_table "review_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "review_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["review_id"], name: "index_review_users_on_review_id"
+    t.index ["user_id"], name: "index_review_users_on_user_id"
+  end
+
   create_table "reviews", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.date "start_date"
     t.date "end_date"
     t.integer "status", default: 0
+    t.integer "review_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -486,6 +496,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_122459) do
   add_foreign_key "motor_taggable_tags", "motor_tags", column: "tag_id"
   add_foreign_key "notes", "users"
   add_foreign_key "notes", "users", column: "author_id"
+  add_foreign_key "review_users", "reviews"
+  add_foreign_key "review_users", "users"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"
   add_foreign_key "users", "sites"

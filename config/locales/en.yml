@@ -95,6 +95,16 @@ en:
         important: "Important"
         very_important: "Very important"
         critical: "Critical"
+    review:
+      review_type: "Review type"
+      status: "Status"
+      statuses:
+        upcoming: "Upcoming"
+        current: "Current"
+        ended: "Ended"
+      review_types:
+        manager_review: "Manager review"
+        self_evaluation: "Self evaluation"
     time_request:
       category: "Category"
       content: "Content"
