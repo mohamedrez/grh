@@ -88,7 +88,7 @@ fr:
       statuses:
         no_feedback: "Aucun"
         not_achieved: "Non atteint"
-        partially_achieved: "Partiellement atteint"
+        partially_achieved: "Partielle"
         completed: "Atteint"
         overpassed: "Dépassé"
       levels:

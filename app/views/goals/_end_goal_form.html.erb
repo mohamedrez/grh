@@ -9,13 +9,13 @@
     </div>
 
     <div class="my-4 mx-auto max-w-7xl py-5">
-      <dl class="grid grid-cols-1 gap-x-8 gap-y-8 lg:grid-cols-3">
+      <dl class="grid grid-cols-1 gap-x-3 gap-y-8 lg:grid-cols-4">
         <%= form.collection_radio_buttons :status, Goal.statuses.map {|key, value| [key, Goal.human_enum_name(:status, key)]}, :first, :last, checked: @status do |b| %>
           <div class="shadow overflow-hidden rounded-xl border border-gray-200 p-3">
             <%= b.label class: "hover:cursor-pointer" do %>
               <div class="mx-auto flex max-w-xs flex-col gap-y-4">
-                <dd class="order-first text-indigo-600 text-3xl font-semibold tracking-tight text-gray-900 sm:text-3xl">
-                  <%= b.radio_button class: "mb-1 mr-1 h-6 w-6 text-indigo-600" %>
+                <dd class="order-first text-indigo-600 font-semibold tracking-tight text-gray-900">
+                  <%= b.radio_button class: "mb-1 mr-1 text-indigo-600" %>
                   <%= b.text %>
                 </dd>
                 <dt class="text-base leading-7 text-gray-600">
