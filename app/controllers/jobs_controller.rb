@@ -45,6 +45,7 @@ class JobsController < ApplicationController
       :id,
       :title,
       :job_type,
+      :status,
       :location,
       :remote,
       :overview,
