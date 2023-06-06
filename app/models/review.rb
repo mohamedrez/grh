@@ -5,6 +5,9 @@ class Review < ApplicationRecord
   has_many :review_users, dependent: :destroy
   has_many :users, through: :review_users
 
+  has_many :review_sections, dependent: :destroy
+  has_many :section, through: :review_sections
+
   enum status: {upcoming: 0, current: 1, ended: 2}
   enum review_type: {manager_review: 0}
 end

@@ -66,3 +66,25 @@ holidays_data.each do |holiday_data|
     holiday.end_date = holiday_data[:end_date]
   end
 end
+
+# Create sections
+sections_data = [
+  {
+    name: "Strengths and opportunities",
+    description: "Cette section vous offre l'opportunité, en tant que gestionnaire, d'évaluer et de fournir des commentaires sur les points forts et les domaines d'amélioration de chaque employé. Prenez un moment pour réfléchir à leur performance et à leur comportement.",
+    section_type: "strengths_opportunities"
+  },
+  {
+    name: "Goals",
+    description: "Cette section vous permet, en tant que gestionnaire, de définir et de discuter des objectifs spécifiques avec vos employés. Elle sert de plateforme pour fixer des attentes claires et aligner les objectifs individuels sur les priorités organisationnelles.",
+    section_type: "goals"
+  }
+].freeze
+
+sections_data.each do |section_data|
+  Section.find_or_create_by(section_data) do |section|
+    section.name = section_data[:name]
+    section.description = section_data[:description]
+    section.section_type = section_data[:section_type]
+  end
+end
