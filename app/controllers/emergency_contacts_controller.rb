@@ -1,6 +1,7 @@
 class EmergencyContactsController < ApplicationController
   before_action :set_user, only: %i[index new edit create update]
   before_action :set_emergency_contact, only: %i[edit update destroy]
+  before_action :set_breadcrumbs, only: :index
 
   def index
     @emergency_contacts = EmergencyContact.where(user_id: @user.id)
@@ -60,6 +61,11 @@ class EmergencyContactsController < ApplicationController
 
   def set_emergency_contact
     @emergency_contact = EmergencyContact.find(params[:id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb(@user.full_name, @user)
+    add_breadcrumb(t("views.emergency_contacts.title_emergency_contact"), user_emergency_contacts_path(@user))
   end
 
   def emergency_contact_params

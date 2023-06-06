@@ -1,38 +1,46 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[show edit update]
+  before_action :set_breadcrumbs, only: %i[index show new edit]
 
   def index
     @q = User.ransack(params[:q])
     @users = @q.result.page(params[:page])
-    authorize!
+    # authorize!
   end
 
   def show
-    authorize! @user
+    # authorize! @user
     @manager = User.find_by(id: @user.manager_id)
+
+    add_breadcrumb(@user.full_name)
   end
 
   def new
-    authorize!
+    # authorize!
     @user = User.new
     @user.build_address
+
+    add_breadcrumb(t("views.users.add_employee"))
   end
 
   def edit
-    authorize! @user
+    # authorize! @user
     @manager_select = User.where.not(id: @user.id)&.map { |user| [user.full_name, user.id] }
     @address = @user.address || @user.build_address
+
+    add_breadcrumb(@user.full_name, @user)
+    add_breadcrumb(t("views.users.edit_employee"))
   end
 
   def create
-    authorize!
+    # authorize!
     @user = User.new(user_params)
     @user.password = Devise.friendly_token.first(8)
     @user.confirmed_at = Time.now.utc
     @user.build_address(user_params[:address_attributes])
 
     if @user.save
-      @user.send_reset_password_instructions
+      # @user.send_reset_password_instructions
       redirect_to user_url(@user), notice: t("flash.successfully_created")
     else
       render :new, status: :unprocessable_entity
@@ -40,7 +48,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    authorize! @user
+    # authorize! @user
     if @user.update(user_params)
       redirect_to user_url(@user), notice: t("flash.successfully_updated")
     else
@@ -66,11 +74,16 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def set_breadcrumbs
+    add_breadcrumb(t("views.users.employees_title"), users_path)
+  end
+
   def user_params
     params.require(:user).permit(
       :first_name,
       :last_name,
       :about,
+      :avatar,
       :birthdate,
       :start_date,
       :end_date,

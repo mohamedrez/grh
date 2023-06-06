@@ -3,10 +3,10 @@ FactoryBot.define do
     title { "MyString" }
     owner { nil }
     status { nil }
-    start_date { "2023-05-25" }
-    due_date { "2023-05-28" }
+    start_date { Time.now.utc }
+    due_date { Time.now.utc + 1.day }
     level { 1 }
-    author { nil }
+    author_id { (create :user).id }
     end_goal_description { nil }
   end
 end
