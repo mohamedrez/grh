@@ -1,15 +1,19 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show edit update end_goal archive]
   before_action :set_owner, only: %i[show edit]
+  before_action :set_breadcrumbs, only: %i[index show objectives]
 
   def index
-    @goals = Goal.where(archived: false)
+    @q = Goal.ransack(params[:q])
+    @goals = @q.result(distinct: true).where(archived: false)
   end
 
   def show
     @end_goal_errors = params[:end_goal_errors] || {}
     @end_goal_description = params[:end_goal_description]
     @status = params[:status]
+
+    add_breadcrumb(@goal.title)
   end
 
   def new
@@ -90,6 +94,21 @@ class GoalsController < ApplicationController
     end
   end
 
+  def objectives
+    user_id = params[:user_id]
+    @year = params[:year]
+    @user = User.find_by(id: user_id)
+    add_breadcrumb(@year)
+    add_breadcrumb(@user.full_name)
+    render status: :not_found unless @user
+
+    @goals = Goal.where(owner_id: user_id, archived: false)
+      .where("extract(year from due_date) = ?", @year)
+
+    @completion_factor_sum = Goal.completion_factor_sum(@goals)
+    @importance_factor_sum = Goal.importance_factor_sum(@goals)
+  end
+
   private
 
   def set_goal
@@ -98,6 +117,10 @@ class GoalsController < ApplicationController
 
   def set_owner
     @owner = @goal.owner
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb(t("views.goals.title_goals"), goals_path)
   end
 
   def goal_params
