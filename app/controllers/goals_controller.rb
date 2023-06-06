@@ -100,7 +100,8 @@ class GoalsController < ApplicationController
     @goals = Goal.where(owner_id: user_id, archived: false)
       .where("extract(year from due_date) = ?", @year)
 
-    # calculate_goals(@goals)
+    @completion_factor_sum = Goal.completion_factor_sum(@goals)
+    @importance_factor_sum = Goal.importance_factor_sum(@goals)
   end
 
   private

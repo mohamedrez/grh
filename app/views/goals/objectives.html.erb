@@ -36,7 +36,24 @@
                 </td>
               </tr>
               <% end %>
+              <tr>
+                <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                  <b>Total</b>
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
 
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <b>
+                  <%= number_with_precision(@importance_factor_sum * 100, precision: 0) %>%
+                  </b>
+                </td>
+                <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+                  <b>
+                  <%= number_with_precision(@completion_factor_sum, precision: 0) %>%
+                  </b>
+                </td>
+              </tr>
             </tbody>
           </table>
         </div>

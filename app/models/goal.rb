@@ -28,7 +28,7 @@ class Goal < ApplicationRecord
 
   def self.importance_factor(goal:, goals:)
     importance_sum = importance_sum(goals)
-    goal.importance_scale / importance_sum.to_f
+    goal.importance_scale / importance_sum.to_d
   end
 
   def self.completion_factor(goal:, goals:)
@@ -36,6 +36,22 @@ class Goal < ApplicationRecord
 
     importance_factor = self.importance_factor(goal: goal, goals: goals)
     goal.status_scale * importance_factor
+  end
+
+  def self.completion_factor_sum(goals)
+    sum = 0
+    goals.each do |e|
+      sum += Goal.completion_factor(goal: e, goals: goals)
+    end
+    sum
+  end
+
+  def self.importance_factor_sum(goals)
+    sum = 0
+    goals.each do |e|
+      sum += Goal.importance_factor(goal: e, goals: goals)
+    end
+    sum
   end
 
   def importance_scale
