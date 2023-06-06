@@ -1,7 +1,7 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show edit update end_goal archive]
   before_action :set_owner, only: %i[show edit]
-  before_action :set_breadcrumbs, only: %i[index show]
+  before_action :set_breadcrumbs, only: %i[index show objectives]
 
   def index
     @q = Goal.ransack(params[:q])
@@ -98,6 +98,8 @@ class GoalsController < ApplicationController
     user_id = params[:user_id]
     @year = params[:year]
     @user = User.find_by(id: user_id)
+    add_breadcrumb(@year)
+    add_breadcrumb(@user.full_name)
     render status: :not_found unless @user
 
     @goals = Goal.where(owner_id: user_id, archived: false)
