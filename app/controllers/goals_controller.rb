@@ -94,6 +94,19 @@ class GoalsController < ApplicationController
     end
   end
 
+  def objectives
+    user_id = params[:user_id]
+    @year = params[:year]
+    @user = User.find_by(id: user_id)
+    render status: :not_found unless @user
+
+    @goals = Goal.where(owner_id: user_id, archived: false)
+      .where("extract(year from due_date) = ?", @year)
+
+    @completion_factor_sum = Goal.completion_factor_sum(@goals)
+    @importance_factor_sum = Goal.importance_factor_sum(@goals)
+  end
+
   private
 
   def set_goal
