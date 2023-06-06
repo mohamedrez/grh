@@ -46,5 +46,6 @@ Rails.application.routes.draw do
 
     get "user_notifications", to: "user_notifications#index"
     get "user_notifications/notification_bell", to: "user_notifications#notification_bell"
+    resources :jobs
   end
 end
