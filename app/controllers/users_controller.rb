@@ -83,6 +83,7 @@ class UsersController < ApplicationController
       :first_name,
       :last_name,
       :about,
+      :avatar,
       :birthdate,
       :start_date,
       :end_date,
