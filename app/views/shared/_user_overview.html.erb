@@ -8,7 +8,6 @@
             <%= image_tag user.avatar_url_or_default, class: "mx-auto h-20 w-20 rounded-full" %>
           </div>
           <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
-            <p class="text-sm font-medium text-gray-600"><%= t("views.shared.user_overview.welcome") %></p>
             <p class="text-xl font-bold text-gray-900 sm:text-2xl"><%= user.full_name %></p>
             <p class="text-sm font-medium text-gray-600"><%= user.job_title&.humanize %></p>
           </div>

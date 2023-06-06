@@ -35,7 +35,7 @@ module Maktabah
     config.generators.system_tests = nil
 
     config.i18n.available_locales = [:en, :fr]
-    config.i18n.default_locale = :fr
+    config.i18n.default_locale = :en
     config.i18n.fallbacks = true
 
     config.active_job.queue_adapter = :inline # todo use sidekiq later when performance is needed

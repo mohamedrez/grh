@@ -270,7 +270,6 @@ fr:
       deny: "Refuser"
       view_profile: "Voir le profil"
       user_overview:
-        welcome: "Bienvenue de retour,"
         edit_profile: "Modifier le profil"
         time_off_days: "Jours de congé restants"
   flash:
