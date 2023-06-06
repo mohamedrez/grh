@@ -5,6 +5,8 @@ class Review < ApplicationRecord
   has_many :review_users, dependent: :destroy
   has_many :users, through: :review_users
 
+  has_many :surveys, as: :surveyable, dependent: :destroy
+
   enum status: {upcoming: 0, current: 1, ended: 2}
   enum review_type: {manager_review: 0}
 end

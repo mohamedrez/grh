@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_05_145311) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_06_135812) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -403,6 +403,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_145311) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "sections", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "section_type"
+    t.bigint "survey_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_sections_on_survey_id"
+  end
+
   create_table "sites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "code"
@@ -410,6 +420,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_145311) do
     t.string "phone"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "surveys", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.string "surveyable_type", null: false
+    t.bigint "surveyable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["surveyable_type", "surveyable_id"], name: "index_surveys_on_surveyable"
   end
 
   create_table "time_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -498,6 +517,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_05_145311) do
   add_foreign_key "notes", "users", column: "author_id"
   add_foreign_key "review_users", "reviews"
   add_foreign_key "review_users", "users"
+  add_foreign_key "sections", "surveys"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"
   add_foreign_key "users", "sites"
