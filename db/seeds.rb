@@ -88,3 +88,54 @@ sections_data.each do |section_data|
     section.section_type = section_data[:section_type]
   end
 end
+
+# Create questions for (Strengths and opportunities)
+questions_strengths_opportunities_data = [
+  {
+    title: "Quelles sont les 2 à 3 forces que vous avez observées chez cette personne dans son rôle et/ou en tant que collègue ? Fournissez un exemple concret de chaque force en action.",
+    response_type: "textbox",
+    section_id: Section.where(name: "Strengths and opportunities").first.id
+  },
+  {
+    title: "Quelles sont les 2 à 3 opportunités pour cette personne de se développer dans son rôle et/ou en tant que collègue ? Fournissez un exemple concret de chaque opportunité en action.",
+    response_type: "textbox",
+    section_id: Section.where(name: "Strengths and opportunities").first.id
+  },
+  {
+    title: "De quelle manière avez-vous vu cette personne évoluer/se développer depuis sa dernière évaluation ?",
+    response_type: "textbox",
+    section_id: Section.where(name: "Strengths and opportunities").first.id
+  }
+].freeze
+
+questions_strengths_opportunities_data.each do |question_data|
+  Question.find_or_create_by(question_data) do |question|
+    question.title = question_data[:title]
+    question.response_type = question_data[:response_type]
+    question.section_id = question_data[:section_id]
+  end
+end
+
+# Create questions for (Goals)
+questions_goals_data = [
+  {
+    title: "Quels objectifs ou responsabilités cette personne a-t-elle dépassé ou atteint ?",
+    response_type: "textbox",
+    section_id: Section.where(name: "Goals").first.id
+  },
+  {
+    title: "Y a-t-il des objectifs et des responsabilités que cette personne n'a pas atteints ? Si oui, lesquels étaient-ils ?",
+    response_type: "single_select",
+    options: { "option1": "Yes", "option2": "No" },
+    section_id: Section.where(name: "Goals").first.id
+  }
+].freeze
+
+questions_goals_data.each do |question_data|
+  Question.find_or_create_by(question_data) do |question|
+    question.title = question_data[:title]
+    question.response_type = question_data[:response_type]
+    question.options = question_data[:options]
+    question.section_id = question_data[:section_id]
+  end
+end

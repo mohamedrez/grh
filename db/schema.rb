@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_06_091608) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_06_115504) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -384,6 +384,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_091608) do
     t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
+  create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.json "options"
+    t.integer "response_type"
+    t.bigint "section_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_questions_on_section_id"
+  end
+
   create_table "review_sections", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "review_id", null: false
     t.bigint "section_id", null: false
@@ -513,6 +523,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_091608) do
   add_foreign_key "motor_taggable_tags", "motor_tags", column: "tag_id"
   add_foreign_key "notes", "users"
   add_foreign_key "notes", "users", column: "author_id"
+  add_foreign_key "questions", "sections"
   add_foreign_key "review_sections", "reviews"
   add_foreign_key "review_sections", "sections"
   add_foreign_key "review_users", "reviews"
