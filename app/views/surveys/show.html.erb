@@ -6,6 +6,26 @@
     <% section.questions.each_with_index do |question, index| %>
       <div class="my-5 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 p-3">
         <h2 class="text-xl font-bold tracking-tight text-gray-900 sm:text-xl"><span class="text-indigo-500">Question <%= index + 1 %>: </span><%= question.title %></h2>
+        <div class="mt-3">
+          <% case question.question_type %>
+          <% when 'single_select' %>
+            <% question.options.each do |option| %>
+              <p>
+                <%= radio_button_tag question.id, option.id %>
+                <%= option.name %>
+              </p>
+            <% end %>
+          <% when 'multiple_select' %>
+            <% question.options.each do |option| %>
+              <p>
+                <%= check_box_tag question.id, option.id %>
+                <%= option.name %>
+              </p>
+            <% end %>
+          <% when 'textbox' %>
+            <%= text_area_tag question.id %>
+          <% end %>
+        </div>
       </div>
     <% end %>
     <div class="m-2">

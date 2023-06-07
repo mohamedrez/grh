@@ -10,6 +10,9 @@ application.register("avatar-menu", AvatarMenuController)
 import CalendarController from "./calendar_controller"
 application.register("calendar", CalendarController)
 
+import DynamicSelectController from "./dynamic_select_controller"
+application.register("dynamic-select", DynamicSelectController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
