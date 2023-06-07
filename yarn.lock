@@ -809,6 +809,11 @@ stimulus-rails-autosave@^4.1.1:
   dependencies:
     lodash.debounce "^4.0.8"
 
+stimulus-rails-nested-form@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/stimulus-rails-nested-form/-/stimulus-rails-nested-form-4.1.0.tgz#bfce185cff908170a4eb9973875b72517c3bc83a"
+  integrity sha512-ORqcTsg3sa4PGFEyUkbvcPG56F4K2fx1qJCUQIgngO1GaW5taKcvDkT0HvdTqtQAFe/1lN4CpJAqoSCt+nYF/Q==
+
 stimulus-use@^0.51.1:
   version "0.51.3"
   resolved "https://registry.yarnpkg.com/stimulus-use/-/stimulus-use-0.51.3.tgz#d7ac671aff8d0db253296dec89d38aa6f4b27e2a"

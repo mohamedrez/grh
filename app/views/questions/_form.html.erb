@@ -1,4 +1,7 @@
-<%= form_with(model: [survey, section, question], class: "mt-5 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2") do |form| %>
+<%= form_with(model: [survey, section, question], class: "mt-5 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2", data: {
+  controller: "nested-form",
+  nested_form_wrapper_selector_value: '.nested-form-wrapper'
+}) do |form| %>
   <div class="px-4 py-6 sm:p-8">
     <div class="grid max-w-full grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       <div class="sm:col-span-full">
@@ -17,32 +20,21 @@
         </div>
       </div>
     </div>
-    <div id="options" class="mt-5">
+    <div class="mt-5">
       <h2 class="mb-3 text-base font-semibold leading-7 text-gray-500">Enter the options if the response type is <span class="text-red-500">(Single-select or Multiple-select)*</span></h2>
-      <%= form.fields_for :options do |option_form| %>
-        <div class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 p-5">
-          <div class="grid max-w-full grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
-            <div class="sm:col-span-full">
-              
+      <div class="bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 p-5">
+        <template data-nested-form-target="template">
+          <%= form.fields_for :options, Option.new, child_index: 'NEW_RECORD' do |option_fields| %>
+                <%= render "option_fields", f: option_fields %>
+          <% end %>
+        </template>
+        <%= form.fields_for :options do |option_fields| %>
+          <%= render "option_fields", f: option_fields %>
+        <% end %>
 
-              <%= option_form.label :name, "Option name", class: "block" %>
-              <div class="relative mt-2 rounded-md shadow-sm">
-                <%= option_form.text_field :name, class: "w-full" %>
-                <div class="absolute inset-y-0 right-0 flex items-center pr-3">
-                  <%= link_to "" do %>
-                    <svg class="h-6 w-6 text-gray-400" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                  <% end %>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="m-2 mt-4">
-            <%= link_to "+ Add option", "" %>
-          </div>
-        </div>
-      <% end %>
+        <div data-nested-form-target="target"></div>
+      </div>
+      <button type="button" data-action="nested-form#add" class="mt-4 text-indigo-500">+ Add option</button>
     </div>
   </div>
   <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
