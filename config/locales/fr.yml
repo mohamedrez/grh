@@ -215,18 +215,6 @@ fr:
       holidays_list: "Liste des vacances pour cette année"
       add_holiday: "Ajouter un nouveau jour férié"
       edit_holiday: "Modifier le jour férié"
-    tasks:
-      task: "Tâches"
-      hi_task: "Salut"
-      going_team: "Voici ce qui se passe dans votre équipe"
-      creat_the_task: "Créer la tâche"
-      add_new_task: "Ajouter une nouvelle tâche"
-      title: "Titre"
-      due_date: "Date limite"
-      link: "Lien"
-      description: "Description"
-      do_it: "Allons-y"
-      update: "Actualiser la tâche"
     time_requests:
       title_time_request: "Demandes de congé"
       time_requests_list: "Liste des demandes de congé demandées par vous."
