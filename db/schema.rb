@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_06_135812) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_07_073758) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -384,6 +384,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_135812) do
     t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
+  create_table "options", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "name"
+    t.bigint "question_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_options_on_question_id"
+  end
+
+  create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.integer "response_type"
+    t.bigint "section_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["section_id"], name: "index_questions_on_section_id"
+  end
+
   create_table "review_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "review_id", null: false
     t.bigint "user_id", null: false
@@ -515,6 +532,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_06_135812) do
   add_foreign_key "motor_taggable_tags", "motor_tags", column: "tag_id"
   add_foreign_key "notes", "users"
   add_foreign_key "notes", "users", column: "author_id"
+  add_foreign_key "options", "questions"
+  add_foreign_key "questions", "sections"
   add_foreign_key "review_users", "reviews"
   add_foreign_key "review_users", "users"
   add_foreign_key "sections", "surveys"

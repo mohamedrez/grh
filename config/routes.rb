@@ -27,6 +27,12 @@ Rails.application.routes.draw do
     patch "/goals/:id/archive", to: "goals#archive", as: "archive_goal"
     patch "/goals/:id/end_goal", to: "goals#end_goal", as: "end_goal"
 
+    resources :surveys do
+      resources :sections do
+        resources :questions
+      end
+    end
+
     devise_for :users, path: "/auth"
 
     resources :users do

@@ -1,7 +1,7 @@
 class Survey < ApplicationRecord
   belongs_to :surveyable, polymorphic: true
 
-  has_many :section, dependent: :destroy
+  has_many :sections, dependent: :destroy
 
   validates :name, presence: true
 end
