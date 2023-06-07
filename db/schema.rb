@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_18_123153) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_05_090817) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -377,6 +377,21 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_123153) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "tasks", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.date "due_date"
+    t.integer "status"
+    t.string "link"
+    t.integer "priority"
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "author_id", null: false
+    t.index ["author_id"], name: "index_tasks_on_author_id"
+    t.index ["user_id"], name: "index_tasks_on_user_id"
+  end
+
   create_table "time_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
@@ -459,6 +474,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_18_123153) do
   add_foreign_key "motor_taggable_tags", "motor_tags", column: "tag_id"
   add_foreign_key "notes", "users"
   add_foreign_key "notes", "users", column: "author_id"
+  add_foreign_key "tasks", "users"
+  add_foreign_key "tasks", "users", column: "author_id"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"
   add_foreign_key "users", "sites"

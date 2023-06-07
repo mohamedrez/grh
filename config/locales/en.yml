@@ -179,6 +179,18 @@ en:
       holidays_list: "List of holidays for this year"
       add_holiday: "Add new holiday"
       edit_holiday: "Edit the holiday"
+    tasks:
+      task: "Tasks"
+      hi_task: "Hello"
+      going_team: "Here’s what’s going on with your team"
+      creat_the_task: "Creat The Task"
+      add_new_task: "Add new task"
+      title: "Title"
+      due_date: "Due date"
+      link: "link"
+      description: "Description"
+      do_it: "Let's do it"
+      update: "Update the Task"
     time_requests:
       title_time_request: "Time off requests"
       time_requests_list: "List of time off requests requested by you."

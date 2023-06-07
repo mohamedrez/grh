@@ -1,0 +1,21 @@
+<%= turbo_frame_tag "tabbed-content" do %>
+
+  <div class="px-4 sm:px-6 lg:px-8 mt-10">
+    <div class="sm:flex sm:items-center">
+      <div class="flex-auto sm:flex-auto">
+        <h1 class="text-3xl font-bold mb-4"><%= t("views.tasks.task") %></h1>
+        <h2 class="text-xl mb-2"><%= "#{t("views.tasks.hi_task")} #{@user.full_name}" %></h2>
+        <p class="text-gray-600"><%= t("views.tasks.going_team")%></p>
+      </div>
+      <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+        <%= link_to t("views.tasks.creat_the_task"), new_user_task_path(@user.id), class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", data: { turbo_frame: "right_content", action: "right#show" } %>
+      </div>
+    </div>
+
+    <div id="task-list">
+       <%= render @tasks %>
+    </div>
+  </div>
+  
+
+<% end %>

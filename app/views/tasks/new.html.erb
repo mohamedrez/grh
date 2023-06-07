@@ -1,0 +1,4 @@
+<%= turbo_frame_tag "right_content" do %>
+  <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight"><%= t("views.tasks.add_new_task") %></h2>
+  <%= render partial: "form", locals: {task: @task, user: @user} %>
+<% end %>
