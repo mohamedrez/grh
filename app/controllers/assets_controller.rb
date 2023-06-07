@@ -1,6 +1,7 @@
 class AssetsController < ApplicationController
   before_action :set_user
   before_action :set_asset, only: %i[show edit update destroy]
+  before_action :set_breadcrumbs, only: :index
 
   def index
     @assets = Asset.where(user_id: @user.id)
@@ -63,6 +64,11 @@ class AssetsController < ApplicationController
 
   def set_asset
     @asset = Asset.find(params[:id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb(@user.full_name, @user)
+    add_breadcrumb(t("views.assets.title_assets"), user_assets_path(@user))
   end
 
   def asset_params

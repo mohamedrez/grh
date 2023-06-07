@@ -1,8 +1,9 @@
 class AnnouncementsController < ApplicationController
   before_action :set_announcement, only: [:edit, :update, :destroy]
+  before_action :set_breadcrumbs, only: :index
 
   def index
-    @announcements = Announcement.all
+    @announcements = Announcement.order(created_at: :desc)
   end
 
   def new
@@ -54,6 +55,10 @@ class AnnouncementsController < ApplicationController
 
   def set_announcement
     @announcement = Announcement.find(params[:id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb(t("views.announcements.title_announcements"), announcements_path)
   end
 
   def announcement_params

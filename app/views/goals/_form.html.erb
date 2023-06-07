@@ -1,0 +1,61 @@
+<%= form_with(model: goal, class: "bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 my-5") do |form| %>
+  <div class="px-4 py-6 sm:p-8">
+    <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="sm:col-span-full">
+        <%= form.label :title, t("attributes.goal.title"), class: "block" %>
+        <div class="mt-2">
+          <%= form.text_field :title, class: "w-full" %>
+          <%= inline_error_for(:title, goal).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :owner_id, t("attributes.goal.owner"), class: "block" %>
+        <div class="mt-2">
+          <%= form.select :owner_id, options_for_select(User.all.map {|user| [user.full_name, user.id]}, @owner&.id) %>
+          <%= inline_error_for(:owner_id, goal).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :level, t("attributes.goal.level"), class: "block" %>
+        <div class="mt-2">
+          <%= form.select :level, Goal.levels.keys.collect { |level| [Goal.human_enum_name(:level, level), level] } %>
+          <%= inline_error_for(:level, goal).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :start_date, t("attributes.goal.start_date"), class: "block" %>
+        <div class="mt-2">
+          <%= form.date_field :start_date, class: "w-full" %>
+          <%= inline_error_for(:start_date, goal).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :due_date, t("attributes.goal.due_date"), class: "block" %>
+        <div class="mt-2">
+          <%= form.date_field :due_date, class: "w-full" %>
+          <%= inline_error_for(:due_date, goal).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :description, t("attributes.goal.description"), class: "block" %>
+        <div class="mt-2">
+          <%= form.rich_text_area :description, class: "block h-40 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% if action_name == 'edit' %>
+    <%= hidden_field_tag :from_view, @from_view %>
+  <% end %>
+  <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+    <button data-action="click->right#hide" type="button" class= "text-sm font-semibold leading-6 text-gray-900">
+      <%= t("buttons.cancel") %>
+    </button>
+    <%= form.submit t("buttons.save"), class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  </div>
+<% end %>

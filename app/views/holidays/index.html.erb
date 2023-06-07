@@ -1,8 +1,7 @@
-<div class="px-4 sm:px-6 lg:px-8">
+<div class="px-4 sm:px-6 lg:px-8 mt-5">
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t("views.holidays.title_holidays") %></h1>
-      <p class="mt-2 text-sm text-gray-700"><%= t("views.holidays.holidays_list") %></p>
+      <h1><%= t("views.holidays.title_holidays") %></h1>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
       <%= link_to new_holiday_path, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", data: { turbo_frame: "right_content", action: "right#show" } do %>

@@ -9,6 +9,7 @@ fr:
     view: "Afficher"
     download: "Télécharger"
     delete: "Supprimer"
+    archive: "Archiver"
   attributes:
     announcement:
       title: "Titre"
@@ -74,6 +75,27 @@ fr:
         sister: "Sœur"
         son: "Fils"
         wife: "Épouse"
+    goal:
+      title: "Titre"
+      owner: "Propriétaire"
+      level: "Niveau"
+      status: "Statut"
+      description: "Description"
+      start_date: "Date de début"
+      due_date: "Date d'échéance"
+      owned_by: "Possédé par"
+      end_goal_description: "Description de l'objectif final"
+      statuses:
+        no_feedback: "Aucun"
+        not_achieved: "Non atteint"
+        partially_achieved: "Partielle"
+        completed: "Atteint"
+        overpassed: "Dépassé"
+      levels:
+        none: "-- Aucun --"
+        important: "Important"
+        very_important: "Très important"
+        critical: "Critique"
     time_request:
       category: "Catégorie"
       content: "Contenu"
@@ -174,6 +196,20 @@ fr:
       create_emergency_contact: "Créer un contact d'urgence"
       add_emergency_contact: "Ajouter un contact d'urgence"
       edit_emergency_contact: "Modifier le contact d'urgence"
+    goals:
+      title_goals: "Objectifs"
+      create_goal: "Créer un objectif"
+      add_goal: "Ajouter un objectif"
+      edit_goal: "Modifier l'objectif"
+      end_goal_description_placeholder: "Fournissez des informations sur tout ce qui concerne la finalisation de l'objectif."
+      goal_not_completed: "L'objectif n'a pas été réalisé avant la date d'échéance."
+      goal_completed: "L'objectif a été réalisé avant la date d'échéance."
+      goal_overpassed: "L'objectif a été atteint avec un travail supplémentaire ou des améliorations."
+      goal_partially_achieved: "L'objectif a été partiellement atteint"
+      end_goal: "Finalisation de l'objectif"
+      goals_description: "Gérez les objectifs à travers votre entreprise pour aligner et développer votre équipe"
+      search_bar: "Titre, ou propriétaire"
+      all: "Tout"
     holidays:
       title_holidays: "Vacances"
       holidays_list: "Liste des vacances pour cette année"
@@ -193,7 +229,7 @@ fr:
       update: "Actualiser la tâche"
     time_requests:
       title_time_request: "Demandes de congé"
-      time_requests_list: "Liste des demandes de congé demandées par vous."    
+      time_requests_list: "Liste des demandes de congé demandées par vous."
       who_out: "Qui d'autre sera absent ?"
       no_one_out: "Personne d'autre de l'équipe ne sera absent."
       add_time_off: "Ajouter une nouvelle demande de congé"
@@ -246,7 +282,6 @@ fr:
       deny: "Refuser"
       view_profile: "Voir le profil"
       user_overview:
-        welcome: "Bienvenue de retour,"
         edit_profile: "Modifier le profil"
         time_off_days: "Jours de congé restants"
   flash:
@@ -258,13 +293,18 @@ fr:
     successfully_imported : "Importation réussie"
     status_successfully_updated: "Le statut de la dépense a été mis à jour avec succès."
     receipt_successfully_deleted: "Le reçu a été supprimé avec succès."
+    goal_successfully_ended: objectif terminé avec succès
+    successfully_archived: "Archivé avec succès"
   errors:
     comment_cant_be_blank: "Commentaire ne peut pas être vide."
     prohibited: "ont empêché(e)s son enregistrement :"
     select_csv: "Sélectionnez un fichier CSV à importer."
     not_allowing_none: "ne peut pas être 'Aucun'"
+    end_goal_description: "Vous devez fournir une description pour l'objectif final."
+    should_provide_status: "Vous devez fournir un statut."
   popups:
     message_delete: "Êtes-vous sûr de vouloir supprimer ceci ?"
+    message_archive: "Êtes-vous sûr de vouloir archiver ceci ?"
   devise:
     registrations:
       edit:
