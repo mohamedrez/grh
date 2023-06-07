@@ -3,9 +3,9 @@ class Question < ApplicationRecord
 
   has_many :options, dependent: :destroy
 
-  validates :title, :response_type, presence: true
+  validates :title, :question_type, presence: true
 
   accepts_nested_attributes_for :options, allow_destroy: true
 
-  enum response_type: {textbox: 0, single_select: 1, multiple_select: 2}
+  enum question_type: {textbox: 0, single_select: 1, multiple_select: 2}
 end

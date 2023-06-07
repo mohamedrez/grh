@@ -394,7 +394,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_07_073758) do
 
   create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
-    t.integer "response_type"
+    t.integer "question_type"
     t.bigint "section_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

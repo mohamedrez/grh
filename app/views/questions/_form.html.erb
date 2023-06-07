@@ -13,10 +13,10 @@
       </div>
 
       <div class="sm:col-span-full">
-        <%= form.label :response_type, class: "block" %>
+        <%= form.label :question_type, class: "block" %>
         <div class="mt-2">
-          <%= form.select :response_type, options_for_select(Question.response_types.map {|key, value| [key.humanize, key]}, question.response_type) %>
-          <%= inline_error_for(:response_type, question).html_safe %>
+          <%= form.select :question_type, options_for_select(Question.question_types.map {|key, value| [key.humanize, key]}, question.question_type) %>
+          <%= inline_error_for(:question_type, question).html_safe %>
         </div>
       </div>
     </div>
