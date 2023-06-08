@@ -8,7 +8,7 @@ FactoryBot.define do
     mission_type { 1 }
     location { "MyString" }
     site { nil }
-    transport_means { 1 }
+    transport_type { 1 }
     description { nil }
   end
 end

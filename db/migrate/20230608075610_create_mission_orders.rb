@@ -9,7 +9,7 @@ class CreateMissionOrders < ActiveRecord::Migration[7.0]
       t.integer :mission_type
       t.string :location
       t.references :site, null: false, foreign_key: true
-      t.integer :transport_means
+      t.integer :transport_type
 
       t.timestamps
     end

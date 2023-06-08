@@ -76,6 +76,6 @@ class MissionOrdersController < ApplicationController
   end
 
   def mission_order_params
-    params.require(:mission_order).permit(:title, :start_date, :end_date, :indemnity_type, :accommodation, :mission_type, :location, :site_id, :transport_means, :description)
+    params.require(:mission_order).permit(:title, :start_date, :end_date, :indemnity_type, :accommodation, :mission_type, :location, :site_id, :transport_type, :description, :user_id)
   end
 end

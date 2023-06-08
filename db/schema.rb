@@ -179,7 +179,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_075610) do
     t.integer "mission_type"
     t.string "location"
     t.bigint "site_id", null: false
-    t.integer "transport_means"
+    t.integer "transport_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["site_id"], name: "index_mission_orders_on_site_id"

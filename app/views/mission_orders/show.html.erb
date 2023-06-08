@@ -72,8 +72,8 @@
           <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= MissionOrder.human_enum_name(:accommodation, @mission_order.accommodation) %></dd>
         </div>
         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-          <dt class="text-sm font-medium text-gray-900"><%= t("attributes.mission_order.transport_means_attribute") %></dt>
-          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= MissionOrder.human_enum_name(:transport_means, @mission_order.transport_means) %></dd>
+          <dt class="text-sm font-medium text-gray-900"><%= t("attributes.mission_order.transport_type") %></dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= MissionOrder.human_enum_name(:transport_type, @mission_order.transport_type) %></dd>
         </div>
         <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt class="text-sm font-medium text-gray-900"><%= t("attributes.shared.start_date") %></dt>

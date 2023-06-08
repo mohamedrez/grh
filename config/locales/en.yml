@@ -103,29 +103,22 @@ en:
       site: "Site"
       location: "Location"
       accommodation: "Accommodation"
-      transport_means_attribute: "Transport means"
+      transport_type: "Transport type"
       description: "Description"
       mission_types:
-        none_mission_types: "-- None --"
         project: "Project"
         site: "Site"
       accommodations:
-        none_accommodations: "-- None --"
         apartment: "Apartment"
         hotel: "Hotel"
         other_accommodations: "Other"
       indemnity_types:
-        none_indemnity_types: "-- None --"
         expense_report: "Expense report"
         flat_rate: "Flat rate"
-      transport_means:
-        none_transport_means: "-- None --"
-        car: "Car"
-        bus: "Bus"
+      transport_types:
+        plane: "Plane"
         train: "Train"
-        motorbike: "Motorbike"
-        taxi: "Taxi"
-        other_transport_means: "Other"
+        bus: "Bus"
     time_request:
       category: "Category"
       content: "Content"

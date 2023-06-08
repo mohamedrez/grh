@@ -44,10 +44,10 @@
         </div>
       </div>
       <div class="sm:col-span-3">
-        <%= form.label :transport_means, t("attributes.mission_order.transport_means_attribute") %>
+        <%= form.label :transport_type, t("attributes.mission_order.transport_type") %>
         <div class="mt-2">
-          <%= form.select :transport_means, MissionOrder.transport_means.keys.collect { |transport_means| [MissionOrder.human_enum_name(:transport_means, transport_means), transport_means] } %>
-          <%= inline_error_for(:transport_means, mission_order).html_safe %>
+          <%= form.select :transport_type, MissionOrder.transport_types.keys.collect { |transport_type| [MissionOrder.human_enum_name(:transport_type, transport_type), transport_type] } %>
+          <%= inline_error_for(:transport_type, mission_order).html_safe %>
         </div>
       </div>
       <div class="sm:col-span-3 sm:col-start-1">
