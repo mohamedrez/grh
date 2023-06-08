@@ -244,6 +244,12 @@ en:
       holidays_list: "List of holidays for this year"
       add_holiday: "Add new holiday"
       edit_holiday: "Edit the holiday"
+    mission_orders:
+      title_mission_orders: "Mission orders"
+      create_mission_order: "Create mission order"
+      add_mission_order: "Add new mission order"
+      edit_mission_order: "Edit the mission order"
+      mission_order_details: "Mission Order Details"
     time_requests:
       title_time_request: "Time off requests"
       time_requests_list: "List of time off requests requested by you."
@@ -260,6 +266,8 @@ en:
       user_requests_list: "List of all requests requested by you."
       no_one_yet: "No one yet"
       request: "Request"
+      time_off_request: "Time Off Request"
+      mission_order: "Mission Order"
     users:
       personal_details_section: "Personal details"
       list_personal_details: "List of personal details about you."

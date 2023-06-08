@@ -1,6 +1,7 @@
 class MissionOrdersController < ApplicationController
   before_action :set_user, except: :destroy
   before_action :set_mission_order, only: %i[show edit update destroy]
+  before_action :set_breadcrumbs, only: :index
 
   def index
     ids = UserRequest.where(user_id: @user.id, requestable_type: "MissionOrder").pluck(:requestable_id)
@@ -67,6 +68,11 @@ class MissionOrdersController < ApplicationController
 
   def set_mission_order
     @mission_order = MissionOrder.find(params[:id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb(@user.full_name, @user)
+    add_breadcrumb(t("views.mission_orders.title_mission_orders"), user_mission_orders_path(@user))
   end
 
   def mission_order_params
