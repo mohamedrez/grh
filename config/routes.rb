@@ -3,7 +3,6 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
-  resources :mission_orders
   get "calendar", to: "calendar#index"
   get "organization", to: "organization#index"
   get "organization/csv", to: "organization#csv"
@@ -44,6 +43,7 @@ Rails.application.routes.draw do
       patch "settings", to: "settings#update"
       resources :experiences, only: [:new, :create]
       resources :educations, only: [:new, :create]
+      resources :mission_orders
     end
 
     get "user_notifications", to: "user_notifications#index"

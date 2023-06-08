@@ -1,67 +1,82 @@
-<%= form_with(model: mission_order) do |form| %>
-  <% if mission_order.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(mission_order.errors.count, "error") %> prohibited this mission_order from being saved:</h2>
-
-      <ul>
-        <% mission_order.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+<%= form_with( model: [user, mission_order], class: "mt-5 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2") do |form| %>
+  <div class="sm:p-8">
+    <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="sm:col-span-full sm:col-start-1">
+        <%= form.label :title, t("attributes.mission_order.title") %>
+        <div class="mt-2">
+          <%= form.text_field :title, class: "w-full" %>
+          <%= inline_error_for(:title, mission_order).html_safe %>
+        </div>
+      </div>
+      <div class="sm:col-span-3 sm:col-start-1">
+        <%= form.label :mission_type, t("attributes.mission_order.mission_type") %>
+        <div class="mt-2">
+          <%= form.select :mission_type, MissionOrder.mission_types.keys.collect { |mission_type| [MissionOrder.human_enum_name(:mission_type, mission_type), mission_type] } %>
+          <%= inline_error_for(:mission_type, mission_order).html_safe %>
+        </div>
+      </div>
+      <div class="sm:col-span-3">
+        <%= form.label :indemnity_type, t("attributes.mission_order.indemnity_type") %>
+        <div class="mt-2">
+          <%= form.select :indemnity_type, MissionOrder.indemnity_types.keys.collect { |indemnity_type| [MissionOrder.human_enum_name(:indemnity_type, indemnity_type), indemnity_type] } %>
+          <%= inline_error_for(:indemnity_type, mission_order).html_safe %>
+        </div>
+      </div>
+      <div class="sm:col-span-3 sm:col-start-1">
+        <%= form.label :site_id, t("attributes.mission_order.site") %>
+        <div class="mt-2">
+          <%= form.select :site_id, options_for_select(Site.pluck(:name, :id), mission_order.site_id) %>
+          <%= inline_error_for(:site_id, mission_order).html_safe %>
+        </div>
+      </div>
+      <div class="sm:col-span-3">
+        <%= form.label :location, t("attributes.mission_order.location") %>
+        <div class="mt-2">
+          <%= form.text_field :location, class: "w-full" %>
+          <%= inline_error_for(:location, mission_order).html_safe %>
+        </div>
+      </div>
+      <div class="sm:col-span-3 sm:col-start-1">
+        <%= form.label :accommodation, t("attributes.mission_order.accommodation") %>
+        <div class="mt-2">
+          <%= form.select :accommodation, MissionOrder.accommodations.keys.collect { |accommodation| [MissionOrder.human_enum_name(:accommodation, accommodation), accommodation] } %>
+          <%= inline_error_for(:accommodation, mission_order).html_safe %>
+        </div>
+      </div>
+      <div class="sm:col-span-3">
+        <%= form.label :transport_means, t("attributes.mission_order.transport_means_attribute") %>
+        <div class="mt-2">
+          <%= form.select :transport_means, MissionOrder.transport_means.keys.collect { |transport_means| [MissionOrder.human_enum_name(:transport_means, transport_means), transport_means] } %>
+          <%= inline_error_for(:transport_means, mission_order).html_safe %>
+        </div>
+      </div>
+      <div class="sm:col-span-3 sm:col-start-1">
+        <%= form.label :start_date, t("attributes.shared.start_date") %>
+        <div class="mt-2">
+          <%= form.date_field :start_date, class: "w-full" %>
+          <%= inline_error_for(:start_date, mission_order).html_safe %>
+        </div>
+      </div>
+      <div class="sm:col-span-3">
+        <%= form.label :end_date, t("attributes.shared.end_date") %>
+        <div class="mt-2">
+          <%= form.date_field :end_date, class: "w-full" %>
+          <%= inline_error_for(:end_date, mission_order).html_safe %>
+        </div>
+      </div>
+      <div class="sm:col-span-full">
+        <%= form.label :description, t("attributes.shared.description"), class: "block" %>
+        <div class="mt-2">
+          <%= form.rich_text_area :description, class: "block h-40 rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+        </div>
+      </div>
+      <%= form.hidden_field :user_id, value: @user_id %>
     </div>
-  <% end %>
-
-  <div>
-    <%= form.label :title, style: "display: block" %>
-    <%= form.text_field :title %>
   </div>
-
-  <div>
-    <%= form.label :start_date, style: "display: block" %>
-    <%= form.date_field :start_date %>
-  </div>
-
-  <div>
-    <%= form.label :end_date, style: "display: block" %>
-    <%= form.date_field :end_date %>
-  </div>
-
-  <div>
-    <%= form.label :indemnity_type, style: "display: block" %>
-    <%= form.number_field :indemnity_type %>
-  </div>
-
-  <div>
-    <%= form.label :accommodation, style: "display: block" %>
-    <%= form.number_field :accommodation %>
-  </div>
-
-  <div>
-    <%= form.label :mission_type, style: "display: block" %>
-    <%= form.number_field :mission_type %>
-  </div>
-
-  <div>
-    <%= form.label :location, style: "display: block" %>
-    <%= form.text_field :location %>
-  </div>
-
-  <div>
-    <%= form.label :site_id, style: "display: block" %>
-    <%= form.text_field :site_id %>
-  </div>
-
-  <div>
-    <%= form.label :transport_means, style: "display: block" %>
-    <%= form.number_field :transport_means %>
-  </div>
-
-  <div>
-    <%= form.label :description, style: "display: block" %>
-    <%= form.rich_text_area :description %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+  <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+    <button data-action="click->right#hide" type="button" class= "text-sm font-semibold leading-6 text-gray-900">
+      <%= t("buttons.cancel") %>
+    </button>
+    <%= form.submit t("buttons.save"), class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
   </div>
 <% end %>

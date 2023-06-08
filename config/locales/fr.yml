@@ -96,6 +96,36 @@ fr:
         important: "Important"
         very_important: "Très important"
         critical: "Critique"
+    mission_order:
+      title: "Titre"
+      mission_type: "Type de mission"
+      indemnity_type: "Type d'indemnité"
+      site: "Site"
+      location: "Emplacement"
+      accommodation: "Hébergement"
+      transport_means_attribute: "Moyen de transport"
+      description: "Description"
+      mission_types:
+        none_mission_types: "-- Aucun --"
+        project: "Projet"
+        site: "Site"
+      accommodations:
+        none_accommodations: "-- Aucun --"
+        apartment: "Appartement"
+        hotel: "Hôtel"
+        other_accommodations: "Autre"
+      indemnity_types:
+        none_indemnity_types: "-- Aucun --"
+        expense_report: "Rapport de dépenses"
+        flat_rate: "Forfait"
+      transport_means:
+        none_transport_means: "-- Aucun --"
+        car: "Voiture"
+        bus: "Bus"
+        train: "Train"
+        motorbike: "Moto"
+        taxi: "Taxi"
+        other_transport_means: "Autre"
     time_request:
       category: "Catégorie"
       content: "Contenu"

@@ -1,10 +1,2 @@
-<p style="color: green"><%= notice %></p>
-
-<%= render @mission_order %>
-
-<div>
-  <%= link_to "Edit this mission order", edit_mission_order_path(@mission_order) %> |
-  <%= link_to "Back to mission orders", mission_orders_path %>
-
-  <%= button_to "Destroy this mission order", @mission_order, method: :delete %>
-</div>
+<%= turbo_frame_tag "right_content" do %>
+<% end %>

@@ -1,8 +1,10 @@
 class MissionOrdersController < ApplicationController
+  before_action :set_user, only: %i[index new create edit update]
   before_action :set_mission_order, only: %i[show edit update destroy]
 
   def index
-    @mission_orders = MissionOrder.all
+    ids = UserRequest.where(user_id: @user.id, requestable_type: "MissionOrder").pluck(:requestable_id)
+    @mission_orders = MissionOrder.where(id: ids)
   end
 
   def show
@@ -17,17 +19,30 @@ class MissionOrdersController < ApplicationController
 
   def create
     @mission_order = MissionOrder.new(mission_order_params)
+    @mission_order.user_id = @user.id
 
     if @mission_order.save
-      redirect_to mission_order_url(@mission_order), notice: t("flash.successfully_created")
+      flash.now[:notice] = t("flash.successfully_created")
+      render turbo_stream: [
+        turbo_stream.append("mission-order-list", @mission_order),
+        turbo_stream.replace("right", partial: "shared/right"),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def update
+    mission_order_params[:user_id] = @user.id
+
     if @mission_order.update(mission_order_params)
-      redirect_to mission_order_url(@mission_order), notice: t("flash.successfully_updated")
+      flash.now[:notice] = t("flash.successfully_updated")
+      render turbo_stream: [
+        turbo_stream.replace(@mission_order, @mission_order),
+        turbo_stream.replace("right", partial: "shared/right"),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
     else
       render :edit, status: :unprocessable_entity
     end
@@ -36,16 +51,24 @@ class MissionOrdersController < ApplicationController
   def destroy
     @mission_order.destroy
 
-    redirect_to mission_orders_url, notice: t("flash.successfully_destroyed")
+    flash.now[:notice] = t("flash.successfully_destroyed")
+    render turbo_stream: [
+      turbo_stream.remove(@mission_order),
+      turbo_stream.replace("notification_alert", partial: "layouts/alert")
+    ]
   end
 
   private
+
+  def set_user
+    @user = User.find(params[:user_id])
+  end
 
   def set_mission_order
     @mission_order = MissionOrder.find(params[:id])
   end
 
   def mission_order_params
-    params.require(:mission_order).permit(:title, :start_date, :end_date, :indemnity_type, :accommodation, :mission_type, :location, :site_id, :transport_means, :description, :rich_text)
+    params.require(:mission_order).permit(:title, :start_date, :end_date, :indemnity_type, :accommodation, :mission_type, :location, :site_id, :transport_means, :description)
   end
 end

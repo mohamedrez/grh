@@ -91,12 +91,41 @@ en:
         completed: "Completed"
         overpassed: "Overpassed"
         partially_achieved: "Partially achieved"
-
       levels:
         none: "-- None --"
         important: "Important"
         very_important: "Very important"
         critical: "Critical"
+    mission_order:
+      title: "Title"
+      mission_type: "Mission type"
+      indemnity_type: "Indemnity type"
+      site: "Site"
+      location: "Location"
+      accommodation: "Accommodation"
+      transport_means_attribute: "Transport means"
+      description: "Description"
+      mission_types:
+        none_mission_types: "-- None --"
+        project: "Project"
+        site: "Site"
+      accommodations:
+        none_accommodations: "-- None --"
+        apartment: "Apartment"
+        hotel: "Hotel"
+        other_accommodations: "Other"
+      indemnity_types:
+        none_indemnity_types: "-- None --"
+        expense_report: "Expense report"
+        flat_rate: "Flat rate"
+      transport_means:
+        none_transport_means: "-- None --"
+        car: "Car"
+        bus: "Bus"
+        train: "Train"
+        motorbike: "Motorbike"
+        taxi: "Taxi"
+        other_transport_means: "Other"
     time_request:
       category: "Category"
       content: "Content"
