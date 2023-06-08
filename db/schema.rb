@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_25_122459) do
+ActiveRecord::Schema[7.0].define(version: 2023_05_31_103751) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -166,6 +166,22 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_25_122459) do
     t.string "name"
     t.date "start_date"
     t.date "end_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "jobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "title"
+    t.integer "job_type"
+    t.string "location"
+    t.boolean "remote", default: false, null: false
+    t.string "overview"
+    t.integer "min_salary"
+    t.integer "max_salary"
+    t.integer "unit"
+    t.integer "status", default: 0
+    t.integer "application", default: 0
+    t.integer "interview", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
