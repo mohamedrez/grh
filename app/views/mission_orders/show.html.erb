@@ -90,4 +90,8 @@
       </dl>
     </div>
   </div>
+
+  <div class="my-5">
+    <%= turbo_frame_tag "comments", src: comments_path(commentable_type: "UserRequest", commentable_id: @user_request.id) %>
+  </div>
 <% end %>
