@@ -1,5 +1,5 @@
 class MissionOrdersController < ApplicationController
-  before_action :set_user, only: %i[index new create edit update]
+  before_action :set_user, except: :destroy
   before_action :set_mission_order, only: %i[show edit update destroy]
 
   def index
@@ -8,6 +8,7 @@ class MissionOrdersController < ApplicationController
   end
 
   def show
+    @user_request = @mission_order.user_request
   end
 
   def new
