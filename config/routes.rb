@@ -3,6 +3,7 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  resources :mission_orders
   get "calendar", to: "calendar#index"
   get "organization", to: "organization#index"
   get "organization/csv", to: "organization#csv"

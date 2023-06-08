@@ -1,0 +1,67 @@
+<%= form_with(model: mission_order) do |form| %>
+  <% if mission_order.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(mission_order.errors.count, "error") %> prohibited this mission_order from being saved:</h2>
+
+      <ul>
+        <% mission_order.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :start_date, style: "display: block" %>
+    <%= form.date_field :start_date %>
+  </div>
+
+  <div>
+    <%= form.label :end_date, style: "display: block" %>
+    <%= form.date_field :end_date %>
+  </div>
+
+  <div>
+    <%= form.label :indemnity_type, style: "display: block" %>
+    <%= form.number_field :indemnity_type %>
+  </div>
+
+  <div>
+    <%= form.label :accommodation, style: "display: block" %>
+    <%= form.number_field :accommodation %>
+  </div>
+
+  <div>
+    <%= form.label :mission_type, style: "display: block" %>
+    <%= form.number_field :mission_type %>
+  </div>
+
+  <div>
+    <%= form.label :location, style: "display: block" %>
+    <%= form.text_field :location %>
+  </div>
+
+  <div>
+    <%= form.label :site_id, style: "display: block" %>
+    <%= form.text_field :site_id %>
+  </div>
+
+  <div>
+    <%= form.label :transport_means, style: "display: block" %>
+    <%= form.number_field :transport_means %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.rich_text_area :description %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

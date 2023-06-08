@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Mission orders</h1>
+
+<div id="mission_orders">
+  <% @mission_orders.each do |mission_order| %>
+    <%= render mission_order %>
+    <p>
+      <%= link_to "Show this mission order", mission_order %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New mission order", new_mission_order_path %>
