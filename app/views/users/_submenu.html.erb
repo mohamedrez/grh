@@ -6,6 +6,7 @@
         <%= link_to t("views.emergency_contacts.title_emergency_contact"), user_emergency_contacts_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
         <%= link_to t("views.user_requests.title_user_request"), user_user_requests_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
         <%= link_to t("views.time_requests.title_time_request"), user_time_requests_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+        <%= link_to t("views.mission_orders.title_mission_orders"), user_mission_orders_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
         <%= link_to t("views.assets.title_assets"), user_assets_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
         <%= link_to t("views.expenses.title_expenses"), user_expenses_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
       </nav>

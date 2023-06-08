@@ -43,6 +43,7 @@ Rails.application.routes.draw do
       patch "settings", to: "settings#update"
       resources :experiences, only: [:new, :create]
       resources :educations, only: [:new, :create]
+      resources :mission_orders
     end
 
     get "user_notifications", to: "user_notifications#index"

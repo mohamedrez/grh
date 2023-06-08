@@ -91,7 +91,6 @@ en:
         completed: "Completed"
         overpassed: "Overpassed"
         partially_achieved: "Partially achieved"
-
       levels:
         none: "-- None --"
         important: "Important"
@@ -115,6 +114,29 @@ en:
       applied: "Applied"
       interviewing : "Interviewing"
       unit: "Per"
+    mission_order:
+      title: "Title"
+      mission_type: "Mission type"
+      indemnity_type: "Indemnity type"
+      site: "Site"
+      location: "Location"
+      accommodation: "Accommodation"
+      transport_type: "Transport type"
+      description: "Description"
+      mission_types:
+        project: "Project"
+        site: "Site"
+      accommodations:
+        apartment: "Apartment"
+        hotel: "Hotel"
+        other_accommodations: "Other"
+      indemnity_types:
+        expense_report: "Expense report"
+        flat_rate: "Flat rate"
+      transport_types:
+        plane: "Plane"
+        train: "Train"
+        bus: "Bus"
     time_request:
       category: "Category"
       content: "Content"
@@ -243,6 +265,12 @@ en:
       job_desription: "Job description"
       add_details: "Please fill in job details"
       description_full: "Describe a role including duties, skills and requirements"
+    mission_orders:
+      title_mission_orders: "Mission orders"
+      create_mission_order: "Create mission order"
+      add_mission_order: "Add new mission order"
+      edit_mission_order: "Edit the mission order"
+      mission_order_details: "Mission Order Details"
     time_requests:
       title_time_request: "Time off requests"
       time_requests_list: "List of time off requests requested by you."
@@ -259,6 +287,8 @@ en:
       user_requests_list: "List of all requests requested by you."
       no_one_yet: "No one yet"
       request: "Request"
+      time_off_request: "Time Off Request"
+      mission_order: "Mission Order"
     users:
       personal_details_section: "Personal details"
       list_personal_details: "List of personal details about you."

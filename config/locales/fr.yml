@@ -96,6 +96,29 @@ fr:
         important: "Important"
         very_important: "Très important"
         critical: "Critique"
+    mission_order:
+      title: "Titre"
+      mission_type: "Type de mission"
+      indemnity_type: "Type d'indemnité"
+      site: "Site"
+      location: "Emplacement"
+      accommodation: "Hébergement"
+      transport_type: "Type de transport"
+      description: "Description"
+      mission_types:
+        project: "Projet"
+        site: "Site"
+      accommodations:
+        apartment: "Appartement"
+        hotel: "Hôtel"
+        other_accommodations: "Autre"
+      indemnity_types:
+        expense_report: "Rapport de dépenses"
+        flat_rate: "Forfait"
+      transport_types:
+        plane: "Avion"
+        train: "Train"
+        bus: "Bus"
     time_request:
       category: "Catégorie"
       content: "Contenu"
@@ -215,6 +238,12 @@ fr:
       holidays_list: "Liste des vacances pour cette année"
       add_holiday: "Ajouter un nouveau jour férié"
       edit_holiday: "Modifier le jour férié"
+    mission_orders:
+      title_mission_orders: "Ordres de mission"
+      create_mission_order: "Créer un ordre de mission"
+      add_mission_order: "Ajouter un nouvel ordre de mission"
+      edit_mission_order: "Modifier l'ordre de mission"
+      mission_order_details: "Détails de l'ordre de mission"
     time_requests:
       title_time_request: "Demandes de congé"
       time_requests_list: "Liste des demandes de congé demandées par vous."
@@ -231,6 +260,8 @@ fr:
       user_requests_list: "Liste de toutes les demandes que vous avez effectuées."
       no_one_yet: "Personne pour l'instant"
       request: "Demande"
+      time_off_request: "Demande de congé"
+      mission_order: "Ordre de mission"
     users:
       personal_details_section: "Détails personnels"
       list_personal_details: "Liste des détails personnels vous concernant."
