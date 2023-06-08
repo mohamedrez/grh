@@ -38,6 +38,7 @@ class User < ApplicationRecord
   has_many :announcements, dependent: :destroy
   has_many :expenses, dependent: :destroy
   has_many :notes, dependent: :destroy
+  has_many :task, dependent: :destroy
 
   has_one :address, dependent: :destroy
 
