@@ -96,6 +96,24 @@ en:
         important: "Important"
         very_important: "Very important"
         critical: "Critical"
+    job:
+      title: "Title"
+      job_type: "Job type"
+      location: "Location"
+      remote: "Remote"
+      job_status: "Job status"
+      overview: "Short overview of the job"
+      description_add: "Provide a job description"
+      description_view: "Job description"
+      job_types:
+        full_time: "Full time"
+        part_time: "Part time"
+      statuses:
+        open: "Open"
+        closed: "Closed"
+      applied: "Applied"
+      interviewing : "Interviewing"
+      unit: "Per"
     mission_order:
       title: "Title"
       mission_type: "Mission type"
@@ -237,6 +255,16 @@ en:
       holidays_list: "List of holidays for this year"
       add_holiday: "Add new holiday"
       edit_holiday: "Edit the holiday"
+    jobs:
+      job_title: "Job title"
+      jobs_list: "List of all jobs"
+      edit_job: "Edit a job"
+      view_job: "View a job"
+      delete_job: "Delete a job"
+      new: "Add a Job"
+      job_desription: "Job description"
+      add_details: "Please fill in job details"
+      description_full: "Describe a role including duties, skills and requirements"
     mission_orders:
       title_mission_orders: "Mission orders"
       create_mission_order: "Create mission order"
@@ -288,6 +316,7 @@ en:
         requests: "Requests"
         calendar: "Calendar"
         organization: "Organization"
+        jobs: "Jobs"
     shared:
       settings: "Settings"
       profile: "Profile"
