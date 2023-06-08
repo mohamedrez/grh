@@ -19,12 +19,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
 
     if @review.save
-      flash.now[:notice] = t("flash.successfully_created")
-      render turbo_stream: [
-        turbo_stream.append("review-list", @review),
-        turbo_stream.replace("right", partial: "shared/right"),
-        turbo_stream.replace("notification_alert", partial: "layouts/alert")
-      ]
+      redirect_to edit_review_path(@review), notice: t("flash.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -32,12 +27,7 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params)
-      flash.now[:notice] = t("flash.successfully_updated")
-      render turbo_stream: [
-        turbo_stream.replace(@review, @review),
-        turbo_stream.replace("right", partial: "shared/right"),
-        turbo_stream.replace("notification_alert", partial: "layouts/alert")
-      ]
+      redirect_to edit_review_path(@review), notice: t("flash.successfully_updated")
     else
       render :edit, status: :unprocessable_entity
     end
