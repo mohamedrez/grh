@@ -67,6 +67,8 @@ gem "bootsnap", require: false
 gem "redis", "~> 5.0"
 gem "sentry-ruby"
 gem "sentry-rails"
+gem "wisper", "2.0.0"
+gem "wisper-activerecord"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
