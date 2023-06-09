@@ -61,7 +61,13 @@ class ReviewsController < ApplicationController
         :name,
         :description,
         :section_type,
-        :_destroy
+        :_destroy,
+        questions_attributes: [
+          :id,
+          :name,
+          :question_type,
+          :_destroy
+        ]
       ]
     )
   end
