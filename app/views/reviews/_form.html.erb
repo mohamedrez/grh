@@ -52,12 +52,12 @@
         </div>
       </div>
     </div>
-    <div class="grid grid-cols-1 gap-x-8 gap-y-10 py-10 md:grid-cols-2">
+    <div data-controller="nested-form" class="grid grid-cols-1 gap-x-8 gap-y-10 pt-10 md:grid-cols-2">
       <div>
         <h2 class="text-base font-semibold leading-7 text-indigo-500">Set up the questionnaire</h2>
       </div>
       
-      <div data-controller="nested-form">
+      <div>
         <template data-nested-form-target='template'>
           <%= form.fields_for :sections, Section.new, child_index: 'TEMPLATE_RECORD' do |section| %>
             <%= render 'section_fields', form: section %>
@@ -68,8 +68,13 @@
           <%= render 'section_fields', form: section %>
         <% end %>
 
-        <div data-nested-form-target="add_item" class="m-3">
-          <%= link_to "+ Add Section", "#", data: { action: "nested-form#add_association" } %>
+        <div data-nested-form-target="add_item" class="flex items-center justify-start gap-x-6">
+          <%= link_to "#", data: { action: "nested-form#add_association" }, class: "flex items-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white hover:text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            <span class="ml-2">Add section</span>
+          <% end %>
         </div>
       </div>
     </div>
