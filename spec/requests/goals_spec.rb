@@ -251,20 +251,20 @@ RSpec.describe "/goals", type: :request do
       before do
         patch archive_goal_url(id: goal.id, from_view: "index")
       end
-  
+
       it "returns a successful response" do
         expect(response).to have_http_status(:ok)
       end
-  
+
       it "archived the goal" do
         goal.reload
         expect(goal.archived).to eq(true)
       end
-  
+
       it 'sets the flash notice' do
         expect(flash[:notice]).to eq(I18n.t("flash.successfully_archived"))
       end
-  
+
       it "renders the Turbo Stream response" do
         expect(response.body).to include("turbo-stream")
         expect(response.body).to include("remove")
@@ -274,23 +274,33 @@ RSpec.describe "/goals", type: :request do
       before do
         patch archive_goal_url(id: goal.id, from_view: "show")
       end
-  
+
       it "returns a 302 response" do
         expect(response).to have_http_status 302
       end
-  
+
       it "archived the goal" do
         goal.reload
         expect(goal.archived).to eq(true)
       end
-  
+
       it 'sets the flash notice' do
         expect(flash[:notice]).to eq(I18n.t("flash.successfully_archived"))
       end
-  
+
       it "redirects to the goals" do
         expect(response).to redirect_to goals_path
       end
+    end
+  end
+  describe "GET /objectives" do
+    it "returns a successful response" do
+      user
+      create :goal, owner_id: user.id, status: "completed", level: "critical"
+      create :goal, owner_id: user.id, status: "overpassed", level: "important"
+      create :goal, owner_id: user.id, status: "partially_achieved", level: "very_important"
+      get "/objectives?user_id=#{user.id},year=#{Date.today.year}"
+      expect(response).to have_http_status(:ok)
     end
   end
 end

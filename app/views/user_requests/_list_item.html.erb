@@ -15,7 +15,9 @@
           <tbody class="divide-y divide-gray-200 bg-white">
           <% user_requests.each do |request| %>
             <% if request.requestable_type == "TimeRequest" %>
-              <% request_type = request.requestable.class.human_enum_name(:category, request.requestable.category) %>
+              <% request_type = t("views.user_requests.time_off_request") %>
+            <% elsif request.requestable_type == "MissionOrder" %>
+              <% request_type = t("views.user_requests.mission_order") %>
             <% else %>
               <% request_type = t("views.user_requests.request") %>
             <% end %>

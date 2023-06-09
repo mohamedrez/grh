@@ -87,14 +87,60 @@ en:
       end_goal_description: "End goal description"
       statuses:
         no_feedback: "No feedback yet"
-        incomplete: "Incomplete"
+        not_achieved: "Incomplete"
         completed: "Completed"
-        overpass: "Overpass"
+        overpassed: "Overpassed"
+        partially_achieved: "Partially achieved"
       levels:
         none: "-- None --"
         important: "Important"
         very_important: "Very important"
         critical: "Critical"
+    job:
+      title: "Title"
+      job_type: "Job type"
+      location: "Location"
+      remote: "Remote"
+      job_status: "Job status"
+      overview: "Short overview of the job"
+      description_add: "Provide a job description"
+      description_view: "Job description"
+      job_types:
+        full_time: "Full time"
+        part_time: "Part time"
+      statuses:
+        open: "Open"
+        closed: "Closed"
+      applied: "Applied"
+      interviewing : "Interviewing"
+      unit: "Per"
+    mission_order:
+      title: "Title"
+      mission_type: "Mission type"
+      indemnity_type: "Indemnity type"
+      site: "Site"
+      location: "Location"
+      accommodation: "Accommodation"
+      transport_type: "Transport type"
+      description: "Description"
+      mission_types:
+        project: "Project"
+        site: "Site"
+      accommodations:
+        apartment: "Apartment"
+        hotel: "Hotel"
+        other_accommodations: "Other"
+      indemnity_types:
+        expense_report: "Expense report"
+        flat_rate: "Flat rate"
+      transport_types:
+        plane: "Plane"
+        train: "Train"
+        bus: "Bus" 
+        other_transport_types: "Other"
+      errors:
+        must_be_expense_report: "must be Expense report for a one-day mission"
+        must_be_flat_rate: "must be Flat rate for missions longer than 15 days"
     review:
       review_type: "Review type"
       status: "Status"
@@ -159,7 +205,7 @@ en:
       country: "Country"
       city: "City"
       created_at: "Created at"
-  views: 
+  views:
     announcements:
       add_announcement: "Create new Announcement"
       no_announcement_exists: "There is no announcement for the moment."
@@ -213,7 +259,7 @@ en:
       end_goal_description_placeholder: "Provide information on anything to end the goal."
       goal_not_completed: "Goal wasn't completed by the due date."
       goal_completed: "Goal was completed by the due date."
-      goal_overpass: "Goal achieved with additional work or enhancements."
+      goal_overpassed: "Goal achieved with additional work or enhancements."
       end_goal: "End Goal"
       goals_description: "Manage goals across your company to align and develop your team"
       search_bar: "Title, or owner"
@@ -223,6 +269,22 @@ en:
       holidays_list: "List of holidays for this year"
       add_holiday: "Add new holiday"
       edit_holiday: "Edit the holiday"
+    jobs:
+      job_title: "Job title"
+      jobs_list: "List of all jobs"
+      edit_job: "Edit a job"
+      view_job: "View a job"
+      delete_job: "Delete a job"
+      new: "Add a Job"
+      job_desription: "Job description"
+      add_details: "Please fill in job details"
+      description_full: "Describe a role including duties, skills and requirements"
+    mission_orders:
+      title_mission_orders: "Mission orders"
+      create_mission_order: "Create mission order"
+      add_mission_order: "Add new mission order"
+      edit_mission_order: "Edit the mission order"
+      mission_order_details: "Mission Order Details"
     time_requests:
       title_time_request: "Time off requests"
       time_requests_list: "List of time off requests requested by you."
@@ -239,6 +301,8 @@ en:
       user_requests_list: "List of all requests requested by you."
       no_one_yet: "No one yet"
       request: "Request"
+      time_off_request: "Time Off Request"
+      mission_order: "Mission Order"
     users:
       personal_details_section: "Personal details"
       list_personal_details: "List of personal details about you."
@@ -266,6 +330,7 @@ en:
         requests: "Requests"
         calendar: "Calendar"
         organization: "Organization"
+        jobs: "Jobs"
     shared:
       settings: "Settings"
       profile: "Profile"

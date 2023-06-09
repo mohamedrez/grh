@@ -38,6 +38,7 @@ class User < ApplicationRecord
   has_many :announcements, dependent: :destroy
   has_many :expenses, dependent: :destroy
   has_many :notes, dependent: :destroy
+  has_many :roles, dependent: :destroy
 
   has_many :review_users, dependent: :destroy
   has_many :reviews, through: :review_users
@@ -69,6 +70,10 @@ class User < ApplicationRecord
     else
       "users/user.png"
     end
+  end
+
+  def has_role?(role_name)
+    roles.any? { |role| role.name == role_name }
   end
 
   def full_name
