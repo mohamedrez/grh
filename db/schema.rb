@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_08_075610) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_09_074131) do
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -415,50 +415,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_075610) do
     t.index ["recipient_type", "recipient_id"], name: "index_notifications_on_recipient"
   end
 
-  create_table "options", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.bigint "question_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["question_id"], name: "index_options_on_question_id"
-  end
-
-  create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.integer "question_type"
-    t.bigint "section_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["section_id"], name: "index_questions_on_section_id"
-  end
-
-  create_table "review_users", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "review_id", null: false
+  create_table "roles", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.integer "name"
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["review_id"], name: "index_review_users_on_review_id"
-    t.index ["user_id"], name: "index_review_users_on_user_id"
-  end
-
-  create_table "reviews", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.date "start_date"
-    t.date "end_date"
-    t.integer "status", default: 0
-    t.integer "review_type"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "sections", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.integer "section_type"
-    t.bigint "review_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["review_id"], name: "index_sections_on_review_id"
+    t.index ["user_id"], name: "index_roles_on_user_id"
   end
 
   create_table "sites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -555,11 +517,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_08_075610) do
   add_foreign_key "motor_taggable_tags", "motor_tags", column: "tag_id"
   add_foreign_key "notes", "users"
   add_foreign_key "notes", "users", column: "author_id"
-  add_foreign_key "options", "questions"
-  add_foreign_key "questions", "sections"
-  add_foreign_key "review_users", "reviews"
-  add_foreign_key "review_users", "users"
-  add_foreign_key "sections", "reviews"
+  add_foreign_key "roles", "users"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"
   add_foreign_key "users", "sites"

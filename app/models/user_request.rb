@@ -1,5 +1,6 @@
 class UserRequest < ApplicationRecord
-  after_create :mailing_manager
+  include Wisper.model
+
   after_update :mailing_employee, unless: :is_pending?
 
   belongs_to :user
@@ -18,12 +19,6 @@ class UserRequest < ApplicationRecord
 
   def is_pending?
     pending?
-  end
-
-  def mailing_manager
-    subject = "You have a new request"
-    email = user.email
-    NotificationMailerJob.perform_later(self, subject, email)
   end
 
   def mailing_employee
