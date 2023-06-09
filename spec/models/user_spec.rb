@@ -24,6 +24,13 @@ RSpec.describe(User, type: :model) do
     end
   end
 
+  describe "#has_role?" do
+    let(:role) { create(:role, user: user, name: :admin) }
+    it "returns true if the user has the role" do
+      expect(user.has_role?(role.name)).to be_truthy
+    end
+  end
+
   describe ".import" do
     let(:file) { Rack::Test::UploadedFile.new("#{Rails.root}/spec/fixtures/test_users.csv", "text/csv") }
 
