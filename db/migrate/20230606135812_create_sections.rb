@@ -4,7 +4,7 @@ class CreateSections < ActiveRecord::Migration[7.0]
       t.string :name
       t.text :description
       t.integer :section_type
-      t.references :survey, null: false, foreign_key: true
+      t.references :review, null: false, foreign_key: true
 
       t.timestamps
     end
