@@ -49,6 +49,20 @@ class ReviewsController < ApplicationController
   end
 
   def review_params
-    params.require(:review).permit(:name, :start_date, :end_date, :start_date, :review_type, user_ids: [])
+    params.require(:review).permit(
+      :name,
+      :start_date,
+      :end_date,
+      :start_date,
+      :review_type,
+      user_ids: [],
+      sections_attributes: [
+        :id,
+        :name,
+        :description,
+        :section_type,
+        :_destroy
+      ]
+    )
   end
 end

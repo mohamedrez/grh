@@ -7,6 +7,8 @@ class Review < ApplicationRecord
 
   has_many :sections, dependent: :destroy
 
+  accepts_nested_attributes_for :sections, allow_destroy: true
+
   enum status: {upcoming: 0, current: 1, ended: 2}
   enum review_type: {manager_review: 0}
 end
