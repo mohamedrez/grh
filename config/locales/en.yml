@@ -139,8 +139,8 @@ en:
         bus: "Bus" 
         other_transport_types: "Other"
       errors:
-        cannot_be_expense_report: "cannot be Expense report for a one-day mission"
-        must_be_flat_rate: "must be flat_rate for missions longer than 15 days"
+        must_be_expense_report: "must be Expense report for a one-day mission"
+        must_be_flat_rate: "must be Flat rate for missions longer than 15 days"
     time_request:
       category: "Category"
       content: "Content"

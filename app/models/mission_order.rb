@@ -29,8 +29,8 @@ class MissionOrder < ApplicationRecord
 
     duration = (end_date - start_date).to_i + 1
 
-    if duration == 1 && indemnity_type == "expense_report"
-      errors.add(:indemnity_type, I18n.t("attributes.mission_order.errors.cannot_be_expense_report"))
+    if duration == 1 && indemnity_type == "flat_rate"
+      errors.add(:indemnity_type, I18n.t("attributes.mission_order.errors.must_be_expense_report"))
     elsif duration > 15 && indemnity_type == "expense_report"
       errors.add(:indemnity_type, I18n.t("attributes.mission_order.errors.must_be_flat_rate"))
     end

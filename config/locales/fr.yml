@@ -121,9 +121,9 @@ fr:
         bus: "Bus"
         other_transport_types: "Autre"
       errors:
-        cannot_be_expense_report: "ne peut pas être une note de frais pour une mission d'une journée"
-        must_be_flat_rate: "doit être un forfait pour les missions de plus de 15 jours"
-        time_request:
+        must_be_expense_report: "doit être une Note de frais pour une mission d'une journée"
+        must_be_flat_rate: "doit être un Forfait pour les missions de plus de 15 jours"
+    time_request:
       category: "Catégorie"
       content: "Contenu"
       categories:
