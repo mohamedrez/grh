@@ -4,7 +4,7 @@ RSpec.describe "/mission_orders", type: :request do
   let(:manager) { create(:user, admin: true) }
   let(:user) { create(:user, manager_id: manager.id, admin: true) }
   let(:site) { create(:site, id: 1) }
-  let(:mission_order) { create(:mission_order, user_id: user.id, site_id: site.id) }
+  let(:mission_order) { create(:mission_order, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report",) }
 
   let(:valid_attributes) do
     {

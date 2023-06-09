@@ -113,12 +113,16 @@ fr:
         hotel: "Hôtel"
         other_accommodations: "Autre"
       indemnity_types:
-        expense_report: "Rapport de dépenses"
+        expense_report: "Note de frais"
         flat_rate: "Forfait"
       transport_types:
         plane: "Avion"
         train: "Train"
         bus: "Bus"
+        other_transport_types: "Autre"
+      errors:
+        must_be_expense_report: "doit être une Note de frais pour une mission d'une journée"
+        must_be_flat_rate: "doit être un Forfait pour les missions de plus de 15 jours"
     time_request:
       category: "Catégorie"
       content: "Contenu"
