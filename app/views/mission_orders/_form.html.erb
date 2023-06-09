@@ -9,6 +9,20 @@
         </div>
       </div>
       <div class="sm:col-span-3 sm:col-start-1">
+        <%= form.label :start_date, t("attributes.shared.start_date") %>
+        <div class="mt-2">
+          <%= form.date_field :start_date, class: "w-full" %>
+          <%= inline_error_for(:start_date, mission_order).html_safe %>
+        </div>
+      </div>
+      <div class="sm:col-span-3">
+        <%= form.label :end_date, t("attributes.shared.end_date") %>
+        <div class="mt-2">
+          <%= form.date_field :end_date, class: "w-full" %>
+          <%= inline_error_for(:end_date, mission_order).html_safe %>
+        </div>
+      </div>
+      <div class="sm:col-span-3 sm:col-start-1">
         <%= form.label :mission_type, t("attributes.mission_order.mission_type") %>
         <div class="mt-2">
           <%= form.select :mission_type, MissionOrder.mission_types.keys.collect { |mission_type| [MissionOrder.human_enum_name(:mission_type, mission_type), mission_type] } %>
@@ -48,20 +62,6 @@
         <div class="mt-2">
           <%= form.select :transport_type, MissionOrder.transport_types.keys.collect { |transport_type| [MissionOrder.human_enum_name(:transport_type, transport_type), transport_type] } %>
           <%= inline_error_for(:transport_type, mission_order).html_safe %>
-        </div>
-      </div>
-      <div class="sm:col-span-3 sm:col-start-1">
-        <%= form.label :start_date, t("attributes.shared.start_date") %>
-        <div class="mt-2">
-          <%= form.date_field :start_date, class: "w-full" %>
-          <%= inline_error_for(:start_date, mission_order).html_safe %>
-        </div>
-      </div>
-      <div class="sm:col-span-3">
-        <%= form.label :end_date, t("attributes.shared.end_date") %>
-        <div class="mt-2">
-          <%= form.date_field :end_date, class: "w-full" %>
-          <%= inline_error_for(:end_date, mission_order).html_safe %>
         </div>
       </div>
       <div class="sm:col-span-full">
