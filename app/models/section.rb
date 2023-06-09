@@ -1,5 +1,5 @@
 class Section < ApplicationRecord
-  belongs_to :survey
+  belongs_to :review
 
   has_many :questions, dependent: :destroy
 

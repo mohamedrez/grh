@@ -1,4 +1,0 @@
-<h2 class="text-2xl font-bold leading-7 text-gray-900 sm:truncate sm:text-3xl sm:tracking-tight">Add new survey</h2>
-<%= turbo_frame_tag "new-survey" do %>
-  <%= render partial: "form", locals: {survey: @survey, surveyable_type: @surveyable_type, surveyable_id: @surveyable_id} %>
-<% end %>
