@@ -19,7 +19,7 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
 
     if @review.save
-      redirect_to edit_review_path(@review), notice: t("flash.successfully_created")
+      redirect_to review_path(@review), notice: t("flash.successfully_created")
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class ReviewsController < ApplicationController
 
   def update
     if @review.update(review_params)
-      redirect_to edit_review_path(@review), notice: t("flash.successfully_updated")
+      redirect_to review_path(@review), notice: t("flash.successfully_updated")
     else
       render :edit, status: :unprocessable_entity
     end
