@@ -1,18 +1,24 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: %i[show edit update destroy]
+  before_action :set_breadcrumbs, only: %i[index show new edit]
 
   def index
     @reviews = Review.all
   end
 
   def show
+    add_breadcrumb(@review.name)
   end
 
   def new
     @review = Review.new
+
+    add_breadcrumb(t("views.reviews.add_review"))
   end
 
   def edit
+    add_breadcrumb(@review.name, @review)
+    add_breadcrumb(t("views.reviews.edit_review"))
   end
 
   def create
@@ -46,6 +52,10 @@ class ReviewsController < ApplicationController
 
   def set_review
     @review = Review.find(params[:id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb(t("views.reviews.performance_reviews"), reviews_path)
   end
 
   def review_params
