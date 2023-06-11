@@ -316,6 +316,8 @@ en:
       remove_question: "Remove Question"
       options: "Options"
       add_option: "Add Option"
+      reviewee: "Reviewee"
+      direct_manager: "Direct Manager"
     time_requests:
       title_time_request: "Time off requests"
       time_requests_list: "List of time off requests requested by you."

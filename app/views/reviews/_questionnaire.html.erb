@@ -1,0 +1,33 @@
+<div class="overflow-hidden bg-white shadow sm:rounded-lg lg:w-full lg:max-w-4xl lg:flex-auto p-5">
+  <% review.sections.each_with_index do |section, index| %>
+    <div class="my-5 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 p-6">
+      <h2 class="text-2xl font-bold tracking-tight text-gray-500 sm:text-2xl"><span class="text-indigo-500">Section <%= index + 1 %>: </span><%= section.name %></h2>
+      <p class="mt-2 text-lg leading-8 text-gray-600"><%= section.description %></p>
+      <% section.questions.each_with_index do |question, index| %>
+        <div class="my-5 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 p-3">
+          <h2 class="text-xl font-bold tracking-tight text-gray-900 sm:text-xl"><span class="text-indigo-500">Question <%= index + 1 %>: </span><%= question.name %></h2>
+          <div class="m-3">
+            <% case question.question_type %>
+            <% when 'single_select' %>
+              <% question.options.each do |option| %>
+                <p>
+                  <%= radio_button_tag question.id, option.id %>
+                  <%= option.name %>
+                </p>
+              <% end %>
+            <% when 'multiple_select' %>
+              <% question.options.each do |option| %>
+                <p>
+                  <%= check_box_tag question.id, option.id %>
+                  <%= option.name %>
+                </p>
+              <% end %>
+            <% when 'textbox' %>
+              <textarea id="<%= question.id %>" name="<%= question.id %>" rows="4" class="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"></textarea>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

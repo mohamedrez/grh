@@ -289,6 +289,8 @@ fr:
       remove_question: "Supprimer une question"
       options: "Options"
       add_option: "Ajouter une option"
+      reviewee: "Évalué(e)"
+      direct_manager: "Manager Direct"
     time_requests:
       title_time_request: "Demandes de congé"
       time_requests_list: "Liste des demandes de congé demandées par vous."
