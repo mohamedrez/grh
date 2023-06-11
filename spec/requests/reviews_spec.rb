@@ -170,6 +170,13 @@ RSpec.describe "Reviews", type: :request do
         expect(flash[:notice]).to eq(I18n.t("flash.successfully_updated"))
       end
     end
+
+    context "with invalid parameters" do
+      it "renders a response with 422 status (i.e. to display the 'edit' template)" do
+        patch review_path(id: review.id), params: {review: invalid_attributes}
+        expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
   end
 
   describe "DELETE /destroy" do

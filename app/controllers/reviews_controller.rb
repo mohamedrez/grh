@@ -12,7 +12,6 @@ class ReviewsController < ApplicationController
 
   def new
     @review = Review.new
-    @review.sections.build
 
     add_breadcrumb(t("views.reviews.add_review"))
   end
