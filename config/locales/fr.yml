@@ -278,6 +278,8 @@ fr:
       validate_by_manager: "Valider par le responsable"
       validate_by_hr: "Valider par les ressources humaines"
       mark_as_paid: "Marquer comme payé"
+      created_by: "Créé par"
+      by: "par"
     performance:
       performance_management: "Gestion des performances"
       performance_management_phrase: "Tirez le meilleur parti de votre équipe talentueuse grâce à des outils conçus pour leur croissance et leur réussite."

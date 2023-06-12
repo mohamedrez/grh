@@ -10,6 +10,7 @@ class MissionOrdersController < ApplicationController
 
   def show
     @user_request = @mission_order.user_request
+    @aasm_logs = AasmLog.where(aasm_logable: @mission_order)
   end
 
   def new

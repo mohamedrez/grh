@@ -1,0 +1,50 @@
+<div class="overflow-hidden bg-white shadow sm:rounded-lg lg:w-full lg:max-w-4xl lg:flex-auto p-5">
+  <div class="my-5 overflow-hidden bg-white shadow sm:rounded-lg lg:w-full lg:max-w-4xl lg:flex-auto p-8">
+    <div class="flow-root">
+      <ul role="list" class="-mb-8">
+      <li>
+        <div class="relative pb-8">
+          <span class="absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+          <div class="relative flex space-x-3">
+            <div>
+              <%= image_tag user_request.user.avatar_url_or_default, class: "rounded-full h-10 w-10 align-middle" %>
+            </div>
+            <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+              <div>
+                <p class="text-sm text-gray-500"><%= t("views.mission_orders.created_by") %> <span class="text-base font-semibold text-gray-900"><%= user_request.user.full_name %></span> <%= time_ago_in_words(mission_order.created_at) %></p>
+              </div>
+            </div>
+            </div>
+          </div>
+        </li>
+        <% aasm_logs.each do |aasm_log| %>
+          <li>
+            <div class="relative pb-8">
+              <% unless aasm_logs.last == aasm_log %>
+                <span class="absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+              <% end %>
+              <div class="relative flex space-x-3">
+                <div>
+                  <%= image_tag aasm_log.actor.avatar_url_or_default, class: "rounded-full h-10 w-10 align-middle" %>
+                </div>
+                <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+                  <div>
+                    <% if aasm_log.to_state == "paid" %>
+                      <p class="text-sm text-gray-500"><%= aasm_log.to_state.humanize %> <%= t("views.mission_orders.by") %> <span class="text-base font-semibold text-gray-900"><%= aasm_log.actor.full_name %></span> <%= time_ago_in_words(aasm_log.created_at) %></p>
+                    <% else %>
+                      <p class="text-sm text-gray-500"><%= aasm_log.to_state.humanize %> <span class="text-base font-semibold text-gray-900"><%= aasm_log.actor.full_name %></span> <%= time_ago_in_words(aasm_log.created_at) %></p>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+
+  <div class="my-5">
+    <%= turbo_frame_tag "comments", src: comments_path(commentable_type: "UserRequest", commentable_id: user_request.id) %>
+  </div>
+</div>

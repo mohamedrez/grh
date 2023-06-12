@@ -305,6 +305,8 @@ en:
       validate_by_manager: "Validate by Manager"
       validate_by_hr: "Validate by HR"
       mark_as_paid: "Mark As Paid"
+      created_by: "Created by"
+      by: "by"
     performance:
       performance_management: "Performance management"
       performance_management_phrase: "Bring out the best in your talented team with tools built for their growth and success."
