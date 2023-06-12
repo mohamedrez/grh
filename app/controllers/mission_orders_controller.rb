@@ -1,6 +1,6 @@
 class MissionOrdersController < ApplicationController
   before_action :set_user, except: :destroy
-  before_action :set_mission_order, only: %i[show edit update destroy]
+  before_action :set_mission_order, only: %i[show edit update destroy update_aasm_state]
   before_action :set_breadcrumbs, only: :index
 
   def index
@@ -22,7 +22,6 @@ class MissionOrdersController < ApplicationController
   def create
     @mission_order = MissionOrder.new(mission_order_params)
     @mission_order.user_id = @user.id
-    @mission_order.actor_id = current_user.id
 
     if @mission_order.save
       flash.now[:notice] = t("flash.successfully_created")
@@ -38,7 +37,6 @@ class MissionOrdersController < ApplicationController
 
   def update
     mission_order_params[:user_id] = @user.id
-    mission_order_params[:actor_id] = current_user.id
 
     if @mission_order.update(mission_order_params)
       flash.now[:notice] = t("flash.successfully_updated")
@@ -60,6 +58,24 @@ class MissionOrdersController < ApplicationController
       turbo_stream.remove(@mission_order),
       turbo_stream.replace("notification_alert", partial: "layouts/alert")
     ]
+  end
+
+  def update_aasm_state
+    aasm_state = params[:aasm_state]
+    @mission_order.actor_id = current_user.id
+
+    case aasm_state
+    when "validated_by_manager"
+      @mission_order.validate_mission_order_by_manager!
+    when "validated_by_hr"
+      @mission_order.validate_mission_order_by_hr!
+    when "paid"
+      @mission_order.pay_mission_order!
+    when "rejected"
+      @mission_order.reject_mission_order!
+    end
+
+    redirect_to user_mission_order_path(@user, @mission_order)
   end
 
   private

@@ -118,6 +118,7 @@ en:
       title: "Title"
       mission_type: "Mission type"
       indemnity_type: "Indemnity type"
+      status: "Status"
       site: "Site"
       location: "Location"
       accommodation: "Accommodation"
@@ -275,6 +276,10 @@ en:
       add_mission_order: "Add new mission order"
       edit_mission_order: "Edit the mission order"
       mission_order_details: "Mission Order Details"
+      paid: "Paid"
+      validate_by_manager: "Validate by Manager"
+      validate_by_hr: "Validate by HR"
+      mark_as_paid: "Mark As Paid"
     time_requests:
       title_time_request: "Time off requests"
       time_requests_list: "List of time off requests requested by you."

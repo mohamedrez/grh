@@ -100,6 +100,7 @@ fr:
       title: "Titre"
       mission_type: "Type de mission"
       indemnity_type: "Type d'indemnité"
+      status: "Statut"
       site: "Site"
       location: "Emplacement"
       accommodation: "Hébergement"
@@ -248,6 +249,10 @@ fr:
       add_mission_order: "Ajouter un nouvel ordre de mission"
       edit_mission_order: "Modifier l'ordre de mission"
       mission_order_details: "Détails de l'ordre de mission"
+      paid: "Payé"
+      validate_by_manager: "Valider par le responsable"
+      validate_by_hr: "Valider par les ressources humaines"
+      mark_as_paid: "Marquer comme payé"
     time_requests:
       title_time_request: "Demandes de congé"
       time_requests_list: "Liste des demandes de congé demandées par vous."

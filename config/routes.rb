@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       resources :experiences, only: [:new, :create]
       resources :educations, only: [:new, :create]
       resources :mission_orders
+      patch "/mission_orders/:id/update_aasm_state", to: "mission_orders#update_aasm_state", as: "update_aasm_state_mission_order"
     end
 
     get "user_notifications", to: "user_notifications#index"
