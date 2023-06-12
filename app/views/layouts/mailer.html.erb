@@ -1,13 +1,106 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <style>
-      /* Email styles need to be inline */
+    <!-- trx_0075 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title><%= @title %></title>
+    <style type="text/css">
+      p{margin:10px 0; padding:0;}
+      table{border-collapse:collapse;}
+      h1, h2, h3, h4, h5, h6{display:block; margin:0; padding:0;}
+      img, a img{border:0; height:auto; outline:none; text-decoration:none;}
+      body, #bodyTable, #bodyCell{height:100%; margin:0; padding:0; width:100%;}
+      #outlook a{padding:0;}
+      @-ms-viewport{width:device-width;}
+      img{-ms-interpolation-mode:bicubic;}
+      table{mso-table-lspace:0pt; mso-table-rspace:0pt;}
+      .ReadMsgBody{width:100%;} .ExternalClass{width:100%;}
+      p, a, li, td, blockquote{mso-line-height-rule:exactly;}
+      a[href^="tel"], a[href^="sms"]{color:inherit; cursor:default; text-decoration:none;}
+      p, a, li, td, body, table, blockquote{-ms-text-size-adjust:100%; -webkit-text-size-adjust:100%;}
+      .ExternalClass, .ExternalClass p, .ExternalClass td, .ExternalClass div, .ExternalClass span, .ExternalClass font{line-height:100%;}
+      a[x-apple-data-detectors]{color:inherit !important; text-decoration:none !important; font-size:inherit !important; font-family:inherit !important; font-weight:inherit !important; line-height:inherit !important;}
+
+      #footerContent a{color:#007C89 !important;}
+      #button a{text-decoration:none;}
+
+      @media only screen and (max-width:480px){
+      body{width:100% !important; min-width:100% !important;}
+      h1{font-size:24px !important;}
+      .footerContent{padding-bottom:0 !important;}
+      .footerContent p{border-bottom:1px solid #EFEEEA; font-size:13px !important; padding-right: 20px!important; padding-bottom:40px !important; padding-left: 20px!important;}
+      .utilityLink{border-bottom:1px solid #EFEEEA; display:block; font-size:13px !important; padding-top:15px; padding-bottom:15px;}
+      .mobileHide{display:none; visibility:hidden;}
+      }
     </style>
   </head>
 
   <body>
-    <%= yield %>
+  <body bgcolor="#EFEEEA">
+    <center>
+      <table align="center" bgcolor="#EFEEEA" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+        <tr>
+          <td align="center" valign="top" id="bodyCell" style="padding-bottom:60px;">
+            <span style="color:#5046e5; display:none; font-size:0px; height:0px; visibility:hidden; width:0px;">You're almost ready to get started!</span>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%">
+              <!-- BEGIN HEADER // -->
+              <tr>
+                <td align="center" valign="top" bgcolor="#5046e5" valign="top" style="background-color:#5046e5;">
+                  <!--[if gte mso 9]>
+                  <table align="center" border="0" cellspacing="0" cellpadding="0" width="640">
+                    <tr>
+                      <td align="center" valign="top" width="640">
+                        <![endif]-->
+                        <table align="center" border="0" cellpadding="0" cellspacing="0" style="max-width:640px;" width="100%" class="emailContainer">
+                          <tr>
+                            <td align="center" valign="top" style="padding:40px;">
+                              <a href="http://hachimy.com:8800" target="_blank" style="text-decoration:none;">
+                                <img alt="hachimy" src="http://hachimy.com:8800/assets/logo6-ddd3ed44b26675a26f900dcdbfd9c73b8e3f9cdb403136d84afedfc6ee852f7b.png" width="200" style="border:0; color:#FFFFFF; font-family:'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif; font-size:12px; font-weight:400; height:auto; letter-spacing:-1px; padding:0; margin:0; outline:none; text-align:center; text-decoration:none;" />
+                              </a>
+                            </td>
+                          </tr>
+                          <tr>
+                            <td style="background-color:#FFFFFF; padding-top:40px;">&nbsp;</td>
+                          </tr>
+                        </table>
+                        <!--[if gte mso 9]>
+                      </td>
+                    </tr>
+                  </table>
+                  <![endif]-->
+                </td>
+              </tr>
+              <!-- // END HEADER -->
+              <!-- BEGIN BODY AND FOOTER // -->
+              <tr>
+                <td align="center" valign="top" valign="top">
+                  <!--[if gte mso 9]>
+                  <table align="center" border="0" cellspacing="0" cellpadding="0" width="640">
+                    <tr>
+                      <td align="center" valign="top" width="640">
+                        <![endif]-->
+                        <table align="center" bgcolor="#FFFFFF" border="0" cellpadding="0" cellspacing="0" style="background-color:#FFFFFF; max-width:640px;" width="100%" class="emailContainer">
+                          <%= yield %>
+                          <tr>
+                            <td align="center" valign="top" class="footerContent" style="border-top:2px solid #EFEEEA; color:#6A655F; font-family:'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif; font-size:12px; font-weight:400; line-height:24px; padding-top:40px; padding-bottom:40px; text-align:center;">
+                              <p style="color:#6A655F; font-family:'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif; font-size:12px; font-weight:400; line-height:24px; padding-top:0; margin:0; text-align:center;">&copy; 2001-2023 hachimy<sup>&reg;</sup>, All Rights Reserved.<br />675 Ponce De Leon Ave NE &bull; Suite 5000 &bull; Atlanta, GA 30308 USA</p>
+                              <a href="http://hachimy.com:8800/contact/" target="_blank" style="color:#5046e5; font-weight:500; text-decoration:none;" class="utilityLink">Contact Us</a><span class="mobileHide">&nbsp;&nbsp;&bull;&nbsp;&nbsp;</span><a href="https://hachimy.com/legal/terms/" target="_blank" style="color:#5046e5; font-weight:500; text-decoration:none;" class="utilityLink">Terms of Use</a><span class="mobileHide">&nbsp;&nbsp;&bull;&nbsp;&nbsp;</span><a href="https://hachimy.com/legal/privacy/" target="_blank" style="color:#5046e5; font-weight:500; text-decoration:none;" class="utilityLink">Privacy Policy</a>
+                            </td>
+                          </tr>
+                        </table>
+                        <!--[if gte mso 9]>
+                      </td>
+                    </tr>
+                  </table>
+                  <![endif]-->
+                </td>
+              </tr>
+              <!-- // END BODY AND FOOTER -->
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
   </body>
-</html>
