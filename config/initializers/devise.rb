@@ -27,7 +27,7 @@ Devise.setup do |config|
   config.mailer_sender = "brad@sandbox0c47c57f445b4cf28e2d5cc84b82bdc7.mailgun.org"
 
   # Configure the class responsible to send e-mails.
-  config.mailer = "Devise::Mailer"
+  config.mailer = "DeviseCustomMailer"
 
   # Configure the parent class responsible to send e-mails.
   # config.parent_mailer = 'ActionMailer::Base'
