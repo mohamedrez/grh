@@ -4,7 +4,9 @@
       <ul role="list" class="-mb-8">
       <li>
         <div class="relative pb-8">
-          <span class="absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+          <% unless aasm_logs.blank? %>
+            <span class="absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+          <% end %>
           <div class="relative flex space-x-3">
             <div>
               <%= image_tag user_request.user.avatar_url_or_default, class: "rounded-full h-10 w-10 align-middle" %>
