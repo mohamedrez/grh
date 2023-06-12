@@ -350,7 +350,7 @@ GEM
     ruby-vips (2.1.4)
       ffi (~> 1.12)
     rubyzip (2.3.2)
-    selenium-webdriver (4.9.0)
+    selenium-webdriver (4.10.0)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
@@ -467,7 +467,7 @@ DEPENDENCIES
   rubocop-rails
   rubocop-rspec
   rubocop-shopify
-  selenium-webdriver (= 4.9.0)
+  selenium-webdriver (= 4.10.0)
   sentry-rails
   sentry-ruby
   sidekiq (~> 7.1)

@@ -89,7 +89,7 @@ group :test do
   gem "rspec_junit_formatter"
   gem "simplecov-cobertura", require: false
   gem "codecov"
-  gem "selenium-webdriver", "4.9.0"
+  gem "selenium-webdriver", "4.10.0"
   gem "webdrivers"
   gem "database_cleaner"
 end
