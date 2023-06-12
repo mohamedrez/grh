@@ -31,6 +31,7 @@ class MissionOrder < ApplicationRecord
     state :validated_by_manager
     state :validated_by_hr
     state :paid
+    state :cancelled
 
     event :validate_mission_order_by_manager do
       transitions from: :created, to: :validated_by_manager, after: :validate_mission_order_by_manager_trigger_actions
@@ -42,6 +43,10 @@ class MissionOrder < ApplicationRecord
 
     event :pay_mission_order do
       transitions from: :validated_by_hr, to: :paid, after: :pay_mission_order_trigger_actions
+    end
+
+    event :cancel_mission_order do
+      transitions from: [:created, :validated_by_manager, :validated_by_hr], to: :cancelled, after: :cancel_mission_order_trigger_actions
     end
   end
 
@@ -69,6 +74,10 @@ class MissionOrder < ApplicationRecord
   end
 
   def pay_mission_order_trigger_actions
+    notify_member
+  end
+
+  def cancel_mission_order_trigger_actions
     notify_member
   end
 
