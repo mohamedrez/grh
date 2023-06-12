@@ -4,7 +4,7 @@ RSpec.describe "/mission_orders", type: :request do
   let(:manager) { create(:user, admin: true) }
   let(:user) { create(:user, manager_id: manager.id, admin: true) }
   let(:site) { create(:site, id: 1) }
-  let(:mission_order) { create(:mission_order, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report",) }
+  let(:mission_order) { create(:mission_order, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report") }
 
   let(:valid_attributes) do
     {
@@ -150,6 +150,46 @@ RSpec.describe "/mission_orders", type: :request do
     end
     it 'sets the flash notice' do
       expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
+    end
+  end
+
+  describe 'PATCH #update_aasm_state' do
+    context 'when aasm_state is "validated_by_manager"' do
+      it 'updates the AASM state to "validated_by_manager" and redirects to the mission order page' do
+        patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, aasm_state: 'validated_by_manager')
+        mission_order.reload
+        expect(mission_order.aasm_state).to eq('validated_by_manager')
+        expect(response).to redirect_to(user_mission_order_path(user, mission_order))
+      end
+    end
+
+    context 'when aasm_state is "validated_by_hr"' do
+      it 'updates the AASM state to "validated_by_hr" and redirects to the mission order page' do
+        mission_order = create(:mission_order, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report", aasm_state: "validated_by_manager")
+        patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, aasm_state: 'validated_by_hr')
+        mission_order.reload
+        expect(mission_order.aasm_state).to eq('validated_by_hr')
+        expect(response).to redirect_to(user_mission_order_path(user, mission_order))
+      end
+    end
+
+    context 'when aasm_state is "paid"' do
+      it 'updates the AASM state to "paid" and redirects to the mission order page' do
+        mission_order = create(:mission_order, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report", aasm_state: "validated_by_hr")
+        patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, aasm_state: 'paid')
+        mission_order.reload
+        expect(mission_order.aasm_state).to eq('paid')
+        expect(response).to redirect_to(user_mission_order_path(user, mission_order))
+      end
+    end
+
+    context 'when aasm_state is "rejected"' do
+      it 'updates the AASM state to "rejected" and redirects to the mission order page' do
+        patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, aasm_state: 'rejected')
+        mission_order.reload
+        expect(mission_order.aasm_state).to eq('rejected')
+        expect(response).to redirect_to(user_mission_order_path(user, mission_order))
+      end
     end
   end
 end
