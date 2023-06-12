@@ -1,5 +1,5 @@
 class MissionOrder < ApplicationRecord
-  after_create :create_user_request
+  include AASM
 
   belongs_to :site
   has_one :user_request, as: :requestable, dependent: :destroy
@@ -16,10 +16,42 @@ class MissionOrder < ApplicationRecord
 
   delegate :user, to: :user_request
 
+  attr_accessor :actor_id
+
+  # mission_order.actor_id = current_user.id
+  # mission_order.create!
+
+  aasm do
+    after_all_transitions :log_status_change
+
+    state :none, initial: true
+    state :created
+    state :validated_by_manager
+    state :validated_by_hr
+    state :paid
+
+    event :create do
+      transitions from: :none, to: :created, after: :create_mission_order_trigger_actions
+    end
+
+    event :validate_mission_order_by_manager do
+      transitions from: :draft, to: :submitted
+    end
+  end
+
   attr_accessor :user_id
 
   def create_user_request
     UserRequest.create(user_id: user_id, state: :pending, requestable: self)
+  end
+
+  def create_mission_order_trigger_actions
+    create_user_request
+    notify_manager
+  end
+
+  def notify_manager
+    # TODO not yet implmented
   end
 
   private
@@ -34,5 +66,10 @@ class MissionOrder < ApplicationRecord
     elsif duration > 15 && indemnity_type == "expense_report"
       errors.add(:indemnity_type, I18n.t("attributes.mission_order.errors.must_be_flat_rate"))
     end
+  end
+
+  def log_status_change
+    # TODO creates log_event
+    # aasm_log.create(class_name: self.class.name, from_state: aasm.from_state, to_state: aasm.to_state, event: aasm.current_event)
   end
 end

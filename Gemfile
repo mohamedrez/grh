@@ -62,7 +62,6 @@ gem "noticed", "~> 1.6"
 gem "kaminari", "~> 1.2"
 gem "ransack", "~> 4.0"
 gem "action_policy"
-gem "bootsnap", require: false
 
 gem "redis", "~> 5.0"
 gem "sentry-ruby"
@@ -107,3 +106,5 @@ group :development do
   gem "brakeman"
   gem "annotate"
 end
+
+gem "aasm", "~> 5.5"
