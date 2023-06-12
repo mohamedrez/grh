@@ -1,0 +1,47 @@
+<div class="overflow-hidden bg-white shadow sm:rounded-lg lg:flex-auto p-5 mt-5">
+  <div class="px-4 sm:px-6 lg:px-8">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h2 class="text-2xl font-bold tracking-tight text-indigo-500 sm:text-2xl"><%= t("attributes.review.reviewees") %></h2>
+      </div>
+    </div>
+    <div class="mt-5 flow-root">
+      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+          <table class="min-w-full divide-y divide-gray-300">
+            <thead>
+              <tr>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"><%= t("views.reviews.reviewee") %></th>
+                <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("views.reviews.direct_manager") %></th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-gray-200">
+              <% review.users.each do |reviewee| %>
+                <tr>
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                    <div class="relative flex items-center gap-x-4">
+                      <%= image_tag reviewee.avatar_url_or_default, class: "rounded-full h-10 w-10 align-middle" %>
+                      <div class="text-sm leading-6">
+                        <p class="font-semibold text-gray-600 text-base"><%= reviewee.full_name  %></p>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-0">
+                    <% if reviewee.manager.present? %>
+                      <div class="relative flex items-center gap-x-4">
+                        <%= image_tag reviewee.manager.avatar_url_or_default, class: "rounded-full h-10 w-10 align-middle" %>
+                        <div class="text-sm leading-6">
+                          <p class="font-semibold text-gray-600 text-base"><%= reviewee.manager.full_name  %></p>
+                        </div>
+                      </div>
+                    <% end %>
+                  </td>
+                </tr>
+              <% end %>  
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

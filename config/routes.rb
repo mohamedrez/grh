@@ -21,10 +21,18 @@ Rails.application.routes.draw do
     resources :announcements
     resources :comments
     resources :holidays
+    resources :performance, only: :index
+    resources :reviews
     resources :goals, except: :destroy
     patch "/goals/:id/archive", to: "goals#archive", as: "archive_goal"
     patch "/goals/:id/end_goal", to: "goals#end_goal", as: "end_goal"
     get "objectives", to: "goals#objectives"
+
+    resources :surveys do
+      resources :sections do
+        resources :questions
+      end
+    end
 
     devise_for :users, path: "/auth"
 
