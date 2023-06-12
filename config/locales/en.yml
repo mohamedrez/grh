@@ -300,6 +300,15 @@ en:
       add_mission_order: "Add new mission order"
       edit_mission_order: "Edit the mission order"
       mission_order_details: "Mission Order Details"
+    performance:
+      performance_management: "Performance management"
+      performance_management_phrase: "Bring out the best in your talented team with tools built for their growth and success."
+      performance_reviews: "Performance reviews"
+      performance_reviews_phrase: "Conduct reviews to gain insight on where your teams excel and where they can improve."
+      go_to_performance_reviews: "Go to performance reviews"
+      goal_tracking: "Goal tracking"
+      goal_tracking_phrase: "Develop your team while driving your business forward by aligning on clear goals and getting regular updates."
+      go_to_goal_tracking: "Go to goal tracking"
     reviews:
       performance_reviews: "Performance reviews"
       set_up_review: "Set up a review"

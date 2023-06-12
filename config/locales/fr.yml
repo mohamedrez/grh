@@ -273,6 +273,15 @@ fr:
       add_mission_order: "Ajouter un nouvel ordre de mission"
       edit_mission_order: "Modifier l'ordre de mission"
       mission_order_details: "Détails de l'ordre de mission"
+    performance:
+      performance_management: "Gestion des performances"
+      performance_management_phrase: "Tirez le meilleur parti de votre équipe talentueuse grâce à des outils conçus pour leur croissance et leur réussite."
+      performance_reviews: "Évaluations de performance"
+      performance_reviews_phrase: "Effectuez des évaluations pour obtenir des informations sur les points forts de vos équipes et les domaines où elles peuvent s'améliorer."
+      go_to_performance_reviews: "Accéder aux évaluations de performance"
+      goal_tracking: "Suivi des objectifs"
+      goal_tracking_phrase: "Développez votre équipe tout en faisant avancer votre entreprise en alignant vos objectifs clairs et en obtenant des mises à jour régulières."
+      go_to_goal_tracking: "Accéder au suivi des objectifs"
     reviews:
       performance_reviews: "Évaluations de performance"
       set_up_review: "Configurer une évaluation"
