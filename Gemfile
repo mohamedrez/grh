@@ -69,6 +69,7 @@ gem "sentry-ruby"
 gem "sentry-rails"
 gem "wisper", "2.0.0"
 gem "wisper-activerecord"
+gem "aasm"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

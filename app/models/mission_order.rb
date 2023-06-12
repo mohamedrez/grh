@@ -1,4 +1,6 @@
 class MissionOrder < ApplicationRecord
+  include AASM
+
   after_create :create_user_request
 
   belongs_to :site
@@ -17,6 +19,25 @@ class MissionOrder < ApplicationRecord
   delegate :user, to: :user_request
 
   attr_accessor :user_id
+
+  aasm column: "state" do
+    state :draft, initial: true
+    state :submitted
+    state :approved
+    state :rejected
+
+    event :submit do
+      transitions from: :draft, to: :submitted
+    end
+
+    event :approve do
+      transitions from: :submitted, to: :approved
+    end
+
+    event :reject do
+      transitions from: :submitted, to: :rejected
+    end
+  end
 
   def create_user_request
     UserRequest.create(user_id: user_id, state: :pending, requestable: self)
