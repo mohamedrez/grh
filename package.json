@@ -2,7 +2,7 @@
   "name": "app",
   "private": "true",
   "dependencies": {
-    "@fullcalendar/core": "^6.1.6",
+    "@fullcalendar/core": "^6.1.8",
     "@fullcalendar/daygrid": "^6.1.5",
     "@fullcalendar/list": "^6.1.5",
     "@fullcalendar/timegrid": "^6.1.5",
@@ -14,7 +14,7 @@
     "autoprefixer": "^10.4.14",
     "debounce": "^1.2.1",
     "el-transition": "^0.0.7",
-    "esbuild": "^0.17.18",
+    "esbuild": "^0.17.19",
     "postcss": "^8.4.23",
     "stimulus-notification": "^2.2.0",
     "stimulus-rails-autosave": "^4.1.1",

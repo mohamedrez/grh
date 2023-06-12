@@ -66,3 +66,23 @@ holidays_data.each do |holiday_data|
     holiday.end_date = holiday_data[:end_date]
   end
 end
+
+# Create Jobs
+jobs_data = [
+  {title: "Human", job_type: 0, location: "Moon", remote: false, overview: "Brushing dust on the Moon", min_salary: 1, max_salary: 9999, unit: 0, status: 0},
+  {title: "Astronaut", job_type: 1, location: "Mars", remote: true, overview: "Collecting rock on mars filling your pockets with rocks and ours with money", min_salary: 1000, max_salary: 9000, unit: 1, status: 1}
+].freeze
+
+jobs_data.each do |job_data|
+  Job.find_or_create_by(job_data) do |job|
+    job.title = job_data[:title]
+    job.job_type = job_data[:job_type]
+    job.location = job_data[:location]
+    job.remote = job_data[:remote]
+    job.overview = job_data[:overview]
+    job.min_salary = job_data[:min_salary]
+    job.max_salary = job_data[:max_salary]
+    job.unit = job_data[:unit]
+    job.status = job_data[:status]
+  end
+end
