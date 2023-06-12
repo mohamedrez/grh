@@ -142,6 +142,31 @@ en:
       errors:
         must_be_expense_report: "must be Expense report for a one-day mission"
         must_be_flat_rate: "must be Flat rate for missions longer than 15 days"
+    option:
+      name: "Option name"
+    question:
+      question_type: "Question type"
+      question_types:
+        textbox: "Long answer"
+        single_select: "Single-select"
+        multiple_select: "Multiple-select"
+    review:
+      review_type: "Review type"
+      status: "Status"
+      reviewees: "Reviewees"
+      statuses:
+        upcoming: "Upcoming"
+        current: "Current"
+        ended: "Ended"
+      review_types:
+        manager_review: "Manager review"
+        self_evaluation: "Self evaluation"
+    section:
+      description: "Description"
+      section_type: "Section type"
+      section_types:
+        strengths_opportunities: "Strengths and Opportunities"
+        goals: "Goals"
     time_request:
       category: "Category"
       content: "Content"
@@ -280,6 +305,33 @@ en:
       validate_by_manager: "Validate by Manager"
       validate_by_hr: "Validate by HR"
       mark_as_paid: "Mark As Paid"
+    performance:
+      performance_management: "Performance management"
+      performance_management_phrase: "Bring out the best in your talented team with tools built for their growth and success."
+      performance_reviews: "Performance reviews"
+      performance_reviews_phrase: "Conduct reviews to gain insight on where your teams excel and where they can improve."
+      go_to_performance_reviews: "Go to performance reviews"
+      goal_tracking: "Goal tracking"
+      goal_tracking_phrase: "Develop your team while driving your business forward by aligning on clear goals and getting regular updates."
+      go_to_goal_tracking: "Go to goal tracking"
+    reviews:
+      performance_reviews: "Performance reviews"
+      set_up_review: "Set up a review"
+      add_review: "Add new review"
+      edit_review: "Edit the review"
+      review_basic_infos: "Set up the basic info of the review"
+      who_will_receive_review: "Select who will receive a review"
+      set_up_questionnaire: "Set up the questionnaire"
+      sections: "Sections"
+      add_section: "Add Section"
+      remove_section: "Remove Section"
+      questions: "Questions"
+      add_question: "Add Question"
+      remove_question: "Remove Question"
+      options: "Options"
+      add_option: "Add Option"
+      reviewee: "Reviewee"
+      direct_manager: "Direct Manager"
     time_requests:
       title_time_request: "Time off requests"
       time_requests_list: "List of time off requests requested by you."

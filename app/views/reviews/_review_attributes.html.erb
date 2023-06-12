@@ -1,0 +1,22 @@
+<div class="overflow-hidden bg-white shadow sm:rounded-lg">
+  <div class="border-t border-gray-100">
+    <dl class="divide-y divide-gray-100">
+        <div class="bg-gray-50 px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+          <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.review.review_type") %></dt>
+          <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= Review.human_enum_name(:review_type, review.review_type) %></dd>
+        </div>
+        <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+          <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.shared.start_date") %></dt>
+          <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= review.start_date %></dd>
+        </div>
+        <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+          <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.shared.end_date") %></dt>
+          <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= review.end_date %></dd>
+        </div>
+        <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+          <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.review.status") %></dt>
+          <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= Review.human_enum_name(:status, review.status) %></dd>
+        </div>
+    </dl>
+  </div>
+</div>

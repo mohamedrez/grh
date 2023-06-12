@@ -39,6 +39,10 @@ class User < ApplicationRecord
   has_many :expenses, dependent: :destroy
   has_many :notes, dependent: :destroy
   has_many :roles, dependent: :destroy
+
+  has_many :review_users, dependent: :destroy
+  has_many :reviews, through: :review_users
+
   has_one :address, dependent: :destroy
 
   belongs_to :manager, class_name: "User", optional: true
