@@ -107,6 +107,11 @@ fr:
         parental_leave: "Congé parental"
         remote_work: "Travail à distance"
         personal_time: "Temps personnel"
+    site:
+      name: "Nom"
+      code: "Code"
+      phone: "Téléphone"
+      address: "Adresse"
     user_request:
       request_type: "Type de demande"
       state: "État"
@@ -223,6 +228,12 @@ fr:
       add_time_off: "Ajouter une nouvelle demande de congé"
       edit_time_off: "Modifier la demande de congé"
       create_time_request: "Créer une demande de congé"
+    sites:
+      create_site: "Créer un site"
+      title_sites: "Sites"
+      sites_list: "Liste des Sites"
+      add_site: "Ajouter un nouveau site"
+      edit_site: "Modifier le site"
     settings:
       setting_desc: "Ces informations seront affichées sur votre profil."
       employee_picture: "Photo de l'employé"

@@ -108,6 +108,11 @@ en:
         parental_leave: "Parental leave"
         remote_work: "Remote work"
         personal_time: "Personal time"
+    site:
+      name: "Name"
+      code: "Code"
+      phone: "Phone"
+      address: "Address"
     user_request:
       request_type: "Request type"
       state: "State"
@@ -223,6 +228,12 @@ en:
       add_time_off: "Add new time off request"
       edit_time_off: "Edit the time off request"
       create_time_request: "Create time off request"
+    sites:
+      create_site: "Create site"
+      title_sites: "Sites"
+      sites_list: "List of Sites"
+      add_site: "Add new site"
+      edit_site: "Edit the site"
     settings:
       setting_desc: "These information will be displayed on your profile."
       employee_picture: "Employee picture"

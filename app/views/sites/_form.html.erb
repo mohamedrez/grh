@@ -1,0 +1,43 @@
+<%= form_with(model: site) do |form| %>
+  <div class="px-4 py-6 sm:p-8">
+    <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="sm:col-span-full">
+        <%= form.label :name, t("attributes.site.name"), class: "block" %>
+        <div class="mt-2">
+          <%= form.text_field :name, class: "w-full" %>
+          <%= inline_error_for(:name, site).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :code, t("attributes.site.code"), class: "block" %>
+        <div class="mt-2">
+        <%= form.text_field :code, class: "w-full" %>
+          <%= inline_error_for(:code, site).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :phone, t("attributes.site.phone"), class: "block" %>
+        <div class="mt-2">
+        <%= form.telephone_field :phone, class: "w-full" %>
+          <%= inline_error_for(:phone, site).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :address, t("attributes.site.address"), class: "block" %>
+        <div class="mt-2">
+          <%= form.text_field :address, class: "w-full" %>
+          <%= inline_error_for(:address, site).html_safe %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+    <button data-action="click->right#hide" type="button" class= "text-sm font-semibold leading-6 text-gray-900">
+      <%= t("buttons.cancel") %>
+    </button>
+    <%= form.submit t("buttons.save"), class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  </div>
+<% end %>
