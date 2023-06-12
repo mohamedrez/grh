@@ -40,7 +40,7 @@ class User < ApplicationRecord
   has_many :notes, dependent: :destroy
   has_many :task, dependent: :destroy
   has_many :roles, dependent: :destroy
-  
+
   has_many :review_users, dependent: :destroy
   has_many :reviews, through: :review_users
 
