@@ -72,7 +72,7 @@ RSpec.describe "/sites", type: :request do
     end
 
     context "with invalid parameters" do
-      it "does not create a new Holiday" do
+      it "does not create a new Site" do
         expect {
           post sites_url, params: {site: invalid_attributes}
         }.to change(Site, :count).by(0)
@@ -91,7 +91,7 @@ RSpec.describe "/sites", type: :request do
         patch site_url(id: site.id), params: {site: valid_attributes}
       end
 
-      it "updates the requested holiday" do
+      it "updates the requested site" do
         site.reload
         expect(site.name).to eq("Site1")
         expect(site.code).to eq("DSD")

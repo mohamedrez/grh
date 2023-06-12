@@ -60,5 +60,4 @@ class SitesController < ApplicationController
   def site_params
     params.require(:site).permit(:name, :code, :address, :phone)
   end
-
 end
