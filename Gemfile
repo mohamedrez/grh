@@ -62,12 +62,12 @@ gem "noticed", "~> 1.6"
 gem "kaminari", "~> 1.2"
 gem "ransack", "~> 4.0"
 gem "action_policy"
-
 gem "redis", "~> 5.0"
 gem "sentry-ruby"
 gem "sentry-rails"
 gem "wisper", "2.0.0"
 gem "wisper-activerecord"
+gem "aasm", "~> 5.5"
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -106,5 +106,3 @@ group :development do
   gem "brakeman"
   gem "annotate"
 end
-
-gem "aasm", "~> 5.5"

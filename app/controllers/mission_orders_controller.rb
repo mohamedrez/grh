@@ -22,6 +22,7 @@ class MissionOrdersController < ApplicationController
   def create
     @mission_order = MissionOrder.new(mission_order_params)
     @mission_order.user_id = @user.id
+    @mission_order.actor_id = current_user.id
 
     if @mission_order.save
       flash.now[:notice] = t("flash.successfully_created")
@@ -37,6 +38,7 @@ class MissionOrdersController < ApplicationController
 
   def update
     mission_order_params[:user_id] = @user.id
+    mission_order_params[:actor_id] = current_user.id
 
     if @mission_order.update(mission_order_params)
       flash.now[:notice] = t("flash.successfully_updated")
