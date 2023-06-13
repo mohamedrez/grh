@@ -96,6 +96,10 @@ en:
         important: "Important"
         very_important: "Very important"
         critical: "Critical"
+      roles: 
+        hr: "HR"
+        admin: "Admin"
+        accountant: "Accountant"
     job:
       title: "Title"
       job_type: "Job type"
@@ -160,6 +164,11 @@ en:
       review_types:
         manager_review: "Manager review"
         self_evaluation: "Self evaluation"
+    role:
+      names:
+        hr: "HR"
+        admin: "Admin"
+        accountant: "Accountant"
     section:
       description: "Description"
       section_type: "Section type"
@@ -327,6 +336,12 @@ en:
       add_option: "Add Option"
       reviewee: "Reviewee"
       direct_manager: "Direct Manager"
+    role:
+      the_role: "Roles"
+      full_name: "Full name"
+      add_role: "Add role"
+      user: "User"
+      update_role: "Edite the role"
     time_requests:
       title_time_request: "Time off requests"
       time_requests_list: "List of time off requests requested by you."

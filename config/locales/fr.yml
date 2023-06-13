@@ -142,6 +142,11 @@ fr:
       review_types:
         manager_review: "Évaluation du manager"
         self_evaluation: "Auto-évaluation"
+    role:
+      names:
+        hr: "HR"
+        admin: "Admin"
+        accountant: "Accountant"
     section:
       description: "Description"
       section_type: "Type de section"
@@ -300,6 +305,13 @@ fr:
       add_option: "Ajouter une option"
       reviewee: "Évalué(e)"
       direct_manager: "Manager Direct"
+    role:
+      the_role: "Le rôle"
+      full_name: "Nom complet"
+      role: "Rôle"
+      add_role: "Ajouter un rôle"
+      user: "Utilisateur"
+      update_role: "Éditer le rôle"
     time_requests:
       title_time_request: "Demandes de congé"
       time_requests_list: "Liste des demandes de congé demandées par vous."
