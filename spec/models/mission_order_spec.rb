@@ -41,4 +41,19 @@ RSpec.describe MissionOrder, type: :model do
       end
     end
   end
+
+  describe ".payment_types" do
+    it "returns the correct payment types" do
+      expected_payment_types = {
+        "cash" => 0,
+        "bank_transfer" => 1,
+        "check" => 2,
+        "binatna_recharge" => 3
+      }
+
+      payment_types = MissionOrder.payment_types
+
+      expect(payment_types).to eq(expected_payment_types)
+    end
+  end
 end
