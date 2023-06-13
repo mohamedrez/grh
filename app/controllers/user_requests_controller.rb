@@ -9,8 +9,8 @@ class UserRequestsController < ApplicationController
   def update
     @user_request = UserRequest.find(params[:id])
     @user_request.update(managed_by_id: current_user.id, state: params[:state])
-    @requestable_id = @user_request.requestable_id
-    redirect_to user_time_request_path(user_id: params[:user_id], id: @requestable_id)
+
+    redirect_to polymorphic_url([@user_request.user, @user_request.requestable])
   end
 
   private

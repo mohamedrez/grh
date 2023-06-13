@@ -1,0 +1,87 @@
+<%= form_with(model: review, class: "bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 my-5") do |form| %>
+  <div class="px-4 py-6 sm:p-8">
+    <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 pb-10 md:grid-cols-2">
+      <div>
+        <h2 class="text-base font-semibold leading-7 text-indigo-500"><%= t("views.reviews.review_basic_infos") %></h2>
+      </div>
+      <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="sm:col-span-full">
+          <%= form.label :name, t("attributes.shared.name"), class: "block" %>
+          <div class="mt-2">
+            <%= form.text_field :name, class: "w-full" %>
+            <%= inline_error_for(:name, review).html_safe %>
+          </div>
+        </div>
+
+        <div class="sm:col-span-full">
+          <%= form.label :start_date, t("attributes.shared.start_date"), class: "block" %>
+          <div class="mt-2">
+            <%= form.date_field :start_date, class: "w-full" %>
+            <%= inline_error_for(:start_date, review).html_safe %>
+          </div>
+        </div>
+
+        <div class="sm:col-span-full">
+          <%= form.label :end_date, t("attributes.shared.end_date"), class: "block" %>
+          <div class="mt-2">
+            <%= form.date_field :end_date, class: "w-full" %>
+            <%= inline_error_for(:end_date, review).html_safe %>
+          </div>
+        </div>
+
+        <div class="sm:col-span-full">
+          <%= form.label :review_type, t("attributes.review.review_type"), class: "block" %>
+          <div class="mt-2">
+              <%= form.select :review_type, Review.review_types.keys.collect { |review_type| [Review.human_enum_name(:review_type, review_type), review_type] } %>
+              <%= inline_error_for(:review_type, review).html_safe %>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 gap-x-8 gap-y-10 border-b border-gray-900/10 py-10 md:grid-cols-2">
+      <div>
+        <h2 class="text-base font-semibold leading-7 text-indigo-500"><%= t("views.reviews.who_will_receive_review") %></h2>
+      </div>
+      <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+        <div class="sm:col-span-full">
+          <%= form.label :user_ids, t("attributes.review.reviewees"), class: "block" %>
+          <div class="mt-2">
+              <%= form.select :user_ids, options_for_select(User.all.map {|user| [user.full_name, user.id, { class: 'hover:bg-indigo-200 text-base font-semibold m-1' }]}, review.user_ids), {}, multiple: true, class: "block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-500 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6 h-60" %>
+              <%= inline_error_for(:user_ids, review).html_safe %>
+            </div>
+        </div>
+      </div>
+    </div>
+    <div data-controller="nested-form" class="grid grid-cols-1 gap-x-8 gap-y-10 pt-10 md:grid-cols-2">
+      <div>
+        <h2 class="text-base font-semibold leading-7 text-indigo-500"><%= t("views.reviews.set_up_questionnaire") %></h2>
+      </div>
+      
+      <div>
+        <h2 class="font-semibold text-indigo-500 text-2xl mb-2"><%= t("views.reviews.sections") %></h2>
+        <template data-nested-form-target='template'>
+          <%= form.fields_for :sections, Section.new, child_index: 'TEMPLATE_RECORD' do |section| %>
+            <%= render 'section_fields', form: section %>
+          <% end %>
+        </template>
+
+        <%= form.fields_for :sections do |section| %>
+          <%= render 'section_fields', form: section %>
+        <% end %>
+
+        <div data-nested-form-target="add_item" class="flex items-center justify-start gap-x-6 mt-5">
+          <%= link_to "#", data: { action: "nested-form#add_association" }, class: "flex items-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white hover:text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" do %>
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+            </svg>
+            <span class="ml-2"><%= t("views.reviews.add_section") %></span>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+    <%= link_to t("buttons.cancel"), reviews_path, class: "text-sm font-semibold leading-6 text-gray-900" %>
+    <%= form.submit t("buttons.save"), class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  </div>
+<% end %>

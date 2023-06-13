@@ -5,6 +5,7 @@ RSpec.describe "UserRequests", type: :request do
   let(:admin_user) { create(:user, manager_id: manager.id, admin: true) }
   let(:user) { create(:user) }
   let(:time_request) { create(:time_request, user_id: admin_user.id, start_date: Date.today, end_date: (Date.today + 7)) }
+ 
 
   before do
     sign_in admin_user
@@ -29,7 +30,7 @@ RSpec.describe "UserRequests", type: :request do
       end
 
       it "redirects to the user time request page" do
-        expect(response).to redirect_to(user_time_request_path(user_id: user.id, id: time_request.id))
+        expect(response).to redirect_to(polymorphic_url([time_request.user_request.user, time_request]))
       end
     end
 
@@ -44,7 +45,7 @@ RSpec.describe "UserRequests", type: :request do
       end
 
       it "redirects to the user time request page" do
-        expect(response).to redirect_to(user_time_request_path(user_id: user.id, id: time_request.id))
+        expect(response).to redirect_to(polymorphic_url([time_request.user_request.user, time_request]))
       end
     end
   end

@@ -91,12 +91,81 @@ en:
         completed: "Completed"
         overpassed: "Overpassed"
         partially_achieved: "Partially achieved"
-
       levels:
         none: "-- None --"
         important: "Important"
         very_important: "Very important"
         critical: "Critical"
+    job:
+      title: "Title"
+      job_type: "Job type"
+      location: "Location"
+      remote: "Remote"
+      job_status: "Job status"
+      overview: "Short overview of the job"
+      description_add: "Provide a job description"
+      description_view: "Job description"
+      job_types:
+        full_time: "Full time"
+        part_time: "Part time"
+      statuses:
+        open: "Open"
+        closed: "Closed"
+      applied: "Applied"
+      interviewing : "Interviewing"
+      unit: "Per"
+    mission_order:
+      title: "Title"
+      mission_type: "Mission type"
+      indemnity_type: "Indemnity type"
+      site: "Site"
+      location: "Location"
+      accommodation: "Accommodation"
+      transport_type: "Transport type"
+      description: "Description"
+      mission_types:
+        project: "Project"
+        site: "Site"
+      accommodations:
+        apartment: "Apartment"
+        hotel: "Hotel"
+        other_accommodations: "Other"
+      indemnity_types:
+        expense_report: "Expense report"
+        flat_rate: "Flat rate"
+      transport_types:
+        plane: "Plane"
+        train: "Train"
+        bus: "Bus" 
+        other_transport_types: "Other"
+      errors:
+        must_be_expense_report: "must be Expense report for a one-day mission"
+        must_be_flat_rate: "must be Flat rate for missions longer than 15 days"
+    option:
+      name: "Option name"
+    question:
+      question_type: "Question type"
+      question_types:
+        textbox: "Long answer"
+        single_select: "Single-select"
+        multiple_select: "Multiple-select"
+    review:
+      review_type: "Review type"
+      status: "Status"
+      reviewees: "Reviewees"
+      statuses:
+        upcoming: "Upcoming"
+        current: "Current"
+        ended: "Ended"
+      review_types:
+        manager_review: "Manager review"
+        self_evaluation: "Self evaluation"
+    section:
+      description: "Description"
+      section_type: "Section type"
+      section_types:
+        strengths_opportunities: "Strengths and Opportunities"
+        goals: "Goals"
     time_request:
       category: "Category"
       content: "Content"
@@ -220,6 +289,49 @@ en:
       holidays_list: "List of holidays for this year"
       add_holiday: "Add new holiday"
       edit_holiday: "Edit the holiday"
+    jobs:
+      job_title: "Job title"
+      jobs_list: "List of all jobs"
+      edit_job: "Edit a job"
+      view_job: "View a job"
+      delete_job: "Delete a job"
+      new: "Add a Job"
+      job_desription: "Job description"
+      add_details: "Please fill in job details"
+      description_full: "Describe a role including duties, skills and requirements"
+    mission_orders:
+      title_mission_orders: "Mission orders"
+      create_mission_order: "Create mission order"
+      add_mission_order: "Add new mission order"
+      edit_mission_order: "Edit the mission order"
+      mission_order_details: "Mission Order Details"
+    performance:
+      performance_management: "Performance management"
+      performance_management_phrase: "Bring out the best in your talented team with tools built for their growth and success."
+      performance_reviews: "Performance reviews"
+      performance_reviews_phrase: "Conduct reviews to gain insight on where your teams excel and where they can improve."
+      go_to_performance_reviews: "Go to performance reviews"
+      goal_tracking: "Goal tracking"
+      goal_tracking_phrase: "Develop your team while driving your business forward by aligning on clear goals and getting regular updates."
+      go_to_goal_tracking: "Go to goal tracking"
+    reviews:
+      performance_reviews: "Performance reviews"
+      set_up_review: "Set up a review"
+      add_review: "Add new review"
+      edit_review: "Edit the review"
+      review_basic_infos: "Set up the basic info of the review"
+      who_will_receive_review: "Select who will receive a review"
+      set_up_questionnaire: "Set up the questionnaire"
+      sections: "Sections"
+      add_section: "Add Section"
+      remove_section: "Remove Section"
+      questions: "Questions"
+      add_question: "Add Question"
+      remove_question: "Remove Question"
+      options: "Options"
+      add_option: "Add Option"
+      reviewee: "Reviewee"
+      direct_manager: "Direct Manager"
     time_requests:
       title_time_request: "Time off requests"
       time_requests_list: "List of time off requests requested by you."
@@ -242,6 +354,8 @@ en:
       user_requests_list: "List of all requests requested by you."
       no_one_yet: "No one yet"
       request: "Request"
+      time_off_request: "Time Off Request"
+      mission_order: "Mission Order"
     users:
       personal_details_section: "Personal details"
       list_personal_details: "List of personal details about you."
@@ -269,6 +383,7 @@ en:
         requests: "Requests"
         calendar: "Calendar"
         organization: "Organization"
+        jobs: "Jobs"
     shared:
       settings: "Settings"
       profile: "Profile"

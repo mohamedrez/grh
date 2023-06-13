@@ -10,11 +10,17 @@ application.register("avatar-menu", AvatarMenuController)
 import CalendarController from "./calendar_controller"
 application.register("calendar", CalendarController)
 
+import DynamicSelectController from "./dynamic_select_controller"
+application.register("dynamic-select", DynamicSelectController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
 import ModalController from "./modal_controller"
 application.register("modal", ModalController)
+
+import NestedFormController from "./nested_form_controller"
+application.register("nested-form", NestedFormController)
 
 import RightController from "./right_controller"
 application.register("right", RightController)
@@ -24,6 +30,3 @@ application.register("search", SearchController)
 
 import SidebarMenuController from "./sidebar_menu_controller"
 application.register("sidebar-menu", SidebarMenuController)
-
-import Autosave from "stimulus-rails-autosave"
-application.register("autosave", Autosave)

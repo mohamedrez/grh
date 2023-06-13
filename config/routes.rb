@@ -22,10 +22,18 @@ Rails.application.routes.draw do
     resources :announcements
     resources :comments
     resources :holidays
+    resources :performance, only: :index
+    resources :reviews
     resources :goals, except: :destroy
     patch "/goals/:id/archive", to: "goals#archive", as: "archive_goal"
     patch "/goals/:id/end_goal", to: "goals#end_goal", as: "end_goal"
     get "objectives", to: "goals#objectives"
+
+    resources :surveys do
+      resources :sections do
+        resources :questions
+      end
+    end
 
     devise_for :users, path: "/auth"
 
@@ -44,9 +52,11 @@ Rails.application.routes.draw do
       patch "settings", to: "settings#update"
       resources :experiences, only: [:new, :create]
       resources :educations, only: [:new, :create]
+      resources :mission_orders
     end
 
     get "user_notifications", to: "user_notifications#index"
     get "user_notifications/notification_bell", to: "user_notifications#notification_bell"
+    resources :jobs
   end
 end

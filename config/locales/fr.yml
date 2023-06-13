@@ -96,6 +96,58 @@ fr:
         important: "Important"
         very_important: "Très important"
         critical: "Critique"
+    mission_order:
+      title: "Titre"
+      mission_type: "Type de mission"
+      indemnity_type: "Type d'indemnité"
+      site: "Site"
+      location: "Emplacement"
+      accommodation: "Hébergement"
+      transport_type: "Type de transport"
+      description: "Description"
+      mission_types:
+        project: "Projet"
+        site: "Site"
+      accommodations:
+        apartment: "Appartement"
+        hotel: "Hôtel"
+        other_accommodations: "Autre"
+      indemnity_types:
+        expense_report: "Note de frais"
+        flat_rate: "Forfait"
+      transport_types:
+        plane: "Avion"
+        train: "Train"
+        bus: "Bus"
+        other_transport_types: "Autre"
+      errors:
+        must_be_expense_report: "doit être une Note de frais pour une mission d'une journée"
+        must_be_flat_rate: "doit être un Forfait pour les missions de plus de 15 jours"
+    option:
+      name: "Nom de l'option"
+    question:
+      question_type: "Type de question"
+      question_types:
+        textbox: "Réponse longue"
+        single_select: "Sélection unique"
+        multiple_select: "Sélection multiple"
+    review:
+      review_type: "Type de revue"
+      status: "Statut"
+      reviewees: "Personnes évaluées"
+      statuses:
+        upcoming: "À venir"
+        current: "En cours"
+        ended: "Terminé"
+      review_types:
+        manager_review: "Évaluation du manager"
+        self_evaluation: "Auto-évaluation"
+    section:
+      description: "Description"
+      section_type: "Type de section"
+      section_types:
+        strengths_opportunities: "Forces et opportunités"
+        goals: "Objectifs"
     time_request:
       category: "Catégorie"
       content: "Contenu"
@@ -220,6 +272,39 @@ fr:
       holidays_list: "Liste des vacances pour cette année"
       add_holiday: "Ajouter un nouveau jour férié"
       edit_holiday: "Modifier le jour férié"
+    mission_orders:
+      title_mission_orders: "Ordres de mission"
+      create_mission_order: "Créer un ordre de mission"
+      add_mission_order: "Ajouter un nouvel ordre de mission"
+      edit_mission_order: "Modifier l'ordre de mission"
+      mission_order_details: "Détails de l'ordre de mission"
+    performance:
+      performance_management: "Gestion des performances"
+      performance_management_phrase: "Tirez le meilleur parti de votre équipe talentueuse grâce à des outils conçus pour leur croissance et leur réussite."
+      performance_reviews: "Évaluations de performance"
+      performance_reviews_phrase: "Effectuez des évaluations pour obtenir des informations sur les points forts de vos équipes et les domaines où elles peuvent s'améliorer."
+      go_to_performance_reviews: "Accéder aux évaluations de performance"
+      goal_tracking: "Suivi des objectifs"
+      goal_tracking_phrase: "Développez votre équipe tout en faisant avancer votre entreprise en alignant vos objectifs clairs et en obtenant des mises à jour régulières."
+      go_to_goal_tracking: "Accéder au suivi des objectifs"
+    reviews:
+      performance_reviews: "Évaluations de performance"
+      set_up_review: "Configurer une évaluation"
+      add_review: "Ajouter une nouvelle évaluation"
+      edit_review: "Modifier l'évaluation"
+      review_basic_infos: "Configurer les informations de base de l'évaluation"
+      who_will_receive_review: "Sélectionner qui recevra une évaluation"
+      set_up_questionnaire: "Configurer le questionnaire"
+      sections: "Sections"
+      add_section: "Ajouter une section"
+      remove_section: "Supprimer une section"
+      questions: "Questions"
+      add_question: "Ajouter une question"
+      remove_question: "Supprimer une question"
+      options: "Options"
+      add_option: "Ajouter une option"
+      reviewee: "Évalué(e)"
+      direct_manager: "Manager Direct"
     time_requests:
       title_time_request: "Demandes de congé"
       time_requests_list: "Liste des demandes de congé demandées par vous."
@@ -242,6 +327,8 @@ fr:
       user_requests_list: "Liste de toutes les demandes que vous avez effectuées."
       no_one_yet: "Personne pour l'instant"
       request: "Demande"
+      time_off_request: "Demande de congé"
+      mission_order: "Ordre de mission"
     users:
       personal_details_section: "Détails personnels"
       list_personal_details: "Liste des détails personnels vous concernant."
