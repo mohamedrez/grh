@@ -83,6 +83,9 @@ class MissionOrdersController < ApplicationController
   end
 
   def make_payment
+    @user = User.find(params[:user_id])
+    @mission_order = MissionOrder.find(params[:id])
+
     aasm_state = params[:mission_order][:aasm_state]
     payment_type = params[:mission_order][:payment_type]
 

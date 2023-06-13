@@ -153,7 +153,7 @@ RSpec.describe "/mission_orders", type: :request do
     end
   end
 
-  describe 'PATCH #update_aasm_state' do
+  describe 'PATCH /update_aasm_state' do
     context 'when aasm_state is "validated_by_manager"' do
       it 'updates the AASM state to "validated_by_manager" and redirects to the mission order page' do
         patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, aasm_state: 'validated_by_manager')
@@ -173,22 +173,63 @@ RSpec.describe "/mission_orders", type: :request do
       end
     end
 
-    context 'when aasm_state is "paid"' do
-      it 'updates the AASM state to "paid" and redirects to the mission order page' do
-        mission_order = create(:mission_order, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report", aasm_state: "validated_by_hr")
-        patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, aasm_state: 'paid')
-        mission_order.reload
-        expect(mission_order.aasm_state).to eq('paid')
-        expect(response).to redirect_to(user_mission_order_path(user, mission_order))
-      end
-    end
-
     context 'when aasm_state is "rejected"' do
       it 'updates the AASM state to "rejected" and redirects to the mission order page' do
         patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, aasm_state: 'rejected')
         mission_order.reload
         expect(mission_order.aasm_state).to eq('rejected')
         expect(response).to redirect_to(user_mission_order_path(user, mission_order))
+      end
+    end
+  end
+
+  describe "GET /new_payment" do
+    it "renders a successful response" do
+      get user_new_payment_mission_order_path(user_id: user.id, id: mission_order.id)
+      expect(response).to be_successful
+    end
+  end
+
+  describe "PATCH /make_payment" do
+    let(:mission_order) { create(:mission_order, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report", aasm_state: "validated_by_hr") }
+    
+    context "when aasm_state is 'paid_by_accountant'" do
+      it "updates mission_order, sets payment type, and renders turbo_stream" do
+        patch user_new_payment_mission_order_path(user_id: user.id, id: mission_order.id), params: {
+          mission_order: {
+            aasm_state: "paid_by_accountant",
+            payment_type: "cash"
+          }
+        }
+
+        mission_order.reload
+
+        expect(mission_order.payment_type).to eq("cash")
+        expect(mission_order.aasm_state).to eq('paid_by_accountant')
+
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("replace")
+      end
+    end
+
+    context "when aasm_state is 'paid_by_holding_treasury'" do
+      it "updates mission_order, sets payment type, and renders turbo_stream" do
+        patch user_new_payment_mission_order_path(user_id: user.id, id: mission_order.id), params: {
+          mission_order: {
+            aasm_state: "paid_by_holding_treasury",
+            payment_type: "cash"
+          }
+        }
+
+        mission_order.reload
+
+        expect(mission_order.payment_type).to eq("cash")
+        expect(mission_order.aasm_state).to eq('paid_by_holding_treasury')
+
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("replace")
       end
     end
   end
