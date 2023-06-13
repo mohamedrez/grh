@@ -3,9 +3,9 @@
     <div class="sm:p-8">
     <div class="grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       <div class="sm:col-span-full sm:col-start-1">
-        <%= form.label :payment_type %>
+        <%= form.label :payment_type, t("attributes.mission_order.payment_type") %>
         <div class="mt-2">
-          <%= form.select :payment_type, options_for_select(MissionOrder.payment_types.map {|key, value| [key.humanize, key]}) %>
+          <%= form.select :payment_type, MissionOrder.payment_types.keys.collect { |payment_type| [MissionOrder.human_enum_name(:payment_type, payment_type), payment_type] } %>
         </div>
       </div>
     </div>

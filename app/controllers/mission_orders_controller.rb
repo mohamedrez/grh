@@ -99,10 +99,9 @@ class MissionOrdersController < ApplicationController
     @user_request = @mission_order.user_request
     @aasm_logs = AasmLog.where(aasm_logable: @mission_order)
 
-    flash.now[:notice] = "Payment was successful!"
+    flash.now[:notice] = t("flash.payment_was_successful")
     render turbo_stream: [
       turbo_stream.replace(@mission_order, partial: "mission_orders/show_partial", locals: {mission_order: @mission_order, user: @user, user_request: @user_request, aasm_logs: @aasm_logs}),
-      turbo_stream.replace("modal", partial: "shared/modal"),
       turbo_stream.replace("notification_alert", partial: "layouts/alert")
     ]
   end

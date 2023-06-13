@@ -2,20 +2,20 @@
   <div class="my-5 overflow-hidden bg-white shadow sm:rounded-lg lg:w-full lg:max-w-4xl lg:flex-auto p-8">
     <div class="flow-root">
       <ul role="list" class="-mb-8">
-      <li>
-        <div class="relative pb-8">
-          <% unless aasm_logs.blank? %>
-            <span class="absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-          <% end %>
-          <div class="relative flex space-x-3">
-            <div>
-              <%= image_tag user_request.user.avatar_url_or_default, class: "rounded-full h-10 w-10 align-middle" %>
-            </div>
-            <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+        <li>
+          <div class="relative pb-8">
+            <% unless aasm_logs.blank? %>
+              <span class="absolute left-5 top-5 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
+            <% end %>
+            <div class="relative flex space-x-3">
               <div>
-                <p class="text-sm text-gray-500"><%= t("views.mission_orders.created_by") %> <span class="text-base font-semibold text-gray-900"><%= user_request.user.full_name %></span> <%= time_ago_in_words(mission_order.created_at) %></p>
+                <%= image_tag user_request.user.avatar_url_or_default, class: "rounded-full h-10 w-10 align-middle" %>
               </div>
-            </div>
+              <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+                <div>
+                  <p class="text-sm text-gray-500"><%= t("views.mission_orders.created_by") %> <span class="text-base font-semibold text-gray-900"><%= user_request.user.full_name %></span> <%= time_ago_in_words(mission_order.created_at) %></p>
+                </div>
+              </div>
             </div>
           </div>
         </li>
@@ -31,11 +31,21 @@
                 </div>
                 <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
                   <div>
-                    <% if aasm_log.to_state == "rejected" %>
-                      <p class="text-sm text-gray-500"><%= aasm_log.to_state.humanize %> <%= t("views.mission_orders.by") %> <span class="text-base font-semibold text-gray-900"><%= aasm_log.actor.full_name %></span> <%= time_ago_in_words(aasm_log.created_at) %></p>
-                    <% else %>
-                      <p class="text-sm text-gray-500"><%= aasm_log.to_state.humanize %> <span class="text-base font-semibold text-gray-900"><%= aasm_log.actor.full_name %></span> <%= time_ago_in_words(aasm_log.created_at) %></p>
-                    <% end %>
+                    <%
+                      case aasm_log.to_state
+                      when "validated_by_manager"
+                        mission_order_state = t("attributes.mission_order.aasm_states.validated_by_manager")
+                      when "validated_by_hr"
+                        mission_order_state = t("attributes.mission_order.aasm_states.validated_by_hr")
+                      when "paid_by_accountant"
+                        mission_order_state = t("attributes.mission_order.aasm_states.paid_by_accountant")
+                      when "paid_by_holding_treasury"
+                        mission_order_state = t("attributes.mission_order.aasm_states.paid_by_holding_treasury")
+                      when "rejected"
+                        mission_order_state = t("views.mission_orders.rejected_by")
+                      end 
+                    %>
+                    <p class="text-sm text-gray-500"><%= mission_order_state %> <span class="text-base font-semibold text-gray-900"><%= aasm_log.actor.full_name %></span> <%= time_ago_in_words(aasm_log.created_at) %></p>
                   </div>
                 </div>
               </div>

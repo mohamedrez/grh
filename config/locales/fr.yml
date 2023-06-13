@@ -105,6 +105,7 @@ fr:
       location: "Emplacement"
       accommodation: "Hébergement"
       transport_type: "Type de transport"
+      payment_type: "Type de paiement"
       description: "Description"
       mission_types:
         project: "Projet"
@@ -124,6 +125,18 @@ fr:
       errors:
         must_be_expense_report: "doit être une Note de frais pour une mission d'une journée"
         must_be_flat_rate: "doit être un Forfait pour les missions de plus de 15 jours"
+      aasm_states:
+        created: "Créé"
+        validated_by_manager: "Validé par le responsable"
+        validated_by_hr: "Validé par les RH"
+        paid_by_accountant: "Payé par le comptable"
+        paid_by_holding_treasury: "Payé par la trésorerie centrale"
+        rejected: "Rejeté"
+      payment_types:
+        cash: "Espèces"
+        bank_transfer: "Virement bancaire"
+        check: "Chèque"
+        binatna_recharge: "Recharge Binatna"
     option:
       name: "Nom de l'option"
     question:
@@ -273,15 +286,12 @@ fr:
       create_mission_order: "Créer un ordre de mission"
       add_mission_order: "Ajouter un nouvel ordre de mission"
       edit_mission_order: "Modifier l'ordre de mission"
-      mission_order_details: "Détails de l'ordre de mission"
-      paid_by_accountant: "Payé par le comptable"
-      paid_by_holding_treasury: "Payé par le trésor de la société mère"
-      validate_by_manager: "Validé par le responsable"
-      validate_by_hr: "Validé par les ressources humaines"
+      validate_by_manager: "Valider par le responsable"
+      validate_by_hr: "Valider par les RH"
       pay_by_accountant: "Payer par le comptable"
-      pay_by_holding_treasury: "Payer par le trésor de la société mère"
+      pay_by_holding_treasury: "Payer par la trésorerie centrale"
       created_by: "Créé par"
-      by: "par"
+      rejected_by: "Rejeté par"
     performance:
       performance_management: "Gestion des performances"
       performance_management_phrase: "Tirez le meilleur parti de votre équipe talentueuse grâce à des outils conçus pour leur croissance et leur réussite."
@@ -379,6 +389,7 @@ fr:
     receipt_successfully_deleted: "Le reçu a été supprimé avec succès."
     goal_successfully_ended: objectif terminé avec succès
     successfully_archived: "Archivé avec succès"
+    payment_was_successful: "Le paiement a été effectué avec succès !"
   errors:
     comment_cant_be_blank: "Commentaire ne peut pas être vide."
     prohibited: "ont empêché(e)s son enregistrement :"
