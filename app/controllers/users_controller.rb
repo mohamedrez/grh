@@ -19,7 +19,7 @@ class UsersController < ApplicationController
     # authorize!
     @user = User.new
     @user.build_address
-
+    @manager_select = User.all.map { |user| [user.full_name, user.id] }
     add_breadcrumb(t("views.users.add_employee"))
   end
 
