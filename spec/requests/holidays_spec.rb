@@ -122,5 +122,19 @@ RSpec.describe "/holidays", type: :request do
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
+
+    describe 'DELETE /destroy' do
+      before do
+        delete holiday_path(id: holiday.id)
+      end
+      
+      it 'destroy the holiday' do
+        expect(Holiday.count).to eq(0)
+      end
+
+      it 'sets the flash notice' do
+        expect(flash[:notice]).to eq( I18n.t("flash.successfully_destroyed"))
+      end
+    end
   end
 end

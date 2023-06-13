@@ -1,5 +1,5 @@
 class HolidaysController < ApplicationController
-  before_action :set_holiday, only: %i[edit update]
+  before_action :set_holiday, only: %i[edit update destroy]
   before_action :set_breadcrumbs, only: :index
 
   def index
@@ -39,6 +39,12 @@ class HolidaysController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @holiday.destroy
+    flash.now[:notice] = t("flash.successfully_destroyed")
+    redirect_to holidays_path
   end
 
   private
