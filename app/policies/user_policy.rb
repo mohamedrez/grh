@@ -6,7 +6,7 @@ class UserPolicy < ApplicationPolicy
   end
 
   def update?
-    create?
+    user.has_any_role?([:hr, :admin])
   end
 
   # Scoping
