@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   scope "(:locale)", locale: /en|fr/ do
     get "dashboard", to: "dashboard#index"
 
+    resources :roles
     resources :sites
     resources :announcements
     resources :comments

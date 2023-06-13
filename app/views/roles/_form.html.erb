@@ -1,0 +1,27 @@
+<%= form_with(model: role, class: "mt-5 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2") do |form| %>
+  <div class="px-4 py-6 sm:p-8">
+    <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
+      <div class="sm:col-span-full">
+        <%= form.label :name, t("views.role.the_role"), class: "block" %>
+        <div class="mt-2">
+          <%= form.select :name, Role.names.keys.map { |name| [Role.human_enum_name(:name, name), name] }%>
+          <%= inline_error_for(:name, role).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :user_id, t("views.role.user"), class: "block" %>
+        <div class="mt-2">
+          <%= form.select :user_id, options_for_select(User.all&.map { |user| [user.full_name, user.id] }.to_h, @role.user_id) %>
+          <%= inline_error_for(:user_id, role).html_safe %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+    <button data-action="click->right#hide" type="button" class= "text-sm font-semibold leading-6 text-gray-900">
+      <%= t("buttons.cancel") %>
+    </button>
+    <%= form.submit t("buttons.save"), class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+  </div>
+<% end %>
