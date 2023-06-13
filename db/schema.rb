@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_12_111933) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_095647) do
   create_table "aasm_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "actor_id", null: false
     t.string "from_state"
@@ -212,6 +212,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_111933) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "aasm_state"
+    t.string "payment_type"
     t.index ["site_id"], name: "index_mission_orders_on_site_id"
   end
 

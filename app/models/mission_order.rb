@@ -5,7 +5,8 @@ class MissionOrder < ApplicationRecord
 
   belongs_to :site
 
-  has_one :aasm_log, as: :aasm_logable, dependent: :destroy
+  has_many :aasm_logs, as: :aasm_logable, dependent: :destroy
+
   has_one :user_request, as: :requestable, dependent: :destroy
 
   has_rich_text :description
@@ -53,6 +54,10 @@ class MissionOrder < ApplicationRecord
     event :reject_mission_order do
       transitions from: [:created, :validated_by_manager, :validated_by_hr], to: :rejected, after: :reject_mission_order_trigger_actions
     end
+  end
+
+  def self.payment_types
+    {"cash" => 0, "bank_transfer" => 1, "check" => 2, "binatna_recharge" => 3}
   end
 
   def create_user_request

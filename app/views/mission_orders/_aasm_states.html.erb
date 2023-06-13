@@ -45,13 +45,7 @@
   <% end %>
 <% end %>
 
-<% if mission_order.site? && mission_order.may_pay_mission_order_by_accountant? %>
-  <%= button_to t("views.mission_orders.pay_by_accountant"), user_update_aasm_state_mission_order_path(user, mission_order, aasm_state: "paid_by_accountant"), method: :patch, class: "rounded-md px-5 py-2 text-base font-medium text-white hover:text-white shadow-sm bg-green-500 hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" %>
-<% end %>
-
-<% if mission_order.project? && mission_order.may_pay_mission_order_by_holding_treasury? %>
-  <%= button_to t("views.mission_orders.pay_by_holding_treasury"), user_update_aasm_state_mission_order_path(user, mission_order, aasm_state: "paid_by_holding_treasury"), method: :patch, class: "rounded-md px-5 py-2 text-base font-medium text-white hover:text-white shadow-sm bg-green-500 hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" %>
-<% end %>
+<%= render partial: 'pay_button', locals: {user: user, mission_order: mission_order} %>
 
 <% if mission_order.may_reject_mission_order? %>
   <%= button_to user_update_aasm_state_mission_order_path(user, mission_order, aasm_state: "rejected"), method: :patch, class: "flex items-center rounded-md px-5 py-2 ttext-base font-medium text-white hover:text-white shadow-sm bg-red-500 hover:bg-red-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900" do %>

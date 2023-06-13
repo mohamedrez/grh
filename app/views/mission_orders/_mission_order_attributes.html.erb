@@ -1,10 +1,6 @@
 <div class="border-t border-gray-100">
   <dl class="divide-y divide-gray-100">
     <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-      <dt class="text-sm font-medium text-gray-900"><%= t("attributes.mission_order.title") %></dt>
-      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= mission_order.title %></dd>
-    </div>
-    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
       <dt class="text-sm font-medium text-gray-900"><%= t("attributes.mission_order.mission_type") %></dt>
       <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= MissionOrder.human_enum_name(:mission_type, mission_order.mission_type) %></dd>
     </div>
