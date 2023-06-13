@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     get "dashboard", to: "dashboard#index"
 
     resources :roles
+    resources :sites
     resources :announcements
     resources :comments
     resources :holidays
@@ -53,6 +54,9 @@ Rails.application.routes.draw do
       resources :experiences, only: [:new, :create]
       resources :educations, only: [:new, :create]
       resources :mission_orders
+      patch "/mission_orders/:id/update_aasm_state", to: "mission_orders#update_aasm_state", as: "update_aasm_state_mission_order"
+      get "/mission_orders/:id/payment", to: "mission_orders#new_payment", as: "new_payment_mission_order"
+      patch "/mission_orders/:id/payment", to: "mission_orders#make_payment", as: "make_payment_mission_order"
     end
 
     get "user_notifications", to: "user_notifications#index"

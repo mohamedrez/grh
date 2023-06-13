@@ -1,0 +1,50 @@
+<div class="border-t border-gray-100">
+  <dl class="divide-y divide-gray-100">
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-900"><%= t("attributes.mission_order.mission_type") %></dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= MissionOrder.human_enum_name(:mission_type, mission_order.mission_type) %></dd>
+    </div>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-900"><%= t("attributes.mission_order.indemnity_type") %></dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= MissionOrder.human_enum_name(:indemnity_type, mission_order.indemnity_type) %></dd>
+    </div>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-900"><%= t("attributes.mission_order.status") %></dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= MissionOrder.human_enum_name(:aasm_state, mission_order.aasm_state) %></dd>
+    </div>
+    <% if mission_order.payment_type.present? %>
+      <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+        <dt class="text-sm font-medium text-gray-900"><%= t("attributes.mission_order.payment_type") %></dt>
+        <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= MissionOrder.human_enum_name(:payment_type, mission_order.payment_type) %></dd>
+      </div>
+    <% end %>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-900"><%= t("attributes.mission_order.site") %></dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= mission_order.site.name %></dd>
+    </div>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-900"><%= t("attributes.mission_order.location") %></dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= mission_order.location %></dd>
+    </div>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-900"><%= t("attributes.mission_order.accommodation") %></dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= MissionOrder.human_enum_name(:accommodation, mission_order.accommodation) %></dd>
+    </div>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-900"><%= t("attributes.mission_order.transport_type") %></dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= MissionOrder.human_enum_name(:transport_type, mission_order.transport_type) %></dd>
+    </div>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-900"><%= t("attributes.shared.start_date") %></dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= mission_order.start_date.strftime('%b %d, %Y') %></dd>
+    </div>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-900"><%= t("attributes.shared.end_date") %></dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= mission_order.end_date.strftime('%b %d, %Y') %></dd>
+    </div>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-900"><%= t("attributes.shared.description") %></dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= mission_order.description %></dd>
+    </div>
+  </dl>
+</div>

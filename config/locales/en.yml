@@ -122,10 +122,12 @@ en:
       title: "Title"
       mission_type: "Mission type"
       indemnity_type: "Indemnity type"
+      status: "Status"
       site: "Site"
       location: "Location"
       accommodation: "Accommodation"
       transport_type: "Transport type"
+      payment_type: "Payment type"
       description: "Description"
       mission_types:
         project: "Project"
@@ -145,6 +147,18 @@ en:
       errors:
         must_be_expense_report: "must be Expense report for a one-day mission"
         must_be_flat_rate: "must be Flat rate for missions longer than 15 days"
+      aasm_states:
+        created: "Created"
+        validated_by_manager: "Validated by manager"
+        validated_by_hr: "Validated by hr"
+        paid_by_accountant: "Paid by accountant"
+        paid_by_holding_treasury: "Paid by holding treasury"
+        rejected: "Rejected"
+      payment_types:
+        cash: "Cash"
+        bank_transfer: "Bank transfer"
+        check: "Check"
+        binatna_recharge: "Binatna recharge"
     option:
       name: "Option name"
     question:
@@ -186,6 +200,11 @@ en:
         parental_leave: "Parental leave"
         remote_work: "Remote work"
         personal_time: "Personal time"
+    site:
+      name: "Name"
+      code: "Code"
+      phone: "Phone"
+      address: "Address"
     user_request:
       request_type: "Request type"
       state: "State"
@@ -308,7 +327,12 @@ en:
       create_mission_order: "Create mission order"
       add_mission_order: "Add new mission order"
       edit_mission_order: "Edit the mission order"
-      mission_order_details: "Mission Order Details"
+      validate_by_manager: "Validate by manager"
+      validate_by_hr: "Validate by HR"
+      pay_by_accountant: "Pay by accountant"
+      pay_by_holding_treasury: "Pay by holding treasury"
+      created_by: "Created by"
+      rejected_by: "Rejected by"
     performance:
       performance_management: "Performance management"
       performance_management_phrase: "Bring out the best in your talented team with tools built for their growth and success."
@@ -350,6 +374,12 @@ en:
       add_time_off: "Add new time off request"
       edit_time_off: "Edit the time off request"
       create_time_request: "Create time off request"
+    sites:
+      create_site: "Create site"
+      title_sites: "Sites"
+      sites_list: "List of Sites"
+      add_site: "Add new site"
+      edit_site: "Edit the site"
     settings:
       setting_desc: "These information will be displayed on your profile."
       employee_picture: "Employee picture"
@@ -414,6 +444,7 @@ en:
     receipt_successfully_deleted: "The receipt was successfully deleted."
     goal_successfully_ended: "Goal successfully ended"
     successfully_archived: "Successfully archived"
+    payment_was_successful: "Payment was successful!"
   errors:
     comment_cant_be_blank: "Comment can't be blank"
     prohibited: "prohibited it from being saved:"

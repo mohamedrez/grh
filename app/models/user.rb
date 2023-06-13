@@ -51,6 +51,7 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, presence: true
   validates :cnss_number, :employee_number, numericality: {only_integer: true, allow_blank: true}
+  validates :email, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\ -]+(\.[a-z\d\ -]+)*\.[a-z]+\z/i}
 
   accepts_nested_attributes_for :address, update_only: true
   accepts_nested_attributes_for :experiences
@@ -74,7 +75,11 @@ class User < ApplicationRecord
   end
 
   def has_role?(role_name)
-    roles.any? { |role| role.name == role_name }
+    roles.any? { |role| role.name.to_sym == role_name.to_sym }
+  end
+
+  def has_any_role?(role_names)
+    roles.any? { |role| role_names.include?(role.name.to_sym) }
   end
 
   def full_name

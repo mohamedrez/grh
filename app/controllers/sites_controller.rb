@@ -1,25 +1,25 @@
-class HolidaysController < ApplicationController
-  before_action :set_holiday, only: %i[edit update destroy]
+class SitesController < ApplicationController
+  before_action :set_site, only: %i[edit update destroy]
   before_action :set_breadcrumbs, only: :index
 
   def index
-    @holidays = Holiday.order(start_date: :asc)
+    @sites = Site.all
   end
 
   def new
-    @holiday = Holiday.new
+    @site = Site.new
   end
 
   def edit
   end
 
   def create
-    @holiday = Holiday.new(holiday_params)
+    @site = Site.new(site_params)
 
-    if @holiday.save
+    if @site.save
       flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
-        turbo_stream.prepend("holiday-list", @holiday),
+        turbo_stream.append("site-list", @site),
         turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
@@ -29,35 +29,35 @@ class HolidaysController < ApplicationController
   end
 
   def update
-    if @holiday.update(holiday_params)
+    if @site.update(site_params)
       flash.now[:notice] = t("flash.successfully_updated")
       render turbo_stream: [
-        turbo_stream.replace(@holiday, @holiday),
+        turbo_stream.replace(@site, @site),
         turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else
-      render :edit, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
-    @holiday.destroy
+    @site.destroy
     flash.now[:notice] = t("flash.successfully_destroyed")
-    redirect_to holidays_path
+    redirect_to sites_path
   end
 
   private
 
-  def set_holiday
-    @holiday = Holiday.find(params[:id])
+  def set_site
+    @site = Site.find(params[:id])
   end
 
   def set_breadcrumbs
-    add_breadcrumb(t("views.holidays.title_holidays"), holidays_path)
+    add_breadcrumb(t("views.sites.title_sites"), sites_path)
   end
 
-  def holiday_params
-    params.require(:holiday).permit(:name, :start_date, :end_date)
+  def site_params
+    params.require(:site).permit(:name, :code, :address, :phone)
   end
 end

@@ -10,7 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_09_102643) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_095647) do
+  create_table "aasm_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "actor_id", null: false
+    t.string "from_state"
+    t.string "to_state"
+    t.string "event"
+    t.string "aasm_logable_type", null: false
+    t.bigint "aasm_logable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["aasm_logable_type", "aasm_logable_id"], name: "index_aasm_logs_on_aasm_logable"
+    t.index ["actor_id"], name: "index_aasm_logs_on_actor_id"
+  end
+
   create_table "action_text_rich_texts", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
     t.text "body", size: :long
@@ -198,6 +211,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_102643) do
     t.integer "transport_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "aasm_state"
+    t.string "payment_type"
     t.index ["site_id"], name: "index_mission_orders_on_site_id"
   end
 
@@ -485,9 +500,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_102643) do
     t.integer "status"
     t.string "link"
     t.integer "priority"
+    t.bigint "tasks_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.index ["tasks_id"], name: "index_tasks_on_tasks_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -556,6 +573,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_102643) do
     t.index ["site_id"], name: "index_users_on_site_id"
   end
 
+  add_foreign_key "aasm_logs", "users", column: "actor_id"
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "addresses", "users"
@@ -582,6 +600,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_09_102643) do
   add_foreign_key "review_users", "users"
   add_foreign_key "roles", "users"
   add_foreign_key "sections", "reviews"
+  add_foreign_key "tasks", "tasks", column: "tasks_id"
   add_foreign_key "tasks", "users"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"
