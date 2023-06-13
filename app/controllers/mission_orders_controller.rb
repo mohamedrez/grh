@@ -70,8 +70,10 @@ class MissionOrdersController < ApplicationController
       @mission_order.validate_mission_order_by_manager!
     when "validated_by_hr"
       @mission_order.validate_mission_order_by_hr!
-    when "paid"
-      @mission_order.pay_mission_order!
+    when "paid_by_accountant"
+      @mission_order.pay_mission_order_by_accountant!
+    when "paid_by_holding_treasury"
+      @mission_order.pay_mission_order_by_holding_treasury!
     when "rejected"
       @mission_order.reject_mission_order!
     end

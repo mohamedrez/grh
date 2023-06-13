@@ -499,9 +499,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_111933) do
     t.integer "status"
     t.string "link"
     t.integer "priority"
+    t.bigint "tasks_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "user_id", null: false
+    t.index ["tasks_id"], name: "index_tasks_on_tasks_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -597,6 +599,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_12_111933) do
   add_foreign_key "review_users", "users"
   add_foreign_key "roles", "users"
   add_foreign_key "sections", "reviews"
+  add_foreign_key "tasks", "tasks", column: "tasks_id"
   add_foreign_key "tasks", "users"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"

@@ -30,7 +30,8 @@ class MissionOrder < ApplicationRecord
     state :created, initial: true
     state :validated_by_manager
     state :validated_by_hr
-    state :paid
+    state :paid_by_accountant
+    state :paid_by_holding_treasury
     state :rejected
 
     event :validate_mission_order_by_manager do
@@ -41,8 +42,12 @@ class MissionOrder < ApplicationRecord
       transitions from: :validated_by_manager, to: :validated_by_hr, after: :validate_mission_order_by_hr_trigger_actions
     end
 
-    event :pay_mission_order do
-      transitions from: :validated_by_hr, to: :paid, after: :pay_mission_order_trigger_actions
+    event :pay_mission_order_by_accountant do
+      transitions from: :validated_by_hr, to: :paid_by_accountant, after: :pay_mission_order_trigger_actions
+    end
+
+    event :pay_mission_order_by_holding_treasury do
+      transitions from: :validated_by_hr, to: :paid_by_holding_treasury, after: :pay_mission_order_trigger_actions
     end
 
     event :reject_mission_order do
