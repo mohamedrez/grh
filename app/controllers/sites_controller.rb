@@ -19,7 +19,7 @@ class SitesController < ApplicationController
     if @site.save
       flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
-        turbo_stream.prepend("site-list", @site),
+        turbo_stream.append("site-list", @site),
         turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
