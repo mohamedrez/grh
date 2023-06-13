@@ -1,20 +1,12 @@
 class UserPolicy < ApplicationPolicy
   # See https://actionpolicy.evilmartians.io/#/writing_policies
 
-  def index?
-    user.admin?
-  end
-
-  def show?
-    user.admin? || user == record || user == record.manager
-  end
-
   def create?
-    user.admin?
+    user.has_any_role?([:hr, :admin])
   end
 
   def update?
-    user.admin? || user == record
+    user.has_any_role?([:hr, :admin])
   end
 
   # Scoping
