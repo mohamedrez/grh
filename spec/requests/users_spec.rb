@@ -84,6 +84,15 @@ RSpec.describe "Users", type: :request do
   end
 
   describe "POST /create" do
+    context 'Email validations' do
+      it 'validates the format of email' do
+        expect(user).to be_valid
+  
+        user.email = 'invalid_email'
+        expect(user).to_not be_valid
+      end
+    end
+
     context "with valid parameters" do
       it "creates a new user" do
         expect {
