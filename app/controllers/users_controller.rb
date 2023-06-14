@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     @user.build_address(user_params[:address_attributes])
 
     if @user.save
-      @user.send_confirmation_instructions
+      @user.send_reset_password_instructions
       redirect_to user_url(@user), notice: t("flash.successfully_created")
     else
       render :new, status: :unprocessable_entity
