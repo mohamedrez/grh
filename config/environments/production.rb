@@ -71,11 +71,11 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {host: "hachimy.com", port: 8800}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.mailgun.org",
+    address: "smtp.sendgrid.net",
     port: 587,
     domain: "hachimy.com",
-    user_name: "postmaster@sandbox0c47c57f445b4cf28e2d5cc84b82bdc7.mailgun.org",
-    password: Rails.application.credentials.dig(:mail_gun_secret),
+    user_name: "apikey",
+    password: Rails.application.credentials.dig(:sendgrid_secret),
     authentication: "plain",
     enable_starttls_auto: true,
     open_timeout: 5,
