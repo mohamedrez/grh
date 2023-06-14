@@ -74,7 +74,7 @@ Rails.application.configure do
     address: "smtp.sendgrid.net",
     port: 587,
     domain: "hachimy.com",
-    user_name: "apiskey",
+    user_name: "apikey",
     password: Rails.application.credentials.dig(:sendgrid_secret),
     authentication: "plain",
     enable_starttls_auto: true,
