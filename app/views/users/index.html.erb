@@ -1,23 +1,23 @@
 <div class="mt-5 px-4 sm:px-6 lg:px-8">
   <div class="flex items-center justify-between h-16">
-    <% if @policy.create? %>
-    <div class="flex items-center">
-      <%= link_to new_user_path, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
-        <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <%= t("views.users.add_employee") %>
-      <% end %>
-    </div>
-    <div class="flex items-center">
-      <%= form_tag import_users_path, multipart: true,  data: { controller: 'autosave', autosave_delay_value: '1000' } do %>
-        <div class="mx-2 flex md:visible sm:invisible items-center">
-          <%= label_tag :file, "Import from csv", class: "py-2 px-4 bg-blue-500 hover:bg-blue-600 rounded-lg shadow-md text-white font-medium tracking-wide cursor-pointer text-center" %>
-          <%= file_field_tag :file, accept: '.csv', class: "hidden", data: { action: 'autosave#save' } %>
-          <%= submit_tag "Import", class: "hidden py-2 px-4 bg-blue-500 hover:bg-blue-600 rounded-lg shadow-md text-white font-medium tracking-wide cursor-pointer text-center" %>
-        </div>
-      <% end %>
-    </div>
+    <% if allowed_to?(:create?) %>
+      <div class="flex items-center">
+        <%= link_to new_user_path, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+          <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <%= t("views.users.add_employee") %>
+        <% end %>
+      </div>
+      <div class="flex items-center">
+        <%= form_tag import_users_path, multipart: true,  data: { controller: 'autosave', autosave_delay_value: '1000' } do %>
+          <div class="mx-2 flex md:visible sm:invisible items-center">
+            <%= label_tag :file, "Import from csv", class: "py-2 px-4 bg-blue-500 hover:bg-blue-600 rounded-lg shadow-md text-white font-medium tracking-wide cursor-pointer text-center" %>
+            <%= file_field_tag :file, accept: '.csv', class: "hidden", data: { action: 'autosave#save' } %>
+            <%= submit_tag "Import", class: "hidden py-2 px-4 bg-blue-500 hover:bg-blue-600 rounded-lg shadow-md text-white font-medium tracking-wide cursor-pointer text-center" %>
+          </div>
+        <% end %>
+      </div>
     <% end %>
     <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
       <%= render partial: "search_form" %>

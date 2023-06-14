@@ -52,6 +52,10 @@ RSpec.describe "Users", type: :request do
   end
 
   before do
+    Role.create!(user_id: user.id, name: :admin)
+  end
+
+  before do
     sign_in user
   end
 

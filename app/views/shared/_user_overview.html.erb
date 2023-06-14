@@ -10,10 +10,12 @@
           <div class="mt-4 text-center sm:mt-0 sm:pt-1 sm:text-left">
             <p class="text-xl font-bold text-gray-900 sm:text-2xl"><%= user.full_name %></p>
             <p class="text-sm font-medium text-gray-600"><%= user.job_title&.humanize %></p>
+            <% if user.manager %>
+              <p class="text-sm font-medium text-gray-600"><strong>Manager:</strong> <%= user.manager.full_name %></p>
+            <% end %>
           </div>
         </div>
         <div class="mt-5 flex justify-center sm:mt-0">
-          <a href="<%= user_path user %>" class="flex items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"><%= t("views.shared.view_profile") %></a>
           <% if allowed_to?(:edit?, user) %>
             <a href="<%= edit_user_path user %>" class="flex ml-4 items-center justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="h-6 w-6 shrink-0 ">
@@ -28,8 +30,22 @@
     </div>
     <div class="grid grid-cols-1 divide-y divide-gray-200 border-t border-gray-200 bg-gray-50 sm:grid-cols-3 sm:divide-x sm:divide-y-0">
       <div class="px-6 py-5 text-center text-sm font-medium">
-        <span class="text-gray-900"><%= user.pto_number %></span>
-        <span class="text-gray-600"><%= t("views.shared.user_overview.time_off_days") %></span>
+        <span class="text-gray-900">
+          <strong>Service:</strong>
+          <%= user.service&.humanize %>
+        </span>
+      </div>
+      <div class="px-6 py-5 text-center text-sm font-medium">
+        <span class="text-gray-900">
+          <strong>Site:</strong>
+          <%= user.site&.name %>
+        </span>
+      </div>
+      <div class="px-6 py-5 text-center text-sm font-medium">
+        <span class="text-gray-900">
+          <strong>Tel:</strong>
+          <%= user.phone %>
+        </span>
       </div>
     </div>
   </div>

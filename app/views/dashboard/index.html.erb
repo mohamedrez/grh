@@ -7,7 +7,6 @@
       <div class="grid grid-cols-1 gap-4 lg:col-span-2">
         <!-- Welcome panel -->
         <%= render partial: 'shared/user_overview', locals: {user: current_user} %>
-
         <!-- Actions panel -->
         <section aria-labelledby="quick-links-title">
           <div class="divide-y divide-gray-200 overflow-hidden rounded-lg bg-gray-200 shadow sm:grid sm:grid-cols-2 sm:gap-px sm:divide-y-0">
@@ -192,7 +191,7 @@
                           <span class="relative z-10 rounded-full bg-gray-50 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"> <%= announcement.published_at.strftime('%b %d, %Y') %></span>
                         </div>
                         <p class="mt-2"><%= announcement.content.to_plain_text[0, 80]... %></p>
-                        
+
                       </div>
                     </li>
                     <%end%>
