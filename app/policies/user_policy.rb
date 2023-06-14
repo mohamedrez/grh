@@ -5,8 +5,18 @@ class UserPolicy < ApplicationPolicy
     user.has_any_role?([:hr, :admin])
   end
 
+  def show?
+    true
+  end
+
   def update?
     user.has_any_role?([:hr, :admin])
+  end
+
+  def view_full_profile?
+    user.has_any_role?([:hr, :admin]) ||
+      user.id == record.id ||
+      user.id == record.manager.id
   end
 
   # Scoping

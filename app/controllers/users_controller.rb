@@ -10,8 +10,12 @@ class UsersController < ApplicationController
   end
 
   def show
-    # authorize! @user
+    authorize! @user
     @manager = User.find_by(id: @user.manager_id)
+    # @policy = UserPolicy.new(
+    #   user: current_user,
+    #   record: @user
+    # )
 
     add_breadcrumb(@user.full_name)
   end
