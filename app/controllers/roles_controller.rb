@@ -1,25 +1,24 @@
-class HolidaysController < ApplicationController
-  before_action :set_holiday, only: %i[edit update destroy]
+class RolesController < ApplicationController
+  before_action :set_role, only: %i[edit update destroy]
   before_action :set_breadcrumbs, only: :index
 
   def index
-    @holidays = Holiday.order(start_date: :asc)
+    @roles = Role.all
   end
 
   def new
-    @holiday = Holiday.new
+    @role = Role.new
   end
 
   def edit
   end
 
   def create
-    @holiday = Holiday.new(holiday_params)
-
-    if @holiday.save
+    @role = Role.new(role_params)
+    if @role.save
       flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
-        turbo_stream.prepend("holiday-list", @holiday),
+        turbo_stream.append("role-list", @role),
         turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
@@ -29,35 +28,38 @@ class HolidaysController < ApplicationController
   end
 
   def update
-    if @holiday.update(holiday_params)
+    if @role.update(role_params)
       flash.now[:notice] = t("flash.successfully_updated")
       render turbo_stream: [
-        turbo_stream.replace(@holiday, @holiday),
+        turbo_stream.replace(@role, @role),
         turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     else
-      render :edit, status: :unprocessable_entity
+      render "edit", status: :unprocessable_entity
     end
   end
 
   def destroy
-    @holiday.destroy
+    @role.destroy
     flash.now[:notice] = t("flash.successfully_destroyed")
-    redirect_to holidays_path
+    render turbo_stream: [
+      turbo_stream.remove(@role),
+      turbo_stream.replace("notification_alert", partial: "layouts/alert")
+    ]
   end
 
   private
 
-  def set_holiday
-    @holiday = Holiday.find(params[:id])
+  def set_role
+    @role = Role.find(params[:id])
   end
 
   def set_breadcrumbs
-    add_breadcrumb(t("views.holidays.title_holidays"), holidays_path)
+    add_breadcrumb(t("views.role.the_role"), roles_path)
   end
 
-  def holiday_params
-    params.require(:holiday).permit(:name, :start_date, :end_date)
+  def role_params
+    params.require(:role).permit(:name, :user_id)
   end
 end

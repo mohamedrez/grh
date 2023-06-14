@@ -5,6 +5,7 @@ class UsersController < ApplicationController
   def index
     @q = User.ransack(params[:q])
     @users = @q.result.page(params[:page])
+    @policy = UserPolicy.new(user: current_user)
     # authorize!
   end
 

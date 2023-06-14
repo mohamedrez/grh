@@ -75,7 +75,11 @@ class User < ApplicationRecord
   end
 
   def has_role?(role_name)
-    roles.any? { |role| role.name == role_name }
+    roles.any? { |role| role.name.to_sym == role_name.to_sym }
+  end
+
+  def has_any_role?(role_names)
+    roles.any? { |role| role_names.include?(role.name.to_sym) }
   end
 
   def full_name

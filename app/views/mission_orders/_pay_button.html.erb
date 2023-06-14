@@ -1,0 +1,9 @@
+<%= render 'shared/modal' do %>
+  <% if mission_order.site? && mission_order.may_pay_mission_order_by_accountant? %>
+    <%= link_to t("views.mission_orders.pay_by_accountant"), user_new_payment_mission_order_path(user, mission_order), class: "rounded-md px-5 py-2 text-base font-medium text-white hover:text-white shadow-sm bg-green-500 hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900", data: {turbo_frame: 'modal-content', action: "modal#show"} %>
+  <% end %>
+
+  <% if mission_order.project? && mission_order.may_pay_mission_order_by_holding_treasury? %>
+    <%= link_to t("views.mission_orders.pay_by_holding_treasury"), user_new_payment_mission_order_path(user, mission_order), class: "rounded-md px-5 py-2 text-base font-medium text-white hover:text-white shadow-sm bg-green-500 hover:bg-green-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900", data: {turbo_frame: 'modal-content', action: "modal#show"} %>
+  <% end %>
+<% end %>
