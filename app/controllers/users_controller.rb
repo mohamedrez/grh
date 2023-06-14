@@ -34,7 +34,8 @@ class UsersController < ApplicationController
   end
 
   def create
-    # authorize!
+    authorize!
+
     @user = User.new(user_params)
     @user.password = Devise.friendly_token.first(8)
     @user.confirmed_at = Time.now.utc
@@ -49,7 +50,8 @@ class UsersController < ApplicationController
   end
 
   def update
-    # authorize! @user
+    authorize! @user
+
     if @user.update(user_params)
       redirect_to user_url(@user), notice: t("flash.successfully_updated")
     else
