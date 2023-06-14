@@ -71,15 +71,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = {host: "hachimy.com", port: 8800}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.sendgrid.net",
+    address: "smtp.gmail.com",
     port: 587,
     domain: "hachimy.com",
-    user_name: "apikey",
-    password: Rails.application.credentials.dig(:sendgrid_secret),
+    user_name: "m.hachimi@mibtech.ma",
+    password: Rails.application.credentials.dig(:gmail_password),
     authentication: "plain",
     enable_starttls_auto: true,
-    open_timeout: 5,
-    read_timeout: 5
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
