@@ -1,9 +1,14 @@
 class UserRequestsController < ApplicationController
   before_action :set_breadcrumbs, only: :index
+
   def index
     user_id = params[:user_id]
-    @user = User.find(user_id)
-    @user_requests = UserRequest.where(user_id: user_id)
+    if user_id
+      @user = User.find(user_id)
+      @user_requests = UserRequest.where(user_id: user_id)
+    else
+      @user_requests = authorized_scope(UserRequest.all)
+    end
   end
 
   def update
@@ -16,8 +21,10 @@ class UserRequestsController < ApplicationController
   private
 
   def set_breadcrumbs
-    @user = User.find(params[:user_id])
-    add_breadcrumb(@user.full_name, @user)
-    add_breadcrumb(t("views.user_requests.title_user_request"), user_user_requests_path(@user))
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      add_breadcrumb(@user.full_name, @user)
+      add_breadcrumb(t("views.user_requests.title_user_request"), user_user_requests_path(@user))
+    end
   end
 end
