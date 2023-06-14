@@ -5,31 +5,27 @@ class UsersController < ApplicationController
   def index
     @q = User.ransack(params[:q])
     @users = @q.result.page(params[:page])
-    @policy = UserPolicy.new(user: current_user)
-    # authorize!
   end
 
   def show
-    authorize! @user
     @manager = User.find_by(id: @user.manager_id)
-    # @policy = UserPolicy.new(
-    #   user: current_user,
-    #   record: @user
-    # )
 
     add_breadcrumb(@user.full_name)
   end
 
   def new
-    # authorize!
+    authorize!
+
     @user = User.new
     @user.build_address
     @manager_select = User.all.map { |user| [user.full_name, user.id] }
+
     add_breadcrumb(t("views.users.add_employee"))
   end
 
   def edit
-    # authorize! @user
+    authorize!
+
     @manager_select = User.where.not(id: @user.id)&.map { |user| [user.full_name, user.id] }
     @address = @user.address || @user.build_address
 

@@ -11,9 +11,8 @@
             <p class="text-xl font-bold text-gray-900 sm:text-2xl"><%= user.full_name %></p>
             <p class="text-sm font-medium text-gray-600"><%= user.job_title&.humanize %></p>
             <% if user.manager %>
-            <p class="text-sm font-medium text-gray-600"><strong>Manager:</strong> <%= user.manager.full_name %></p>
+              <p class="text-sm font-medium text-gray-600"><strong>Manager:</strong> <%= user.manager.full_name %></p>
             <% end %>
-
           </div>
         </div>
         <div class="mt-5 flex justify-center sm:mt-0">
@@ -33,7 +32,7 @@
       <div class="px-6 py-5 text-center text-sm font-medium">
         <span class="text-gray-900">
           <strong>Service:</strong>
-          <%= user.service %>
+          <%= user.service&.humanize %>
         </span>
       </div>
       <div class="px-6 py-5 text-center text-sm font-medium">

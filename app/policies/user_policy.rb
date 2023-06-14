@@ -1,12 +1,14 @@
 class UserPolicy < ApplicationPolicy
-  # See https://actionpolicy.evilmartians.io/#/writing_policies
+  def new?
+    create?
+  end
 
   def create?
     user.has_any_role?([:hr, :admin])
   end
 
-  def show?
-    true
+  def edit?
+    update?
   end
 
   def update?
@@ -14,16 +16,6 @@ class UserPolicy < ApplicationPolicy
   end
 
   def view_full_profile?
-    user.has_any_role?([:hr, :admin]) ||
-      user.id == record.id ||
-      user.id == record.manager.id
+    user.has_any_role?([:hr, :admin]) || user == record || user == record.manager
   end
-
-  # Scoping
-  # See https://actionpolicy.evilmartians.io/#/scoping
-  #
-  # relation_scope do |relation|
-  #   next relation if user.admin?
-  #   relation.where(user: user)
-  # end
 end

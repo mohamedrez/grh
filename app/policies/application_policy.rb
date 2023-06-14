@@ -7,22 +7,6 @@ class ApplicationPolicy < ActionPolicy::Base
   #
   # Read more about authorization context: https://actionpolicy.evilmartians.io/#/authorization_context
 
-  def new?
-    create?
-  end
-
-  def edit?
-    update?
-  end
-
-  def create?
-    false
-  end
-
-  def update?
-    false
-  end
-
   private
 
   # Define shared methods useful for most policies.

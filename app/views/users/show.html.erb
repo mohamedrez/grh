@@ -1,6 +1,6 @@
 <%= render partial: 'shared/user_overview', locals: {user: @user} %>
 
-<% if allowed_to?(:view_full_profile, @user) %>
+<% if allowed_to?(:view_full_profile?, @user) %>
   <%= render partial: 'submenu', locals: {user: @user} %>
   <%= turbo_frame_tag 'tabbed-content' do %>
     <%= render partial: 'personal_information', locals: {user: @user} %>
