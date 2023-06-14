@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     @user.build_address(user_params[:address_attributes])
 
     if @user.save
-      DeviseCustomMailer.with(user: @user).confirmation_instructions
+      DeviseCustomMailer.with(user: @user).confirmation_instructions.deliver_now
       redirect_to user_url(@user), notice: t("flash.successfully_created")
     else
       render :new, status: :unprocessable_entity
