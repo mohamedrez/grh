@@ -42,7 +42,7 @@ class UsersController < ApplicationController
     @user.build_address(user_params[:address_attributes])
 
     if @user.save
-      DeviseCustomMailer.with(user: @user).confirmation_instructions.deliver_now
+      @user.send_confirmation_instructions
       redirect_to user_url(@user), notice: t("flash.successfully_created")
     else
       render :new, status: :unprocessable_entity
@@ -69,6 +69,10 @@ class UsersController < ApplicationController
   rescue => e
     Rails.logger.error e.message
     redirect_to users_path, alert: t("flash.there_is_an_error_in_your_file")
+  end
+
+  def devise_mailer
+    DeviseCustomMailer
   end
 
   private
