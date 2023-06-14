@@ -1,0 +1,12 @@
+<div class="border-b border-gray-200 pb-5 sm:pb-0 mt-10">
+  <div class="mt-3 sm:mt-4">
+    <div class="hidden sm:block">
+      <nav class="-mb-px flex space-x-8 user-submenu">
+        <%= link_to t("views.user_requests.title_user_request"), user_user_requests_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+        <%= link_to t("views.time_requests.title_time_request"), user_time_requests_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+        <%= link_to t("views.mission_orders.title_mission_orders"), user_mission_orders_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+        <%= link_to t("views.expenses.title_expenses"), user_expenses_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+      </nav>
+    </div>
+  </div>
+</div>

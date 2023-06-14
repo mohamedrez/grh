@@ -37,6 +37,13 @@ RSpec.describe "/goals", type: :request do
     end
   end
 
+  describe "GET /my_goals" do
+    it "renders a successful response" do
+      get my_goals_url
+      expect(response).to be_successful
+    end
+  end
+
   describe "GET /show" do
     it "renders a successful response" do
       get goal_url(id: goal.id)

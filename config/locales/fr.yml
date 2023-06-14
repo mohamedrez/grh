@@ -383,6 +383,9 @@ fr:
     layouts:
       main:
         dashboard: "Dashboard"
+        my_profile: "Mon Profil"
+        my_requests: "Mes Demandes"
+        my_goals: "Mes Objectifs"
         employees: "Employés"
         requests: "Demandes"
         calendar: "Calendrier"

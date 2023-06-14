@@ -26,15 +26,10 @@ Rails.application.routes.draw do
     resources :performance, only: :index
     resources :reviews
     resources :goals, except: :destroy
+    get "/my_goals", to: "goals#my_goals", as: "my_goals"
     patch "/goals/:id/archive", to: "goals#archive", as: "archive_goal"
     patch "/goals/:id/end_goal", to: "goals#end_goal", as: "end_goal"
     get "objectives", to: "goals#objectives"
-
-    resources :surveys do
-      resources :sections do
-        resources :questions
-      end
-    end
 
     devise_for :users, path: "/auth"
 

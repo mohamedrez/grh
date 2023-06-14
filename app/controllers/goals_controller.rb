@@ -8,6 +8,11 @@ class GoalsController < ApplicationController
     @goals = @q.result(distinct: true).where(archived: false)
   end
 
+  def my_goals
+    @q = Goal.ransack(params[:q])
+    @goals = @q.result(distinct: true).where(owner: User.first, archived: false)
+  end
+
   def show
     @end_goal_errors = params[:end_goal_errors] || {}
     @end_goal_description = params[:end_goal_description]

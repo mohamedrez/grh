@@ -1,0 +1,39 @@
+<%= turbo_frame_tag "tabbed-content" do %>
+  <div class="px-4 sm:px-6 lg:px-8 mt-5">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1><%= t("views.goals.title_goals") %></h1>
+        <p class="mt-2 text-base text-gray-700"><%= t("views.goals.goals_description") %></p>
+      </div>
+    </div>
+
+    <div class="lg:flex items-center justify-between mt-10">
+      <%= render partial: "search_form" %>
+      <div class="lg:flex-1 lg:flex justify-center lg:px-2 lg:ml-6 lg:justify-end mt-2">
+        <%= link_to t("views.goals.create_goal"), new_goal_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", data: { turbo_frame: "right_content", action: "right#show" } %>
+      </div>
+    </div>
+    <div class="mt-8 flow-root">
+      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+          <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead class="bg-gray-50">
+                <tr>
+                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"><%= t("attributes.goal.title") %></th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.goal.owner") %></th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.goal.status") %></th>
+                    <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.goal.due_date") %></th>
+                    <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"></th>
+                </tr>
+              </thead>
+              <tbody id="goal-list" class="divide-y divide-gray-200 bg-white">
+                <%= render goals %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>
