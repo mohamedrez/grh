@@ -10,7 +10,7 @@ class GoalsController < ApplicationController
 
   def my_goals
     @q = Goal.ransack(params[:q])
-    @goals = @q.result(distinct: true).where(owner: User.first, archived: false)
+    @goals = @q.result(distinct: true).where(owner: current_user, archived: false)
   end
 
   def show
