@@ -96,6 +96,20 @@ fr:
         important: "Important"
         very_important: "Très important"
         critical: "Critique"
+    job_application:
+      first_name: "Prénom"
+      last_name: "Nom de famille"
+      job: "Emploi"
+      email: "Email"
+      phone: "Téléphone"
+      source: "Source"
+      link: "Lien"
+      note: "Note"
+      upload_more_files: "Télécharger d'autres fichiers"
+      upload_files: "Télécharger des fichiers"
+      files_type: "PDF"
+      you_have_files_uploaded: "Vous avez %{nbr_files} fichiers téléchargés"
+      attach_a_receipt: "Joindre un reçu"
     mission_order:
       title: "Titre"
       mission_type: "Type de mission"
@@ -286,6 +300,9 @@ fr:
       goals_description: "Gérez les objectifs à travers votre entreprise pour aligner et développer votre équipe"
       search_bar: "Titre, ou propriétaire"
       all: "Tout"
+    job_applications:
+      job_applications_list: "Liste des candidatures à un emploi"
+      create_job_application: "Créer une candidature à un emploi"
     holidays:
       title_holidays: "Vacances"
       holidays_list: "Liste des vacances pour cette année"
