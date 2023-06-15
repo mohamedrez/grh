@@ -77,7 +77,7 @@ Rails.application.configure do
     user_name: "m.hachimi@mibtech.ma",
     password: Rails.application.credentials.dig(:gmail_app_password),
     authentication: "plain",
-    enable_starttls_auto: true,
+    enable_starttls_auto: true
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to

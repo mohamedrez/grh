@@ -29,12 +29,10 @@ Rails.application.routes.draw do
     patch "/goals/:id/archive", to: "goals#archive", as: "archive_goal"
     patch "/goals/:id/end_goal", to: "goals#end_goal", as: "end_goal"
     get "objectives", to: "goals#objectives"
-
-    resources :surveys do
-      resources :sections do
-        resources :questions
-      end
-    end
+    resources :user_requests, only: [:index]
+    resources :expenses, only: [:index]
+    resources :time_requests, only: [:index]
+    resources :mission_orders, only: [:index]
 
     devise_for :users, path: "/auth"
 
@@ -57,6 +55,7 @@ Rails.application.routes.draw do
       patch "/mission_orders/:id/update_aasm_state", to: "mission_orders#update_aasm_state", as: "update_aasm_state_mission_order"
       get "/mission_orders/:id/payment", to: "mission_orders#new_payment", as: "new_payment_mission_order"
       patch "/mission_orders/:id/payment", to: "mission_orders#make_payment", as: "make_payment_mission_order"
+      resources :goals, only: [:index]
     end
 
     get "user_notifications", to: "user_notifications#index"

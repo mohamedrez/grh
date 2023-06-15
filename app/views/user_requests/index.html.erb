@@ -1,9 +1,9 @@
-<%= render partial: 'users/submenu', locals: {user: @user} %>
+<%= render partial: 'shared/requests_submenu', locals: {user: @user} %>
 <%= turbo_frame_tag "tabbed-content" do %>
   <div class="px-4 sm:px-6 lg:px-8 mt-5">
     <div class="sm:flex sm:items-center">
       <div class="sm:flex-auto">
-        <h1><%= t("views.user_requests.title_user_request") %></h1>
+        <h1><%= t("views.layouts.main.requests") %></h1>
       </div>
     </div>
     <div class="min-w-full my-8">
