@@ -80,7 +80,7 @@ class ExpensesController < ApplicationController
 
   def set_breadcrumbs
     add_breadcrumb(@user.full_name, @user)
-    add_breadcrumb(t("views.expenses.title_expenses"), user_expenses_path(@user))
+    add_breadcrumb(t("views.layouts.main.requests"), user_user_requests_path(@user))
   end
 
   def expense_params

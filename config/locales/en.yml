@@ -413,11 +413,13 @@ en:
     layouts:
       main:
         dashboard: "Dashboard"
+        my_profile: "My Profile"
+        my_requests: "My Requests"
+        my_goals: "My Goals"
         employees: "Employees"
         requests: "Requests"
         calendar: "Calendar"
         organization: "Organization"
-        jobs: "Jobs"
     shared:
       settings: "Settings"
       profile: "Profile"

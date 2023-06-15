@@ -4,8 +4,14 @@ class GoalsController < ApplicationController
   before_action :set_breadcrumbs, only: %i[index show objectives]
 
   def index
+    user_id = params[:user_id]
     @q = Goal.ransack(params[:q])
-    @goals = @q.result(distinct: true).where(archived: false)
+
+    @goals = if user_id
+      @q.result(distinct: true).where(owner_id: user_id, archived: false)
+    else
+      authorized_scope(@q.result(distinct: true).where(archived: false))
+    end
   end
 
   def show

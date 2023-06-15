@@ -24,7 +24,7 @@ class UserRequestsController < ApplicationController
     if params[:user_id]
       @user = User.find(params[:user_id])
       add_breadcrumb(@user.full_name, @user)
-      add_breadcrumb(t("views.user_requests.title_user_request"), user_user_requests_path(@user))
+      add_breadcrumb(t("views.layouts.main.requests"), user_user_requests_path(@user))
     end
   end
 end

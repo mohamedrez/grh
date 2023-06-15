@@ -73,7 +73,7 @@ class TimeRequestsController < ApplicationController
   def set_breadcrumbs
     @user = User.find(params[:user_id])
     add_breadcrumb(@user.full_name, @user)
-    add_breadcrumb(t("views.time_requests.title_time_request"), user_time_requests_path(@user))
+    add_breadcrumb(t("views.layouts.main.requests"), user_user_requests_path(@user))
   end
 
   def time_request_params
