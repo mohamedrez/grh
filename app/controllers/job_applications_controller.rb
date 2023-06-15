@@ -1,5 +1,6 @@
 class JobApplicationsController < ApplicationController
   before_action :set_job_application, only: %i[edit update destroy]
+  before_action :set_breadcrumbs, only: :index
 
   def index
     @job_applications = JobApplication.all
@@ -43,6 +44,10 @@ class JobApplicationsController < ApplicationController
 
   def set_job_application
     @job_application = JobApplication.find(params[:id])
+  end
+
+  def set_breadcrumbs
+    add_breadcrumb(t("views.job_applications.title_job_applications"), job_applications_path)
   end
 
   def job_application_params

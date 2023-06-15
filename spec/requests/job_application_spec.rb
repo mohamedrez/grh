@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe "JobApplications", type: :request do
   let(:user) { create(:user, admin: true) }
   let(:job) { create(:job, id: 1) }
-  let(:job_application) { create(:job_application) }
+  let(:job_application) { create(:job_application, job_id: job.id) }
 
   let(:valid_attributes) do
     {
@@ -91,7 +91,7 @@ RSpec.describe "JobApplications", type: :request do
         job_application.reload
         expect(job_application.first_name).to eq("FirstName")
         expect(job_application.last_name).to eq("LastName")
-        expect(job_application.job_id).to eq(job.id)
+        expect(job_application.job_id).to eq(1)
         expect(job_application.email).to eq("test@gmail.com")
         expect(job_application.phone).to eq("(602) 496-4636")
       end

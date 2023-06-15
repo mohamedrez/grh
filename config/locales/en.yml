@@ -333,10 +333,9 @@ en:
       add_details: "Please fill in job details"
       description_full: "Describe a role including duties, skills and requirements"
     job_applications:
-      upload_more_files: "You have %{nbr_files} uploaded"
-      upload_files: "Upload more files"
-      files_type: "Upload files"
-      you_have_files_uploaded: "IMAGEs, PDFs"
+      title_job_applications: "Job applications"
+      upload_files: "Upload file"
+      files_type: "IMAGE, PDF"
       job_applications_list: "List of job applications"
       create_job_application: "Create job application"
     mission_orders:

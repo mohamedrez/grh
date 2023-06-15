@@ -1,4 +1,5 @@
 class Job < ApplicationRecord
+  has_many :job_applications, dependent: :destroy
   validates :title, :location, :overview, :min_salary, :max_salary, :unit, presence: true
 
   enum job_type: {full_time: 0, part_time: 1}
