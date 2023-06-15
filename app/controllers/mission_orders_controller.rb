@@ -1,19 +1,22 @@
 class MissionOrdersController < ApplicationController
-  before_action :set_user, except: :destroy
+  before_action :set_user, except: [:index, :destroy]
   before_action :set_mission_order, except: %i[index new create]
   before_action :set_breadcrumbs, only: %i[index show]
 
   def index
-    ids = UserRequest.where(user_id: @user.id, requestable_type: "MissionOrder").pluck(:requestable_id)
-    @mission_orders = MissionOrder.where(id: ids)
+    user_id = params[:user_id]
+    if user_id
+      @user = User.find(user_id)
+      ids = UserRequest.where(user_id: @user.id, requestable_type: "MissionOrder").pluck(:requestable_id)
+      @mission_orders = MissionOrder.where(id: ids)
+    else
+      @mission_orders = authorized_scope(MissionOrder.all)
+    end
   end
 
   def show
     @user_request = @mission_order.user_request
     @aasm_logs = AasmLog.where(aasm_logable: @mission_order)
-
-    add_breadcrumb(t("views.mission_orders.title_mission_orders"), user_mission_orders_path(@user))
-    add_breadcrumb(@mission_order.title)
   end
 
   def new
@@ -121,8 +124,7 @@ class MissionOrdersController < ApplicationController
   end
 
   def set_breadcrumbs
-    add_breadcrumb(@user.full_name, @user)
-    add_breadcrumb(t("views.layouts.main.requests"), user_user_requests_path(@user))
+    add_breadcrumb(t("views.layouts.main.requests"))
   end
 
   def mission_order_params

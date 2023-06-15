@@ -1,10 +1,16 @@
 class ExpensesController < ApplicationController
-  before_action :set_user
+  before_action :set_user, except: :index
   before_action :set_expense, only: %i[show edit update destroy update_status delete_receipt]
   before_action :set_breadcrumbs, only: :index
 
   def index
-    @expenses = Expense.where(user_id: @user.id)
+    user_id = params[:user_id]
+    if user_id
+      @user = User.find(user_id)
+      @expenses = Expense.where(user_id: user_id)
+    else
+      @expenses = authorized_scope(Expense.all)
+    end
   end
 
   def show
@@ -79,8 +85,7 @@ class ExpensesController < ApplicationController
   end
 
   def set_breadcrumbs
-    add_breadcrumb(@user.full_name, @user)
-    add_breadcrumb(t("views.layouts.main.requests"), user_user_requests_path(@user))
+    add_breadcrumb(t("views.layouts.main.requests"))
   end
 
   def expense_params

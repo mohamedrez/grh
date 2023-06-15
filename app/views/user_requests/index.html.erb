@@ -1,6 +1,4 @@
-<% if @user %>
-  <%= render partial: 'shared/requests_submenu', locals: {user: @user} %>
-<% end %>
+<%= render partial: 'shared/requests_submenu', locals: {user: @user} %>
 <%= turbo_frame_tag "tabbed-content" do %>
   <div class="px-4 sm:px-6 lg:px-8 mt-5">
     <div class="sm:flex sm:items-center">

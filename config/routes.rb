@@ -29,10 +29,13 @@ Rails.application.routes.draw do
     patch "/goals/:id/archive", to: "goals#archive", as: "archive_goal"
     patch "/goals/:id/end_goal", to: "goals#end_goal", as: "end_goal"
     get "objectives", to: "goals#objectives"
+    resources :user_requests, only: [:index]
+    resources :expenses, only: [:index]
+    resources :time_requests, only: [:index]
+    resources :mission_orders, only: [:index]
 
     devise_for :users, path: "/auth"
 
-    resources :user_requests, only: [:index]
     resources :users do
       resources :notes, except: %i[show]
       resources :assets

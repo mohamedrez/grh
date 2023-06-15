@@ -4,9 +4,13 @@ class TimeRequestsController < ApplicationController
 
   def index
     user_id = params[:user_id]
-    ids = UserRequest.where(user_id: user_id, requestable_type: "TimeRequest").pluck(:requestable_id)
-    @time_requests = TimeRequest.where(id: ids)
-    @user = User.find(user_id)
+    if user_id
+      @user = User.find(user_id)
+      ids = UserRequest.where(user_id: user_id, requestable_type: "TimeRequest").pluck(:requestable_id)
+      @time_requests = TimeRequest.where(id: ids)
+    else
+      @time_requests = authorized_scope(TimeRequest.all)
+    end
   end
 
   def show
@@ -71,9 +75,7 @@ class TimeRequestsController < ApplicationController
   end
 
   def set_breadcrumbs
-    @user = User.find(params[:user_id])
-    add_breadcrumb(@user.full_name, @user)
-    add_breadcrumb(t("views.layouts.main.requests"), user_user_requests_path(@user))
+    add_breadcrumb(t("views.layouts.main.requests"))
   end
 
   def time_request_params
