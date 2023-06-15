@@ -77,9 +77,9 @@ Rails.application.configure do
     user_name: "postmaster@sandbox0c47c57f445b4cf28e2d5cc84b82bdc7.mailgun.org",
     password: Rails.application.credentials.dig(:mail_gun_secret),
     authentication: "plain",
-    enable_starttls_auto: true,
     open_timeout: 5,
-    read_timeout: 5
+    read_timeout: 5,
+    enable_starttls_auto: true
   }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
