@@ -27,6 +27,7 @@ Rails.application.routes.draw do
     resources :reviews
     resources :goals, except: :destroy
     get "/my_goals", to: "goals#my_goals", as: "my_goals"
+    get "/team_manager_goals", to: "goals#team_manager_goals", as: "team_manager_goals"
     patch "/goals/:id/archive", to: "goals#archive", as: "archive_goal"
     patch "/goals/:id/end_goal", to: "goals#end_goal", as: "end_goal"
     get "objectives", to: "goals#objectives"

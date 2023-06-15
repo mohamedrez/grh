@@ -11,6 +11,15 @@ class GoalsController < ApplicationController
   def my_goals
     @q = Goal.ransack(params[:q])
     @goals = @q.result(distinct: true).where(owner: current_user, archived: false)
+
+    current_user.subordinates.map(&:goals).flatten
+  end
+
+  def team_manager_goals
+    subordinate_goals = current_user.subordinates.map(&:goals).flatten.sort_by(&:id)
+    goal_ids = subordinate_goals.pluck(:id)
+    @q = Goal.where(id: goal_ids).ransack(params[:q])
+    @goals = @q.result(distinct: true).where(archived: false)
   end
 
   def show

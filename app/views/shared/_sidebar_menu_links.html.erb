@@ -54,6 +54,8 @@
             </ul>
           </li>
 
+          <%= render partial: "layouts/manger_tools" if current_user.subordinates.any? %>
+
           <li class="mt-auto">
             <ul>
               <li>
