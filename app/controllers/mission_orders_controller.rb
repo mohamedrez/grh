@@ -17,6 +17,8 @@ class MissionOrdersController < ApplicationController
   def show
     @user_request = @mission_order.user_request
     @aasm_logs = AasmLog.where(aasm_logable: @mission_order)
+
+    add_breadcrumb(@mission_order.title)
   end
 
   def new
@@ -124,7 +126,12 @@ class MissionOrdersController < ApplicationController
   end
 
   def set_breadcrumbs
-    add_breadcrumb(t("views.layouts.main.requests"))
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      add_breadcrumb("My Requests", user_user_requests_path(@user))
+    else
+      add_breadcrumb(t("views.layouts.main.requests"), user_requests_path)
+    end
   end
 
   def mission_order_params

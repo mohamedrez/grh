@@ -8,6 +8,7 @@ class GoalsController < ApplicationController
     @q = Goal.ransack(params[:q])
 
     @goals = if user_id
+      @user = User.find(user_id)
       @q.result(distinct: true).where(owner_id: user_id, archived: false)
     else
       authorized_scope(@q.result(distinct: true).where(archived: false))

@@ -85,7 +85,12 @@ class ExpensesController < ApplicationController
   end
 
   def set_breadcrumbs
-    add_breadcrumb(t("views.layouts.main.requests"))
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      add_breadcrumb("My Requests", user_user_requests_path(@user))
+    else
+      add_breadcrumb(t("views.layouts.main.requests"), user_requests_path)
+    end
   end
 
   def expense_params

@@ -3,10 +3,10 @@
     <div class="hidden sm:block">
       <nav class="-mb-px flex space-x-8 user-submenu">
         <% if user %>
-          <%= link_to "My Requests", user_user_requests_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
-          <%= link_to "My Time Off Requests", user_time_requests_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
-          <%= link_to "My Mission Orders", user_mission_orders_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
-          <%= link_to "My Expenses", user_expenses_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+          <%= link_to t("views.submenu.my_requests"), user_user_requests_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+          <%= link_to t("views.submenu.my_time_off_requests"), user_time_requests_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+          <%= link_to t("views.submenu.my_mission_orders"), user_mission_orders_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+          <%= link_to t("views.submenu.my_expenses"), user_expenses_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
         <% else %>
           <%= link_to t("views.layouts.main.requests"), user_requests_path, data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
           <%= link_to t("views.time_requests.title_time_request"), time_requests_path, data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>

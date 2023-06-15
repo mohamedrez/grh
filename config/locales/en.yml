@@ -417,9 +417,16 @@ en:
         my_requests: "My Requests"
         my_goals: "My Goals"
         employees: "Employees"
+        management_tools: "Management tools"
         requests: "Requests"
+        goals: "Goals"
         calendar: "Calendar"
         organization: "Organization"
+    submenu:
+      my_requests: "My Requests"
+      my_time_off_requests: "My Time Off Requests"
+      my_mission_orders: "My Mission Orders"
+      my_expenses: "My Expenses"
     shared:
       settings: "Settings"
       profile: "Profile"

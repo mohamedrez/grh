@@ -251,7 +251,7 @@ fr:
     educations:
       add_education: "Ajouter une nouvelle formation"
     expenses:
-      title_expenses: "Dépenses"
+      title_expenses: "Note de frais"
       add_expense: "Ajouter une dépense"
       paid: "Payé"
       you_have_files_uploaded: "Vous avez %{nbr_files} téléchargés"
@@ -263,7 +263,7 @@ fr:
       receipts: "Reçus"
       no_receipts: "Aucun reçu"
       mark_as_paid: "Marquer comme payé"
-      expense_details: "Détails des dépenses"
+      expense_details: "Détails des notes de frais"
     experiences:
       add_experience: "Ajouter une nouvelle expérience"
     emergency_contacts:
@@ -387,9 +387,16 @@ fr:
         my_requests: "Mes Demandes"
         my_goals: "Mes Objectifs"
         employees: "Employés"
+        management_tools: "Outils de gestion"
         requests: "Demandes"
+        goals: "Objectifs"
         calendar: "Calendrier"
         organization: "Organisation"
+    submenu:
+      my_requests: "Mes Demandes"
+      my_time_off_requests: "Mes Demandes De Congé"
+      my_mission_orders: "Mes Ordres De Mission"
+      my_expenses: "Mes Notes De Frais"
     shared:
       settings: "Paramètrage"
       profile: "Profil"
