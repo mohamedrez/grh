@@ -1,5 +1,6 @@
 Sentry.init do |config|
-  config.dsn = Rails.application.credentials.dig(:sentry_dsn)
+  # config.dsn = Rails.application.credentials.dig(:sentry_dsn)
+  config.dsn = "https://880c61cc3623436ebb61ad391cee4547@o4505363632881664.ingest.sentry.io/4505363635175424"
   config.breadcrumbs_logger = [:active_support_logger, :http_logger]
 
   # Set traces_sample_rate to 1.0 to capture 100%
