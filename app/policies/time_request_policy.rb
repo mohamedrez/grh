@@ -16,8 +16,11 @@ class TimeRequestPolicy < ApplicationPolicy
   relation_scope do |relation|
     next relation if user.has_any_role?([:hr, :admin])
 
-    user_request_ids = relation.map(&:user_request).pluck(:id)
-    UserRequest.joins(:user)
-      .where(id: user_request_ids, users: {manager_id: user.id})
+    ids = UserRequest.joins(:user)
+      .where(users: {manager_id: user.id})
+      .where(requestable_type: "TimeRequest")
+      .pluck(:requestable_id)
+
+    relation.where(id: ids)
   end
 end
