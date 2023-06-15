@@ -68,14 +68,14 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
 
-  config.action_mailer.default_url_options = {host: "hachimy.com", port: 8800}
+  config.action_mailer.default_url_options = {host: "uat.humaneo.ma", port: 8800}
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    address: "smtp.mailgun.org",
+    address: "smtp.gmail.com",
     port: 587,
-    domain: "sandbox0c47c57f445b4cf28e2d5cc84b82bdc7.mailgun.org",
-    user_name: "postmaster@sandbox0c47c57f445b4cf28e2d5cc84b82bdc7.mailgun.org",
-    password: Rails.application.credentials.dig(:mail_gun_secret),
+    domain: "uat.humaneo.ma",
+    user_name: "m.hachimi@mibtech.ma",
+    password: Rails.application.credentials.dig(:gmail_app_password),
     authentication: "plain",
     open_timeout: 5,
     read_timeout: 5,
