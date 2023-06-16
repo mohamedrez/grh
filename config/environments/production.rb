@@ -77,8 +77,6 @@ Rails.application.configure do
     user_name: "m.hachimi@mibtech.ma",
     password: Rails.application.credentials.dig(:gmail_app_password),
     authentication: "plain",
-    open_timeout: 5,
-    read_timeout: 5,
     enable_starttls_auto: true
   }
 
