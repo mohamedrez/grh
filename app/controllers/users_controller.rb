@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
     @user = User.new
     @user.build_address
-    @manager_select = User.all.map { |user| [user.full_name, user.id] }
+    @manager_select = [["", 0]] + User.all.map { |user| [user.full_name, user.id] }
 
     add_breadcrumb(t("views.users.add_employee"))
   end
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
   def edit
     authorize!
 
-    @manager_select = User.where.not(id: @user.id)&.map { |user| [user.full_name, user.id] }
+    @manager_select = [["", 0]] + User.where.not(id: @user.id)&.map { |user| [user.full_name, user.id] }
     @address = @user.address || @user.build_address
 
     add_breadcrumb(@user.full_name, @user)
