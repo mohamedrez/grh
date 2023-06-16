@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
   def show
     @manager = User.find_by(id: @user.manager_id)
-
+    build_breadcrumbs(@user)
     add_breadcrumb(@user.full_name)
   end
 
@@ -79,6 +79,13 @@ class UsersController < ApplicationController
 
   def set_breadcrumbs
     add_breadcrumb(t("views.users.employees_title"), users_path)
+  end
+
+  def build_breadcrumbs(user)
+    if user.manager
+      build_breadcrumbs(user.manager)
+      add_breadcrumb(user.manager.full_name, user_path(user.manager))
+    end
   end
 
   def user_params
