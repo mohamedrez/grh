@@ -30,7 +30,7 @@ Rails.application.routes.draw do
     patch "/goals/:id/end_goal", to: "goals#end_goal", as: "end_goal"
     get "objectives", to: "goals#objectives"
     resources :user_requests, only: [:index]
-    resources :expenses, only: [:index]
+    resources :expenses, only: [:index, :show]
     resources :time_requests, only: [:index]
     resources :mission_orders, only: [:index]
 
