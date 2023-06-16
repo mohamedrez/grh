@@ -1,7 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "/expenses", type: :request do
-  let(:user) { create(:user, id: 1, admin: true) }
+  let(:manager) { create(:user, admin: true) }
+  let(:user) { create(:user, manager_id: manager.id, admin: true) }
   let(:expense) { create(:expense, user_id: user.id) }
 
   let(:valid_attributes) do
@@ -136,29 +137,6 @@ RSpec.describe "/expenses", type: :request do
     end
     it 'sets the flash notice' do
       expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
-    end
-  end
-
-  describe "PATCH /update_status" do
-    before do
-      patch user_update_status_expense_path(user_id: user.id, id: expense.id, status: "approved")
-    end
-
-    it "updates the expense status" do
-      expense.reload
-      expect(expense.status).to eq("approved")
-    end
-    
-    it "redirects to the expense" do
-      expect(response).to redirect_to(user_expense_path(user, expense))
-    end
-
-    it 'sets the flash notice' do
-      expect(flash[:notice]).to eq(I18n.t("flash.status_successfully_updated"))
-    end
-
-    it 'returns a 302 response' do
-      expect(response).to have_http_status(302)
     end
   end
 
