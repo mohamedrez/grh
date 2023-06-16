@@ -15,7 +15,7 @@
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= MissionOrder.human_enum_name(:mission_type, mission_order.mission_type) %></td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= mission_order.start_date %></td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= mission_order.end_date %></td>
-  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= mission_order.user_request.state&.humanize %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= MissionOrder.human_enum_name(:aasm_state, mission_order.aasm_state) %></td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= User.find(mission_order.user_request.managed_by_id).full_name unless mission_order.user_request.pending? %></td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
     <div class="flex justify-center">
