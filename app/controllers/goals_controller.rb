@@ -1,5 +1,6 @@
 class GoalsController < ApplicationController
   before_action :set_goal, only: %i[show edit update end_goal archive]
+  before_action :set_users_select
   before_action :set_owner, only: %i[show edit]
   before_action :set_breadcrumbs, only: %i[index show objectives]
 
@@ -128,6 +129,12 @@ class GoalsController < ApplicationController
 
   def set_breadcrumbs
     add_breadcrumb(t("views.goals.title_goals"), goals_path)
+  end
+
+  def set_users_select
+    users = User.all
+    users = User.where(manager_id: current_user.id) unless current_user.has_any_role?([:hr, :admin])
+    @users_select = users.map { |user| [user.full_name, user.id] }
   end
 
   def goal_params
