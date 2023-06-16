@@ -1,6 +1,6 @@
 class SitesController < ApplicationController
   before_action :set_site, only: %i[edit update destroy]
-  before_action :set_breadcrumbs, only: :index
+  before_action :set_breadcrumbs, only: %i[index]
 
   def index
     @sites = Site.all

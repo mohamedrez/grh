@@ -118,6 +118,16 @@ en:
       applied: "Applied"
       interviewing : "Interviewing"
       unit: "Per"
+    job_application:
+      first_name: "First Name"
+      last_name: "Last Name"
+      job: "Job"
+      email: "Email"
+      phone: "Phone"
+      source: "Source"
+      link: "Link"
+      note: "Note"
+      attach_a_receipt: "Attach a receipt"
     mission_order:
       title: "Title"
       mission_type: "Mission type"
@@ -322,6 +332,12 @@ en:
       job_desription: "Job description"
       add_details: "Please fill in job details"
       description_full: "Describe a role including duties, skills and requirements"
+    job_applications:
+      title_job_applications: "Job applications"
+      upload_files: "Upload file"
+      files_type: "IMAGE, PDF"
+      job_applications_list: "List of job applications"
+      create_job_application: "Create job application"
     mission_orders:
       title_mission_orders: "Mission orders"
       create_mission_order: "Create mission order"

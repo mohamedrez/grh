@@ -183,6 +183,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_095647) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "job_applications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "phone"
+    t.string "source"
+    t.string "link"
+    t.string "note"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "job_id", null: false
+    t.index ["job_id"], name: "index_job_applications_on_job_id"
+  end
+
   create_table "jobs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "title"
     t.integer "job_type"
@@ -586,6 +600,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_095647) do
   add_foreign_key "experiences", "users"
   add_foreign_key "goals", "users", column: "author_id"
   add_foreign_key "goals", "users", column: "owner_id"
+  add_foreign_key "job_applications", "jobs"
   add_foreign_key "mission_orders", "sites"
   add_foreign_key "motor_alert_locks", "motor_alerts", column: "alert_id"
   add_foreign_key "motor_alerts", "motor_queries", column: "query_id"
