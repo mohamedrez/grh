@@ -7,13 +7,17 @@ class ExpensesController < ApplicationController
     user_id = params[:user_id]
     if user_id
       @user = User.find(user_id)
-      @expenses = Expense.where(user_id: user_id)
+      ids = UserRequest.where(user_id: user_id, requestable_type: "Expense").pluck(:requestable_id)
+      @expenses = Expense.where(id: ids)
     else
       @expenses = authorized_scope(Expense.all)
     end
   end
 
   def show
+    # authorize! @expense
+
+    @user_request = @expense.user_request
   end
 
   def new
