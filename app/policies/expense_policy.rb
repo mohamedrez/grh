@@ -22,7 +22,11 @@ class ExpensePolicy < ApplicationPolicy
   relation_scope do |relation|
     next relation if user.has_any_role?([:hr, :admin])
 
-    relation.joins(:user)
+    ids = UserRequest.joins(:user)
       .where(users: {manager_id: user.id})
+      .where(requestable_type: "Expense")
+      .pluck(:requestable_id)
+
+    relation.where(id: ids)
   end
 end

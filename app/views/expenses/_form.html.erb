@@ -33,6 +33,8 @@
             </div>
         </div>
 
+         <%= form.hidden_field :user_id, value: @user_id %>
+
         <div class="col-span-full">
           <%= form.label :receipts, t("attributes.expense.attach_a_receipt") %>
             <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">

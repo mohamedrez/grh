@@ -1,9 +1,22 @@
 <tr id="<%= dom_id expense %>">
-  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= expense.user.full_name %></td>
-  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.date %></td>
+  <% unless @user %>
+    <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+      <div class="flex items-center">
+        <div class="h-11 w-11 flex-shrink-0">
+          <%= image_tag expense.user.avatar_url_or_default, class: "h-11 w-11 rounded-full" %>
+        </div>
+        <div class="ml-4">
+          <div class="font-medium text-gray-900"><%= expense.user.full_name %></div>
+          <div class="mt-1 text-gray-500"><%= expense.user.email %></div>
+        </div>
+      </div>
+    </td>
+  <% end %>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= Expense.human_enum_name(:category, expense.category) %></td>
-  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= truncate(expense.description, length: 50) %></td>
-  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.amount %> DH</td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.date %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= truncate(expense.description, length: 40) %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.user_request.state&.humanize %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= User.find(expense.user_request.managed_by_id).full_name unless expense.user_request.pending? %></td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
     <%= link_to user_expense_path(expense.user, expense), data: { turbo_frame: "right_content", action: "right#show" } do %>
       <svg class="inline-block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
@@ -11,7 +24,7 @@
         <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     <% end %>
-    <% if expense.pending? %>
+    <% if expense.user_request.pending? %>
       <%= link_to edit_user_expense_path(expense.user, expense), data: { turbo_frame: "right_content", action: "right#show" } do %>
         <svg class="inline-block ml-4 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>

@@ -11,44 +11,28 @@
         </div>
       <% end %>
     </div>
-    <div class="min-w-full my-8">
-      <div data-controller="tabs" data-tabs-active-tab="border-purple-500 text-purple-600 whitespace-nowrap border-b-2">
-        <ul class="list-reset flex border-b -mb-px mb-5 mt-2 flex space-x-8">
-          <li class="-mb-px mr-1" data-tabs-target="tab" data-action="click->tabs#change">
-            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#"><%= t("views.shared.pending") %></a>
-          </li>
-          <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
-            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#"><%= t("views.shared.approved") %></a>
-          </li>
-          <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
-            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#"><%= t("views.shared.rejected") %></a>
-          </li>
-          <li class="mr-1" data-tabs-target="tab" data-action="click->tabs#change">
-            <a class="border-transparent text-gray-500 hover:border-gray-200 hover:text-gray-700 whitespace-nowrap border-b-2 px-1 text-sm font-medium" href="#"><%= t("views.expenses.paid") %></a>
-          </li>
-        </ul>
-
-        <div data-tabs-target="panel">
-          <div class="mt-10">
-            <%= render partial: 'list_item', locals: {expenses: @expenses.pending} %>
-          </div>
-        </div>
-
-        <div data-tabs-target="panel">
-          <div class="mt-10">
-            <%= render partial: 'list_item', locals: {expenses: @expenses.approved} %>
-          </div>
-        </div>
-
-        <div data-tabs-target="panel">
-          <div class="mt-10">
-            <%= render partial: 'list_item', locals: {expenses: @expenses.rejected} %>
-          </div>
-        </div>
-
-        <div data-tabs-target="panel">
-          <div class="mt-10">
-            <%= render partial: 'list_item', locals: {expenses: @expenses.paid} %>
+    <div class="mt-8 flow-root">
+      <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
+        <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
+          <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+            <table class="min-w-full divide-y divide-gray-300">
+              <thead class="bg-gray-50">
+                <tr>
+                  <% unless @user %>
+                    <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6">Name</th>
+                  <% end %>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900"><%= t("attributes.expense.category") %></th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900"><%= t("attributes.expense.date") %></th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-medium text-gray-900"><%= t("attributes.expense.description") %></th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.user_request.state") %></th>
+                  <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.user_request.managed_by") %></th>
+                  <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-6"></th>
+                </tr>
+              </thead>
+              <tbody id="expense-list" class="divide-y divide-gray-200 bg-white">
+                <%= render @expenses %>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
