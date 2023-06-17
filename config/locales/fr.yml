@@ -170,11 +170,23 @@ fr:
       review_types:
         manager_review: "Évaluation du manager"
         self_evaluation: "Auto-évaluation"
-    role:
+    roles:
       names:
         hr: "HR"
         admin: "Admin"
         accountant: "Accountant"
+  job:      
+    title: "Titre"
+    job_type: "Type d'emploi"
+    location: "Lieu"
+    remote: "À distance"
+    job_status: "Statut de l'emploi"
+    overview: "Brève présentation de l'emploi"
+    description_add: "Fournir une description de l'emploi"
+    description_view: "Description de l'emploi"
+    job_types:
+      full_time: "Temps plein"
+      part_time: "Temps partiel"
     section:
       description: "Description"
       section_type: "Type de section"
@@ -308,6 +320,14 @@ fr:
       holidays_list: "Liste des vacances pour cette année"
       add_holiday: "Ajouter un nouveau jour férié"
       edit_holiday: "Modifier le jour férié"
+    jobs:
+      job: "Emploi"
+      job_title: "Titre du poste"
+      jobs_list: "Liste de tous les emplois"
+      edit_job: "Modifier l'emploi"
+      view_job: "Voir l'emploi"
+      delete_job: "Supprimer l'emploi"
+      new: "Ajouter l'emploi" 
     mission_orders:
       title_mission_orders: "Ordres de mission"
       create_mission_order: "Créer un ordre de mission"

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_095647) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_110334) do
   create_table "aasm_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "actor_id", null: false
     t.string "from_state"
@@ -184,16 +184,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_095647) do
   end
 
   create_table "job_applications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "phone"
-    t.string "source"
-    t.string "link"
-    t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "job_id", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "email"
+    t.string "source"
+    t.string "link"
+    t.string "note"
     t.index ["job_id"], name: "index_job_applications_on_job_id"
   end
 
