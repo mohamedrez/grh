@@ -16,7 +16,6 @@
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.date %></td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= truncate(expense.description, length: 40) %></td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.user_request.state&.humanize %></td>
-  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= User.find(expense.user_request.managed_by_id).full_name unless expense.user_request.pending? %></td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
     <%= link_to user_expense_path(expense.user, expense), data: { turbo_frame: "right_content", action: "right#show" } do %>
       <svg class="inline-block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
