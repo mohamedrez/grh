@@ -16,7 +16,6 @@
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= time_request.start_date %></td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= time_request.end_date %></td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= time_request.user_request.state&.humanize %></td>
-  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= User.find(time_request.user_request.managed_by_id).full_name unless time_request.user_request.pending? %></td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
     <div class="flex justify-center">
       <%= link_to user_time_request_path(time_request.user, time_request), data: { turbo_frame: "right_content", action: "right#show" } do %>
