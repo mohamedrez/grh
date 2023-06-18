@@ -18,11 +18,13 @@
       <% end %>
     </div>
   </div>
-  <div class="mt-8 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
-    <% if goal.status.blank? %>
+  <% if goal.status.blank? %>
+    <div class="mt-8 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
       <%= render partial: "blank_status", locals: {owner: owner, goal: goal, end_goal_errors: end_goal_errors} %>
-    <% else %>
+    </div>
+  <% else %>
+    <div class="mt-8 flex flex-col gap-x-8 gap-y-20">
       <%= render partial: "goal_attributes", locals: {owner: owner, goal: goal} %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
