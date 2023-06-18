@@ -333,11 +333,13 @@ en:
       add_details: "Please fill in job details"
       description_full: "Describe a role including duties, skills and requirements"
     job_applications:
+      resume: "Resume"
       title_job_applications: "Job applications"
       upload_files: "Upload file"
       files_type: "IMAGE, PDF"
       job_applications_list: "List of job applications"
       create_job_application: "Create job application"
+      no_resume: "No resume"
     mission_orders:
       title_mission_orders: "Mission orders"
       create_mission_order: "Create mission order"

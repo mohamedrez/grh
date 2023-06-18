@@ -1,9 +1,12 @@
 class JobApplicationsController < ApplicationController
-  before_action :set_job_application, only: %i[edit update destroy]
+  before_action :set_job_application, only: %i[show edit update destroy delete_resume]
   before_action :set_breadcrumbs, only: :index
 
   def index
     @job_applications = JobApplication.all
+  end
+
+  def show
   end
 
   def new
@@ -38,6 +41,11 @@ class JobApplicationsController < ApplicationController
     @job_application.destroy
     flash.now[:notice] = t("flash.successfully_destroyed")
     redirect_to job_applications_path
+  end
+
+  def delete_resume
+    @job_application.resume.purge
+    redirect_to job_application_path(@job_application), notice: t("flash.receipt_successfully_deleted")
   end
 
   private
