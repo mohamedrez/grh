@@ -1,8 +1,6 @@
 class UserRequest < ApplicationRecord
   include Wisper.model
 
-  after_update :mailing_employee, unless: :is_pending?
-
   belongs_to :user
   belongs_to :managed_by, class_name: "User", optional: true
   belongs_to :requestable, polymorphic: true
@@ -19,11 +17,5 @@ class UserRequest < ApplicationRecord
 
   def is_pending?
     pending?
-  end
-
-  def mailing_employee
-    subject = "Your request has been reviewd"
-    email = user.manager.email
-    NotificationMailerJob.perform_later(self, subject, email)
   end
 end

@@ -3,6 +3,7 @@
 require "sidekiq/web"
 
 Rails.application.routes.draw do
+  default_url_options host: "uat.humaneo.ma", port: 8800
   get "calendar", to: "calendar#index"
   get "organization", to: "organization#index"
   get "organization/csv", to: "organization#csv"

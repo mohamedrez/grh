@@ -1,9 +1,12 @@
 class NotificationMailer < ApplicationMailer
-  def send_notification_email(subject, email)
+  def send_notification_email(subject:, email:, link_url:, link_text:, description:, title:)
     @object = params[:object]
     @subject = subject
     @email = email
-    @link = user_time_request_url(user_id: @object.user.id, id: @object.requestable_id)
+    @link_url = link_url
+    @link_text = link_text
+    @description = description
+    @title = title
     mail(to: @email, subject: @subject)
   end
 end
