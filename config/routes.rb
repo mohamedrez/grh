@@ -37,6 +37,10 @@ Rails.application.routes.draw do
 
     devise_for :users, path: "/auth"
 
+    scope :my_team, as: "my_team" do
+      resources :users, only: [:index]
+    end
+
     resources :users do
       resources :notes, except: %i[show]
       resources :assets

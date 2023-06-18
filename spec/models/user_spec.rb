@@ -31,6 +31,17 @@ RSpec.describe(User, type: :model) do
     end
   end
 
+    describe "#has_any_subordinates?" do
+      it "it returns the subordinates" do
+        manager = create(:user)
+        [ create(:user), create(:user, first_name: "name1", manager: manager),  create(:user, first_name: "name2", manager: manager)]
+
+        expect(manager.has_any_subordinates?).to be_truthy
+        expect(manager.subordinates.count).to eq(2)
+        expect(manager.subordinates.pluck(:first_name)).to eq(["name1", "name2"])
+      end
+    end
+
   describe ".import" do
     let(:file) { Rack::Test::UploadedFile.new("#{Rails.root}/spec/fixtures/test_users.csv", "text/csv") }
 
