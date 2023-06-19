@@ -14,8 +14,8 @@ class TimeRequestsController < ApplicationController
   end
 
   def show
+    authorize! @time_request
     @overlapping_requests = @time_request.overlapping_requests
-    @user_request = @time_request.user_request
   end
 
   def new
@@ -71,6 +71,7 @@ class TimeRequestsController < ApplicationController
 
   def set_locals
     @time_request = TimeRequest.find(params[:id])
+    @user_request = @time_request.user_request
     @user = User.find(params[:user_id])
   end
 
