@@ -14,7 +14,6 @@ class UserRequestsController < ApplicationController
   def update
     @user_request = UserRequest.find(params[:id])
     @user_request.update(managed_by_id: current_user.id, state: params[:state])
-
     redirect_to polymorphic_url([@user_request.user, @user_request.requestable])
   end
 
