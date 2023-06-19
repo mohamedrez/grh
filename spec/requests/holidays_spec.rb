@@ -21,6 +21,7 @@ RSpec.describe "/holidays", type: :request do
   end
 
   before do
+    Role.create!(user_id: user.id, name: :admin)
     sign_in user
   end
 
