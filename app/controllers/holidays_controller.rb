@@ -1,6 +1,7 @@
 class HolidaysController < ApplicationController
   before_action :set_holiday, only: %i[edit update destroy]
   before_action :set_breadcrumbs, only: :index
+  before_action :set_authorization
 
   def index
     @holidays = Holiday.order(start_date: :asc)
@@ -51,6 +52,10 @@ class HolidaysController < ApplicationController
 
   def set_holiday
     @holiday = Holiday.find(params[:id])
+  end
+
+  def set_authorization
+    authorize!
   end
 
   def set_breadcrumbs

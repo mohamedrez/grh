@@ -1,6 +1,7 @@
 class RolesController < ApplicationController
   before_action :set_role, only: %i[edit update destroy]
   before_action :set_breadcrumbs, only: :index
+  before_action :set_authorization
 
   def index
     @roles = Role.all
@@ -53,6 +54,10 @@ class RolesController < ApplicationController
 
   def set_role
     @role = Role.find(params[:id])
+  end
+
+  def set_authorization
+    authorize!
   end
 
   def set_breadcrumbs
