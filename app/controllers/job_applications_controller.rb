@@ -7,7 +7,6 @@ class JobApplicationsController < ApplicationController
   end
 
   def show
-    @user_id = @job_application.user_id
   end
 
   def new
