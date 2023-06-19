@@ -15,8 +15,7 @@ class ExpensesController < ApplicationController
   end
 
   def show
-    # authorize! @expense
-
+    authorize! @expense
     @user_request = @expense.user_request
   end
 

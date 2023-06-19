@@ -1,11 +1,11 @@
 class ExpensePolicy < ApplicationPolicy
   # See https://actionpolicy.evilmartians.io/#/writing_policies
 
-  # def show?
-  #   user.has_any_role?([:hr, :admin]) ||
-  #     (user.id == record.user_id) ||
-  #     (user.id == record.user.manager_id)
-  # end
+  def show?
+    user.has_any_role?([:hr, :admin]) ||
+      (user.id == record.user_id) ||
+      (user.id == record.user.manager_id)
+  end
 
   def approve?
     user.has_any_role?([:hr, :admin]) ||
