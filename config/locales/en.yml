@@ -121,8 +121,8 @@ en:
     job_application:
       first_name: "First Name"
       last_name: "Last Name"
-      job: "Job"
-      email: "Email"
+      job: "Application for"
+      email: "Email Address"
       phone: "Phone"
       source: "Source"
       link: "Link"
