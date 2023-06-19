@@ -1,11 +1,18 @@
-<div id="" class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-    <h1><%= t("views.sites.sites_list") %></h1>
+<%= render 'settings/settings_sidebar' do %>
+  <div class="px-4 sm:px-6 lg:px-8 mt-5">
+    <div class="sm:flex sm:items-center">
+      <div class="sm:flex-auto">
+        <h1><%= t("views.sites.title_sites") %></h1>
+      </div>
+      <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
+        <%= link_to new_site_path, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500", data: { turbo_frame: "right_content", action: "right#show" } do %>
+            <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          <%= t("views.sites.add_site") %>
+        <% end %>
+      </div>
     </div>
-    <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <%= link_to t("views.sites.create_site"), new_site_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", data: { turbo_frame: "right_content", action: "right#show" }%>
-    </div>
-</div>
 
     <div class="mt-8 flow-root">
       <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
@@ -14,11 +21,11 @@
             <table class="min-w-full divide-y divide-gray-300">
               <thead class="bg-gray-50">
                 <tr>
-                    <th scope="col" class="px-3 py-3.5 text-center text-left text-sm font-semibold text-gray-900"><%= t("attributes.site.name") %></th>
-                    <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.site.code") %></th>
-                    <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.site.phone") %></th>
-                    <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.site.address") %></th>
-                    <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"></th>
+                  <th scope="col" class="px-3 py-3.5 text-center text-left text-sm font-semibold text-gray-900"><%= t("attributes.site.name") %></th>
+                  <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.site.code") %></th>
+                  <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.site.phone") %></th>
+                  <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.site.address") %></th>
+                  <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"></th>
                 </tr>
               </thead>
               <tbody id="site-list" class="divide-y divide-gray-200 bg-white"> 
@@ -29,6 +36,5 @@
         </div>
       </div>
     </div>
-
-
-
+  </div>
+<% end %>

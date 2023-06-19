@@ -1,0 +1,33 @@
+<div class="mt-10 lg:grid lg:grid-cols-12 lg:gap-x-5">
+  <aside class="py-6 px-2 sm:px-6 lg:py-0 lg:px-0 lg:col-span-3">
+    <nav class="space-y-1">
+      <% 
+        bold_class = "bg-gray-200 text-gray-900 dark:bg-gray-700/50 dark:text-gray-300 group rounded-md px-3 py-2 flex items-center text-sm font-medium"
+        normal_class = "text-gray-600 hover:bg-gray-50 hover:text-gray-900 dark:hover:bg-gray-600/70 dark:hover:text-gray-300 dark:text-gray-400 group rounded-md px-3 py-2 flex items-center text-sm font-medium"
+      %>
+      <a class="<%= request.path.include?("roles") ? bold_class : normal_class %>" href="<%= url_for(roles_path) %>">
+        <svg class="w-8 h-8 text-gray-500 group-hover:text-gray-700 dark:text-gray-300 dark:group-hover:text-gray-300 flex-shrink-0 -ml-1 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M14 19a6 6 0 0 0-12 0"/><circle cx="8" cy="9" r="4"/><circle cx="19" cy="11" r="2"/><path d="M19 8v1"/><path d="M19 13v1"/><path d="m21.6 9.5-.87.5"/><path d="m17.27 12-.87.5"/><path d="m21.6 12.5-.87-.5"/><path d="m17.27 10-.87-.5"/>
+        </svg>
+        <span class="truncate text-lg"><%= t("views.role.roles_title") %></span>
+      </a>
+      <a class="<%= request.path.include?("holidays") ? bold_class : normal_class %>" href="<%= url_for(holidays_path) %>">
+        <svg class="w-8 h-8 text-gray-500 group-hover:text-gray-700 dark:text-gray-300 dark:group-hover:text-gray-300 flex-shrink-0 -ml-1 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/><path d="M8 14h.01"/><path d="M12 14h.01"/><path d="M16 14h.01"/><path d="M8 18h.01"/><path d="M12 18h.01"/><path d="M16 18h.01"/>
+        </svg>
+        <span class="truncate text-lg"><%= t("views.holidays.title_holidays") %></span>
+      </a>
+      <a class="<%= request.path.include?("sites") ? bold_class : normal_class %>" href="<%= url_for(sites_path) %>">
+        <svg class="w-8 h-8 text-gray-500 group-hover:text-gray-700 dark:text-gray-300 dark:group-hover:text-gray-300 flex-shrink-0 -ml-1 mr-3 h-6 w-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/><path d="M10 6h4"/><path d="M10 10h4"/><path d="M10 14h4"/><path d="M10 18h4"/>
+        </svg>
+        <span class="truncate text-lg"><%= t("views.sites.title_sites") %></span>
+      </a>
+    </nav>
+  </aside>
+  <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-9">
+  <div class="bg-white shadow rounded-lg dark:bg-gray-800 dark:ring-1 dark:ring-white/10 dark:ring-inset py-8">
+    <%=  yield %>
+  </div>
+  </div>
+</div>

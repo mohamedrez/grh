@@ -1,9 +1,9 @@
-<tr id="role_<%= role.id %>">
-  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium text-gray-900 sm:pl-3"><%= role.user.full_name %></td>
-  <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-    <span class="inline-flex rounded-full bg-sky-100 px-2 text-xs font-semibold leading-5 text-sky-800"><%= role.name %></span>
+<tr id="<%= dom_id role %>">
+  <td class="whitespace-nowrap text-center py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= role.user.full_name %></td>
+  <td class="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-500">
+    <span class="inline-flex rounded-full bg-sky-100 px-2 text-xs font-semibold leading-5 text-sky-800"><%= role.name.humanize %></span>
   </td>
-  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-3">
+  <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
      <div class="flex justify-center">
       <%= link_to edit_role_path(role), data: { turbo_frame: "right_content", action: "right#show" } do %>
         <svg class="inline-block ml-4 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
