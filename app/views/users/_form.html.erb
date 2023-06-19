@@ -114,7 +114,7 @@
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :manager_id, t("attributes.user.manager") %>
             <div class="mt-2">
-              <%= form.select :manager_id, options_for_select(@manager_select.to_h, @user.manager_id) %>
+              <%= form.select :manager_id, options_for_select(@manager_select.to_h, @user.manager_id), include_blank: true %>
             </div>
           </div>
           <div class="sm:col-span-3">

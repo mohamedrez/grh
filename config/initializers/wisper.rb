@@ -6,4 +6,5 @@ Rails.application.reloader.to_prepare do
 
   # https://niallburkley.com/blog/ruby-publish-subscribe/
   UserRequest.subscribe(UserRequestSubscriber)
+  Comment.subscribe(CommentSubscriber)
 end
