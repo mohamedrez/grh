@@ -16,6 +16,8 @@ class UserPolicy < ApplicationPolicy
   end
 
   def view_full_profile?
-    user.has_any_role?([:hr, :admin]) || user == record || user == record.manager
+    user.has_any_role?([:hr, :admin]) ||
+      user == record ||
+      user == record.manager
   end
 end

@@ -10,6 +10,16 @@ class TimeRequestPolicy < ApplicationPolicy
   #   user.admin? || (user.id == record.user_id)
   # end
 
+  def show?
+    user.has_any_role?([:hr, :admin]) ||
+      (user.id == record.user_id) ||
+      (user.id == record.user.manager_id)
+  end
+
+  def approve?
+    user.has_any_role?([:hr, :admin]) ||
+      user.id == record.user.manager_id
+  end
   # Scoping
   # See https://actionpolicy.evilmartians.io/#/scoping
   #

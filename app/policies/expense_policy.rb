@@ -7,6 +7,11 @@ class ExpensePolicy < ApplicationPolicy
   #     (user.id == record.user.manager_id)
   # end
 
+  def approve?
+    user.has_any_role?([:hr, :admin]) ||
+      user.id == record.user.manager_id
+  end
+
   # Scoping
   # See https://actionpolicy.evilmartians.io/#/scoping
 
