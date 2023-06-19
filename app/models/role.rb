@@ -3,5 +3,5 @@ class Role < ApplicationRecord
 
   validates :name, presence: true
 
-  enum name: {admin: 0, hr: 1, accountant: 2, manager: 3}
+  enum name: {hr: 1, admin: 2, accountant: 3, manager: 4}
 end
