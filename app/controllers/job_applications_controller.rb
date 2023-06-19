@@ -7,6 +7,7 @@ class JobApplicationsController < ApplicationController
   end
 
   def show
+    @aasm_logs = AasmLog.where(aasm_logable: @job_application)
   end
 
   def new
@@ -41,6 +42,26 @@ class JobApplicationsController < ApplicationController
     @job_application.destroy
     flash.now[:notice] = t("flash.successfully_destroyed")
     redirect_to job_applications_path
+  end
+
+  def update_aasm_state
+    aasm_state = params[:aasm_state]
+    # @job_application.actor_id = current_user.id
+
+    case aasm_state
+    when "advanced_to_phone"
+      @job_application.advance_job_application_to_phone_screening!
+    when "completed_phone"
+      @job_application.complete_job_application_phone_screening!
+    when "advanced_interview"
+      @job_application.advance_job_application_to_interview!
+    when "completed_interview"
+      @job_application.complete_job_application_to_interview!
+    when "disqualified"
+      @job_application.disqualify_applicant!
+    end
+
+    redirect_to job_application_path(@job_application)
   end
 
   def delete_resume

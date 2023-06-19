@@ -63,6 +63,7 @@ Rails.application.routes.draw do
     resources :jobs
     resources :job_applications do
       delete :delete_resume, on: :member
+      patch "update_aasm_state", to: "job_applications#update_aasm_state", as: "update_aasm_state_job_application"
     end
   end
 end
