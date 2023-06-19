@@ -7,9 +7,16 @@
           <p class="mt-2 text-sm text-gray-700"><%= t("views.users.list_personal_details") %></p>
         </div>
         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
-          <div class="col-span-6">
-            <%= form.label :avatar, t("views.settings.employee_picture"), class: "mr-5 mb-2 text-sm font-medium text-gray-900 dark:text-white" %>
-            <%= form.file_field :avatar, accept: 'image/svg,image/png,image/jpg,image/jpeg', id: "avatar-input" %>
+          
+          <div class="col-span-6">            
+            <%= form.label :avatar, class: "mr-5 mb-2 text-sm font-medium text-gray-900" do %>
+              <%= t("views.settings.employee_picture") %>
+              <span class="ml-3 text-gray-500 text-lg"><%= t("views.settings.click_on_the_picture") %></span>
+            <% end %>
+            <%= form.file_field :avatar, class: "hidden", accept: 'image/svg,image/png,image/jpg,image/jpeg', id: "avatar-input" %>
+            <label for="avatar-input" class="cursor-pointer">
+              <%= image_tag @user.avatar_url_or_default, class: "w-32 h-32 rounded-full" %>
+            </label>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :first_name, t("attributes.user.first_name") %>

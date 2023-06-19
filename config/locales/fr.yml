@@ -370,6 +370,7 @@ fr:
     settings:
       setting_desc: "Ces informations seront affichées sur votre profil."
       employee_picture: "Photo de l'employé"
+      click_on_the_picture: "Cliquez sur l'image pour en télécharger une nouvelle"
     user_requests:
       title_user_request: "Demandes d'utilisateur"
       user_requests_list: "Liste de toutes les demandes que vous avez effectuées."

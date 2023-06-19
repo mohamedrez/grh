@@ -400,6 +400,7 @@ en:
     settings:
       setting_desc: "These information will be displayed on your profile."
       employee_picture: "Employee picture"
+      click_on_the_picture: "Click on the picture to upload an new one"
     user_requests:
       title_user_request: "User requests"
       user_requests_list: "List of all requests requested by you."
