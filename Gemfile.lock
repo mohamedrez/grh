@@ -78,15 +78,16 @@ GEM
     ar_lazy_preload (1.1.2)
       rails (>= 5.2)
     ast (2.4.2)
-    audited (5.3.2)
+    audited (5.3.3)
       activerecord (>= 5.0, < 7.1)
+      request_store (~> 1.2)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     brakeman (5.4.1)
     builder (3.2.4)
-    cancancan (3.4.0)
+    cancancan (3.5.0)
     capybara (3.39.1)
       addressable
       matrix
@@ -207,8 +208,8 @@ GEM
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
-    minitest (5.18.0)
-    motor-admin (0.4.7)
+    minitest (5.18.1)
+    motor-admin (0.4.19)
       ar_lazy_preload (~> 1.0)
       audited (~> 5.0)
       cancancan (~> 3.0)
@@ -216,7 +217,7 @@ GEM
       rails (>= 5.2)
     msgpack (1.6.0)
     mysql2 (0.5.5)
-    net-imap (0.3.4)
+    net-imap (0.3.6)
       date
       net-protocol
     net-pop (0.1.2)
@@ -247,7 +248,7 @@ GEM
     puma (6.1.0)
       nio4r (~> 2.0)
     raabro (1.4.0)
-    racc (1.7.0)
+    racc (1.7.1)
     rack (2.2.7)
     rack-protection (3.0.6)
       rack
