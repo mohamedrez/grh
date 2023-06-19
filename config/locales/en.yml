@@ -190,9 +190,10 @@ en:
         self_evaluation: "Self evaluation"
     role:
       names:
-        hr: "HR"
         admin: "Admin"
+        hr: "HR"
         accountant: "Accountant"
+        manager: "Manager"
     section:
       description: "Description"
       section_type: "Section type"

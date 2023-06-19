@@ -172,9 +172,10 @@ fr:
         self_evaluation: "Auto-évaluation"
     role:
       names:
-        hr: "HR"
         admin: "Admin"
+        hr: "HR"
         accountant: "Accountant"
+        manager: "Gestionnaire"
     section:
       description: "Description"
       section_type: "Type de section"
