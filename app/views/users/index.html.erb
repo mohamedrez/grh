@@ -20,7 +20,7 @@
       </div>
     <% end %>
     <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
-      <%= render partial: "search_form" %>
+      <%= render partial: "search_form", locals: {url: @url} %>
     </div>
   </div>
   <div class="sm:flex sm:items-center mt-5">

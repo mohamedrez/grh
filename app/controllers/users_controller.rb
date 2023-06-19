@@ -4,8 +4,10 @@ class UsersController < ApplicationController
 
   def index
     @q = if request.path.include?("my_team")
+      @url = my_team_users_path
       User.where(manager: current_user).ransack(params[:q])
     else
+      @url = users_path
       User.ransack(params[:q])
     end
     @users = @q.result.page(params[:page])
