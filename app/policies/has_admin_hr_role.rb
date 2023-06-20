@@ -1,4 +1,4 @@
-class AdminHrPolicy < ApplicationPolicy
+module HasAdminHrRole
   def index?
     has_any_admin_or_hr_role?
   end
