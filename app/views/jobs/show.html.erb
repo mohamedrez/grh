@@ -10,6 +10,9 @@
       <h1><%= t("views.jobs.view_job") %></h1>
     </div>
     <div class="sm:w-fit px-4">
+      <%= link_to t("views.job_applications.create_job_application"), new_job_application_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+    </div>
+    <div class="sm:w-fit px-4">
       <%= button_to t("views.jobs.edit_job"), edit_job_path(@job), :method => :get, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
     </div>
     <div class="sm:w-fit px-4">
