@@ -1,0 +1,14 @@
+<div id="summary-stats">
+  <dl class="my-5 grid grid-cols-1 gap-0.5 overflow-hidden rounded-2xl text-left sm:grid-cols-2 lg:grid-cols-5">
+    <% Goal.summary_stats(current_user).each do |status, percentage| %>
+      <div class="flex flex-col bg-gray-400/5 p-8">
+        <dd class="order-first text-3xl font-semibold tracking-tight text-gray-900"><%= percentage %>%</dd>
+        <dt class="text-sm font-semibold leading-6 text-gray-600 mt-1">
+          <span class="inline-flex items-center rounded-full px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset <%= button_class_for_goal_status(status) %>">
+            <%= Goal.human_enum_name(:status, status) %>
+          </span>
+        </dt>
+      </div>
+    <% end %>
+  </dl>
+</div>
