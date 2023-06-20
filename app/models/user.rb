@@ -81,10 +81,6 @@ class User < ApplicationRecord
     roles.any? { |role| role_names.include?(role.name.to_sym) }
   end
 
-  def has_any_subordinates?
-    subordinates.any?
-  end
-
   def full_name
     "#{first_name} #{last_name}"
   end

@@ -60,7 +60,7 @@ RSpec.describe "Users", type: :request do
 
     before do
       sign_in manager
-
+      Role.create!(user_id: manager.id, name: :manager)
       [create(:user, first_name: "name101"), create(:user, first_name: "name1", manager: manager),  create(:user, first_name: "name2", manager: manager)]
     end
 
@@ -69,7 +69,7 @@ RSpec.describe "Users", type: :request do
         get users_path(manager_id: manager.id)
 
         expect(response).to have_http_status(:success)
-        expect(manager.has_any_subordinates?).to be_truthy
+        expect(manager.has_role?(:manager)).to eq(true)
         expect(manager.subordinates.count).to eq(3)
         expect(manager.subordinates.pluck(:first_name)).to eq(["name0", "name1", "name2"])
 

@@ -53,7 +53,7 @@
             </ul>
           </li>
 
-          <% if current_user.has_any_role?([:hr, :admin]) || current_user.has_any_subordinates? %>
+          <% if current_user.has_any_role?([:hr, :admin]) || current_user.has_role?(:manager) %>
             <%= render partial: "shared/management_tools" %>
           <% end %>
 

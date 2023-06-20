@@ -1,7 +1,7 @@
 <li>
   <ul role="list" class="-mx-2 space-y-1">
     <div class="text-sm font-semibold leading-6 text-gray-400"><%= t("views.layouts.main.management_tools") %></div>
-    <% if !current_user.has_any_role?([:hr, :admin]) && current_user.has_any_subordinates? %>
+    <% if !current_user.has_any_role?([:hr, :admin]) && current_user.has_role?(:manager) %>
       <li>
         <%= link_to users_path(manager_id: current_user.id), class: "text-indigo-200 hover:text-white hover:bg-indigo-700 group flex gap-x-3 rounded-md p-2 text-sm leading-6 font-semibold" do %>
           <svg class="h-6 w-6 shrink-0 text-indigo-200 group-hover:text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
