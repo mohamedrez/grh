@@ -1,8 +1,8 @@
 require "rails_helper"
 
 RSpec.describe "Users", type: :request do
-  let(:manager) { create(:user, admin: true) }
-  let!(:user) { create(:user, manager_id: manager.id, admin: true) }
+  let(:manager) { create(:user, first_name: "name404", admin: true) }
+  let!(:user) { create(:user, first_name: "name0", manager_id: manager.id, admin: true) }
   let(:site) { create(:site, id: 1) }
   let(:valid_attributes) do
     {
@@ -55,15 +55,49 @@ RSpec.describe "Users", type: :request do
     Role.create!(user_id: user.id, name: :admin)
   end
 
-  before do
-    sign_in user
+  describe '#index' do
+    
+
+    before do
+      sign_in manager
+      Role.create!(user_id: manager.id, name: :manager)
+      [create(:user, first_name: "name101"), create(:user, first_name: "name1", manager: manager),  create(:user, first_name: "name2", manager: manager)]
+    end
+
+    context 'when the request includes ":manager_id"' do
+      it 'returns the users managed by the current user' do
+        get users_path(manager_id: manager.id)
+
+        expect(response).to have_http_status(:success)
+        expect(manager.has_role?(:manager)).to eq(true)
+        expect(manager.subordinates.count).to eq(3)
+        expect(manager.subordinates.pluck(:first_name)).to eq(["name0", "name1", "name2"])
+
+        expect(response.body).to include("name0")
+        expect(response.body).to include("name1")
+        expect(response.body).to include("name2")
+      end
+    end
+
+    context 'when the request does not include ":manager_id"' do
+      it 'returns all users' do
+        get users_path
+
+        expect(response).to have_http_status(:success)
+        expect(User.count).to eq(5)
+        expect(User.pluck(:first_name)).to eq(["name404", "name0", "name101", "name1", "name2"])
+
+        expect(response.body).to include("name404")
+        expect(response.body).to include("name0")
+        expect(response.body).to include("name101")
+        expect(response.body).to include("name1")
+        expect(response.body).to include("name2")
+      end
+    end
   end
 
-  describe "GET /index" do
-    it "renders a successful response" do
-      get users_url
-      expect(response).to be_successful
-    end
+  before do
+    sign_in user
   end
 
   describe "GET /show" do
