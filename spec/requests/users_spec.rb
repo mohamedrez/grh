@@ -61,12 +61,12 @@ RSpec.describe "Users", type: :request do
     before do
       sign_in manager
 
-      [ create(:user, first_name: "name101"), create(:user, first_name: "name1", manager: manager),  create(:user, first_name: "name2", manager: manager)]
+      [create(:user, first_name: "name101"), create(:user, first_name: "name1", manager: manager),  create(:user, first_name: "name2", manager: manager)]
     end
 
-    context 'when the path includes ":manger_id"' do
+    context 'when the request includes ":manager_id"' do
       it 'returns the users managed by the current user' do
-        get my_team_users_path(manger_id: manager.id)
+        get users_path(manager_id: manager.id)
 
         expect(response).to have_http_status(:success)
         expect(manager.has_any_subordinates?).to be_truthy
@@ -79,7 +79,7 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    context 'when the path does not include ":manger_id"' do
+    context 'when the request does not include ":manager_id"' do
       it 'returns all users' do
         get users_path
 

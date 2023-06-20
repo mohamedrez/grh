@@ -37,8 +37,6 @@ Rails.application.routes.draw do
 
     devise_for :users, path: "/auth"
 
-    get "/mangers/:manger_id", to: "users#index", as: "my_team_users"
-
     resources :users do
       resources :notes, except: %i[show]
       resources :assets

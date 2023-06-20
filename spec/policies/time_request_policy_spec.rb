@@ -35,7 +35,7 @@ RSpec.describe TimeRequestPolicy do
       it { is_expected.to eq(3) }
     end
 
-    context "Manger will gets TimeRequests of his team" do
+    context "Manager will gets TimeRequests of his team" do
       let(:policy) { described_class.new(user: manager_user, target: target) }
       subject { policy.apply_scope(target, type: :active_record_relation).count }
 

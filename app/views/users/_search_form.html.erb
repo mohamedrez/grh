@@ -1,5 +1,5 @@
 <div class="max-w-lg w-full lg:max-w-xs">
-  <%= search_form_for @q, method: :get, url: url, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
+  <%= search_form_for @q, method: :get, url: users_path, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
     <%= f.label :last_name_or_email_or_employee_number_cont, "Search by name, email, or employee ID", class: "sr-only" %>
     <div class="relative">
       <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -9,5 +9,7 @@
       </div>
       <%= f.search_field :first_name_or_last_name_or_email_or_employee_number_cont, class: "block w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-100 placeholder-gray-600 focus:outline-none sm:text-sm transition duration-150 ease-in-out", placeholder:  t("views.users.search_by") %>
     </div>
+
+    <%= hidden_field_tag :manager_id, @manager_id %>
   <% end %>
 </div>
