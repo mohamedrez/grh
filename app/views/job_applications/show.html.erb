@@ -1,19 +1,12 @@
-
   <main class="py-10">
     <!-- Page header -->
     <div class="mx-auto max-w-3xl px-4 sm:px-6 md:flex md:items-center md:justify-between md:space-x-5 lg:max-w-7xl lg:px-8">
       <div class="flex items-center space-x-5">
         <div class="flex-shrink-0">
-          <div class="relative">
-            <% if false %>
-              <img class="h-16 w-16 rounded-full" src="https://images.unsplash.com/photo-1463453091185-61582044d556?ixlib=rb-=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=8&w=1024&h=1024&q=80" alt="">
-            <% end %> 
-            <span class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></span>
-          </div>
         </div>
         <div>
           <h1 class="text-2xl font-bold text-gray-900"><%= @job_application.first_name %> <%= @job_application.last_name %></h1>
-          <p class="text-sm font-medium text-gray-500">Applied for <a href="#" class="text-gray-900"><%= @job_application.job.title %></a> on <time datetime="2020-08-25">August 25, 2020</time></p>
+          <p class="text-sm font-medium text-gray-500"> <%= t("attributes.job_application.applied_for") %> <%= @job_application.job.title %> <%= t("attributes.job_application.on") %> <%= @job_application.created_at.day %>/<%= @job_application.created_at.month %>/<%= @job_application.created_at.year %></p>
         </div>
       </div>
       <div class="flex items-center gap-x-5">
@@ -27,8 +20,8 @@
         <section aria-labelledby="applicant-information-title">
           <div class="bg-white shadow sm:rounded-lg">
             <div class="px-4 py-5 sm:px-6">
-              <h2 id="applicant-information-title" class="text-lg font-medium leading-6 text-gray-900">Applicant Information</h2>
-              <p class="mt-1 max-w-2xl text-sm text-gray-500">Personal details and application.</p>
+              <h2 id="applicant-information-title" class="text-lg font-medium leading-6 text-gray-900"><%= t("attributes.job_application.applicant_information") %></h2>
+              <p class="mt-1 max-w-2xl text-sm text-gray-500"><%= t("attributes.job_application.personal_details") %></p>
             </div>
             <div class="border-t border-gray-200 px-4 py-5 sm:px-6">
               <dl class="grid grid-cols-1 gap-x-4 gap-y-8 sm:grid-cols-2">
@@ -45,48 +38,60 @@
                   <dd class="mt-1 text-sm text-gray-900"><%= @job_application.phone %></dd>
                 </div>
                 <div class="sm:col-span-2">
-                  <dt class="text-sm font-medium text-gray-500">Attachments</dt>
-                  <dd class="mt-1 text-sm text-gray-900">
-                    <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200">
-                      <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
-                        <div class="flex w-0 flex-1 items-center">
-                          <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                            <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
-                          </svg>
-                          <div class="ml-4 flex min-w-0 flex-1 gap-2">
-                            <%= link_to rails_blob_path(@job_application.resume), target: '_blank' do %>
-                              <span class="truncate font-medium"><%= truncate(@job_application.resume.filename.to_s, length: 20) %></span>
-                            <% end %>
-                            <span class="flex-shrink-0 text-gray-400"><%= number_to_human_size(@job_application.resume.byte_size) %></span>
-                          </div>
-                        </div>
-                        <div class="ml-4 flex-shrink-0">
-                          <div class="inline-block text-sm px-4 py-2 leading-none rounded no-underline text-gray hover:text-gray-900 hover:bg-white mt-4 lg:mt-0">
-                            <div class="relative" data-controller="dropdown">
-                              <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" data-dropdown-target="button" tabindex="0" class="inline-block select-none">
-                                <span class="appearance-none flex items-center inline-block text-gray-700">
-                                  <span class="sr-only">Open options</span>
-                                  <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                                    <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
-                                  </svg>
-                                </span>
-                              </div>
-                              <div data-dropdown-target="menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
-                                <%= link_to (@job_application.resume.content_type.start_with?('image/') || @job_application.resume.content_type == 'application/pdf' ? t("buttons.view") : t("buttons.download")), rails_blob_path(@job_application.resume), target: '_blank', data: {action: "click->dropdown#toggle"}, class: 'no-underline block px-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
-                                <%= button_to t("buttons.delete"), delete_resume_job_application_path(), method: :delete, data: {turbo_confirm: "Are you sure you wanna delete this?", action: "click->dropdown#toggle"}, class: 'no-underline block px-8 py-3 border-t text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
-                              </div>
-
+                  <dt class="text-sm font-medium text-gray-500">Attachment</dt>
+                  <% if @job_application.resume.attached? %>
+                    <dd class="mt-1 text-sm text-gray-900">
+                      <ul role="list" class="divide-y divide-gray-100 rounded-md border border-gray-200">
+                        <li class="flex items-center justify-between py-4 pl-4 pr-5 text-sm leading-6">
+                          <div class="flex w-0 flex-1 items-center">
+                            <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                              <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+                            </svg>
+                            <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                              <%= link_to rails_blob_path(@job_application.resume), target: '_blank' do %>
+                                <span class="truncate font-medium"><%= truncate(@job_application.resume.filename.to_s, length: 20) %></span>
+                              <% end %>
+                              <span class="flex-shrink-0 text-gray-400"><%= number_to_human_size(@job_application.resume.byte_size) %></span>
                             </div>
                           </div>
-                        </div>
-                      </li>
-                    </ul>
-                  </dd>
+                          <div class="ml-4 flex-shrink-0">
+                            <div class="inline-block text-sm px-4 py-2 leading-none rounded no-underline text-gray hover:text-gray-900 hover:bg-white mt-4 lg:mt-0">
+                              <div class="relative" data-controller="dropdown">
+                                <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" data-dropdown-target="button" tabindex="0" class="inline-block select-none">
+                                  <span class="appearance-none flex items-center inline-block text-gray-700">
+                                    <span class="sr-only">Open options</span>
+                                    <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                      <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+                                    </svg>
+                                  </span>
+                                </div>
+                                <div data-dropdown-target="menu" class="absolute right-0 z-10 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+                                  <%= link_to (@job_application.resume.content_type.start_with?('image/') || @job_application.resume.content_type == 'application/pdf' ? t("buttons.view") : t("buttons.download")), rails_blob_path(@job_application.resume), target: '_blank', data: {action: "click->dropdown#toggle"}, class: 'no-underline block px-8 py-3 text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
+                                  <%= button_to t("buttons.delete"), delete_resume_job_application_path(), method: :delete, data: {turbo_confirm: "Are you sure you wanna delete this?", action: "click->dropdown#toggle"}, class: 'no-underline block px-8 py-3 border-t text-gray-900 bg-white hover:bg-gray-300 whitespace-nowrap' %>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      </ul>
+                    </dd>
+                  <% else %>
+                    <div class="flex w-0 flex-1 items-center">
+                      <svg class="h-5 w-5 flex-shrink-0 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                        <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+                      </svg>
+                      <div class="ml-4 flex min-w-0 flex-1 gap-2">
+                        <span class="flex-shrink-0 font-medium"><%= t("views.job_applications.no_resume") %></span>
+                      </div>
+                    </div>
+                  <% end %>
                 </div>
               </dl>
             </div>
             <div>
-              <a href="#" class="block bg-gray-50 px-4 py-4 text-center text-sm font-medium text-gray-500 hover:text-gray-700 sm:rounded-b-lg">Read full application</a>
+              <%= link_to job_application_infos_path(job_application = @job_application), class:"block bg-gray-50 px-4 py-4 text-center text-sm font-medium text-gray-500 hover:text-gray-700 sm:rounded-b-lg" do %>
+                <%= t("attributes.job_application.read_full_application") %>
+              <% end %>
             </div>
           </div>
         </section>
@@ -94,20 +99,17 @@
         <!-- Comments-->
         <section aria-labelledby="notes-title">
           <div class="bg-white shadow sm:overflow-hidden sm:rounded-lg">
-            <%= turbo_frame_tag "comments", src: comments_path(commentable_type: "JobApplication", commentable_id: @user_id) %>
+            <%= turbo_frame_tag "comments", src: comments_path(commentable_type: "JobApplication", commentable_id: @job_application.id) %>
           </div>
         </section>
       </div>
 
       <section aria-labelledby="timeline-title" class="lg:col-span-1 lg:col-start-3">
         <div class="bg-white px-4 py-5 shadow sm:rounded-lg sm:px-6">
-          <h2 id="timeline-title" class="text-lg font-medium text-gray-900">Timeline</h2>
+          <h2 id="timeline-title" class="text-lg font-medium text-gray-900"><%= t("attributes.job_application.timeline") %></h2>
 
           <!-- Activity Feed -->
-          <%= render partial: "right_side", locals: {job_application: @job_application, aasm_logs: @aasm_logs} %>            
-          <div class="mt-6 flex flex-col justify-stretch">
-            <button type="button" class="inline-flex items-center justify-center rounded-md bg-blue-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-blue-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-600">Advance to offer</button>
-          </div>
+          <%= render partial: "right_side", locals: {job_application: @job_application, aasm_logs: @aasm_logs, user: @user} %>            
         </div>
       </section>
     </div>

@@ -1,5 +1,5 @@
 class JobApplicationsController < ApplicationController
-  before_action :set_job_application, only: %i[show edit update destroy delete_resume]
+  before_action :set_job_application, only: %i[infos show edit update destroy delete_resume update_aasm_state]
   before_action :set_breadcrumbs, only: :index
 
   def index
@@ -7,7 +7,11 @@ class JobApplicationsController < ApplicationController
   end
 
   def show
+    @user = current_user
     @aasm_logs = AasmLog.where(aasm_logable: @job_application)
+  end
+
+  def infos
   end
 
   def new
@@ -46,7 +50,7 @@ class JobApplicationsController < ApplicationController
 
   def update_aasm_state
     aasm_state = params[:aasm_state]
-    # @job_application.actor_id = current_user.id
+    @job_application.actor_id = current_user.id
 
     case aasm_state
     when "advanced_to_phone"

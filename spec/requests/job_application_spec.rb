@@ -50,6 +50,13 @@ RSpec.describe "JobApplications", type: :request do
     end
   end
 
+  describe "GET /infos" do
+    it "renders a successful response" do
+      get job_application_infos_url(id: job_application.id)
+      expect(response).to be_successful
+    end
+  end
+
   describe "POST /create" do
     context "with valid parameters" do
       it "creates a new Job Application" do
@@ -105,6 +112,56 @@ RSpec.describe "JobApplications", type: :request do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
         patch job_application_url(id: job_application.id), params: {job_application: invalid_attributes}
         expect(response).to have_http_status(:unprocessable_entity)
+      end
+    end
+  end
+
+  describe 'PATCH /update_aasm_state' do
+    context 'when aasm_state is "advanced_to_phone"' do
+      it 'updates the AASM state to "advanced_to_phone" and redirects to the job application page' do
+        patch update_aasm_state_job_application_path( id: job_application.id, aasm_state: 'advanced_to_phone')
+        job_application.reload
+        expect(job_application.aasm_state).to eq('advanced_to_phone')
+        expect(response).to redirect_to(job_application_path(job_application))
+      end
+    end
+
+    context 'when aasm_state is "completed_phone"' do
+      it 'updates the AASM state to "completed_phone" and redirects to the job application page' do
+        job_application = create(:job_application, job_id: job.id, first_name: "FirstName", first_name: "FirstName",last_name: "LastName", email: "test@gmail.com", phone: "(602) 496-4636", aasm_state: "advanced_to_phone")
+        patch update_aasm_state_job_application_path(id: job_application.id, aasm_state: 'completed_phone')
+        job_application.reload
+        expect(job_application.aasm_state).to eq('completed_phone')
+        expect(response).to redirect_to(job_application_path(job_application))
+      end
+    end
+
+    context 'when aasm_state is "advanced_interview"' do
+      it 'updates the AASM state to "advanced_interview" and redirects to the job application page' do
+        job_application = create(:job_application, job_id: job.id, first_name: "FirstName", first_name: "FirstName",last_name: "LastName", email: "test@gmail.com", phone: "(602) 496-4636", aasm_state: "completed_phone")
+        patch update_aasm_state_job_application_path(id: job_application.id, aasm_state: 'advanced_interview')
+        job_application.reload
+        expect(job_application.aasm_state).to eq('advanced_interview')
+        expect(response).to redirect_to(job_application_path(job_application))
+      end
+    end
+
+    context 'when aasm_state is "completed_interview"' do
+      it 'updates the AASM state to "completed_interview" and redirects to the job application page' do
+        job_application = create(:job_application, job_id: job.id, first_name: "FirstName", first_name: "FirstName",last_name: "LastName", email: "test@gmail.com", phone: "(602) 496-4636", aasm_state: "advanced_interview")
+        patch update_aasm_state_job_application_path(id: job_application.id, aasm_state: 'completed_interview')
+        job_application.reload
+        expect(job_application.aasm_state).to eq('completed_interview')
+        expect(response).to redirect_to(job_application_path(job_application))
+      end
+    end
+
+    context 'when aasm_state is "disqualified"' do
+      it 'updates the AASM state to "disqualified" and redirects to the job application page' do
+        patch update_aasm_state_job_application_path( id: job_application.id, aasm_state: 'disqualified')
+        job_application.reload
+        expect(job_application.aasm_state).to eq('disqualified')
+        expect(response).to redirect_to(job_application_path(job_application))
       end
     end
   end

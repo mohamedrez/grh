@@ -8,13 +8,11 @@
             <% end %>
             <div class="relative flex space-x-3">
               <div>
-                <% if false %>
-                    <%= image_tag user_request.user.avatar_url_or_default, class: "rounded-full h-10 w-10 align-middle" %>
-                <% end %>
+                <%= image_tag user.avatar_url_or_default, class: "rounded-full h-10 w-10 align-middle" %>
               </div>
               <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
                 <div>
-                  <p class="text-sm text-gray-500"><%= t("views.mission_orders.created_by") %> <span class="text-base font-semibold text-gray-900">Mehdi Rafi</span> <%= time_ago_in_words(job_application.created_at) %></p>
+                  <p class="text-sm text-gray-500"><%= t("attributes.job_application.applied_to") %> <span class="text-base font-semibold text-gray-900"><%= job_application.job.title %></span> <%= time_ago_in_words(job_application.created_at) %> <%= t("attributes.job_application.ago") %></p>
                 </div>
               </div>
             </div>
@@ -35,18 +33,18 @@
                     <%
                       case aasm_log.to_state
                       when "advanced_to_phone"
-                        job_application_state = t("attributes.job_application.aasm_states.validated_by_manager")
+                        job_application_state = t("attributes.job_application.aasm_states.advanced_to_phone")
                       when "completed_phone"
-                        job_application_state = t("attributes.job_application.aasm_states.validated_by_hr")
+                        job_application_state = t("attributes.job_application.aasm_states.completed_phone")
                       when "advanced_interview"
-                        job_application_state = t("attributes.job_application.aasm_states.paid_by_accountant")
+                        job_application_state = t("attributes.job_application.aasm_states.advanced_to_interview")
                       when "completed_interview"
-                        job_application_state = t("attributes.job_application.aasm_states.paid_by_holding_treasury")
+                        job_application_state = t("attributes.job_application.aasm_states.completed_interview")
                       when "disqualified"
-                        job_application_state = t("views.job_applications.rejected_by")
+                        job_application_state = t("attributes.job_application.aasm_states.disqualified")
                       end 
                     %>
-                    <p class="text-sm text-gray-500"><%= job_application_state %> <span class="text-base font-semibold text-gray-900"><%= aasm_log.actor.full_name %></span> <%= time_ago_in_words(aasm_log.created_at) %></p>
+                    <p class="text-sm text-gray-500"><%= job_application_state %> <span class="text-base font-semibold text-gray-900"><%= aasm_log.actor.full_name %></span> <%= time_ago_in_words(aasm_log.created_at) %> ago</p>
                   </div>
                 </div>
               </div>

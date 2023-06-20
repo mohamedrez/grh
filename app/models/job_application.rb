@@ -10,6 +10,8 @@ class JobApplication < ApplicationRecord
   validates :email, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\ -]+(\.[a-z\d\ -]+)*\.[a-z]+\z/i}
   has_one_attached :resume, dependent: :destroy
 
+  attr_accessor :actor_id
+
   aasm column: "aasm_state" do
     after_all_transitions :log_status_change
 
@@ -37,7 +39,7 @@ class JobApplication < ApplicationRecord
     end
 
     event :disqualify_applicant do
-      transitions from: [:created, :validated_by_manager, :validated_by_hr], to: :disqualified, after: :disqualify_applicant_trigger_actions
+      transitions from: [:applied, :advanced_to_phone, :completed_phone, :advanced_interview, :completed_interview], to: :disqualified, after: :disqualify_applicant_trigger_actions
     end
   end
 
