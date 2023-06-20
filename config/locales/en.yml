@@ -190,9 +190,10 @@ en:
         self_evaluation: "Self evaluation"
     role:
       names:
-        hr: "HR"
         admin: "Admin"
+        hr: "HR"
         accountant: "Accountant"
+        manager: "Manager"
     section:
       description: "Description"
       section_type: "Section type"
@@ -378,9 +379,10 @@ en:
       reviewee: "Reviewee"
       direct_manager: "Direct Manager"
     role:
+      roles_title: "Roles"
       the_role: "Roles"
       full_name: "Full name"
-      add_role: "Add role"
+      add_role: "Add new role"
       user: "User"
       update_role: "Edite the role"
     time_requests:

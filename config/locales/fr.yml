@@ -172,9 +172,10 @@ fr:
         self_evaluation: "Auto-évaluation"
     role:
       names:
-        hr: "HR"
         admin: "Admin"
+        hr: "HR"
         accountant: "Accountant"
+        manager: "Gestionnaire"
     section:
       description: "Description"
       section_type: "Type de section"
@@ -347,10 +348,11 @@ fr:
       reviewee: "Évalué(e)"
       direct_manager: "Manager Direct"
     role:
+      roles_title: "Rôles"
       the_role: "Le rôle"
       full_name: "Nom complet"
       role: "Rôle"
-      add_role: "Ajouter un rôle"
+      add_role: "Ajouter un nouveau rôle"
       user: "Utilisateur"
       update_role: "Éditer le rôle"
     time_requests:

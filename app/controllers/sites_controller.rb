@@ -1,6 +1,7 @@
 class SitesController < ApplicationController
   before_action :set_site, only: %i[edit update destroy]
   before_action :set_breadcrumbs, only: %i[index]
+  before_action :set_authorization
 
   def index
     @sites = Site.all
@@ -43,14 +44,17 @@ class SitesController < ApplicationController
 
   def destroy
     @site.destroy
-    flash.now[:notice] = t("flash.successfully_destroyed")
-    redirect_to sites_path
+    redirect_to sites_path, notice: t("flash.successfully_destroyed")
   end
 
   private
 
   def set_site
     @site = Site.find(params[:id])
+  end
+
+  def set_authorization
+    authorize!
   end
 
   def set_breadcrumbs

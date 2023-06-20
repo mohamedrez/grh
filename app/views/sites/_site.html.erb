@@ -1,8 +1,8 @@
 <tr id="<%= dom_id site %>">
-  <td class="whitespace-nowrap text-center py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= site.name %></td>
-  <td class="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-500"><%= site.code %></td>
-  <td class="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-500"><%= site.phone %></td>
-  <td class="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-500"><%= site.address %></td>
+  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= site.name %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= site.code %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= site.phone %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= site.address %></td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
     <div class="flex justify-center">
       <%= link_to edit_site_path(site), data: {turbo_frame: "right_content", action: "right#show"} do %>

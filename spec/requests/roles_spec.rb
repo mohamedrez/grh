@@ -19,6 +19,7 @@ RSpec.describe "Roles", type: :request do
   end
 
   before do
+    Role.create!(user_id: user.id, name: :admin)
     sign_in user
   end
 
@@ -50,7 +51,7 @@ RSpec.describe "Roles", type: :request do
       end
 
       it 'creates a new role' do
-        expect(Role.count).to eq(1)
+        expect(Role.count).to eq(2)
       end
 
       it 'renders the Turbo Stream response' do
@@ -67,7 +68,7 @@ RSpec.describe "Roles", type: :request do
       end
 
       it 'does not create a new role' do
-        expect(Role.count).to eq(0)
+        expect(Role.count).to eq(1)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
@@ -116,7 +117,7 @@ RSpec.describe "Roles", type: :request do
     end
     
     it 'destroy the role' do
-      expect(Role.count).to eq(0)
+      expect(Role.count).to eq(1)
     end
 
     it 'sets the flash notice' do
