@@ -69,7 +69,7 @@ class JobApplicationsController < ApplicationController
   end
 
   def delete_resume
-    @job_application.resume.purge
+    @job_application.resume.destroy
     redirect_to job_application_path(@job_application), notice: t("flash.receipt_successfully_deleted")
   end
 

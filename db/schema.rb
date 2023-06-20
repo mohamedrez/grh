@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_13_095647) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_16_114229) do
   create_table "aasm_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "actor_id", null: false
     t.string "from_state"
@@ -133,15 +133,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_095647) do
   end
 
   create_table "expenses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "user_id", null: false
     t.date "date"
     t.integer "category"
     t.text "description"
     t.float "amount"
-    t.integer "status", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
   create_table "experiences", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -184,16 +181,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_095647) do
   end
 
   create_table "job_applications", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "email"
-    t.string "phone"
-    t.string "source"
-    t.string "link"
-    t.string "note"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "job_id", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "phone"
+    t.string "email"
+    t.string "source"
+    t.string "link"
+    t.string "note"
+    t.string "aasm_state"
     t.index ["job_id"], name: "index_job_applications_on_job_id"
   end
 
@@ -596,7 +594,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_095647) do
   add_foreign_key "comments", "users", column: "author_id"
   add_foreign_key "educations", "users"
   add_foreign_key "emergency_contacts", "users"
-  add_foreign_key "expenses", "users"
   add_foreign_key "experiences", "users"
   add_foreign_key "goals", "users", column: "author_id"
   add_foreign_key "goals", "users", column: "owner_id"

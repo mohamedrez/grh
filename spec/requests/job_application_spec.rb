@@ -179,4 +179,30 @@ RSpec.describe "JobApplications", type: :request do
       expect(flash[:notice]).to eq( I18n.t("flash.successfully_destroyed"))
     end
   end
+
+  describe "DELETE /delete_resume" do
+    before do
+      job_application.resume.attach(io: File.open("#{Rails.root}/spec/fixtures/receipt.png"), filename: 'receipt.png', content_type: "image/png")
+      resume = job_application.resume
+      delete delete_resume_job_application_path(id: job_application.id, resume_id: resume.id)
+    end
+
+    it "delete the resume" do
+      job_application.reload
+      expect(job_application.resume.attached?).to eq(false)
+    end
+
+    it "redirects to the job_application" do
+      expect(response).to redirect_to(job_application_path(job_application))
+    end
+
+    it 'sets the flash notice' do
+      expect(flash[:notice]).to eq(I18n.t("flash.receipt_successfully_deleted"))
+    end
+
+    it 'returns a 302 response' do
+      expect(response).to have_http_status(302)
+    end
+  end
+
 end
