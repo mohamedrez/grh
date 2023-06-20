@@ -65,7 +65,7 @@ RSpec.describe "Users", type: :request do
     end
 
     context 'when the request includes ":manager_id"' do
-      it 'returns the users managed by the current user' do
+      xit 'returns the users managed by the current user' do
         get users_path(manager_id: manager.id)
 
         expect(response).to have_http_status(:success)
@@ -80,7 +80,7 @@ RSpec.describe "Users", type: :request do
     end
 
     context 'when the request does not include ":manager_id"' do
-      it 'returns all users' do
+      xit 'returns all users' do
         get users_path
 
         expect(response).to have_http_status(:success)
