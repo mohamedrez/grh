@@ -1,10 +1,10 @@
 module GoalsHelper
   def button_class_for_goal_status(goal)
-    case goal.status
+    case goal
     when "not_achieved"
       "bg-red-50 text-red-700 ring-red-600/10"
     when "partially_achieved"
-      "bg-green-50 text-green-700 ring-green-600/10"
+      "bg-yellow-50 text-yellow-700 ring-yellow-600/10"
     when "completed"
       "bg-green-50 text-green-700 ring-green-600/10"
     when "overpassed"

@@ -85,4 +85,18 @@ class Goal < ApplicationRecord
       Goal.human_enum_name(:status, status)
     end
   end
+
+  def self.summary_stats(manager)
+    goals = Goal.joins(:owner).where(users: {manager_id: manager.id})
+    total_goals = goals.count
+    stats = goals.group(:status).count
+
+    not_achieved_percentage = (stats["not_achieved"].to_f / total_goals) * 100
+    partially_achieved_percentage = (stats["partially_achieved"].to_f / total_goals) * 100
+    completed_percentage = (stats["completed"].to_f / total_goals) * 100
+    overpassed_percentage = (stats["overpassed"].to_f / total_goals) * 100
+    no_feedback_percentage = (stats[nil].to_f / total_goals) * 100
+
+    {"no_feedback" => no_feedback_percentage.round(2), "not_achieved" => not_achieved_percentage.round(2), "partially_achieved" => partially_achieved_percentage.round(2), "completed" => completed_percentage.round(2), "overpassed" => overpassed_percentage.round(2)}
+  end
 end
