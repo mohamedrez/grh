@@ -145,8 +145,10 @@ en:
         completed_interview: "Completed Interview"
         disqualified: "Disqualified"
         qualified: "Qualified"
-        qualify: "Qualify"
-        disqualify: "Disqualify"
+        advance_to_phone: "Advance to phone"
+        complete_phone: "Complete phone"
+        advance_to_interview: "Advance to interview"
+        complete_interview: "Complete interview"
     mission_order:
       title: "Title"
       mission_type: "Mission type"
