@@ -62,7 +62,7 @@ class CommentSubscriber
     link_url = URL_HELPERS.user_time_request_url(user_id: user_request.user.id, id: user_request.requestable_id)
     link_text = "Voir la demande"
     description = "L'employé #{user_request.user.full_name} vient de soummettre"
-    description += "une nouvelle demande de type #{user_request.requestable_type}"
+    description += "  une nouvelle demande de type #{user_request.requestable_type}"
     NotificationMailerJob.perform_later(
       user_request,
       subject: subject,
