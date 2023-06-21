@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe TimeRequest, type: :model do
   let(:manager) { create(:user, admin: true) }
   let(:user) { create(:user, manager_id: manager.id, admin: true) }
-  let(:time_request) { create(:time_request, user_id: user.id, start_date: Date.today, end_date: (Date.today + 7)) }
+  let(:time_request) { create(:time_request, user_id: user.id, start_date: "2023-06-21", end_date: "2023-06-28") }
 
   describe "#color" do
     it "returns the correct color for each category" do
@@ -47,11 +47,17 @@ RSpec.describe TimeRequest, type: :model do
         @user1 = create(:user, manager_id: manager.id)
         @user2 = create(:user, manager_id: manager.id)
 
-        @time_request1 = create(:time_request, user_id: @user1.id, start_date: (Date.today - 4), end_date: (Date.today + 3))
-        @time_request2 = create(:time_request, user_id: @user2.id, start_date: (Date.today + 2), end_date: (Date.today + 9))
+        @time_request1 = create(:time_request, user_id: @user1.id, start_date: "2023-06-17", end_date: "2023-06-24")
+        @time_request2 = create(:time_request, user_id: @user2.id, start_date: "2023-06-23", end_date: "2023-06-30")
 
         expect(time_request.overlapping_requests).to eq([@time_request2])
       end
+    end
+  end
+
+  describe "#subtract_pto" do
+    it "subtracts the pto_number of the user" do
+      expect(time_request.subtract_pto).to eq(15)
     end
   end
 end

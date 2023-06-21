@@ -48,6 +48,8 @@ class TimeRequest < ApplicationRecord
     requested_days -= count_holiday_days(range)
 
     user.update!(pto_number: [pto_days - requested_days, 0].max)
+
+    user.pto_number
   end
 
   private
