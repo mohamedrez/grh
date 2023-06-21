@@ -1,5 +1,8 @@
 class JobsController < ApplicationController
+  layout :determine_layout
   before_action :set_job, only: %i[show edit update destroy]
+  skip_before_action :authenticate_user!, only: %i[index show]
+  before_action :set_breadcrumbs, only: :index
 
   def index
     @jobs = Job.order(created_at: :desc).page(params[:page])
@@ -58,5 +61,15 @@ class JobsController < ApplicationController
 
   def set_job
     @job = Job.find(params[:id])
+  end
+
+  private
+
+  def set_breadcrumbs
+    add_breadcrumb(t("views.jobs.job"), jobs_path)
+  end
+
+  def determine_layout
+    user_signed_in? ? "application" : "custom_layout"
   end
 end

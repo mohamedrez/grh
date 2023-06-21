@@ -1,19 +1,21 @@
-<div class="px-4 sm:px-6 lg:px-8">
-  <div class="sm:flex sm:items-center">
-    <div class="sm:flex-auto">
-      <h1 class="text-base font-semibold leading-6 text-indigo-500"><%= t(".Jobs") %></h1>
+<div class="m-6 px-4 sm:px-6 lg:px-8">
+  <div class="sm:flex sm:items-center flex justify-center flex-col">
+    <div class="m-6 sm:flex-auto">
+      <h1>Look for job</h1>
     </div>
   </div>
-  <div class="flex items-center justify-between h-16">
-    <div class="flex items-center">
-      <%= link_to new_job_path, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
-        <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <%= t("views.jobs.new") %>
-      <% end %>
+  <% if current_user %>
+    <div class="flex items-center justify-between h-16">
+      <div class="flex items-center">
+        <%= link_to new_job_path, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" do %>
+          <svg class="mr-2 h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+          </svg>
+          <%= t("views.jobs.new") %>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
   <div class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
       <p class="mt-2 text-sm text-gray-700"><%= t("views.jobs.jobs_list") %></p>
