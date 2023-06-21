@@ -28,6 +28,7 @@ RSpec.describe "/goals", type: :request do
 
   before do
     sign_in user
+    Role.create!(user_id: user.id, name: :manager)
   end
 
   describe "GET /index" do
