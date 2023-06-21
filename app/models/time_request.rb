@@ -38,4 +38,25 @@ class TimeRequest < ApplicationRecord
       "#FF00FF"
     end
   end
+
+  def subtract_pto
+    pto_days = user.pto_number
+    range = start_date..end_date
+    requested_days = range.count
+
+    requested_days -= count_weekend_days(range)
+    requested_days -= count_holiday_days(range)
+
+    user.update!(pto_number: [pto_days - requested_days, 0].max)
+  end
+
+  private
+
+  def count_weekend_days(range)
+    range.count { |date| date.saturday? || date.sunday? }
+  end
+
+  def count_holiday_days(range)
+    Holiday.where(start_date: range, end_date: range).count
+  end
 end

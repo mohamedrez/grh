@@ -14,6 +14,9 @@ class UserRequestsController < ApplicationController
   def update
     @user_request = UserRequest.find(params[:id])
     @user_request.update(managed_by_id: current_user.id, state: params[:state])
+
+    @user_request.requestable.subtract_pto if @user_request.requestable_type == "TimeRequest" && params[:state] == "approved"
+
     redirect_to polymorphic_url([@user_request.user, @user_request.requestable])
   end
 

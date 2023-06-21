@@ -4,7 +4,7 @@ RSpec.describe "UserRequests", type: :request do
   let(:manager) { create(:user, admin: true) }
   let(:admin_user) { create(:user, manager_id: manager.id, admin: true) }
   let(:user) { create(:user) }
-  let(:time_request) { create(:time_request, user_id: admin_user.id, start_date: Date.today, end_date: (Date.today + 7)) }
+  let(:time_request) { create(:time_request, user_id: admin_user.id, start_date: "2023-06-21", end_date: ("2023-06-28")) }
  
 
   before do
@@ -27,6 +27,10 @@ RSpec.describe "UserRequests", type: :request do
       it "updates the request with the correct attributes" do
         time_request.user_request.reload
         expect(time_request.user_request.state).to eq("approved")
+      end
+
+      it "subtracts the pto_number if the request is a TimeRequest" do
+        expect(time_request.user.pto_number).to eq(15)
       end
 
       it "redirects to the user time request page" do
