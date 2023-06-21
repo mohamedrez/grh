@@ -11,7 +11,7 @@
     <div class="bg-gray-50 px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
       <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.goal.status") %></dt>
       <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0">
-        <span class="inline-flex items-center rounded-full px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset <%= button_class_for_goal_status(goal) %>">
+        <span class="inline-flex items-center rounded-full px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset <%= button_class_for_goal_status(goal.status) %>">
           <%= goal.what_is_the_status? %>
         </span>
       </dd>

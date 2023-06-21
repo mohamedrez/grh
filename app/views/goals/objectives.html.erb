@@ -23,7 +23,7 @@
               <tr id="<%= dom_id goal %>">
                 <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= goal.title %></td>
                 <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                  <span class="inline-flex items-center rounded-full px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset <%= button_class_for_goal_status(goal) %>">
+                  <span class="inline-flex items-center rounded-full px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset <%= button_class_for_goal_status(goal.status) %>">
                     <%= goal.what_is_the_status? %>
                   </span>
                 </td>

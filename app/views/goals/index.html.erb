@@ -7,6 +7,10 @@
       </div>
     </div>
 
+  <% if !@user && !current_user.has_any_role?([:hr, :admin]) && current_user.has_role?(:manager) %>
+    <%= render partial: "summary_stats" %>
+  <% end %>
+
     <div class="lg:flex items-center justify-between mt-10">
       <%= render partial: "search_form" %>
       <% if !@user && !current_user.has_any_role?([:hr, :admin]) && current_user.has_role?(:manager) %>

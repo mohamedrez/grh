@@ -40,6 +40,7 @@ class GoalsController < ApplicationController
       flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
         turbo_stream.append("goal-list", @goal),
+        turbo_stream.replace("summary-stats", partial: "goals/summary_stats"),
         turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
