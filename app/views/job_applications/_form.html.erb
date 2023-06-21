@@ -66,7 +66,7 @@
       </div>
 
       <div class="col-span-full">
-          <%= form.label :resume, t("attributes.job_application.attach_a_receipt") %>
+          <%= form.label :resume, t("attributes.job_application.attach_a_resume") %>
             <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
               <div class="text-center">
                 <div class="flex text-sm leading-6 text-gray-600 mx-4">
@@ -85,6 +85,7 @@
     </div>
   </div>
   <div class="flex items-center justify-end gap-x-6 border-t border-gray-900/10 px-4 py-4 sm:px-8">
+    <%= form.hidden_field :user_id, value: @user_id %>                
     <%= link_to t("buttons.cancel"), job_applications_path, class: "text-sm font-semibold leading-6 text-gray-900" %>
     <%= form.submit t("buttons.save"), class: "rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
   </div>
