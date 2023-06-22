@@ -57,7 +57,6 @@ gem "image_processing", "~> 1.2"
 
 gem "devise"
 gem "sidekiq", "~> 7.1"
-gem "noticed", "~> 1.6"
 gem "kaminari", "~> 1.2"
 gem "ransack", "~> 4.0"
 gem "action_policy"
