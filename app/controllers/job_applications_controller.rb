@@ -1,6 +1,6 @@
 class JobApplicationsController < ApplicationController
   layout "custom_layout", only: %i[new create]
-  before_action :set_job_application, only: %i[edit update destroy show]
+  before_action :set_job_application, only: %i[infos show edit update destroy delete_resume update_aasm_state]
   skip_before_action :authenticate_user!, only: %i[new create]
   before_action :set_breadcrumbs, only: :index
 
@@ -11,6 +11,9 @@ class JobApplicationsController < ApplicationController
   def show
     @user = current_user
     @aasm_logs = AasmLog.where(aasm_logable: @job_application)
+  end
+
+  def infos
   end
 
   def new

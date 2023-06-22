@@ -61,12 +61,12 @@ RSpec.describe "JobApplications", type: :request do
     context "with valid parameters" do
       it "creates a new Job Application" do
         expect {
-          post job_applications_url, params: {job_application: valid_attributes}
+          post job_applications_url, params: { job_application: valid_attributes }
         }.to change(JobApplication, :count).by(1)
       end
 
       before do
-        post job_applications_url, params: {job_application: valid_attributes}
+        post job_applications_url, params: { job_application: valid_attributes }
       end
 
       it "sets a success flash message" do
@@ -77,12 +77,12 @@ RSpec.describe "JobApplications", type: :request do
     context "with invalid parameters" do
       it "does not create a new Job Application" do
         expect {
-          post job_applications_url, params: {job_application: invalid_attributes}
+          post job_applications_url, params: { job_application: invalid_attributes }
         }.to change(JobApplication, :count).by(0)
       end
 
       it "renders a response with 422 status (i.e. to display the 'new' template)" do
-        post job_applications_url, params: {job_application: invalid_attributes}
+        post job_applications_url, params: { job_application: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -91,7 +91,7 @@ RSpec.describe "JobApplications", type: :request do
   describe "PATCH /update" do
     context "with valid parameters" do
       before do
-        patch job_application_url(id: job_application.id), params: {job_application: valid_attributes}
+        patch job_application_url(id: job_application.id), params: { job_application: valid_attributes }
       end
 
       it "updates the requested job application" do
@@ -110,7 +110,7 @@ RSpec.describe "JobApplications", type: :request do
 
     context "with invalid parameters" do
       it "renders a response with 422 status (i.e. to display the 'edit' template)" do
-        patch job_application_url(id: job_application.id), params: {job_application: invalid_attributes}
+        patch job_application_url(id: job_application.id), params: { job_application: invalid_attributes }
         expect(response).to have_http_status(:unprocessable_entity)
       end
     end
@@ -119,7 +119,7 @@ RSpec.describe "JobApplications", type: :request do
   describe 'PATCH /update_aasm_state' do
     context 'when aasm_state is "advanced_to_phone"' do
       it 'updates the AASM state to "advanced_to_phone" and redirects to the job application page' do
-        patch update_aasm_state_job_application_path( id: job_application.id, aasm_state: 'advanced_to_phone')
+        patch update_aasm_state_job_application_path(id: job_application.id, aasm_state: 'advanced_to_phone')
         job_application.reload
         expect(job_application.aasm_state).to eq('advanced_to_phone')
         expect(response).to redirect_to(job_application_path(job_application))
@@ -128,7 +128,7 @@ RSpec.describe "JobApplications", type: :request do
 
     context 'when aasm_state is "completed_phone"' do
       it 'updates the AASM state to "completed_phone" and redirects to the job application page' do
-        job_application = create(:job_application, job_id: job.id, first_name: "FirstName", first_name: "FirstName",last_name: "LastName", email: "test@gmail.com", phone: "(602) 496-4636", aasm_state: "advanced_to_phone")
+        job_application.update(aasm_state: 'advanced_to_phone')
         patch update_aasm_state_job_application_path(id: job_application.id, aasm_state: 'completed_phone')
         job_application.reload
         expect(job_application.aasm_state).to eq('completed_phone')
@@ -138,7 +138,7 @@ RSpec.describe "JobApplications", type: :request do
 
     context 'when aasm_state is "advanced_interview"' do
       it 'updates the AASM state to "advanced_interview" and redirects to the job application page' do
-        job_application = create(:job_application, job_id: job.id, first_name: "FirstName", first_name: "FirstName",last_name: "LastName", email: "test@gmail.com", phone: "(602) 496-4636", aasm_state: "completed_phone")
+        job_application.update(aasm_state: 'completed_phone')
         patch update_aasm_state_job_application_path(id: job_application.id, aasm_state: 'advanced_interview')
         job_application.reload
         expect(job_application.aasm_state).to eq('advanced_interview')
@@ -148,7 +148,7 @@ RSpec.describe "JobApplications", type: :request do
 
     context 'when aasm_state is "completed_interview"' do
       it 'updates the AASM state to "completed_interview" and redirects to the job application page' do
-        job_application = create(:job_application, job_id: job.id, first_name: "FirstName", first_name: "FirstName",last_name: "LastName", email: "test@gmail.com", phone: "(602) 496-4636", aasm_state: "advanced_interview")
+        job_application.update(aasm_state: 'advanced_interview')
         patch update_aasm_state_job_application_path(id: job_application.id, aasm_state: 'completed_interview')
         job_application.reload
         expect(job_application.aasm_state).to eq('completed_interview')
@@ -158,7 +158,7 @@ RSpec.describe "JobApplications", type: :request do
 
     context 'when aasm_state is "disqualified"' do
       it 'updates the AASM state to "disqualified" and redirects to the job application page' do
-        patch update_aasm_state_job_application_path( id: job_application.id, aasm_state: 'disqualified')
+        patch update_aasm_state_job_application_path(id: job_application.id, aasm_state: 'disqualified')
         job_application.reload
         expect(job_application.aasm_state).to eq('disqualified')
         expect(response).to redirect_to(job_application_path(job_application))
@@ -170,13 +170,13 @@ RSpec.describe "JobApplications", type: :request do
     before do
       delete job_application_path(id: job_application.id)
     end
-    
-    it 'destroy the job application' do
+
+    it 'destroys the job application' do
       expect(JobApplication.count).to eq(0)
     end
 
     it 'sets the flash notice' do
-      expect(flash[:notice]).to eq( I18n.t("flash.successfully_destroyed"))
+      expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
     end
   end
 
@@ -187,7 +187,7 @@ RSpec.describe "JobApplications", type: :request do
       delete delete_resume_job_application_path(id: job_application.id, resume_id: resume.id)
     end
 
-    it "delete the resume" do
+    it "deletes the resume" do
       job_application.reload
       expect(job_application.resume.attached?).to eq(false)
     end
@@ -204,5 +204,4 @@ RSpec.describe "JobApplications", type: :request do
       expect(response).to have_http_status(302)
     end
   end
-
 end
