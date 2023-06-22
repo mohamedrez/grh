@@ -56,7 +56,6 @@ gem "lograge"
 gem "image_processing", "~> 1.2"
 
 gem "devise"
-gem "motor-admin"
 gem "sidekiq", "~> 7.1"
 gem "noticed", "~> 1.6"
 gem "kaminari", "~> 1.2"

@@ -75,18 +75,13 @@ GEM
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
-    ar_lazy_preload (1.1.2)
-      rails (>= 5.2)
     ast (2.4.2)
-    audited (5.3.2)
-      activerecord (>= 5.0, < 7.1)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
     brakeman (5.4.1)
     builder (3.2.4)
-    cancancan (3.4.0)
     capybara (3.39.1)
       addressable
       matrix
@@ -131,8 +126,6 @@ GEM
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
-    et-orbi (1.2.7)
-      tzinfo
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -144,9 +137,6 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
-    fugit (1.8.1)
-      et-orbi (~> 1, >= 1.2.7)
-      raabro (~> 1.4)
     globalid (1.1.0)
       activesupport (>= 5.0)
     http (5.1.1)
@@ -208,12 +198,6 @@ GEM
     mini_magick (4.11.0)
     mini_mime (1.1.2)
     minitest (5.18.0)
-    motor-admin (0.4.7)
-      ar_lazy_preload (~> 1.0)
-      audited (~> 5.0)
-      cancancan (~> 3.0)
-      fugit (~> 1.0)
-      rails (>= 5.2)
     msgpack (1.6.0)
     mysql2 (0.5.5)
     net-imap (0.3.4)
@@ -246,7 +230,6 @@ GEM
     public_suffix (5.0.1)
     puma (6.1.0)
       nio4r (~> 2.0)
-    raabro (1.4.0)
     racc (1.7.0)
     rack (2.2.7)
     rack-protection (3.0.6)
@@ -456,7 +439,6 @@ DEPENDENCIES
   jsbundling-rails
   kaminari (~> 1.2)
   lograge
-  motor-admin
   mysql2 (~> 0.5)
   noticed (~> 1.6)
   overcommit
