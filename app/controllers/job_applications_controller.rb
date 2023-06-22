@@ -1,8 +1,6 @@
 class JobApplicationsController < ApplicationController
-  layout "application"
   layout "custom_layout", only: %i[new create]
-  before_action :set_job, only: %i[new edit create update destroy]
-  before_action :set_job_application, only: %i[edit update destroy]
+  before_action :set_job_application, only: %i[edit update destroy show]
   skip_before_action :authenticate_user!, only: %i[new create]
   before_action :set_breadcrumbs, only: :index
 
@@ -15,12 +13,8 @@ class JobApplicationsController < ApplicationController
     @aasm_logs = AasmLog.where(aasm_logable: @job_application)
   end
 
-  def infos
-  end
-
   def new
     @job_application = JobApplication.new
-    @jobs = Job.all
   end
 
   def edit
@@ -31,7 +25,7 @@ class JobApplicationsController < ApplicationController
 
     if @job_application.save
       flash.now[:notice] = t("flash.successfully_created")
-      redirect_to jobs_path
+      redirect_to user_signed_in? ? job_applications_path : jobs_path
     else
       render :new, status: :unprocessable_entity
     end

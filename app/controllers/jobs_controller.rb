@@ -70,6 +70,10 @@ class JobsController < ApplicationController
   end
 
   def determine_layout
-    user_signed_in? ? "application" : "custom_layout"
+    if user_signed_in?
+      "application"
+    else
+      "custom_layout"
+    end
   end
 end

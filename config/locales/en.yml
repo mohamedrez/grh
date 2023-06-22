@@ -346,6 +346,7 @@ en:
       add_holiday: "Add new holiday"
       edit_holiday: "Edit the holiday"
     jobs:
+      job: "job"
       job_title: "Job title"
       jobs_list: "List of all jobs"
       edit_job: "Edit a job"

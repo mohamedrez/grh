@@ -318,6 +318,17 @@ fr:
       goals_description: "Gérez les objectifs à travers votre entreprise pour aligner et développer votre équipe"
       search_bar: "Titre, ou propriétaire"
       all: "Tout"
+    jobs:
+      job: "emploi"
+      job_title: "Titre de l'emploi"
+      jobs_list: "Liste de tous les emplois"
+      edit_job: "Modifier un emploi"
+      view_job: "Voir un emploi"
+      delete_job: "Supprimer un emploi"
+      new: "Ajouter un emploi"
+      job_description: "Description de l'emploi"
+      add_details: "Veuillez remplir les détails de l'emploi"
+      description_full: "Décrivez un poste, y compris les tâches, les compétences et les exigences"
     job_applications:
       resume: "CV"
       title_job_applications: "Candidatures"
