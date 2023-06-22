@@ -98,6 +98,7 @@ class GoalsController < ApplicationController
       flash.now[:notice] = t("flash.successfully_archived")
       render turbo_stream: [
         turbo_stream.remove(@goal),
+        turbo_stream.replace("summary-stats", partial: "goals/summary_stats"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     elsif @from_view == "show"
