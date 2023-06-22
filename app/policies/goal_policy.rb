@@ -1,18 +1,34 @@
 class GoalPolicy < ApplicationPolicy
-  # See https://actionpolicy.evilmartians.io/#/writing_policies
-  #
-  # def index?
-  #   true
-  # end
-  #
-  # def update?
-  #   # here we can access our context and record
-  #   user.admin? || (user.id == record.user_id)
-  # end
+  def show?
+    user.has_any_role?([:hr, :admin]) ||
+      (user == record.owner) ||
+      (user == record.owner.manager)
+  end
 
-  # Scoping
-  # See https://actionpolicy.evilmartians.io/#/scoping
-  #
+  def new?
+    create?
+  end
+
+  def create?
+    has_role_manager?
+  end
+
+  def edit?
+    update?
+  end
+
+  def update?
+    has_role_manager?
+  end
+
+  def archive?
+    has_role_manager?
+  end
+
+  def has_role_manager?
+    user.has_role?(:manager)
+  end
+
   relation_scope do |relation|
     next relation if user.has_any_role?([:hr, :admin])
 
