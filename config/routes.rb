@@ -34,6 +34,15 @@ Rails.application.routes.draw do
     resources :time_requests, only: [:index]
     resources :mission_orders, only: [:index]
 
+    scope :team, as: "team" do
+      resources :users, only: [:index]
+      resources :goals, only: [:index]
+      resources :user_requests, only: [:index]
+      resources :expenses, only: [:index]
+      resources :time_requests, only: [:index]
+      resources :mission_orders, only: [:index]
+    end
+
     devise_for :users, path: "/auth"
 
     resources :users do

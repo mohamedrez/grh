@@ -3,7 +3,13 @@ class UsersController < ApplicationController
   before_action :set_breadcrumbs, only: %i[index show new edit]
 
   def index
-    @q = User.ransack(params[:q])
+    @q = if request.path.include?("team")
+      @url = team_users_path
+      User.where(manager: current_user).ransack(params[:q])
+    else
+      @url = users_path
+      User.ransack(params[:q])
+    end
     @users = @q.result.page(params[:page])
   end
 

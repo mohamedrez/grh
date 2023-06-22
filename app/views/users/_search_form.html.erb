@@ -1,5 +1,5 @@
 <div class="max-w-lg w-full lg:max-w-xs">
-  <%= search_form_for @q, method: :get, url: users_path, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
+  <%= search_form_for @q, method: :get, url: url, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
     <%= f.label :last_name_or_email_or_employee_number_cont, "Search by name, email, or employee ID", class: "sr-only" %>
     <div class="relative">
       <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
