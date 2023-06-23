@@ -30,10 +30,9 @@
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.job.status") %></th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.job.min_salary") %></th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.job.max_salary") %></th>
-              <!-- For future use: applications and interviews columns
+              <!-- For future use: applications and interviews columns -->
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.job.applied") %></th>
               <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.job.interviewing") %></th>
-              -->
               <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0"></th>
             </tr>
           </thead>
@@ -54,10 +53,9 @@
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= Job.human_enum_name(:status, job.status) %></td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= job.min_salary %></td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= job.max_salary %></td>
-                <!-- For future use: applications and interviews columns
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= job.job_application.count %></td>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= job.interview %></td>
-                -->
+                <!-- For future use: applications and interviews columns -->
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= job.job_applications.count %></td>
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= job.job_applications.where(aasm_state: "advanced_interview").count %></td>
               </tr>
             <% end %>
           </tbody>
