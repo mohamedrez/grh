@@ -190,9 +190,11 @@ fr:
     role:
       names:
         admin: "Admin"
-        hr: "HR"
+        hr: "RH"
         accountant: "Accountant"
         manager: "Gestionnaire"
+        hr_site_manager: "Responsable RH du site"
+        accountant_site_manager: "Responsable comptable du site"
     section:
       description: "Description"
       section_type: "Type de section"

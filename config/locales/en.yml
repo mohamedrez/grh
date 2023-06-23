@@ -215,6 +215,8 @@ en:
         hr: "HR"
         accountant: "Accountant"
         manager: "Manager"
+        hr_site_manager: "HR Site Manager"
+        accountant_site_manager: "Accountant Site Manager"
     section:
       description: "Description"
       section_type: "Section type"
