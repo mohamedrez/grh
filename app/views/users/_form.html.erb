@@ -115,6 +115,7 @@
             <%= form.label :manager_id, t("attributes.user.manager") %>
             <div class="mt-2">
               <%= form.select :manager_id, options_for_select(@manager_select.to_h, @user.manager_id), include_blank: true %>
+              <%= inline_error_for(:manager_id, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3">

@@ -52,6 +52,7 @@ class User < ApplicationRecord
   validates :first_name, :last_name, presence: true
   validates :cnss_number, :employee_number, numericality: {only_integer: true, allow_blank: true}
   validates :email, presence: true, format: {with: /\A[\w+\-.]+@[a-z\d\ -]+(\.[a-z\d\ -]+)*\.[a-z]+\z/i}
+  validate :check_manager
 
   accepts_nested_attributes_for :address, update_only: true
   accepts_nested_attributes_for :experiences
@@ -71,6 +72,12 @@ class User < ApplicationRecord
       )
     else
       "users/user.png"
+    end
+  end
+
+  def check_manager
+    if manager.present? && manager.manager == self
+      @errors.add(:manager_id, "can't be your own manager")
     end
   end
 

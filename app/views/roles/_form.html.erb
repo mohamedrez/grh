@@ -5,7 +5,7 @@
         <%= form.label :name, t("views.role.the_role"), class: "block" %>
         <div class="mt-2">
           <%= form.select :name, Role.names.keys.map { |name| [Role.human_enum_name(:name, name), name] }%>
-          <%= inline_error_for(:name, role).html_safe %>
+          user
         </div>
       </div>
 
