@@ -14,7 +14,7 @@ RSpec.describe Goal, type: :model do
     context "with present status" do
       it "returns the status of the goal" do
         goal = create(:goal, owner_id: user.id, author_id: user.id, status: "completed")
-        expect(goal.what_is_the_status?).to eq("Completed")
+        expect(goal.what_is_the_status?).to eq("Goal completed")
       end
     end
   end
