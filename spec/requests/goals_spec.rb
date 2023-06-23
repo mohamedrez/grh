@@ -33,9 +33,25 @@ RSpec.describe "/goals", type: :request do
   end
 
   describe "GET /index" do
-    it "renders a successful response" do
-      get goals_url
-      expect(response).to be_successful
+    context "for my goals" do
+      it "renders a successful response" do
+        get user_goals_path(user_id: user.id)
+        expect(response).to be_successful
+      end
+    end
+
+    context "for team goals" do
+      it "renders a successful response" do
+        get team_goals_path
+        expect(response).to be_successful
+      end
+    end
+
+    context "for all goals" do
+      it "renders a successful response" do
+        get goals_path
+        expect(response).to be_successful
+      end
     end
   end
 

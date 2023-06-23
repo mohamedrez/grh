@@ -26,9 +26,25 @@ RSpec.describe "/time_requests", type: :request do
   end
 
   describe "GET /index" do
-    it "renders a successful response" do
-      get user_time_requests_path(user_id: user.id)
-      expect(response).to be_successful
+    context "for my time off requests" do
+      it "renders a successful response" do
+        get user_time_requests_path(user_id: user.id)
+        expect(response).to be_successful
+      end
+    end
+
+    context "for team time off requests" do
+      it "renders a successful response" do
+        get team_time_requests_path
+        expect(response).to be_successful
+      end
+    end
+
+    context "for all time off requests" do
+      it "renders a successful response" do
+        get time_requests_path
+        expect(response).to be_successful
+      end
     end
   end
 
