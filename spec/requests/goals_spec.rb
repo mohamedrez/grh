@@ -8,8 +8,7 @@ RSpec.describe "/goals", type: :request do
     {
       title: "Mastering Hotwire",
       owner_id: user.id,
-      start_date: Date.new(2023, 05, 25),
-      due_date: Date.new(2024, 05, 25),
+      year: 2023,
       level: :very_important,
       author_id: user.id
     }
@@ -19,8 +18,7 @@ RSpec.describe "/goals", type: :request do
     {
       title: nil,
       owner_id: user.id,
-      start_date: nil,
-      due_date: nil,
+      year: nil,,
       level: nil,
       author_id: user.id
     }
@@ -104,8 +102,7 @@ RSpec.describe "/goals", type: :request do
           expect(goal.title).to eq("Mastering Hotwire")
           expect(goal.owner_id).to eq(user.id)
           expect(goal.level).to eq("very_important")
-          expect(goal.start_date).to eq(Date.new(2023, 05, 25))
-          expect(goal.due_date).to eq(Date.new(2024, 05, 25))
+          expect(goal.year).to eq(2023)
         end
 
         it 'sets the flash notice' do
@@ -129,8 +126,7 @@ RSpec.describe "/goals", type: :request do
           expect(goal.title).to eq("Mastering Hotwire")
           expect(goal.owner_id).to eq(user.id)
           expect(goal.level).to eq("very_important")
-          expect(goal.start_date).to eq(Date.new(2023, 05, 25))
-          expect(goal.due_date).to eq(Date.new(2024, 05, 25))
+          expect(goal.year).to eq(2023)
         end
 
         it 'sets the flash notice' do

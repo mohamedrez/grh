@@ -81,8 +81,7 @@ fr:
       level: "Niveau"
       status: "Statut"
       description: "Description"
-      start_date: "Date de début"
-      due_date: "Date d'échéance"
+      start_date: "Année"
       owned_by: "Possédé par"
       end_goal_description: "Description de l'objectif final"
       statuses:

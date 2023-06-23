@@ -26,18 +26,10 @@
       </div>
 
       <div class="sm:col-span-full">
-        <%= form.label :start_date, t("attributes.goal.start_date"), class: "block" %>
+        <%= form.label :year, t("attributes.goal.year"), class: "block" %>
         <div class="mt-2">
-          <%= form.date_field :start_date, class: "w-full" %>
-          <%= inline_error_for(:start_date, goal).html_safe %>
-        </div>
-      </div>
-
-      <div class="sm:col-span-full">
-        <%= form.label :due_date, t("attributes.goal.due_date"), class: "block" %>
-        <div class="mt-2">
-          <%= form.date_field :due_date, class: "w-full" %>
-          <%= inline_error_for(:due_date, goal).html_safe %>
+          <%= form.number_field :year, class: "w-full" %>
+          <%= inline_error_for(:year, goal).html_safe %>
         </div>
       </div>
 
