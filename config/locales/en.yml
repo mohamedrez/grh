@@ -87,10 +87,10 @@ en:
       end_goal_description: "End goal description"
       statuses:
         no_feedback: "No feedback yet"
-        not_achieved: "Not achieved"
-        partially_achieved: "Partially achieved"
-        completed: "Completed"
-        overpassed: "Overpassed"
+        not_achieved: "Goal not achieved"
+        partially_achieved: "Goal partially achieved"
+        completed: "Goal completed"
+        overpassed: "Goal overpassed"
       levels:
         none: "-- None --"
         important: "Important"

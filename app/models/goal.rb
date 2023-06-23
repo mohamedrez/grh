@@ -86,6 +86,19 @@ class Goal < ApplicationRecord
     end
   end
 
+  def self.status_description(status)
+    case status
+    when "not_achieved"
+      I18n.t("views.goals.goal_not_achieved")
+    when "partially_achieved"
+      I18n.t("views.goals.goal_partially_achieved")
+    when "completed"
+      I18n.t("views.goals.goal_completed")
+    when "overpassed"
+      I18n.t("views.goals.goal_overpassed")
+    end
+  end
+
   def self.summary_stats(manager)
     goals = Goal.joins(:owner).where(users: {manager_id: manager.id}).where(archived: false)
     total_goals = goals.count
