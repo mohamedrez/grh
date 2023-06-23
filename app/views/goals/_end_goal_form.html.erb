@@ -19,15 +19,7 @@
                   <%= b.text %>
                 </dd>
                 <dt class="text-base leading-7 text-gray-600">
-                  <% if b.text == "Goal not achieved" || b.text == "Objectif non atteint" %>
-                    <%= t("views.goals.goal_not_achieved") %>
-                  <% elsif b.text == "Goal partially achieved" || b.text == "Objectif partiellement atteint" %>
-                    <%= t("views.goals.goal_partially_achieved") %>
-                  <% elsif b.text == "Goal completed" || b.text == "Objectif atteint" %>
-                    <%= t("views.goals.goal_completed") %>
-                  <% elsif b.text == "Goal overpassed" || b.text == "Objectif dépassé" %>
-                    <%= t("views.goals.goal_overpassed") %>
-                  <% end %>
+                  <%= Goal.status_description(b.value) %>
                 </dt>
               </div>
             <% end %>
