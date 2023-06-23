@@ -7,8 +7,6 @@ RSpec.describe GoalPolicy do
   let(:user) { create(:user, manager_id: manager_user.id) }
   let(:other_user) { create(:user) }
 
-  let(:target) { Goal.all }
-
   before do
     Role.create!(user_id: admin_user.id, name: :admin)
     Role.create!(user_id: hr_user.id, name: :hr)
