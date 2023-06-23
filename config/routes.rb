@@ -60,7 +60,9 @@ Rails.application.routes.draw do
 
     get "user_notifications", to: "user_notifications#index"
     get "user_notifications/notification_bell", to: "user_notifications#notification_bell"
-    resources :jobs
+    resources :jobs do
+      resources :job_applications, only: [:index]
+    end
     resources :job_applications do
       delete :delete_resume, on: :member
     end

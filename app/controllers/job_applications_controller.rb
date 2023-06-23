@@ -3,7 +3,11 @@ class JobApplicationsController < ApplicationController
   before_action :set_breadcrumbs, only: :index
 
   def index
-    @job_applications = JobApplication.all
+    @job_applications = if params[:job_id]
+      JobApplication.where(job_id: params[:job_id])
+    else
+      JobApplication.all
+    end
   end
 
   def show
