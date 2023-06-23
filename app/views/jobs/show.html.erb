@@ -16,6 +16,9 @@
       <%= link_to t("views.jobs.delete_job"), @job, data: {"turbo_method": :delete, "turbo_confirm": "Are you sure?"}, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-rose-800 hover:text-white hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
     </div>
   </div>
+  <div>
+    <%= render partial: 'submenu', locals: {job_id: @job.id} %>
+  </div>
   <div class="my-8 border-t border-gray-100">
     <dl class="divide-y divide-gray-100">
       <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">

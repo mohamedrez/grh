@@ -34,6 +34,11 @@ RSpec.describe "JobApplications", type: :request do
       get job_applications_path
       expect(response).to be_successful
     end
+
+    it "redirects to job applications" do
+      get job_job_applications_path(job_id: job.id)
+      expect(response).to be_successful
+    end
   end
 
   describe "GET /new" do
