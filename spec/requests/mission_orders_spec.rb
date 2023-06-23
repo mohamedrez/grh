@@ -34,9 +34,25 @@ RSpec.describe "/mission_orders", type: :request do
   end
 
   describe "GET /index" do
-    it "renders a successful response" do
-      get user_mission_orders_path(user_id: user.id)
-      expect(response).to be_successful
+    context "for my mission orders" do
+      it "renders a successful response" do
+        get user_mission_orders_path(user_id: user.id)
+        expect(response).to be_successful
+      end
+    end
+
+    context "for team mission orders" do
+      it "renders a successful response" do
+        get team_mission_orders_path
+        expect(response).to be_successful
+      end
+    end
+
+    context "for all mission orders" do
+      it "renders a successful response" do
+        get mission_orders_path
+        expect(response).to be_successful
+      end
     end
   end
 

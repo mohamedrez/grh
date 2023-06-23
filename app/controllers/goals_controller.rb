@@ -3,7 +3,6 @@ class GoalsController < ApplicationController
   before_action :set_users_select
   before_action :set_owner, only: %i[show edit]
   before_action :set_breadcrumbs, only: %i[index show objectives]
-  before_action :set_authorization, only: %i[new create edit update archive]
 
   def index
     user_id = params[:user_id]
@@ -11,14 +10,20 @@ class GoalsController < ApplicationController
 
     @goals = if user_id
       @user = User.find(user_id)
+      @url = user_goals_path(@user)
       @q.result(distinct: true).where(owner_id: user_id, archived: false)
+    elsif request.path.include?("team")
+      @url = team_goals_path
+      @q.result(distinct: true).where(archived: false).joins(:owner).where(users: {manager_id: current_user.id})
     else
-      authorized_scope(@q.result(distinct: true).where(archived: false))
+      @url = goals_path
+      @q.result(distinct: true).where(archived: false)
     end
   end
 
   def show
     authorize! @goal
+
     @end_goal_errors = params[:end_goal_errors] || {}
     @end_goal_description = params[:end_goal_description]
     @status = params[:status]
@@ -27,14 +32,20 @@ class GoalsController < ApplicationController
   end
 
   def new
+    authorize!
+
     @goal = Goal.new
   end
 
   def edit
+    authorize! @goal
+
     @from_view = params[:from_view]
   end
 
   def create
+    authorize!
+
     @goal = Goal.new(goal_params)
     @goal.author_id = current_user.id
 
@@ -52,6 +63,8 @@ class GoalsController < ApplicationController
   end
 
   def update
+    authorize! @goal
+
     @from_view = params[:from_view]
     if @goal.update(goal_params)
       flash.now[:notice] = t("flash.successfully_updated")
@@ -91,6 +104,8 @@ class GoalsController < ApplicationController
   end
 
   def archive
+    authorize! @goal
+
     @goal.update!(archived: true)
 
     @from_view = params[:from_view]
@@ -131,12 +146,15 @@ class GoalsController < ApplicationController
     @owner = @goal.owner
   end
 
-  def set_authorization
-    authorize!
-  end
-
   def set_breadcrumbs
-    add_breadcrumb(t("views.goals.title_goals"), goals_path)
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      add_breadcrumb(t("views.layouts.main.my_goals"), user_goals_path(@user))
+    elsif request.path.include?("team")
+      add_breadcrumb(t("views.layouts.main.team_goals"), team_goals_path)
+    else
+      add_breadcrumb(t("views.layouts.main.goals"), goals_path)
+    end
   end
 
   def set_users_select

@@ -28,9 +28,25 @@ RSpec.describe "/expenses", type: :request do
   end
 
   describe "GET /index" do
-    it "renders a successful response" do
-      get user_expenses_path(user_id: user.id)
-      expect(response).to be_successful
+    context "for my expenses" do
+      it "renders a successful response" do
+        get user_expenses_path(user_id: user.id)
+        expect(response).to be_successful
+      end
+    end
+
+    context "for team expenses" do
+      it "renders a successful response" do
+        get team_expenses_path
+        expect(response).to be_successful
+      end
+    end
+
+    context "for all expenses" do
+      it "renders a successful response" do
+        get expenses_path
+        expect(response).to be_successful
+      end
     end
   end
 

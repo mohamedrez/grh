@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe "/goals", type: :request do
-  let(:user) { create(:user, admin: true) }
-  let(:goal) { create(:goal, owner_id: user.id, author_id: user.id) }
+  let(:manager_user) { create(:user) }
+  let(:user) { create(:user, manager: manager_user) }
+  let(:goal) { create(:goal, owner_id: user.id, author_id: manager_user.id) }
 
   let(:valid_attributes) do
     {
@@ -11,7 +12,7 @@ RSpec.describe "/goals", type: :request do
       start_date: Date.new(2023, 05, 25),
       due_date: Date.new(2024, 05, 25),
       level: :very_important,
-      author_id: user.id
+      author_id: manager_user.id
     }
   end
 
@@ -22,19 +23,35 @@ RSpec.describe "/goals", type: :request do
       start_date: nil,
       due_date: nil,
       level: nil,
-      author_id: user.id
+      author_id: manager_user.id
     }
   end
 
   before do
-    sign_in user
-    Role.create!(user_id: user.id, name: :manager)
+    sign_in manager_user
+    Role.create!(user_id: manager_user.id, name: :manager)
   end
 
   describe "GET /index" do
-    it "renders a successful response" do
-      get goals_url
-      expect(response).to be_successful
+    context "for my goals" do
+      it "renders a successful response" do
+        get user_goals_path(user_id: user.id)
+        expect(response).to be_successful
+      end
+    end
+
+    context "for team goals" do
+      it "renders a successful response" do
+        get team_goals_path
+        expect(response).to be_successful
+      end
+    end
+
+    context "for all goals" do
+      it "renders a successful response" do
+        get goals_path
+        expect(response).to be_successful
+      end
     end
   end
 

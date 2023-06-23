@@ -8,8 +8,15 @@ class TimeRequestsController < ApplicationController
       @user = User.find(user_id)
       ids = UserRequest.where(user_id: user_id, requestable_type: "TimeRequest").pluck(:requestable_id)
       @time_requests = TimeRequest.where(id: ids)
+    elsif request.path.include?("team")
+      ids = UserRequest.joins(:user)
+        .where(users: {manager_id: current_user.id})
+        .where(requestable_type: "TimeRequest")
+        .pluck(:requestable_id)
+
+      @time_requests = TimeRequest.where(id: ids)
     else
-      @time_requests = authorized_scope(TimeRequest.all)
+      @time_requests = TimeRequest.all
     end
   end
 
@@ -78,9 +85,11 @@ class TimeRequestsController < ApplicationController
   def set_breadcrumbs
     if params[:user_id]
       @user = User.find(params[:user_id])
-      add_breadcrumb("My Requests", user_user_requests_path(@user))
+      add_breadcrumb(t("views.layouts.main.my_requests"), user_time_requests_path(@user))
+    elsif request.path.include?("team")
+      add_breadcrumb(t("views.layouts.main.team_requests"), team_time_requests_path)
     else
-      add_breadcrumb(t("views.layouts.main.requests"), user_requests_path)
+      add_breadcrumb(t("views.layouts.main.requests"), time_requests_path)
     end
   end
 

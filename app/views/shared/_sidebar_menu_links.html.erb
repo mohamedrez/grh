@@ -53,8 +53,12 @@
             </ul>
           </li>
 
-          <% if current_user.has_any_role?([:hr, :admin]) || current_user.has_role?(:manager) %>
-            <%= render partial: "shared/management_tools" %>
+          <% if current_user.has_role?(:manager) %>
+            <%= render partial: "shared/team" %>
+          <% end %>
+
+          <% if current_user.has_any_role?([:hr, :admin]) %>
+            <%= render partial: "shared/hr_tools" %>
           <% end %>
 
           <li class="mt-auto">

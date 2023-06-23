@@ -10,7 +10,7 @@ class GoalPolicy < ApplicationPolicy
   end
 
   def create?
-    has_role_manager?
+    user.has_role?(:manager)
   end
 
   def edit?
@@ -18,21 +18,18 @@ class GoalPolicy < ApplicationPolicy
   end
 
   def update?
-    has_role_manager?
+    has_manager_role_and_manger_of_owner_goal?
   end
 
   def archive?
-    has_role_manager?
+    has_manager_role_and_manger_of_owner_goal?
   end
 
-  def has_role_manager?
-    user.has_role?(:manager)
+  def view_end_goal_form?
+    has_manager_role_and_manger_of_owner_goal?
   end
 
-  relation_scope do |relation|
-    next relation if user.has_any_role?([:hr, :admin])
-
-    relation.joins(:owner)
-      .where(users: {manager_id: user.id})
+  def has_manager_role_and_manger_of_owner_goal?
+    user.has_role?(:manager) && user == record.owner.manager
   end
 end
