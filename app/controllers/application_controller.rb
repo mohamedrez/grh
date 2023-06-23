@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class ApplicationController < ActionController::Base
-  before_action :set_locale, :set_user
+  before_action :set_locale
   before_action :authenticate_user!
 
   rescue_from ActionPolicy::Unauthorized do |exception|
@@ -34,9 +34,5 @@ class ApplicationController < ActionController::Base
 
   def default_url_options(options = {})
     {locale: I18n.locale}.merge options
-  end
-
-  def set_user
-    cookies[:username] = current_user&.email || "guest"
   end
 end

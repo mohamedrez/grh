@@ -3,6 +3,7 @@ class GoalsController < ApplicationController
   before_action :set_users_select
   before_action :set_owner, only: %i[show edit]
   before_action :set_breadcrumbs, only: %i[index show objectives]
+  before_action :set_authorization, only: %i[new create edit update archive]
 
   def index
     user_id = params[:user_id]
@@ -17,6 +18,7 @@ class GoalsController < ApplicationController
   end
 
   def show
+    authorize! @goal
     @end_goal_errors = params[:end_goal_errors] || {}
     @end_goal_description = params[:end_goal_description]
     @status = params[:status]
@@ -96,6 +98,7 @@ class GoalsController < ApplicationController
       flash.now[:notice] = t("flash.successfully_archived")
       render turbo_stream: [
         turbo_stream.remove(@goal),
+        turbo_stream.replace("summary-stats", partial: "goals/summary_stats"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     elsif @from_view == "show"
@@ -126,6 +129,10 @@ class GoalsController < ApplicationController
 
   def set_owner
     @owner = @goal.owner
+  end
+
+  def set_authorization
+    authorize!
   end
 
   def set_breadcrumbs
