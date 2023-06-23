@@ -1,14 +1,25 @@
 <tr id="<%= dom_id goal %>">
+  <% unless @user %>
+    <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+      <div class="flex items-center">
+        <div class="h-11 w-11 flex-shrink-0">
+          <%= image_tag goal.owner.avatar_url_or_default, class: "h-11 w-11 rounded-full" %>
+        </div>
+        <div class="ml-4">
+          <div class="font-medium text-gray-900"><%= goal.owner.full_name %></div>
+          <div class="mt-1 text-gray-500"><%= goal.owner.email %></div>
+        </div>
+      </div>
+    </td>
+  <% end %>
   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= goal.title %></td>
-  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-    <%= goal.owner.full_name %>
-  </td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= goal.start_date %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= goal.due_date %></td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
     <span class="inline-flex items-center rounded-full px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset <%= button_class_for_goal_status(goal.status) %>">
       <%= goal.what_is_the_status? %>
     </span>
   </td>
-  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= goal.due_date %></td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
     <div class="flex justify-center">
       <a href="<%= url_for(objectives_url({year: goal.due_date.year, user_id: goal.owner_id})) %>" data-turbo="false">

@@ -1,4 +1,4 @@
-<%= search_form_for @q, method: :get, url: goals_path, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
+<%= search_form_for @q, method: :get, url: url, data: { turbo_frame: "search-results", turbo_action: "advance", controller: "search", action: "input->search#submit" } do |f| %>
   <div class="flex items-center">
     <div class="flex items-center">
       <div class="max-w-lg w-full lg:max-w-xs">

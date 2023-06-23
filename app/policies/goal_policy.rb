@@ -18,10 +18,18 @@ class GoalPolicy < ApplicationPolicy
   end
 
   def update?
-    user.has_role?(:manager) && user == record.owner.manager
+    has_manager_role_and_manger_of_owner_goal?
   end
 
   def archive?
+    has_manager_role_and_manger_of_owner_goal?
+  end
+
+  def view_end_goal_form?
+    has_manager_role_and_manger_of_owner_goal?
+  end
+
+  def has_manager_role_and_manger_of_owner_goal?
     user.has_role?(:manager) && user == record.owner.manager
   end
 end

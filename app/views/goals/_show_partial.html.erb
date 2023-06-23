@@ -23,7 +23,7 @@
       <% end %>
     </div>
   </div>
-  <% if goal.status.blank? %>
+  <% if allowed_to?(:view_end_goal_form?, goal) && goal.status.blank? %>
     <div class="mt-8 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
       <%= render partial: "blank_status", locals: {owner: owner, goal: goal, end_goal_errors: end_goal_errors} %>
     </div>

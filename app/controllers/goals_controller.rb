@@ -10,10 +10,13 @@ class GoalsController < ApplicationController
 
     @goals = if user_id
       @user = User.find(user_id)
+      @url = user_goals_path(@user)
       @q.result(distinct: true).where(owner_id: user_id, archived: false)
     elsif request.path.include?("team")
+      @url = team_goals_path
       @q.result(distinct: true).where(archived: false).joins(:owner).where(users: {manager_id: current_user.id})
     else
+      @url = goals_path
       @q.result(distinct: true).where(archived: false)
     end
   end
