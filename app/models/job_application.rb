@@ -43,27 +43,6 @@ class JobApplication < ApplicationRecord
     end
   end
 
-  def state_badge
-    case aasm_state
-    when "disqualified"
-      "<span class='inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-red-100 text-red-800'>
-        <svg class='mr-1.5 h-2 w-2 text-red-400' fill='currentColor' viewBox='0 0 8 8'>
-          <circle cx='4' cy='4' r='3' />
-        </svg>
-        #{I18n.t("attributes.job_application.aasm_states.disqualified")}
-      </span>".html_safe
-    when "completed_interview"
-      "<span class='inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-green-100 text-green-800'>
-        <svg class='mr-1.5 h-2 w-2 text-green-400' fill='currentColor' viewBox='0 0 8 8'>
-          <circle cx='4' cy='4' r='3' />
-        </svg>
-        #{I18n.t("attributes.job_application.aasm_states.qualified")}
-      </span>".html_safe
-    else
-      ""
-    end
-  end
-
   # Actions
 
   def create_job_application_trigger_actions
