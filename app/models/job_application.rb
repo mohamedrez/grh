@@ -43,6 +43,17 @@ class JobApplication < ApplicationRecord
     end
   end
 
+  # Methods
+
+  def applicant_state(state)
+    case state
+    when "disqualified"
+      I18n.t("attributes.job_application.aasm_states.disqualified")
+    when "completed_interview"
+      I18n.t("attributes.job_application.aasm_states.qualified")
+    end
+  end
+
   # Actions
 
   def create_job_application_trigger_actions

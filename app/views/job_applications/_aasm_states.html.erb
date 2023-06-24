@@ -1,19 +1,11 @@
 <div>
-  <% if job_application.disqualified? %>
+  <% applicant_state = job_application.applicant_state(job_application.aasm_state) %>
+  <% if applicant_state %>
     <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-red-100 text-red-800">
     <svg class="mr-1.5 h-2 w-2 text-red-400" fill="currentColor" viewBox="0 0 8 8">
         <circle cx="4" cy="4" r="3" />
     </svg>
-      <%= t("attributes.job_application.aasm_states.disqualified") %>
-    </span>
-  <% end %>
-
-  <% if job_application.completed_interview? %>
-    <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-green-100 text-green-800">
-    <svg class="mr-1.5 h-2 w-2 text-green-400" fill="currentColor" viewBox="0 0 8 8">
-        <circle cx="4" cy="4" r="3" />
-    </svg>
-    <%= t("attributes.job_application.aasm_states.qualified") %>
+      <%= job_application.applicant_state(job_application.aasm_state) %>
     </span>
   <% end %>
 </div>
