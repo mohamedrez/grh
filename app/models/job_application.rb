@@ -48,9 +48,15 @@ class JobApplication < ApplicationRecord
   def applicant_state(state)
     case state
     when "disqualified"
-      I18n.t("attributes.job_application.aasm_states.disqualified")
+      {
+        text: I18n.t("attributes.job_application.aasm_states.disqualified"),
+        color: "red"
+      }
     when "completed_interview"
-      I18n.t("attributes.job_application.aasm_states.qualified")
+      {
+        text: I18n.t("attributes.job_application.aasm_states.qualified"),
+        color: "green"
+      }
     end
   end
 

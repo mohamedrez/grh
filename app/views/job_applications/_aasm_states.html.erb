@@ -1,11 +1,11 @@
 <div>
   <% applicant_state = job_application.applicant_state(job_application.aasm_state) %>
   <% if applicant_state %>
-    <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-red-100 text-red-800">
-    <svg class="mr-1.5 h-2 w-2 text-red-400" fill="currentColor" viewBox="0 0 8 8">
+    <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-<%= applicant_state[:color] %>-100 text-<%= applicant_state[:color] %>-800">
+    <svg class="mr-1.5 h-2 w-2 text-<%= applicant_state[:color] %>-400" fill="currentColor" viewBox="0 0 8 8">
         <circle cx="4" cy="4" r="3" />
     </svg>
-      <%= job_application.applicant_state(job_application.aasm_state) %>
+      <%= applicant_state[:text] %>
     </span>
   <% end %>
 </div>
