@@ -68,7 +68,7 @@ RSpec.describe User, type: :model do
       it "returns an error" do
         user.manager = user
         expect(user).not_to be_valid
-        expect(user.errors[:manager]).to include("can't be your own manager")
+        expect(user.errors[:manager_id]).to include("can't be your own manager")
       end
     end
 
