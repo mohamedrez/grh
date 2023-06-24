@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_22_085900) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_23_111440) do
   create_table "aasm_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "actor_id", null: false
     t.string "from_state"
@@ -205,8 +205,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_22_085900) do
     t.integer "max_salary"
     t.integer "unit"
     t.integer "status", default: 0
-    t.integer "application", default: 0
-    t.integer "interview", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
