@@ -96,6 +96,24 @@ fr:
         important: "Important"
         very_important: "Très important"
         critical: "Critique"
+    job:
+      title: "Titre"
+      job_type: "Type d'emploi"
+      location: "Emplacement"
+      remote: "À distance"
+      job_status: "Statut de l'emploi"
+      overview: "Aperçu court de l'emploi"
+      description_add: "Fournir une description de l'emploi"
+      description_view: "Description de l'emploi"
+      job_types:
+        full_time: "Temps plein"
+        part_time: "Temps partiel"
+      statuses:
+        open: "Ouvert"
+        closed: "Fermé"
+        applied: "Postulé"
+        interviewing : "Entretien"
+        unit: "Par"
     job_application:
       first_name: "Prénom"
       last_name: "Nom de famille"
@@ -320,6 +338,17 @@ fr:
       goals_description: "Gérez les objectifs à travers votre entreprise pour aligner et développer votre équipe"
       search_bar: "Titre, ou propriétaire"
       all: "Tout"
+    jobs:
+      job_title: "Titre du poste"
+      jobs_list: "Liste des emplois"
+      edit_job: "Modifier un emploi"
+      view_job: "Détails de l'emploi"
+      delete_job: "Supprimer un emploi"
+      new: "Ajouter un emploi"
+      job_applicants: "Candidats à l'emploi"
+      job_desription: "Description de l'emploi"
+      add_details: "Veuillez remplir les détails de l'emploi"
+      description_full: "Décrivez un rôle, y compris les tâches, les compétences et les exigences"
     job_applications:
       resume: "CV"
       title_job_applications: "Candidatures"

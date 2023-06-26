@@ -4,9 +4,9 @@ class JobApplicationsController < ApplicationController
 
   def index
     @job_applications = if params[:job_id]
-      JobApplication.where(job_id: params[:job_id])
+      JobApplication.where(job_id: params[:job_id]).page(params[:page])
     else
-      JobApplication.all
+      JobApplication.all.page(params[:page])
     end
   end
 
@@ -84,6 +84,10 @@ class JobApplicationsController < ApplicationController
   end
 
   def set_breadcrumbs
+    if params[:job_id]
+      add_breadcrumb("Job", jobs_path)
+      add_breadcrumb(Job.find(params[:job_id]).title, job_path(params[:job_id]))
+    end
     add_breadcrumb(t("views.job_applications.title_job_applications"), job_applications_path)
   end
 
