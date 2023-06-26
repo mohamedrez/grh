@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_23_111440) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_26_141809) do
   create_table "aasm_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "actor_id", null: false
     t.string "from_state"
@@ -168,6 +168,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_23_111440) do
     t.text "end_goal_description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "ceiling"
+    t.string "target"
+    t.string "floor"
     t.index ["author_id"], name: "index_goals_on_author_id"
     t.index ["owner_id"], name: "index_goals_on_owner_id"
   end

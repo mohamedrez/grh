@@ -25,11 +25,23 @@
       <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= goal.due_date %></dd>
     </div>
     <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+      <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.goal.ceiling") %></dt>
+      <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= goal.ceiling %></dd>
+    </div>
+    <div class="bg-gray-50 px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+      <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.goal.target") %></dt>
+      <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= goal.target %></dd>
+    </div>
+    <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+      <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.goal.floor") %></dt>
+      <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= goal.floor %></dd>
+    </div>
+    <div class="bg-gray-50 px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
       <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.goal.description") %></dt>
       <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= goal.description %></dd>
     </div>
     <% if goal.end_goal_description.present? %>
-      <div class="bg-gray-50 px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
+      <div class="bg-white px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-3">
         <dt class="px-5 text-sm font-medium leading-6 text-gray-900"><%= t("attributes.goal.end_goal_description") %></dt>
         <dd class="px-5 mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= goal.end_goal_description %></dd>
       </div>
