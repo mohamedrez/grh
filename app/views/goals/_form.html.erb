@@ -28,7 +28,7 @@
       <div class="sm:col-span-full">
         <%= form.label :start_date, t("attributes.goal.start_date"), class: "block" %>
         <div class="mt-2">
-          <%= form.date_field :start_date, class: "w-full" %>
+          <%= form.date_field :start_date, class: "w-full", value: Time.zone.today.beginning_of_year.to_date %>
           <%= inline_error_for(:start_date, goal).html_safe %>
         </div>
       </div>
@@ -36,7 +36,7 @@
       <div class="sm:col-span-full">
         <%= form.label :due_date, t("attributes.goal.due_date"), class: "block" %>
         <div class="mt-2">
-          <%= form.date_field :due_date, class: "w-full" %>
+          <%= form.date_field :due_date, class: "w-full", value: Time.zone.today.end_of_year.to_date %>
           <%= inline_error_for(:due_date, goal).html_safe %>
         </div>
       </div>
