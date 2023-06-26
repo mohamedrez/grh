@@ -43,6 +43,25 @@ class JobApplication < ApplicationRecord
     end
   end
 
+  # Methods
+
+  def applicant_state(state)
+    case state
+    when "applied"
+      {next_state: "advanced_to_phone", title: I18n.t("attributes.job_application.aasm_states.advance_to_phone")}
+    when "advanced_to_phone"
+      {next_state: "completed_phone", title: I18n.t("attributes.job_application.aasm_states.complete_phone")}
+    when "completed_phone"
+      {next_state: "advanced_interview", title: I18n.t("attributes.job_application.aasm_states.advance_to_interview")}
+    when "advanced_interview"
+      {next_state: "completed_interview", title: I18n.t("attributes.job_application.aasm_states.complete_interview")}
+    when "completed_interview"
+      {result: I18n.t("attributes.job_application.aasm_states.qualified"), color: "green"}
+    when "disqualified"
+      {result: I18n.t("attributes.job_application.aasm_states.disqualified"), color: "red"}
+    end
+  end
+
   # Actions
 
   def create_job_application_trigger_actions
