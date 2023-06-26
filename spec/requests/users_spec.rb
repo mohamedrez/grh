@@ -21,7 +21,7 @@ RSpec.describe "Users", type: :request do
       cin: "ZWE452GH",
       service: :financial,
       joining_date: Date.new(2023, 4, 14),
-      contract: :CDI,
+      contract: :cdi,
       category: :cadre,
       cnss_number: "4521879564",
       employee_number: "3397701296",
@@ -177,7 +177,7 @@ RSpec.describe "Users", type: :request do
         expect(user.service).to eq("financial")
         expect(user.job_title).to eq("sale")
         expect(user.joining_date).to eq(Date.new(2023, 4, 14))
-        expect(user.contract).to eq("CDI")
+        expect(user.contract).to eq("cdi")
         expect(user.category).to eq("cadre")
         expect(user.cnss_number).to eq("4521879564")
         expect(user.employee_number).to eq("3397701296")
