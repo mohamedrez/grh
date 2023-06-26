@@ -47,16 +47,18 @@ class JobApplication < ApplicationRecord
 
   def applicant_state(state)
     case state
-    when "disqualified"
-      {
-        text: I18n.t("attributes.job_application.aasm_states.disqualified"),
-        color: "red"
-      }
+    when "applied"
+      {second_state: "advanced_to_phone", title: I18n.t("attributes.job_application.aasm_states.advance_to_phone")}
+    when "advanced_to_phone"
+      {second_state: "completed_phone", title: I18n.t("attributes.job_application.aasm_states.complete_phone")}
+    when "completed_phone"
+      {second_state: "advanced_interview", title: I18n.t("attributes.job_application.aasm_states.advance_to_interview")}
+    when "advanced_interview"
+      {second_state: "completed_interview", title: I18n.t("attributes.job_application.aasm_states.complete_interview")}
     when "completed_interview"
-      {
-        text: I18n.t("attributes.job_application.aasm_states.qualified"),
-        color: "green"
-      }
+      {result: I18n.t("attributes.job_application.aasm_states.qualified"), color: "green"}
+    when "disqualified"
+      {result: I18n.t("attributes.job_application.aasm_states.disqualified"), color: "red"}
     end
   end
 
