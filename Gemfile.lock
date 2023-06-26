@@ -384,7 +384,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    wisper (2.0.0)
+    wisper (2.0.1)
     wisper-activerecord (1.0.0)
       activerecord (>= 3.0.0)
       wisper (~> 2.0)
@@ -444,7 +444,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
-  wisper (= 2.0.0)
+  wisper (= 2.0.1)
   wisper-activerecord
 
 RUBY VERSION
