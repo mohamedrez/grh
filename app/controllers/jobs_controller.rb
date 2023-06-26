@@ -1,11 +1,13 @@
 class JobsController < ApplicationController
   before_action :set_job, only: %i[show edit update destroy]
+  before_action :set_breadcrumbs, only: %i[index show]
 
   def index
     @jobs = Job.order(created_at: :desc).page(params[:page])
   end
 
   def show
+    add_breadcrumb(Job.find(@job.id).title, job_path(@job.id))
   end
 
   def new
@@ -38,6 +40,12 @@ class JobsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  private
+
+  def set_breadcrumbs
+    add_breadcrumb("Job", jobs_path)
   end
 
   def job_params
