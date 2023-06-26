@@ -129,8 +129,7 @@ class GoalsController < ApplicationController
     add_breadcrumb(@user.full_name)
     render status: :not_found unless @user
 
-    @goals = Goal.where(owner_id: user_id, archived: false)
-      .where("extract(year from due_date) = ?", @year)
+    @goals = Goal.where(owner_id: user_id, archived: false, year: @year)
 
     @completion_factor_sum = Goal.completion_factor_sum(@goals)
     @importance_factor_sum = Goal.importance_factor_sum(@goals)
@@ -164,6 +163,6 @@ class GoalsController < ApplicationController
   end
 
   def goal_params
-    params.require(:goal).permit(:title, :owner_id, :status, :start_date, :due_date, :description, :level)
+    params.require(:goal).permit(:title, :owner_id, :status, :year, :description, :level)
   end
 end

@@ -81,8 +81,7 @@ en:
       level: "Level"
       status: "Status"
       description: "Description"
-      start_date: "Start date"
-      due_date: "Due date"
+      year: "Year"
       owned_by: "Owned by"
       end_goal_description: "End goal description"
       statuses:
