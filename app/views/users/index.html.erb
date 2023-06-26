@@ -56,9 +56,11 @@
                     </div>
                   </div>
                 </td>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.job_title&.humanize %></td>
+
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= User.human_enum_name(:job_title, user.job_title) if user.job_title %></td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.site&.name %></td>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.service&.humanize %></td>
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= User.human_enum_name(:service, user.service) if user.service %></td>
+
                 <td class="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
                   <%= link_to t("views.shared.view_profile"), user_path(user), data: {turbo_frame: "_top"} %>
                 </td>

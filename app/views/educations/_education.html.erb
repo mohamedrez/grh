@@ -15,9 +15,9 @@
       <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
         <div>
           <p class="font-medium text-lg text-gray-900"><%= education.school.humanize %></p>
-          <p class="font-normal text-base text-gray-900"><%= education.education_level.humanize %> . <%= education.study_field.humanize %></p>
+          <p class="font-normal text-base text-gray-900"><%= Education.human_enum_name(:education_level, education.education_level) %> . <%= Education.human_enum_name(:study_field, education.study_field) %></p>
           <p class="font-normal text-base text-gray-500"><%= education.start_date %> - <%= education.end_date %></p>
-          <p class="font-normal text-base text-gray-500"><%= education.city.humanize %>, <%= education.country.humanize %></p>
+          <p class="font-normal text-base text-gray-500"><%= education.city.humanize %>, <%= Address.human_enum_name(:country, education.country) %></p>
         </div>
         <div class="whitespace-nowrap text-right text-sm text-gray-500">
           <p class="font-normal text-base text-gray-500 mb-1"><%= t("attributes.education.still_on_this_course") %></p>

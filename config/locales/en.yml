@@ -11,6 +11,17 @@ en:
     delete: "Delete"
     archive: "Archive"
   attributes:
+    address:
+      countries:
+        canada: "Canada"
+        cameroon: "Cameroon"
+        france: "France"
+        egypt: "Egypt"
+        germany: "Germany"
+        ghana: "Ghana"
+        morocco: "Morocco"
+        usa: "USA"
+        other_country: "Other country"
     announcement:
       content: "Content"
       published_at: "Published At"
@@ -40,6 +51,19 @@ en:
       education_level: "Education level"
       study_field: "Study field"
       still_on_this_course: "Still on this course?"
+      education_levels:
+        high_school: "High School"
+        bachelor: "Bachelor's Degree"
+        master: "Master's Degree"
+        doctorate: "Doctorate Degree"
+        other_education_level: "Other Education Level"
+      study_fields:
+        architecture_design: "Architecture and Design"
+        business_economics: "Business and Economics"
+        education: "Education"
+        engineering: "Engineering"
+        software_engineering: "Software Engineering"
+        other_study_field: "Other Study Field"
     expense:
       employee: "Employee"
       date: "Date"
@@ -60,6 +84,15 @@ en:
       company_name: "Company name"
       employment_type: "Employment type"
       work_description: "Work description"
+      employment_types:
+        apprenticeship: "Apprenticeship"
+        contractor: "Contractor"
+        freelancer: "Freelancer"
+        internship: "Internship"
+        permanent: "Permanent"
+        seasonal: "Seasonal"
+        self_employed: "Self Employed"
+        other_employment_type: "Other Employment Type"
     emergency_contact:
       email: "Email"
       relationship: "Relationship"
@@ -275,6 +308,38 @@ en:
       pto: "Paid Time Off"
       street_address: "Street address"
       zip: "ZIP / Postal code"
+      genders:
+        male: "Male"
+        female: "Female"
+      marital_statuses:
+        single: "Single"
+        married: "Married"
+        divorced: "Divorced"
+        other_marital_status: "Other Marital Status"
+      services:
+        financial: "Financial"
+        healthcare: "Healthcare"
+        information_technology: "Information Technology"
+        marketing_and_advertising: "Marketing and Advertising"
+        other_service: "Other Service"
+      job_titles:
+        operations: "Operations"
+        finance: "Finance"
+        human_resource: "Human Resource"
+        marketing: "Marketing"
+        sale: "Sale"
+        information_technology: "Information Technology"
+        research_and_development: "Research and Development"
+        administration: "Administration"
+        other_job_title: "Other Job Title"
+      contracts:
+        cdd: "CDD"
+        cdi: "CDI"
+        intern: "Intern"
+        other_contract: "Other Contract"
+      categories:
+        cadre: "Cadre"
+        non_cadre: "Non Cadre"
     shared:
       name: "Name"
       start_date: "Start date"
@@ -455,6 +520,8 @@ en:
       employees_title: "Employees"
       employees_list: "List of all the employees."
       search_by: "Name, email, or employee number "
+      no_experiences: "No experiences."
+      no_academic_backgrounds: "No academic backgrounds."
     layouts:
       main:
         dashboard: "Dashboard"
