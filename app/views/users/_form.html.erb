@@ -22,60 +22,70 @@
             <%= form.label :first_name, t("attributes.user.first_name") %>
             <div class="mt-2">
               <%= form.text_field :first_name, class: "w-full" %>
+              <%= inline_error_for(:first_name, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :last_name, t("attributes.user.last_name") %>
             <div class="mt-2">
               <%= form.text_field :last_name, class: "w-full" %>
+              <%= inline_error_for(:last_name, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :email, t("attributes.user.email") %>
             <div class="mt-2">
               <%= form.text_field :email, class: "w-full" %>
+              <%= inline_error_for(:email, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :phone, t("attributes.user.phone") %>
             <div class="mt-2">
               <%= form.text_field :phone, class: "w-full" %>
+              <%= inline_error_for(:phone, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :cin, t("attributes.user.cin") %>
             <div class="mt-2">
               <%= form.text_field :cin, class: "w-full" %>
+              <%= inline_error_for(:cin, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :birthdate, t("attributes.user.birthday") %>
             <div class="mt-2">
               <%= form.date_field :birthdate, class: "w-full" %>
+              <%= inline_error_for(:birthdate, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-2 sm:col-start-1">
             <%= form.label :gender, t("attributes.user.gender") %>
             <div class="mt-2">
-              <%= form.select :gender, options_for_select(User.genders.map {|key, value| [key.humanize, key]}, @user.gender) %>
+              <%= form.select :gender, User.genders.keys.collect { |gender| [User.human_enum_name(:gender, gender), gender] }, include_blank: true %>
+              <%= inline_error_for(:gender, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-2">
             <%= form.label :marital_status, t("attributes.user.marital_status") %>
             <div class="mt-2">
-              <%= form.select :marital_status, options_for_select(User.marital_statuses.map {|key, value| [key.humanize, key]}, @user.marital_status) %>
+              <%= form.select :marital_status, User.marital_statuses.keys.collect { |marital_status| [User.human_enum_name(:marital_status, marital_status), marital_status] }, include_blank: true %>
+              <%= inline_error_for(:marital_status, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-2">
             <%= form.label :children_number, t("attributes.user.children_number") %>
             <div class="mt-2">
-              <%= form.select :children_number, (0..5).to_a %>
+              <%= form.select :children_number, (0..5).to_a, include_blank: true  %>
+              <%= inline_error_for(:children_number, @user).html_safe %>
             </div>
           </div>
           <div class="col-span-full">
             <%= form.label :about, t("attributes.user.about") %>
             <div class="mt-2">
               <%= form.rich_text_area :about, class: "block rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" %>
+              <%= inline_error_for(:about, @user).html_safe %>
             </div>
             <p class="mt-3 text-sm leading-6 text-gray-600"><%=  t("views.users.sentences_about_yourself") %></p>
           </div>
@@ -90,97 +100,113 @@
           <div class="sm:col-span-3">
             <%= form.label :job_title, t("attributes.user.job_title") %>
             <div class="mt-2">
-              <%= form.select :job_title, options_for_select(User.job_titles.map {|key, value| [key.humanize, key]}, @user.job_title) %>
+              <%= form.select :job_title, User.job_titles.keys.collect { |job_title| [User.human_enum_name(:job_title, job_title), job_title] }, include_blank: true %>
+              <%= inline_error_for(:job_title, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :employee_number, t("attributes.user.employee_number") %>
             <div class="mt-2">
               <%= form.number_field :employee_number, class: "w-full" %>
+              <%= inline_error_for(:employee_number, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :site_id, t("attributes.user.site") %>
             <div class="mt-2">
-              <%= form.select :site_id, options_for_select(Site.pluck(:name, :id), @user.site_id) %>
+              <%= form.select :site_id, options_for_select(Site.pluck(:name, :id), @user.site_id), include_blank: true  %>
+              <%= inline_error_for(:site_id, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :service, t("attributes.user.service") %>
             <div class="mt-2">
-              <%= form.select :service, options_for_select(User.services.map {|key, value| [key.humanize, key]}, @user.service) %>
+              <%= form.select :service, User.services.keys.collect { |service| [User.human_enum_name(:service, service), service] }, include_blank: true %>
+              <%= inline_error_for(:service, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :manager_id, t("attributes.user.manager") %>
             <div class="mt-2">
               <%= form.select :manager_id, options_for_select(@manager_select.to_h, @user.manager_id), include_blank: true %>
+              <%= inline_error_for(:manager_id, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :contract, t("attributes.user.contract") %>
             <div class="mt-2">
-              <%= form.select :contract, options_for_select(User.contracts.map {|key, value| [key.humanize, key]}, @user.contract) %>
+              <%= form.select :contract, User.contracts.keys.collect { |contract| [User.human_enum_name(:contract, contract), contract] }, include_blank: true %>
+              <%= inline_error_for(:contract, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-2 sm:col-start-1">
             <%= form.label :start_date, t("attributes.shared.start_date") %>
             <div class="mt-2">
               <%= form.date_field :start_date, class: "w-full" %>
-            </div>
-          </div>
-          <div class="sm:col-span-2">
-            <%= form.label :joining_date, t("attributes.user.joining_date") %>
-            <div class="mt-2">
-              <%= form.date_field :joining_date, class: "w-full" %>
+              <%= inline_error_for(:start_date, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-2">
             <%= form.label :end_date, t("attributes.shared.end_date") %>
             <div class="mt-2">
               <%= form.date_field :end_date, class: "w-full" %>
+              <%= inline_error_for(:end_date, @user).html_safe %>
+            </div>
+          </div>
+          <div class="sm:col-span-2">
+            <%= form.label :joining_date, t("attributes.user.joining_date") %>
+            <div class="mt-2">
+              <%= form.date_field :joining_date, class: "w-full" %>
+              <%= inline_error_for(:joining_date, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :category, t("attributes.user.category") %>
             <div class="mt-2">
-              <%= form.select :category, options_for_select(User.categories.map {|key, value| [key.humanize, key]}, @user.category) %>
+              <%= form.select :category, User.categories.keys.collect { |category| [User.human_enum_name(:category, category), category] }, include_blank: true %>
+              <%= inline_error_for(:category, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :cnss_number, t("attributes.user.cnss_number") %>
             <div class="mt-2">
               <%= form.number_field :cnss_number, class: "w-full" %>
+              <%= inline_error_for(:cnss_number, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3 sm:col-start-1">
             <%= form.label :brut_salary, t("attributes.user.brut_salary") %>
             <div class="mt-2">
               <%= form.number_field :brut_salary, class: "w-full" %>
+              <%= inline_error_for(:brut_salary, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-3">
             <%= form.label :net_salary, t("attributes.user.net_salary") %>
             <div class="mt-2">
               <%= form.number_field :net_salary, class: "w-full" %>
+              <%= inline_error_for(:net_salary, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-2 sm:col-start-1">
             <%= form.label :cnss_contribution, t("attributes.user.cnss_contribution") %>
             <div class="mt-2">
-              <%= form.number_field  :cnss_contribution, class: "w-full" %>
+              <%= form.number_field :cnss_contribution, class: "w-full" %>
+              <%= inline_error_for(:cnss_contribution, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-2">
             <%= form.label :retirement_contribution, t("attributes.user.retirement_contribution") %>
             <div class="mt-2">
-              <%= form.number_field  :retirement_contribution, class: "w-full" %>
+              <%= form.number_field :retirement_contribution, class: "w-full" %>
+              <%= inline_error_for(:retirement_contribution, @user).html_safe %>
             </div>
           </div>
           <div class="sm:col-span-2">
             <%= form.label :pto_number, t("attributes.user.pto") %>
             <div class="mt-2">
               <%= form.number_field :pto_number, class: "w-full bg-gray-100" %>
+              <%= inline_error_for(:pto_number, @user).html_safe %>
             </div>
           </div>
         </div>
@@ -201,7 +227,7 @@
             <div class="sm:col-span-2">
               <%= f.label :country, t("attributes.shared.country") %>
               <div>
-                <%= f.select :country, options_for_select(Address.countries.map {|key, value| [key.humanize, key]}, @user.address.country) %>
+                <%= f.select :country, Address.countries.keys.collect { |country| [Address.human_enum_name(:country, country), country] }, include_blank: true %>
               </div>
             </div>
             <div class="col-span-3 sm:col-start-1">
@@ -243,7 +269,7 @@
                 <div class="sm:col-span-3 sm:col-start-1">
                   <%= f.label :country, t("attributes.shared.country") %>
                   <div class="mt-2">
-                    <%= f.select :country, options_for_select(Experience.countries.map {|key, value| [key.humanize, key]}, f.object.country) %>
+                    <%= f.select :country, Experience.countries.keys.collect { |country| [Address.human_enum_name(:country, country), country] }, include_blank: true %>
                   </div>
                 </div>
                 <div class="sm:col-span-3">
@@ -253,9 +279,9 @@
                   </div>
                 </div>
                 <div class="sm:col-span-2 sm:col-start-1">
-                  <%= f.label :employment_type, t("attributes.experience.employment_type") %>
+                  <%= f.label :country, t("attributes.experience.employment_type") %>
                   <div class="mt-2">
-                    <%= f.select :employment_type, options_for_select(Experience.employment_types.map {|key, value| [key.humanize, key]}, f.object.employment_type) %>
+                    <%= f.select :employment_type, Experience.employment_types.keys.collect { |employment_type| [Experience.human_enum_name(:employment_type, employment_type), employment_type] }, include_blank: true %>
                   </div>
                 </div>
                 <div class="sm:col-span-2">
@@ -281,7 +307,7 @@
             <% else %>
               <div class="col-span-full mt-5">
                 <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                  There's no experiences here yet.
+                  <%= t("views.users.no_experiences") %>
                 </div>
               </div>
             <% end %>
@@ -304,13 +330,13 @@
                 <div class="sm:col-span-3">
                   <%= f.label :education_level, t("attributes.education.education_level") %>
                   <div class="mt-2">
-                    <%= f.select :education_level, options_for_select(Education.education_levels.map {|key, value| [key.humanize, key]}, f.object.education_level) %>
+                    <%= f.select :education_level, Education.education_levels.keys.collect { |education_level| [Education.human_enum_name(:education_level, education_level), education_level] }, include_blank: true %>
                   </div>
                 </div>
                 <div class="sm:col-span-2">
                   <%= f.label :study_field, t("attributes.education.study_field") %>
                   <div class="mt-2">
-                    <%= f.select :study_field, options_for_select(Education.study_fields.map {|key, value| [key.humanize, key]}, f.object.study_field) %>
+                    <%= f.select :study_field, Education.study_fields.keys.collect { |study_field| [Education.human_enum_name(:study_field, study_field), study_field] }, include_blank: true %>
                   </div>
                 </div>
                 <div class="sm:col-span-2">
@@ -328,7 +354,7 @@
                 <div class="sm:col-span-3">
                   <%= f.label :country, t("attributes.shared.country") %>
                   <div class="mt-2">
-                    <%= f.select :country, options_for_select(Education.countries.map {|key, value| [key.humanize, key]}, f.object.country) %>
+                    <%= f.select :country, Education.countries.keys.collect { |country| [Address.human_enum_name(:country, country), country] }, include_blank: true %>
                   </div>
                 </div>
                 <div class="sm:col-span-3">
@@ -348,7 +374,7 @@
             <% else %>
               <div class="col-span-full mt-5">
                 <div class="relative rounded-full px-3 py-1 text-sm leading-6 text-gray-500 ring-1 ring-gray-900/10 hover:ring-gray-900/20">
-                  There's no academic backgrounds here yet.
+                  <%= t("views.users.no_academic_backgrounds") %>
                 </div>
               </div>
             <% end %>
