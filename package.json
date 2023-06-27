@@ -5,7 +5,7 @@
     "@fullcalendar/core": "^6.1.8",
     "@fullcalendar/daygrid": "^6.1.5",
     "@fullcalendar/list": "^6.1.8",
-    "@fullcalendar/timegrid": "^6.1.5",
+    "@fullcalendar/timegrid": "^6.1.8",
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.3.0",
     "@rails/actiontext": "^7.0.5",
