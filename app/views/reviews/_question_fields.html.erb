@@ -4,6 +4,7 @@
       <%= form.label :name, t("attributes.shared.name"), class: "block" %>
       <div class="mt-2">
         <%= form.text_field :name, class: "w-full" %>
+        <%= inline_error_for(:name, form.object).html_safe %>
       </div>
     </div>
 
@@ -14,6 +15,7 @@
           {},
           'data-dynamic-select-target': 'select',
           'data-action': 'dynamic-select#selected' %>
+        <%= inline_error_for(:question_type, form.object).html_safe %>
       </div>
     </div>
 
