@@ -1,6 +1,7 @@
 class JobApplicationsController < ApplicationController
   before_action :set_job_application, only: %i[infos show edit update destroy delete_resume update_aasm_state]
   before_action :set_breadcrumbs, only: %i[index show]
+  before_action :set_job, only: %i[show new edit]
 
   def index
     @job_applications = if params[:job_id]
@@ -14,7 +15,11 @@ class JobApplicationsController < ApplicationController
     @user = current_user
     @aasm_logs = AasmLog.where(aasm_logable: @job_application)
 
-    add_breadcrumb(@job_application.first_name)
+    if @job_id
+      add_breadcrumb(@job_application.first_name, job_job_application_path(@job_id, @job_application))
+    else
+      add_breadcrumb(@job_application.first_name, job_application_path(@job_application))
+    end
   end
 
   def infos
@@ -23,7 +28,6 @@ class JobApplicationsController < ApplicationController
   def new
     @job_application = JobApplication.new
     @jobs = Job.all
-    @job_id = params[:job_id]
   end
 
   def edit
@@ -60,9 +64,16 @@ class JobApplicationsController < ApplicationController
   def destroy
     @job_application.destroy
 
+    @job_applications = if params[:job_id]
+      JobApplication.where(job_id: params[:job_id]).page(params[:page])
+    else
+      JobApplication.all.page(params[:page])
+    end
+
     flash.now[:notice] = t("flash.successfully_destroyed")
     render turbo_stream: [
       turbo_stream.remove(@job_application),
+      turbo_stream.replace("paginate", partial: "job_applications/paginate", locals: {job_applications: @job_applications}),
       turbo_stream.replace("notification_alert", partial: "layouts/alert")
     ]
   end
@@ -84,7 +95,11 @@ class JobApplicationsController < ApplicationController
       @job_application.disqualify_applicant!
     end
 
-    redirect_to job_application_path(@job_application)
+    if params[:job_id].present?
+      redirect_to job_job_application_path(@job_application, params[:job_id])
+    else
+      redirect_to job_application_path(@job_application)
+    end
   end
 
   def delete_resume
@@ -94,6 +109,10 @@ class JobApplicationsController < ApplicationController
 
   private
 
+  def set_job
+    @job_id = params[:job_id]
+  end
+
   def set_job_application
     @job_application = JobApplication.find(params[:id])
   end
@@ -102,8 +121,10 @@ class JobApplicationsController < ApplicationController
     if params[:job_id]
       add_breadcrumb("Job", jobs_path)
       add_breadcrumb(Job.find(params[:job_id]).title, job_path(params[:job_id]))
+      add_breadcrumb(t("views.job_applications.title_job_applications"), job_job_applications_path(params[:job_id]))
+    else
+      add_breadcrumb(t("views.job_applications.title_job_applications"), job_applications_path)
     end
-    add_breadcrumb(t("views.job_applications.title_job_applications"), job_applications_path)
   end
 
   def job_application_params

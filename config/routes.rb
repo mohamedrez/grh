@@ -71,6 +71,7 @@ Rails.application.routes.draw do
     get "user_notifications/notification_bell", to: "user_notifications#notification_bell"
     resources :jobs do
       resources :job_applications
+      patch "/job_applications/:id/update_aasm_state", to: "job_applications#update_aasm_state", as: "update_aasm_state_job_application"
     end
     resources :job_applications do
       delete :delete_resume, on: :member
