@@ -35,6 +35,20 @@ RSpec.describe "Jobs", type: :request do
         end
     end
 
+    describe "GET /show" do
+        it "renders a successful response" do
+            get job_path(id: job.id)
+            expect(response).to be_successful
+        end
+    end
+
+    describe "GET /new" do
+    it "renders a successful response" do
+      get new_job_path()
+      expect(response).to be_successful
+        end
+    end
+
     describe "POST /create" do
         context "With valid params" do
             it "creates a new job" do
@@ -90,6 +104,18 @@ RSpec.describe "Jobs", type: :request do
         end
     end
 
-    # Describe delete?
+    describe "DELETE /destroy" do
+        before do
+            delete job_path(id: job.id)
+        end
+          
+        it 'destroy the job' do
+            expect(Job.count).to eq(0)
+        end
+    
+        it 'sets the flash notice' do
+            expect(flash[:notice]).to eq( I18n.t("flash.successfully_destroyed"))
+        end
+    end
     
 end

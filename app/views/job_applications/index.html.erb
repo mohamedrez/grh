@@ -6,7 +6,11 @@
       <h1><%= t("views.job_applications.job_applications_list") %></h1>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <%= link_to t("views.job_applications.create_job_application"), new_job_application_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+      <% if params[:job_id].present? %>
+        <%= link_to t("views.job_applications.create_job_application"), new_job_job_application_path(job_id: params[:job_id]), class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+      <% else %>
+        <%= link_to t("views.job_applications.create_job_application"), new_job_application_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+      <% end %>
     </div>
 </div>
 
@@ -30,16 +34,7 @@
         </table>
       </div>
     </div>
-    <div class="flex items-center justify-between border-gray-300 bg-white p-4 sm:px-6">
-        <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
-        <div class="text-sm">
-        <%= page_entries_info @job_applications %>
-          </div>
-          <div>
-            <%= paginate @job_applications%>
-          </div>
-        </div>
-      </div>
+    <%= render partial: "paginate", locals: {job_applications: @job_applications} %>
   </div>
 </div>
 

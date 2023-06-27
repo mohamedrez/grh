@@ -41,6 +41,13 @@ RSpec.describe "JobApplications", type: :request do
     end
   end
 
+  describe "GET /show" do
+    it "renders a successful response" do
+        get job_application_path(id: job_application.id)
+        expect(response).to be_successful
+    end
+  end
+
   describe "GET /new" do
     it "renders a successful response" do
       get new_job_application_url
@@ -70,12 +77,13 @@ RSpec.describe "JobApplications", type: :request do
         }.to change(JobApplication, :count).by(1)
       end
 
-      before do
+      it "sets a success flash message" do
         post job_applications_url, params: {job_application: valid_attributes}
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_created"))
       end
 
-      it "sets a success flash message" do
-        expect(flash[:notice]).to eq(I18n.t("flash.successfully_created"))
+      it "Create a new Job Application from Job" do
+        post "/jobs/#{job.id}/job_applications", params: {job_application: valid_attributes}
       end
     end
 
@@ -169,18 +177,29 @@ RSpec.describe "JobApplications", type: :request do
         expect(response).to redirect_to(job_application_path(job_application))
       end
     end
+
+    context "when job_id is present" do
+      it "redirects to job_job_application_path" do
+        patch "/jobs/#{job.id}/job_applications/#{job_application.id}/update_aasm_state", params: {aasm_state: "advanced_to_phone"}
+        expect(response).to redirect_to(job_job_application_path(job_id: job_application.id, id: job.id))
+      end
+    end
   end
 
   describe 'DELETE /destroy' do
-    before do
-      delete job_application_path(id: job_application.id)
-    end
     
     it 'destroy the job application' do
+      delete job_application_path(id: job_application.id)
+      expect(JobApplication.count).to eq(0)
+    end
+
+    it 'destroy the job application from job' do
+      delete "/jobs/#{job.id}/job_applications/#{job_application.id}"
       expect(JobApplication.count).to eq(0)
     end
 
     it 'sets the flash notice' do
+      delete job_application_path(id: job_application.id)
       expect(flash[:notice]).to eq( I18n.t("flash.successfully_destroyed"))
     end
   end
