@@ -16,9 +16,9 @@
       <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
         <div>
           <p class="font-medium text-lg text-gray-900"><%= experience.job_title&.humanize %></p>
-          <p class="font-normal text-base text-gray-900"><%= experience.company_name&.humanize %> . <%= experience.employment_type&.humanize %></p>
+          <p class="font-normal text-base text-gray-900"><%= experience.company_name&.humanize %> . <%= Experience.human_enum_name(:employment_type, experience.employment_type) %></p>
           <p class="font-normal text-base text-gray-500"><%= experience.start_date %> - <%= experience.end_date %></p>
-          <p class="font-normal text-base text-gray-500"><%= experience.city&.humanize %>, <%= experience.country&.humanize %></p>
+          <p class="font-normal text-base text-gray-500"><%= experience.city&.humanize %>, <%= Address.human_enum_name(:country, experience.country) %></p>
           <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 mt-3">
             <div class="flex justify-between gap-x-4">
               <p class="font-normal text-base text-gray-900"><%= t("attributes.experience.work_description") %></p>

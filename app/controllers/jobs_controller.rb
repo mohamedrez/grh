@@ -9,6 +9,7 @@ class JobsController < ApplicationController
   end
 
   def show
+    add_breadcrumb(Job.find(@job.id).title, job_path(@job.id))
   end
 
   def new
@@ -41,6 +42,12 @@ class JobsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  private
+
+  def set_breadcrumbs
+    add_breadcrumb("Job", jobs_path)
   end
 
   def job_params

@@ -86,8 +86,21 @@ class Goal < ApplicationRecord
     end
   end
 
+  def self.status_description(status)
+    case status
+    when "not_achieved"
+      I18n.t("views.goals.goal_not_achieved")
+    when "partially_achieved"
+      I18n.t("views.goals.goal_partially_achieved")
+    when "completed"
+      I18n.t("views.goals.goal_completed")
+    when "overpassed"
+      I18n.t("views.goals.goal_overpassed")
+    end
+  end
+
   def self.summary_stats(manager)
-    goals = Goal.joins(:owner).where(users: {manager_id: manager.id})
+    goals = Goal.joins(:owner).where(users: {manager_id: manager.id}).where(archived: false)
     total_goals = goals.count
     stats = goals.group(:status).count
 
@@ -97,6 +110,16 @@ class Goal < ApplicationRecord
     overpassed_percentage = (stats["overpassed"].to_f / total_goals) * 100
     no_feedback_percentage = (stats[nil].to_f / total_goals) * 100
 
-    {"no_feedback" => no_feedback_percentage.round(2), "not_achieved" => not_achieved_percentage.round(2), "partially_achieved" => partially_achieved_percentage.round(2), "completed" => completed_percentage.round(2), "overpassed" => overpassed_percentage.round(2)}
+    percentages = {
+      "no_feedback" => no_feedback_percentage.round(2),
+      "not_achieved" => not_achieved_percentage.round(2),
+      "partially_achieved" => partially_achieved_percentage.round(2),
+      "completed" => completed_percentage.round(2),
+      "overpassed" => overpassed_percentage.round(2)
+    }
+
+    percentages.each do |key, value|
+      percentages[key] = 0.0 if value.nan?
+    end
   end
 end

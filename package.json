@@ -5,10 +5,10 @@
     "@fullcalendar/core": "^6.1.8",
     "@fullcalendar/daygrid": "^6.1.5",
     "@fullcalendar/list": "^6.1.8",
-    "@fullcalendar/timegrid": "^6.1.5",
+    "@fullcalendar/timegrid": "^6.1.8",
     "@hotwired/stimulus": "^3.2.1",
     "@hotwired/turbo-rails": "^7.3.0",
-    "@rails/actiontext": "^7.0.4-3",
+    "@rails/actiontext": "^7.0.5",
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
     "autoprefixer": "^10.4.14",
@@ -20,7 +20,7 @@
     "stimulus-rails-autosave": "^4.1.1",
     "tailwindcss": "^3.3.2",
     "tailwindcss-stimulus-components": "^3.0.4",
-    "trix": "^2.0.4"
+    "trix": "^2.0.5"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets",

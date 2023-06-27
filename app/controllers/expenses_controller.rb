@@ -9,8 +9,15 @@ class ExpensesController < ApplicationController
       @user = User.find(user_id)
       ids = UserRequest.where(user_id: user_id, requestable_type: "Expense").pluck(:requestable_id)
       @expenses = Expense.where(id: ids)
+    elsif request.path.include?("team")
+      ids = UserRequest.joins(:user)
+        .where(users: {manager_id: current_user.id})
+        .where(requestable_type: "Expense")
+        .pluck(:requestable_id)
+
+      @expenses = Expense.where(id: ids)
     else
-      @expenses = authorized_scope(Expense.all)
+      @expenses = Expense.all
     end
   end
 
@@ -90,9 +97,11 @@ class ExpensesController < ApplicationController
   def set_breadcrumbs
     if params[:user_id]
       @user = User.find(params[:user_id])
-      add_breadcrumb("My Requests", user_user_requests_path(@user))
+      add_breadcrumb(t("views.layouts.main.my_requests"), user_time_requests_path(@user))
+    elsif request.path.include?("team")
+      add_breadcrumb(t("views.layouts.main.team_requests"), team_time_requests_path)
     else
-      add_breadcrumb(t("views.layouts.main.requests"), user_requests_path)
+      add_breadcrumb(t("views.layouts.main.requests"), time_requests_path)
     end
   end
 

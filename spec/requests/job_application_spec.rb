@@ -34,6 +34,18 @@ RSpec.describe "JobApplications", type: :request do
       get job_applications_path
       expect(response).to be_successful
     end
+
+    it "redirects to job applications" do
+      get job_job_applications_path(job_id: job.id)
+      expect(response).to be_successful
+    end
+  end
+
+  describe "GET /show" do
+    it "renders a successful response" do
+        get job_application_path(id: job_application.id)
+        expect(response).to be_successful
+    end
   end
 
   describe "GET /new" do
@@ -71,6 +83,11 @@ RSpec.describe "JobApplications", type: :request do
 
       it "sets a success flash message" do
         expect(flash[:notice]).to eq(I18n.t("flash.successfully_created"))
+      end
+      
+
+      it "Create a new Job Application from Job" do
+        post "/jobs/#{job.id}/job_applications", params: {job_application: valid_attributes}
       end
     end
 
@@ -162,6 +179,13 @@ RSpec.describe "JobApplications", type: :request do
         job_application.reload
         expect(job_application.aasm_state).to eq('disqualified')
         expect(response).to redirect_to(job_application_path(job_application))
+      end
+    end
+
+    context "when job_id is present" do
+      it "redirects to job_job_application_path" do
+        patch "/jobs/#{job.id}/job_applications/#{job_application.id}/update_aasm_state", params: {aasm_state: "advanced_to_phone"}
+        expect(response).to redirect_to(job_job_application_path(job_id: job_application.id, id: job.id))
       end
     end
   end

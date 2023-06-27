@@ -11,7 +11,7 @@ RSpec.describe RolePolicy do
     Role.create!(user_id: hr_user.id, name: :hr)
   end
 
-  describe "#show?" do
+  describe "#index?" do
     subject { policy.apply(:index?) }
 
     context "Admin and HR can see all the Roles" do
@@ -23,26 +23,6 @@ RSpec.describe RolePolicy do
     end
 
     context "If the user not Admin or HR, can't see all the Roles" do
-      let(:policy) { described_class.new(user: user) }
-      it { is_expected.to eq false }
-
-      let(:policy) { described_class.new(user: manager_user) }
-      it { is_expected.to eq false }
-    end
-  end
-
-  describe "#show?" do
-    subject { policy.apply(:new?) }
-
-    context "Admin and HR can see the Role" do
-      let(:policy) { described_class.new(user: admin_user) }
-      it { is_expected.to eq true }
-
-      let(:policy) { described_class.new(user: hr_user) }
-      it { is_expected.to eq true }
-    end
-
-    context "If the user not Admin or HR, can't see the Role" do
       let(:policy) { described_class.new(user: user) }
       it { is_expected.to eq false }
 

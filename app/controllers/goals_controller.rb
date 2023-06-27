@@ -10,13 +10,20 @@ class GoalsController < ApplicationController
 
     @goals = if user_id
       @user = User.find(user_id)
+      @url = user_goals_path(@user)
       @q.result(distinct: true).where(owner_id: user_id, archived: false)
+    elsif request.path.include?("team")
+      @url = team_goals_path
+      @q.result(distinct: true).where(archived: false).joins(:owner).where(users: {manager_id: current_user.id})
     else
-      authorized_scope(@q.result(distinct: true).where(archived: false))
+      @url = goals_path
+      @q.result(distinct: true).where(archived: false)
     end
   end
 
   def show
+    authorize! @goal
+
     @end_goal_errors = params[:end_goal_errors] || {}
     @end_goal_description = params[:end_goal_description]
     @status = params[:status]
@@ -25,14 +32,20 @@ class GoalsController < ApplicationController
   end
 
   def new
+    authorize!
+
     @goal = Goal.new
   end
 
   def edit
+    authorize! @goal
+
     @from_view = params[:from_view]
   end
 
   def create
+    authorize!
+
     @goal = Goal.new(goal_params)
     @goal.author_id = current_user.id
 
@@ -50,6 +63,8 @@ class GoalsController < ApplicationController
   end
 
   def update
+    authorize! @goal
+
     @from_view = params[:from_view]
     if @goal.update(goal_params)
       flash.now[:notice] = t("flash.successfully_updated")
@@ -89,6 +104,8 @@ class GoalsController < ApplicationController
   end
 
   def archive
+    authorize! @goal
+
     @goal.update!(archived: true)
 
     @from_view = params[:from_view]
@@ -96,6 +113,7 @@ class GoalsController < ApplicationController
       flash.now[:notice] = t("flash.successfully_archived")
       render turbo_stream: [
         turbo_stream.remove(@goal),
+        turbo_stream.replace("summary-stats", partial: "goals/summary_stats"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
     elsif @from_view == "show"
@@ -129,7 +147,14 @@ class GoalsController < ApplicationController
   end
 
   def set_breadcrumbs
-    add_breadcrumb(t("views.goals.title_goals"), goals_path)
+    if params[:user_id]
+      @user = User.find(params[:user_id])
+      add_breadcrumb(t("views.layouts.main.my_goals"), user_goals_path(@user))
+    elsif request.path.include?("team")
+      add_breadcrumb(t("views.layouts.main.team_goals"), team_goals_path)
+    else
+      add_breadcrumb(t("views.layouts.main.goals"), goals_path)
+    end
   end
 
   def set_users_select
@@ -139,6 +164,6 @@ class GoalsController < ApplicationController
   end
 
   def goal_params
-    params.require(:goal).permit(:title, :owner_id, :status, :start_date, :due_date, :description, :level)
+    params.require(:goal).permit(:title, :owner_id, :status, :start_date, :due_date, :description, :level, :ceiling, :target, :floor)
   end
 end

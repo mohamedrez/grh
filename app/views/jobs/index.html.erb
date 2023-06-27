@@ -1,3 +1,4 @@
+
 <div class="m-6 px-4 sm:px-6 lg:px-8">
   <div class="sm:flex sm:items-center flex justify-center flex-col">
     <div class="m-6 sm:flex-auto">
@@ -14,6 +15,7 @@
           <%= t("views.jobs.new") %>
         <% end %>
       </div>
+
     </div>
   <% end %>
   <div class="sm:flex sm:items-center">
@@ -21,52 +23,50 @@
       <p class="mt-2 text-sm text-gray-700"><%= t("views.jobs.jobs_list") %></p>
     </div>
   </div>
-  <div class="mt-4 flow-root">
+  <div class="mt-8 flow-root">
     <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
       <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
-        <table class="min-w-full divide-y divide-gray-300">
-          <thead>
-            <tr>
-              <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"><%= t("attributes.job.title") %></th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.job.location") %></th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.job.status") %></th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.job.min_salary") %></th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.job.max_salary") %></th>
-              <!-- For future use: applications and interviews columns
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.job.applied") %></th>
-              <th scope="col" class="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"><%= t("attributes.job.interviewing") %></th>
-              -->
-              <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0"></th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-gray-200 bg-white">
-            <% @jobs.each do |job| %>
+        <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 sm:rounded-lg">
+          <table class="min-w-full divide-y divide-gray-300">
+            <thead class="bg-gray-50">
               <tr>
-                <td class="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
-                  <div class="flex items-center">
-                    <div class="ml-4">
-                      <%= link_to job_path(job) do %>
-                      <div class="font-medium font-semibold text-indigo-500"><%= job.title %></div>
-                      <% end%>
-                      <div class="mt-1 text-gray-500"><%= Job.human_enum_name(:job_type, job.job_type) %></div>
-                    </div>
-                  </div>
-                </td>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= job.location %></td>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= Job.human_enum_name(:status, job.status) %></td>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= job.min_salary %></td>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= job.max_salary %></td>
-                <!-- For future use: applications and interviews columns
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= job.application %></td>
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= job.interview %></td>
-                -->
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"><%= t("attributes.job.title") %></th>
+                <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job.location") %></th>
+                <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job.status") %></th>
+                <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job.min_salary") %></th>
+                <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job.max_salary") %></th>
+                <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job.applied") %></th>
+                <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job.interviewing") %></th>
+                <th scope="col" class="relative py-3.5 pl-3 pr-4 sm:pr-0"></th>
               </tr>
-            <% end %>
-          </tbody>
-        </table>
+            </thead>
+            <tbody class="divide-y divide-gray-200 bg-white">
+              <% @jobs.each do |job| %>
+                <tr>
+                  <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6">
+                    <div class="flex items-center">
+                      <div>
+                        <%= link_to job_path(job) do %>
+                        <div class="font-medium font-semibold text-indigo-500"><%= job.title %></div>
+                        <% end%>
+                        <div class="mt-1 text-gray-500"><%= Job.human_enum_name(:job_type, job.job_type) %></div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500"><%= job.location %></td>
+                  <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500"><%= Job.human_enum_name(:status, job.status) %></td>
+                  <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500"><%= job.min_salary %></td>
+                  <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500"><%= job.max_salary %></td>
+                  <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500"><%= job.job_applications.count %></td>
+                  <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500"><%= job.job_applications.where(aasm_state: "advanced_interview").count %></td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
       </div>
 
-      <div class="flex items-center justify-between border-t border-gray-300 bg-white p-4 sm:px-6">
+      <div class="flex items-center justify-between border-gray-300 bg-white p-4 sm:px-6">
         <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
         <div class="text-sm">
         <%= page_entries_info @jobs %>

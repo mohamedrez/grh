@@ -1,46 +1,70 @@
 require 'rails_helper'
 
 RSpec.describe MissionOrderPolicy do
-  describe "relation scope" do
-    let(:admin_user) { create(:user) }
-    let(:hr_user) { create(:user) }
-    let(:manager_user) { create(:user) }
-    let(:user) { create(:user, manager_id: manager_user.id) }
-    let(:other_user) { create(:user) }
+  let(:admin_user) { create(:user) }
+  let(:hr_user) { create(:user) }
+  let(:manager_user) { create(:user) }
+  let(:user) { create(:user, manager_id: manager_user.id) }
+  let(:other_user) { create(:user) }
 
-    let(:site) { create(:site, id: 1) }
-    let(:target) { MissionOrder.all }
+  let(:site) { create(:site, id: 1) }
+  let(:record) { create(:mission_order, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report") }
 
-    before do
-      Role.create!(user_id: admin_user.id, name: :admin)
-      Role.create!(user_id: hr_user.id, name: :hr)
+  before do
+    Role.create!(user_id: admin_user.id, name: :admin)
+    Role.create!(user_id: hr_user.id, name: :hr)
+    Role.create!(user_id: manager_user.id, name: :manager)
+  end
 
-      mission_orders = [
-        create(:mission_order, id: 1, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report"),
-        create(:mission_order, id: 2, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report"),
-        create(:mission_order, id: 3, user_id: other_user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report")
-      ]
-    end    
+  describe "#show?" do
+    subject { policy.apply(:show?) }
 
-    context "Admin will get all the MissionOrders" do
-      let(:policy) { described_class.new(user: admin_user, target: target) }
-      subject { policy.apply_scope(target, type: :active_record_relation).count }
+    context "Admin and HR can see the mission_order" do
+      let(:policy) { described_class.new(record, user: admin_user) }
+      it { is_expected.to eq true }
 
-      it { is_expected.to eq(3) }
+      let(:policy) { described_class.new(record, user: hr_user) }
+      it { is_expected.to eq true }
     end
 
-    context "HR will get all the MissionOrders" do
-      let(:policy) { described_class.new(user: hr_user, target: target) }
-      subject { policy.apply_scope(target, type: :active_record_relation).count }
-
-      it { is_expected.to eq(3) }
+    context "when user is the same as the record, can see the mission_order" do
+      let(:policy) { described_class.new(record, user: user) }
+      it { is_expected.to eq true }
     end
 
-    context "Manager will gets MissionOrders of his team" do
-      let(:policy) { described_class.new(user: manager_user, target: target) }
-      subject { policy.apply_scope(target, type: :active_record_relation).count }
+    context "when user is the manager of the record, can see the mission_order" do
+      let(:policy) { described_class.new(record, user: manager_user) }
+      it { is_expected.to eq true }
+    end
 
-      it { is_expected.to eq(2) }
+    context "when user is neither HR, admin, nor related to the record, can't see the mission_order" do
+      let(:policy) { described_class.new(record, user: other_user) }
+      it { is_expected.to eq false }
+    end
+  end
+
+  describe "#approve?" do
+    subject { policy.apply(:approve?) }
+
+    context "Admin and HR can approve the mission_order" do
+      let(:policy) { described_class.new(record, user: admin_user) }
+      it { is_expected.to eq true }
+  
+      let(:policy) { described_class.new(record, user: hr_user) }
+      it { is_expected.to eq true }
+    end
+
+    context "when user is the manager of the record, can approve the mission_order" do
+      let(:policy) { described_class.new(record, user: manager_user) }
+      it { is_expected.to eq true }
+    end
+
+    context "when user is neither HR, admin, nor the manager of the mission_order user, can't see the mission_order" do
+      let(:policy) { described_class.new(record, user: other_user) }
+      it { is_expected.to eq false }
+
+      let(:policy) { described_class.new(record, user: other_user) }
+      it { is_expected.to eq false }
     end
   end
 end

@@ -21,7 +21,7 @@ RSpec.describe "Users", type: :request do
       cin: "ZWE452GH",
       service: :financial,
       joining_date: Date.new(2023, 4, 14),
-      contract: :CDI,
+      contract: :cdi,
       category: :cadre,
       cnss_number: "4521879564",
       employee_number: "3397701296",
@@ -56,17 +56,15 @@ RSpec.describe "Users", type: :request do
   end
 
   describe '#index' do
-    
-
     before do
       sign_in manager
       Role.create!(user_id: manager.id, name: :manager)
       [create(:user, first_name: "name101"), create(:user, first_name: "name1", manager: manager),  create(:user, first_name: "name2", manager: manager)]
     end
 
-    context 'when the request includes ":manager_id"' do
-      xit 'returns the users managed by the current user' do
-        get users_path(manager_id: manager.id)
+    context 'when the request includes "team"' do
+      it 'returns the users managed by the current user' do
+        get team_users_path
 
         expect(response).to have_http_status(:success)
         expect(manager.has_role?(:manager)).to eq(true)
@@ -79,8 +77,8 @@ RSpec.describe "Users", type: :request do
       end
     end
 
-    context 'when the request does not include ":manager_id"' do
-      xit 'returns all users' do
+    context 'when the request does not include "team"' do
+      it 'returns all users' do
         get users_path
 
         expect(response).to have_http_status(:success)
@@ -179,7 +177,7 @@ RSpec.describe "Users", type: :request do
         expect(user.service).to eq("financial")
         expect(user.job_title).to eq("sale")
         expect(user.joining_date).to eq(Date.new(2023, 4, 14))
-        expect(user.contract).to eq("CDI")
+        expect(user.contract).to eq("cdi")
         expect(user.category).to eq("cadre")
         expect(user.cnss_number).to eq("4521879564")
         expect(user.employee_number).to eq("3397701296")

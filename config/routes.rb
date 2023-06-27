@@ -12,7 +12,6 @@ Rails.application.routes.draw do
   root to: "dashboard#index"
 
   authenticate :user, ->(user) { user.admin? } do
-    mount Motor::Admin => "/motor_admin"
     mount Sidekiq::Web => "/sidekiq"
   end
 
@@ -34,6 +33,15 @@ Rails.application.routes.draw do
     resources :expenses, only: [:index]
     resources :time_requests, only: [:index]
     resources :mission_orders, only: [:index]
+
+    scope :team, as: "team" do
+      resources :users, only: [:index]
+      resources :goals, only: [:index]
+      resources :user_requests, only: [:index]
+      resources :expenses, only: [:index]
+      resources :time_requests, only: [:index]
+      resources :mission_orders, only: [:index]
+    end
 
     devise_for :users, path: "/auth"
 
@@ -61,7 +69,10 @@ Rails.application.routes.draw do
 
     get "user_notifications", to: "user_notifications#index"
     get "user_notifications/notification_bell", to: "user_notifications#notification_bell"
-    resources :jobs
+    resources :jobs do
+      resources :job_applications
+      patch "/job_applications/:id/update_aasm_state", to: "job_applications#update_aasm_state", as: "update_aasm_state_job_application"
+    end
     resources :job_applications do
       delete :delete_resume, on: :member
     end

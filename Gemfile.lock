@@ -75,18 +75,13 @@ GEM
     annotate (3.2.0)
       activerecord (>= 3.2, < 8.0)
       rake (>= 10.4, < 14.0)
-    ar_lazy_preload (1.1.2)
-      rails (>= 5.2)
     ast (2.4.2)
-    audited (5.3.2)
-      activerecord (>= 5.0, < 7.1)
     bcrypt (3.1.18)
     bindex (0.8.1)
     bootsnap (1.16.0)
       msgpack (~> 1.2)
-    brakeman (5.4.1)
+    brakeman (6.0.0)
     builder (3.2.4)
-    cancancan (3.4.0)
     capybara (3.39.1)
       addressable
       matrix
@@ -104,6 +99,7 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.1.2)
       railties (>= 6.0.0)
+    csv (3.2.6)
     database_cleaner (2.0.2)
       database_cleaner-active_record (>= 2, < 3)
     database_cleaner-active_record (2.1.0)
@@ -124,15 +120,11 @@ GEM
     docile (1.4.0)
     dockerfile-rails (1.4.2)
       rails
-    domain_name (0.5.20190701)
-      unf (>= 0.0.5, < 1.0.0)
     dotenv (2.8.1)
     dotenv-rails (2.8.1)
       dotenv (= 2.8.1)
       railties (>= 3.2)
     erubi (1.12.0)
-    et-orbi (1.2.7)
-      tzinfo
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -141,22 +133,8 @@ GEM
     faker (3.2.0)
       i18n (>= 1.8.11, < 2)
     ffi (1.15.5)
-    ffi-compiler (1.0.1)
-      ffi (>= 1.0.0)
-      rake
-    fugit (1.8.1)
-      et-orbi (~> 1, >= 1.2.7)
-      raabro (~> 1.4)
     globalid (1.1.0)
       activesupport (>= 5.0)
-    http (5.1.1)
-      addressable (~> 2.8)
-      http-cookie (~> 1.0)
-      http-form_data (~> 2.2)
-      llhttp-ffi (~> 0.4.0)
-    http-cookie (1.0.5)
-      domain_name (~> 0.5)
-    http-form_data (2.3.0)
     i18n (1.14.1)
       concurrent-ruby (~> 1.0)
     image_processing (1.12.2)
@@ -186,9 +164,6 @@ GEM
     kaminari-core (1.2.2)
     language_server-protocol (3.17.0.3)
     lint_roller (1.0.0)
-    llhttp-ffi (0.4.0)
-      ffi-compiler (~> 1.0)
-      rake (~> 13.0)
     lograge (0.12.0)
       actionpack (>= 4)
       activesupport (>= 4)
@@ -207,13 +182,7 @@ GEM
     method_source (1.0.0)
     mini_magick (4.11.0)
     mini_mime (1.1.2)
-    minitest (5.18.0)
-    motor-admin (0.4.7)
-      ar_lazy_preload (~> 1.0)
-      audited (~> 5.0)
-      cancancan (~> 3.0)
-      fugit (~> 1.0)
-      rails (>= 5.2)
+    minitest (5.18.1)
     msgpack (1.6.0)
     mysql2 (0.5.5)
     net-imap (0.3.4)
@@ -232,9 +201,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.15.2-x86_64-linux)
       racc (~> 1.4)
-    noticed (1.6.2)
-      http (>= 4.0.0)
-      rails (>= 5.2.0)
     orm_adapter (0.5.0)
     overcommit (0.60.0)
       childprocess (>= 0.6.3, < 5)
@@ -246,8 +212,7 @@ GEM
     public_suffix (5.0.1)
     puma (6.1.0)
       nio4r (~> 2.0)
-    raabro (1.4.0)
-    racc (1.7.0)
+    racc (1.7.1)
     rack (2.2.7)
     rack-protection (3.0.6)
       rack
@@ -299,22 +264,22 @@ GEM
       actionpack (>= 5.2)
       railties (>= 5.2)
     rexml (3.2.5)
-    rspec-core (3.12.0)
+    rspec-core (3.12.2)
       rspec-support (~> 3.12.0)
-    rspec-expectations (3.12.2)
+    rspec-expectations (3.12.3)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-mocks (3.12.3)
+    rspec-mocks (3.12.5)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-rails (6.0.1)
+    rspec-rails (6.0.3)
       actionpack (>= 6.1)
       activesupport (>= 6.1)
       railties (>= 6.1)
-      rspec-core (~> 3.11)
-      rspec-expectations (~> 3.11)
-      rspec-mocks (~> 3.11)
-      rspec-support (~> 3.11)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
     rspec-support (3.12.0)
     rspec_junit_formatter (0.6.0)
       rspec-core (>= 2, < 4, != 2.12.0)
@@ -403,9 +368,6 @@ GEM
       railties (>= 6.0.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.8.2)
     unicode-display_width (2.4.2)
     warden (1.2.9)
       rack (>= 2.0.9)
@@ -422,7 +384,7 @@ GEM
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    wisper (2.0.0)
+    wisper (2.0.1)
     wisper-activerecord (1.0.0)
       activerecord (>= 3.0.0)
       wisper (~> 2.0)
@@ -444,6 +406,7 @@ DEPENDENCIES
   capybara
   codecov
   cssbundling-rails
+  csv
   database_cleaner
   debug
   devise
@@ -456,9 +419,7 @@ DEPENDENCIES
   jsbundling-rails
   kaminari (~> 1.2)
   lograge
-  motor-admin
   mysql2 (~> 0.5)
-  noticed (~> 1.6)
   overcommit
   puma (~> 6.1)
   rack-protection
@@ -483,7 +444,7 @@ DEPENDENCIES
   tzinfo-data
   web-console
   webdrivers
-  wisper (= 2.0.0)
+  wisper (= 2.0.1)
   wisper-activerecord
 
 RUBY VERSION

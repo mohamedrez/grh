@@ -6,6 +6,10 @@
           <%= link_to t("views.submenu.my_time_off_requests"), user_time_requests_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
           <%= link_to t("views.submenu.my_mission_orders"), user_mission_orders_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
           <%= link_to t("views.submenu.my_expenses"), user_expenses_path(user), data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+        <% elsif request.path.include?("team") %>
+          <%= link_to t("views.submenu.team_time_off_requests"), team_time_requests_path, data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+          <%= link_to t("views.submenu.team_mission_orders"), team_mission_orders_path, data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
+          <%= link_to t("views.submenu.team_expenses"), team_expenses_path, data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
         <% else %>
           <%= link_to t("views.time_requests.title_time_request"), time_requests_path, data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>
           <%= link_to t("views.mission_orders.title_mission_orders"), mission_orders_path, data: { turbo_frame: 'tabbed-content', turbo_action: 'advance'} %>

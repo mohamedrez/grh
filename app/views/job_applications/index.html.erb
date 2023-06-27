@@ -1,9 +1,16 @@
+<% if params[:job_id].present? %>
+  <%= render partial: 'shared/jobs_submenu', locals: {job_id: params[:job_id]} %>
+<% end %>
 <div id="" class="sm:flex sm:items-center">
     <div class="sm:flex-auto">
       <h1><%= t("views.job_applications.job_applications_list") %></h1>
     </div>
     <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
-      <%= link_to t("views.job_applications.create_job_application"), new_job_application_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+      <% if params[:job_id].present? %>
+        <%= link_to t("views.job_applications.create_job_application"), new_job_job_application_path(job_id: params[:job_id]), class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+      <% else %>
+        <%= link_to t("views.job_applications.create_job_application"), new_job_application_path, class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" %>
+      <% end %>
     </div>
 </div>
 
@@ -14,7 +21,7 @@
         <table class="min-w-full divide-y divide-gray-300">
           <thead class="bg-gray-50">
             <tr>
-                <th scope="col" class="px-3 py-3.5 text-center text-left text-sm font-semibold text-gray-900"><%= t("attributes.job_application.first_name") %></th>
+                <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"><%= t("attributes.job_application.first_name") %></th>
                 <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job_application.first_name") %></th>
                 <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job_application.email") %></th>
                 <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job_application.phone") %></th>
@@ -27,6 +34,7 @@
         </table>
       </div>
     </div>
+    <%= render partial: "paginate", locals: {job_applications: @job_applications} %>
   </div>
 </div>
 

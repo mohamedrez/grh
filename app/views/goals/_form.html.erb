@@ -9,7 +9,7 @@
         </div>
       </div>
 
-      <div class="sm:col-span-full">
+      <div class="sm:col-span-3">
         <%= form.label :owner_id, t("attributes.goal.owner"), class: "block" %>
         <div class="mt-2">
           <%= form.select :owner_id, options_for_select(@users_select, @owner&.id) %>
@@ -17,7 +17,7 @@
         </div>
       </div>
 
-      <div class="sm:col-span-full">
+      <div class="sm:col-span-3">
         <%= form.label :level, t("attributes.goal.level"), class: "block" %>
         <div class="mt-2">
           <%= form.select :level, Goal.levels.keys.collect { |level| [Goal.human_enum_name(:level, level), level] } %>
@@ -25,19 +25,43 @@
         </div>
       </div>
 
-      <div class="sm:col-span-full">
+      <div class="sm:col-span-3">
         <%= form.label :start_date, t("attributes.goal.start_date"), class: "block" %>
         <div class="mt-2">
-          <%= form.date_field :start_date, class: "w-full" %>
+          <%= form.date_field :start_date, class: "w-full", value: Time.zone.today.beginning_of_year.to_date %>
           <%= inline_error_for(:start_date, goal).html_safe %>
         </div>
       </div>
 
-      <div class="sm:col-span-full">
+      <div class="sm:col-span-3">
         <%= form.label :due_date, t("attributes.goal.due_date"), class: "block" %>
         <div class="mt-2">
-          <%= form.date_field :due_date, class: "w-full" %>
+          <%= form.date_field :due_date, class: "w-full", value: Time.zone.today.end_of_year.to_date %>
           <%= inline_error_for(:due_date, goal).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :ceiling, t("attributes.goal.ceiling"), class: "block" %>
+        <div class="mt-2">
+          <%= form.text_field :ceiling, class: "w-full" %>
+          <%= inline_error_for(:ceiling, goal).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :target, t("attributes.goal.target"), class: "block" %>
+        <div class="mt-2">
+          <%= form.text_field :target, class: "w-full" %>
+          <%= inline_error_for(:target, goal).html_safe %>
+        </div>
+      </div>
+
+      <div class="sm:col-span-full">
+        <%= form.label :floor, t("attributes.goal.floor"), class: "block" %>
+        <div class="mt-2">
+          <%= form.text_field :floor, class: "w-full" %>
+          <%= inline_error_for(:floor, goal).html_safe %>
         </div>
       </div>
 
