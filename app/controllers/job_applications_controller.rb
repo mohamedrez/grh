@@ -1,6 +1,6 @@
 class JobApplicationsController < ApplicationController
   before_action :set_job_application, only: %i[infos show edit update destroy delete_resume update_aasm_state]
-  before_action :set_breadcrumbs, only: :index
+  before_action :set_breadcrumbs, only: %i[index show]
 
   def index
     @job_applications = if params[:job_id]
@@ -13,6 +13,8 @@ class JobApplicationsController < ApplicationController
   def show
     @user = current_user
     @aasm_logs = AasmLog.where(aasm_logable: @job_application)
+
+    add_breadcrumb(@job_application.first_name)
   end
 
   def infos
@@ -21,6 +23,7 @@ class JobApplicationsController < ApplicationController
   def new
     @job_application = JobApplication.new
     @jobs = Job.all
+    @job_id = params[:job_id]
   end
 
   def edit
@@ -31,7 +34,11 @@ class JobApplicationsController < ApplicationController
 
     if @job_application.save
       flash.now[:notice] = t("flash.successfully_created")
-      redirect_to job_applications_path
+      if params[:job_id].present?
+        redirect_to job_job_applications_path(params[:job_id])
+      else
+        redirect_to job_applications_path
+      end
     else
       render :new, status: :unprocessable_entity
     end
@@ -40,7 +47,11 @@ class JobApplicationsController < ApplicationController
   def update
     if @job_application.update(job_application_params)
       flash.now[:notice] = t("flash.successfully_updated")
-      redirect_to job_applications_path
+      if params[:job_id].present?
+        redirect_to job_job_applications_path(params[:job_id])
+      else
+        redirect_to job_applications_path
+      end
     else
       render :edit, status: :unprocessable_entity
     end
@@ -48,8 +59,12 @@ class JobApplicationsController < ApplicationController
 
   def destroy
     @job_application.destroy
+
     flash.now[:notice] = t("flash.successfully_destroyed")
-    redirect_to job_applications_path
+    render turbo_stream: [
+      turbo_stream.remove(@job_application),
+      turbo_stream.replace("notification_alert", partial: "layouts/alert")
+    ]
   end
 
   def update_aasm_state
