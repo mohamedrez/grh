@@ -42,10 +42,14 @@ class ReviewsController < ApplicationController
   def destroy
     @review.destroy
     flash.now[:notice] = t("flash.successfully_destroyed")
-    render turbo_stream: [
-      turbo_stream.remove(@review),
-      turbo_stream.replace("notification_alert", partial: "layouts/alert")
-    ]
+    if params[:from] == "index_view"
+      render turbo_stream: [
+        turbo_stream.remove(@review),
+        turbo_stream.replace("notification_alert", partial: "layouts/alert")
+      ]
+    elsif params[:from] == "show_view"
+      redirect_to reviews_path
+    end
   end
 
   private
