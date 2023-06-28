@@ -17,4 +17,3 @@ import TomSelect from "tom-select";
 //   getUserNavBarNotification();
 // }
 
-new TomSelect('#user_job_title',{});

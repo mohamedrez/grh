@@ -30,3 +30,6 @@ application.register("search", SearchController)
 
 import SidebarMenuController from "./sidebar_menu_controller"
 application.register("sidebar-menu", SidebarMenuController)
+
+import TomSelectController from "./tom_select_controller"
+application.register("tom-select", TomSelectController)

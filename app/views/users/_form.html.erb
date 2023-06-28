@@ -99,7 +99,7 @@
         <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6 md:col-span-2">
           <div class="sm:col-span-3">
             <%= form.label :job_title, t("attributes.user.job_title") %>
-            <div class="mt-2">
+            <div class="mt-2" data-controller="tom-select">
               <%= form.select :job_title, options_for_select(User.job_titles.keys, @user.job_title), include_blank: true %>
               <%= inline_error_for(:job_title, @user).html_safe %>
             </div>
