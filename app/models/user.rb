@@ -60,7 +60,7 @@ class User < ApplicationRecord
   enum gender: {male: 0, female: 1}
   enum marital_status: {single: 0, married: 1, divorced: 2, other_marital_status: 3}
   enum service: {financial: 0, healthcare: 1, information_technology: 2, marketing_and_advertising: 3, other_service: 4}, _prefix: :service
-  enum job_title: {operations: 0, finance: 1, human_resource: 2, marketing: 3, sale: 4, information_technology: 5, research_and_development: 6, administration: 7, other_job_title: 8}, _prefix: :job_title
+  enum job_title: UsersHelper.job_titles
   enum contract: {cdd: 0, cdi: 1, intern: 2, other_contract: 3}
   enum category: {cadre: 0, non_cadre: 1}
 
