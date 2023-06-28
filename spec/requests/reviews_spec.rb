@@ -180,23 +180,43 @@ RSpec.describe "Reviews", type: :request do
   end
 
   describe "DELETE /destroy" do
-    before do
-      delete review_path(id: review.id)
+    context "from index_view" do
+      before do
+        delete review_path(id: review.id, from: "index_view")
+      end
+
+      it "destroys the expense" do
+        expect(Review.count).to eq(0)
+      end
+
+      it 'sets the flash notice' do
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
+      end
+
+      it "renders the Turbo Stream response" do
+        expect(response).to have_http_status(:success)
+        expect(response.body).to include("turbo-stream")
+        expect(response.body).to include("remove")
+        expect(response.body).to include("replace")
+      end
     end
 
-    it "destroys the expense" do
-      expect(Review.count).to eq(0)
-    end
+    context "from show_view" do
+      before do
+        delete review_path(id: review.id, from: "show_view")
+      end
 
-    it "renders the Turbo Stream response" do
-      expect(response).to have_http_status(:success)
-      expect(response.body).to include("turbo-stream")
-      expect(response.body).to include("remove")
-      expect(response.body).to include("replace")
-    end
+      it "destroys the expense" do
+        expect(Review.count).to eq(0)
+      end
 
-    it 'sets the flash notice' do
-      expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
+      it 'sets the flash notice' do
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
+      end
+
+      it "redirects to the reviews page" do
+        expect(response).to redirect_to reviews_path
+      end
     end
   end
 end
