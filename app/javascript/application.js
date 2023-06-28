@@ -18,4 +18,3 @@ import TomSelect from "tom-select";
 // }
 
 new TomSelect('#user_job_title',{});
-new TomSelect('#user_manager_id',{});

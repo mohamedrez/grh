@@ -100,7 +100,7 @@
           <div class="sm:col-span-3">
             <%= form.label :job_title, t("attributes.user.job_title") %>
             <div class="mt-2">
-              <%= form.select :job_title, options_for_select(User.job_titles), include_blank: true %>
+              <%= form.select :job_title, options_for_select(User.job_titles.keys, @user.job_title), include_blank: true %>
               <%= inline_error_for(:job_title, @user).html_safe %>
             </div>
           </div>
