@@ -23,11 +23,12 @@
             <tr>
                 <th scope="col" class="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-6"><%= t("attributes.job_application.first_name") %></th>
                 <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job_application.first_name") %></th>
-                <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job_application.email") %></th>
                 <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job_application.phone") %></th>
+                <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job_application.email") %></th>
+                <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"><%= t("attributes.job_application.state") %></th>
                 <th scope="col" class="px-3 py-3.5 text-center text-sm font-semibold text-gray-900"></th>
             </tr>
-          </thead>
+          </thead>  
           <tbody id="job_application-list" class="divide-y divide-gray-200 bg-white"> 
             <%= render @job_applications %>
           </tbody>

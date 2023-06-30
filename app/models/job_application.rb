@@ -62,6 +62,23 @@ class JobApplication < ApplicationRecord
     end
   end
 
+  def current_state(state)
+    case state
+    when "applied"
+      I18n.t("attributes.job_application.aasm_states.applied")
+    when "advanced_to_phone"
+      I18n.t("attributes.job_application.aasm_states.advanced_to_phone_without_by")
+    when "completed_phone"
+      I18n.t("attributes.job_application.aasm_states.completed_phone_without_by")
+    when "advanced_interview"
+      I18n.t("attributes.job_application.aasm_states.advanced_interview_without_by")
+    when "completed_interview"
+      I18n.t("attributes.job_application.aasm_states.qualified")
+    when "disqualified"
+      I18n.t("attributes.job_application.aasm_states.disqualified")
+    end
+  end
+
   # Actions
 
   def create_job_application_trigger_actions

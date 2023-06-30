@@ -33,13 +33,13 @@
                     <%
                       case aasm_log.to_state
                       when "advanced_to_phone"
-                        job_application_state = t("attributes.job_application.aasm_states.advanced_to_phone")
+                        job_application_state = t("attributes.job_application.aasm_states.advanced_to_phone", by: "by", par: "par")
                       when "completed_phone"
-                        job_application_state = t("attributes.job_application.aasm_states.completed_phone")
+                        job_application_state = t("attributes.job_application.aasm_states.completed_phone", by: "by", par: "par")
                       when "advanced_interview"
-                        job_application_state = t("attributes.job_application.aasm_states.advanced_to_interview")
+                        job_application_state = t("attributes.job_application.aasm_states.advanced_to_interview", by: "by", par: "par")
                       when "completed_interview"
-                        job_application_state = t("attributes.job_application.aasm_states.completed_interview")
+                        job_application_state = t("attributes.job_application.aasm_states.completed_interview", by: "by", par: "par")
                       when "disqualified"
                         job_application_state = t("attributes.job_application.aasm_states.disqualified")
                       end 
