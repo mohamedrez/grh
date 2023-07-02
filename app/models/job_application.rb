@@ -67,11 +67,11 @@ class JobApplication < ApplicationRecord
     when "applied"
       I18n.t("attributes.job_application.aasm_states.applied")
     when "advanced_to_phone"
-      I18n.t("attributes.job_application.aasm_states.advanced_to_phone_without_by")
+      I18n.t("attributes.job_application.aasm_states.advanced_to_phone", by: "")
     when "completed_phone"
-      I18n.t("attributes.job_application.aasm_states.completed_phone_without_by")
+      I18n.t("attributes.job_application.aasm_states.completed_phone", by: "")
     when "advanced_interview"
-      I18n.t("attributes.job_application.aasm_states.advanced_interview_without_by")
+      I18n.t("attributes.job_application.aasm_states.advanced_interview", by: "")
     when "completed_interview"
       I18n.t("attributes.job_application.aasm_states.qualified")
     when "disqualified"
