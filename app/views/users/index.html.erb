@@ -57,7 +57,7 @@
                   </div>
                 </td>
 
-                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= User.human_enum_name(:job_title, user.job_title) if user.job_title %></td>
+                <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.job_title %></td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= user.site&.name %></td>
                 <td class="whitespace-nowrap px-3 py-5 text-sm text-gray-500"><%= User.human_enum_name(:service, user.service) if user.service %></td>
 
