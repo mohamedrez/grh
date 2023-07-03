@@ -36,7 +36,7 @@ Rails.application.routes.draw do
     patch "/job_applications/:id/update_aasm_state", to: "job_applications#update_aasm_state", as: "update_aasm_state_job_application"
 
     resources :reviews do
-      resources :user_answers, only: %i[new create]
+      resources :user_answers, only: %i[show new create]
     end
 
     resources :jobs do

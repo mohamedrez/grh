@@ -1,5 +1,6 @@
 class UserAnswer < ApplicationRecord
   belongs_to :review
+  belongs_to :author, class_name: "User"
   belongs_to :user
 
   has_many :question_answers, dependent: :destroy
