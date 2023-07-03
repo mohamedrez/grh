@@ -14,7 +14,7 @@
     "autoprefixer": "^10.4.14",
     "debounce": "^1.2.1",
     "el-transition": "^0.0.7",
-    "esbuild": "^0.18.4",
+    "esbuild": "^0.18.11",
     "postcss": "^8.4.24",
     "stimulus-notification": "^2.2.0",
     "stimulus-rails-autosave": "^4.1.1",
