@@ -62,6 +62,21 @@ class JobApplication < ApplicationRecord
     end
   end
 
+  def applicant_advanced_by(to_state)
+    case to_state
+    when "advanced_to_phone"
+      I18n.t("attributes.job_application.aasm_states.advanced_to_phone", by: " by")
+    when "completed_phone"
+      I18n.t("attributes.job_application.aasm_states.completed_phone", by: " by")
+    when "advanced_interview"
+      I18n.t("attributes.job_application.aasm_states.advanced_to_interview", by: " by")
+    when "completed_interview"
+      I18n.t("attributes.job_application.aasm_states.completed_interview", by: " by")
+    when "disqualified"
+      I18n.t("attributes.job_application.aasm_states.disqualified")
+    end
+  end
+
   def current_state(state)
     case state
     when "applied"
@@ -79,7 +94,7 @@ class JobApplication < ApplicationRecord
     end
   end
 
-  def job_present(job_id, job_application_id, next_state = "")
+  def job_application_handler(job_id, job_application_id, next_state = "")
     if job_id.present?
       {
         update_aasm_state: "/jobs/#{job_id}/job_applications/#{job_application_id}/update_aasm_state?aasm_state=#{next_state}",

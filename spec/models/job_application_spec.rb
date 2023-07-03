@@ -63,13 +63,13 @@ RSpec.describe JobApplication, type: :model do
       end
     end
 
-    context "#job_present" do
+    context "#job_application_handler" do
       it "returns the correct URLs when job_id is present" do
         job_id = 123
         job_application_id = 456
         next_state = "some_state"
         
-        urls = subject.job_present(job_id, job_application_id, next_state)
+        urls = subject.job_application_handler(job_id, job_application_id, next_state)
         
         expect(urls[:update_aasm_state]).to eq("/jobs/#{job_id}/job_applications/#{job_application_id}/update_aasm_state?aasm_state=#{next_state}")
         expect(urls[:disqualified]).to eq("/jobs/#{job_id}/job_applications/#{job_application_id}/update_aasm_state?aasm_state=disqualified")
@@ -80,7 +80,7 @@ RSpec.describe JobApplication, type: :model do
         job_application_id = 456
         next_state = "some_state"
         
-        urls = subject.job_present(job_id, job_application_id, next_state)
+        urls = subject.job_application_handler(job_id, job_application_id, next_state)
         
         expect(urls[:update_aasm_state]).to eq("/job_applications/#{job_application_id}/update_aasm_state?aasm_state=#{next_state}")
         expect(urls[:disqualified]).to eq("/job_applications/#{job_application_id}/update_aasm_state?aasm_state=disqualified")
