@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_28_112641) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_03_090957) do
   create_table "aasm_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "actor_id", null: false
     t.string "from_state"
@@ -229,11 +229,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_112641) do
     t.index ["site_id"], name: "index_mission_orders_on_site_id"
   end
 
-  create_table "multiple_select_responses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "multiple_select_options", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "multiple_select_response_id", null: false
     t.bigint "option_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["option_id"], name: "index_multiple_select_responses_on_option_id"
+    t.index ["multiple_select_response_id"], name: "index_multiple_select_options_on_multiple_select_response_id"
+    t.index ["option_id"], name: "index_multiple_select_options_on_option_id"
+  end
+
+  create_table "multiple_select_responses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "notes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -428,7 +435,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_28_112641) do
   add_foreign_key "goals", "users", column: "owner_id"
   add_foreign_key "job_applications", "jobs"
   add_foreign_key "mission_orders", "sites"
-  add_foreign_key "multiple_select_responses", "options"
+  add_foreign_key "multiple_select_options", "multiple_select_responses"
+  add_foreign_key "multiple_select_options", "options"
   add_foreign_key "notes", "users"
   add_foreign_key "notes", "users", column: "author_id"
   add_foreign_key "options", "questions"

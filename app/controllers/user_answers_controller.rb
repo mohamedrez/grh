@@ -4,16 +4,13 @@ class UserAnswersController < ApplicationController
   end
 
   def create
-    # Not yet completed
+    text_questions = params[:text_questions]
+    single_select_questions = params[:single_select_questions]
+    multiple_select_questions = params[:multiple_select_questions]
 
-    # @review = Review.find(params[:review_id])
-    # @answer_question = params[:answer_question]
+    UserAnswer.create_user_answers(current_user, text_questions, single_select_questions, multiple_select_questions)
 
-    # @answer_question.each do |key, value|
-    #   @text_response = TextResponse.create!(content: value)
-    #   @user_answer = UserAnswer.create!(question_id: key, user_id: current_user.id, answerable: @text_response)
-    # end
-
-    # redirect_to review_user_answers_path(@review), notice: t("flash.successfully_created")
+    review = Review.find(params[:review_id])
+    redirect_to review_user_answers_path(review), notice: t("flash.successfully_created")
   end
 end
