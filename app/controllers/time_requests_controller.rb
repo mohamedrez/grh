@@ -39,7 +39,7 @@ class TimeRequestsController < ApplicationController
     @time_request.user_id = @user.id
 
     if @time_request.save
-      flash.now[:notice] = "Successfully created."
+      flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
         turbo_stream.append("time-request-list", @time_request),
         turbo_stream.replace("right", partial: "shared/right"),
@@ -54,7 +54,7 @@ class TimeRequestsController < ApplicationController
     time_request_params[:user_id] = params[:user_id]
 
     if @time_request.update(time_request_params)
-      flash.now[:notice] = "Successfully updated."
+      flash.now[:notice] = t("flash.successfully_updated")
       render turbo_stream: [
         turbo_stream.replace(@time_request, @time_request),
         turbo_stream.replace("right", partial: "shared/right"),

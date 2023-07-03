@@ -25,6 +25,44 @@ RSpec.describe JobApplication, type: :model do
       expect(disqualified_state).to eq({ result: I18n.t("attributes.job_application.aasm_states.disqualified"), color: "red" })
     end
 
+    context "when current_state method is called" do
+      it "returns the correct translated state for 'applied'" do
+        state = "applied"
+        translated_state = subject.current_state(state)
+        expect(translated_state).to eq(I18n.t("attributes.job_application.aasm_states.applied"))
+      end
+      
+      it "returns the correct translated state for 'advanced_to_phone'" do
+        state = "advanced_to_phone"
+        translated_state = subject.current_state(state)
+        expect(translated_state).to eq(I18n.t("attributes.job_application.aasm_states.advanced_to_phone", by: ""))
+      end
+
+      it "returns the correct translated state for 'completed_phone'" do
+        state = "completed_phone"
+        translated_state = subject.current_state(state)
+        expect(translated_state).to eq(I18n.t("attributes.job_application.aasm_states.completed_phone", by: ""))
+      end
+
+      it "returns the correct translated state for 'advanced_interview'" do
+        state = "advanced_interview"
+        translated_state = subject.current_state(state)
+        expect(translated_state).to eq(I18n.t("attributes.job_application.aasm_states.advanced_to_interview", by: ""))
+      end
+
+      it "returns the correct translated state for 'completed_interview'" do
+        state = "completed_interview"
+        translated_state = subject.current_state(state)
+        expect(translated_state).to eq(I18n.t("attributes.job_application.aasm_states.qualified"))
+      end
+      
+      it "returns the correct translated state for 'disqualified'" do
+        state = "disqualified"
+        translated_state = subject.current_state(state)
+        expect(translated_state).to eq(I18n.t("attributes.job_application.aasm_states.disqualified"))
+      end
+    end
+
     context "#job_present" do
       it "returns the correct URLs when job_id is present" do
         job_id = 123
