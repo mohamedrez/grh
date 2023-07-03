@@ -71,7 +71,7 @@ class JobApplication < ApplicationRecord
     when "completed_phone"
       I18n.t("attributes.job_application.aasm_states.completed_phone", by: "")
     when "advanced_interview"
-      I18n.t("attributes.job_application.aasm_states.advanced_interview", by: "")
+      I18n.t("attributes.job_application.aasm_states.advanced_to_interview", by: "")
     when "completed_interview"
       I18n.t("attributes.job_application.aasm_states.qualified")
     when "disqualified"
@@ -79,6 +79,23 @@ class JobApplication < ApplicationRecord
     end
   end
 
+  def job_present(job_id,job_application_id, next_state ="")
+    if job_id.present?
+      {
+        update_aasm_state: "/jobs/#{job_id}/job_applications/#{job_application_id}/update_aasm_state?aasm_state=#{next_state}",
+        disqualified: "/jobs/#{job_id}/job_applications/#{job_application_id}/update_aasm_state?aasm_state=disqualified",
+        applicant: "/jobs/#{job_id}/job_applications/#{job_application_id}",
+        edit_applicant: "/jobs/#{job_id}/job_applications/#{job_application_id}/edit"
+      }
+    else 
+      {
+        update_aasm_state: "/job_applications/#{job_application_id}/update_aasm_state?aasm_state=#{next_state}",
+        disqualified: "/job_applications/#{job_application_id}/update_aasm_state?aasm_state=disqualified",
+        applicant: "job_applications/#{job_application_id}",
+        edit_applicant: "job_applications/#{job_application_id}/edit"
+      }
+    end
+  end
   # Actions
 
   def create_job_application_trigger_actions
