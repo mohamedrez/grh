@@ -79,7 +79,7 @@ class JobApplication < ApplicationRecord
     end
   end
 
-  def job_present(job_id,job_application_id, next_state ="")
+  def job_present(job_id, job_application_id, next_state = "")
     if job_id.present?
       {
         update_aasm_state: "/jobs/#{job_id}/job_applications/#{job_application_id}/update_aasm_state?aasm_state=#{next_state}",
@@ -87,7 +87,7 @@ class JobApplication < ApplicationRecord
         applicant: "/jobs/#{job_id}/job_applications/#{job_application_id}",
         edit_applicant: "/jobs/#{job_id}/job_applications/#{job_application_id}/edit"
       }
-    else 
+    else
       {
         update_aasm_state: "/job_applications/#{job_application_id}/update_aasm_state?aasm_state=#{next_state}",
         disqualified: "/job_applications/#{job_application_id}/update_aasm_state?aasm_state=disqualified",
