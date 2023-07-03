@@ -155,6 +155,7 @@ en:
       interviewing : "Interviewing"
       unit: "Per"
     job_application:
+      full_name: "Full name"
       first_name: "First Name"
       last_name: "Last Name"
       job: "Application for"
