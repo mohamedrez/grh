@@ -261,6 +261,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_090957) do
     t.index ["question_id"], name: "index_options_on_question_id"
   end
 
+  create_table "question_answers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_answer_id", null: false
+    t.bigint "question_id", null: false
+    t.string "answerable_type", null: false
+    t.bigint "answerable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answerable_type", "answerable_id"], name: "index_question_answers_on_answerable"
+    t.index ["question_id"], name: "index_question_answers_on_question_id"
+    t.index ["user_answer_id"], name: "index_question_answers_on_user_answer_id"
+  end
+
   create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.integer "question_type"
@@ -353,14 +365,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_090957) do
   end
 
   create_table "user_answers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "question_id", null: false
+    t.bigint "review_id", null: false
     t.bigint "user_id", null: false
-    t.string "answerable_type", null: false
-    t.bigint "answerable_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["answerable_type", "answerable_id"], name: "index_user_answers_on_answerable"
-    t.index ["question_id"], name: "index_user_answers_on_question_id"
+    t.index ["review_id"], name: "index_user_answers_on_review_id"
     t.index ["user_id"], name: "index_user_answers_on_user_id"
   end
 
@@ -440,6 +449,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_090957) do
   add_foreign_key "notes", "users"
   add_foreign_key "notes", "users", column: "author_id"
   add_foreign_key "options", "questions"
+  add_foreign_key "question_answers", "questions"
+  add_foreign_key "question_answers", "user_answers"
   add_foreign_key "questions", "sections"
   add_foreign_key "review_users", "reviews"
   add_foreign_key "review_users", "users"
@@ -448,7 +459,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_03_090957) do
   add_foreign_key "single_select_responses", "options"
   add_foreign_key "tasks", "tasks", column: "tasks_id"
   add_foreign_key "tasks", "users"
-  add_foreign_key "user_answers", "questions"
+  add_foreign_key "user_answers", "reviews"
   add_foreign_key "user_answers", "users"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"

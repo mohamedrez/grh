@@ -4,13 +4,15 @@ class UserAnswersController < ApplicationController
   end
 
   def create
+    review = Review.find(params[:review_id])
+
     text_questions = params[:text_questions]
     single_select_questions = params[:single_select_questions]
     multiple_select_questions = params[:multiple_select_questions]
 
-    UserAnswer.create_user_answers(current_user, text_questions, single_select_questions, multiple_select_questions)
+    user_answer = UserAnswer.create!(review: review, user: current_user)
+    user_answer.create_question_answers(text_questions, single_select_questions, multiple_select_questions)
 
-    review = Review.find(params[:review_id])
     redirect_to review_user_answers_path(review), notice: t("flash.successfully_created")
   end
 end
