@@ -24,5 +24,29 @@ RSpec.describe JobApplication, type: :model do
       disqualified_state = job_application.applicant_state("disqualified")
       expect(disqualified_state).to eq({ result: I18n.t("attributes.job_application.aasm_states.disqualified"), color: "red" })
     end
+
+    context "#job_present" do
+      it "returns the correct URLs when job_id is present" do
+        job_id = 123
+        job_application_id = 456
+        next_state = "some_state"
+        
+        urls = subject.job_present(job_id, job_application_id, next_state)
+        
+        expect(urls[:update_aasm_state]).to eq("/jobs/#{job_id}/job_applications/#{job_application_id}/update_aasm_state?aasm_state=#{next_state}")
+        expect(urls[:disqualified]).to eq("/jobs/#{job_id}/job_applications/#{job_application_id}/update_aasm_state?aasm_state=disqualified")
+      end
+      
+      it "returns the correct URLs when job_id is not present" do
+        job_id = nil
+        job_application_id = 456
+        next_state = "some_state"
+        
+        urls = subject.job_present(job_id, job_application_id, next_state)
+        
+        expect(urls[:update_aasm_state]).to eq("/job_applications/#{job_application_id}/update_aasm_state?aasm_state=#{next_state}")
+        expect(urls[:disqualified]).to eq("/job_applications/#{job_application_id}/update_aasm_state?aasm_state=disqualified")
+      end
+    end
   end
 end
