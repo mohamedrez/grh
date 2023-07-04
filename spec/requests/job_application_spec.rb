@@ -42,9 +42,14 @@ RSpec.describe "JobApplications", type: :request do
   end
 
   describe "GET /show" do
-    it "renders a successful response" do
+    it "renders a successful response if job_id is not present" do
         get job_application_path(id: job_application.id)
         expect(response).to be_successful
+    end
+
+    it "renders a successful response if job_id is present" do
+      get job_application_path(id: job_application.id, job_id: job.id)
+      expect(response).to be_successful
     end
   end
 
@@ -123,6 +128,16 @@ RSpec.describe "JobApplications", type: :request do
       it "sets a success flash message" do
         expect(flash[:notice]).to eq(I18n.t("flash.successfully_updated"))
       end
+
+      it "redirects to the job application if job_id is present" do
+        patch "/jobs/#{job.id}/job_applications/#{job_application.id}", params: { id: job_application.id, job_application: valid_attributes, job_id: job.id }
+        expect(response).to redirect_to(job_job_applications_path(job.id))
+      end
+
+      it "redirects to job_applications_path if job_id is not present" do
+        patch "/job_applications/#{job_application.id}", params: { job_application: valid_attributes }
+        expect(response).to redirect_to(job_applications_path)
+      end
     end
 
     context "with invalid parameters" do
@@ -190,17 +205,33 @@ RSpec.describe "JobApplications", type: :request do
     end
   end
 
-  describe 'DELETE /destroy' do
-    before do
-      delete job_application_path(id: job_application.id)
+  describe "DELETE /destroy" do
+    context "when job_id is present" do
+      before do
+        delete job_application_path(id: job_application.id, job_id: job.id)
+      end
+
+      it "destrys the job application" do
+        expect(JobApplication.count).to eq(0)
+      end
+
+      it "sets the flash notice" do
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
+      end
     end
 
-    it 'destroys the job application' do
-      expect(JobApplication.count).to eq(0)
-    end
+    context "when job_id is not present" do
+      before do
+        delete job_application_path(id: job_application.id)
+      end
 
-    it 'sets the flash notice' do
-      expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
+      it "destroys the job application" do
+        expect(JobApplication.count).to eq(0)
+      end
+
+      it "sets the flash notice" do
+        expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
+      end
     end
   end
 
@@ -212,7 +243,7 @@ RSpec.describe "JobApplications", type: :request do
     end
 
     it "deletes the resume" do
-      job_application.reload
+      job_application.reload  
       expect(job_application.resume.attached?).to eq(false)
     end
 
@@ -220,11 +251,11 @@ RSpec.describe "JobApplications", type: :request do
       expect(response).to redirect_to(job_application_path(job_application))
     end
 
-    it 'sets the flash notice' do
+    it "sets the flash notice" do
       expect(flash[:notice]).to eq(I18n.t("flash.receipt_successfully_deleted"))
     end
 
-    it 'returns a 302 response' do
+    it "returns a 302 response" do
       expect(response).to have_http_status(302)
     end
   end

@@ -36,13 +36,6 @@
         <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.job.location") %></dt>
         <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @job.location %></dd>
       </div>
-      <div class="sm:w-fit px-4">
-        <%= button_to t("views.jobs.edit_job"), edit_job_path(@job), :method => :get, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-      </div>
-      <div class="sm:w-fit px-4">
-        <%= link_to t("views.jobs.delete_job"), @job, data: {"turbo_method": :delete, "turbo_confirm": "Are you sure?"}, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-rose-800 hover:text-white hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-      </div>
-    </div>
     <div class="border-t border-gray-100">
       <dl class="divide-y divide-gray-100">
         <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">

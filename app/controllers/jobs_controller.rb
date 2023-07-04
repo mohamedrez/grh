@@ -37,18 +37,11 @@ class JobsController < ApplicationController
   end
 
   def destroy
-    if @job.destroy
-      redirect_to jobs_path, notice: t("flash.successfully_destroyed")
-    else
-      render :edit, status: :unprocessable_entity
-    end
+    @job.destroy
+    redirect_to jobs_path, notice: t("flash.successfully_destroyed")
   end
 
   private
-
-  def set_breadcrumbs
-    add_breadcrumb("Job", jobs_path)
-  end
 
   def job_params
     params.require(:job).permit(
@@ -69,8 +62,6 @@ class JobsController < ApplicationController
   def set_job
     @job = Job.find(params[:id])
   end
-
-  private
 
   def set_breadcrumbs
     add_breadcrumb(t("views.jobs.job"), jobs_path)
