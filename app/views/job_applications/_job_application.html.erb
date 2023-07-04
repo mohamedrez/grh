@@ -1,23 +1,23 @@
 <tr id="<%= dom_id job_application %>">
-  <% current_state = job_application.applicant_state(job_application.aasm_state) %>
+  <% advance_to_state = job_application.advance_to_state(job_application.aasm_state) %>
   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= job_application.first_name %> <%= job_application.last_name %></td>
   <td class="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-500"><%= job_application.email %></td>
   <td class="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-500"><%= job_application.phone %></td>
   <td class="whitespace-nowrap text-center px-3 py-4 text-sm text-gray-500">
-    <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-<%= current_state[:color] %>-100 text-<%= current_state[:color] %>-800">
-      <%= job_application.current_state(job_application.aasm_state) %>
+    <span class="badge <%= advance_to_state[:class_css] %>" >
+      <%= job_application.translate_state(job_application.aasm_state) %>
     </span>
   </td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
     <div class="flex justify-center">
-        <% job_application_handler = job_application.job_application_handler(params[:job_id], job_application.id) %>
-        <%= link_to job_application_handler[:applicant] do %> 
+        <% job_application_route_handler = job_application.job_application_route_handler(params[:job_id], job_application.id) %>
+        <%= link_to job_application_route_handler[:applicant] do %> 
           <svg class="inline-block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
             <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
             <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
           </svg>
         <% end %>
-        <%= link_to job_application_handler[:edit_applicant] do %>
+        <%= link_to job_application_route_handler[:edit_applicant] do %>
           <svg class="inline-block ml-4 w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
           </svg>

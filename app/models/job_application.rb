@@ -45,48 +45,33 @@ class JobApplication < ApplicationRecord
 
   # Methods
 
-  def applicant_state(state)
+  def advance_to_state(state)
     case state
     when "applied"
-      {next_state: "advanced_to_phone", title: I18n.t("attributes.job_application.aasm_states.advance_to_phone"), color: "yellow"}
+      {next_state: "advanced_to_phone", title: I18n.t("attributes.job_application.aasm_states.advance_to_phone"), class_css: "yellow-badge"}
     when "advanced_to_phone"
-      {next_state: "completed_phone", title: I18n.t("attributes.job_application.aasm_states.complete_phone"), color: "yellow"}
+      {next_state: "completed_phone", title: I18n.t("attributes.job_application.aasm_states.complete_phone"), class_css: "yellow-badge"}
     when "completed_phone"
-      {next_state: "advanced_interview", title: I18n.t("attributes.job_application.aasm_states.advance_to_interview"), color: "yellow"}
+      {next_state: "advanced_interview", title: I18n.t("attributes.job_application.aasm_states.advance_to_interview"), class_css: "yellow-badge"}
     when "advanced_interview"
-      {next_state: "completed_interview", title: I18n.t("attributes.job_application.aasm_states.complete_interview"), color: "yellow"}
+      {next_state: "completed_interview", title: I18n.t("attributes.job_application.aasm_states.complete_interview"), class_css: "yellow-badge"}
     when "completed_interview"
-      {result: I18n.t("attributes.job_application.aasm_states.qualified"), color: "green"}
+      {result: I18n.t("attributes.job_application.aasm_states.qualified"), class_css: "green-badge"}
     when "disqualified"
-      {result: I18n.t("attributes.job_application.aasm_states.disqualified"), color: "red"}
+      {result: I18n.t("attributes.job_application.aasm_states.disqualified"), class_css: "red-badge"}
     end
   end
 
-  def applicant_advanced_by(to_state)
-    case to_state
-    when "advanced_to_phone"
-      I18n.t("attributes.job_application.aasm_states.advanced_to_phone", by: " by")
-    when "completed_phone"
-      I18n.t("attributes.job_application.aasm_states.completed_phone", by: " by")
-    when "advanced_interview"
-      I18n.t("attributes.job_application.aasm_states.advanced_to_interview", by: " by")
-    when "completed_interview"
-      I18n.t("attributes.job_application.aasm_states.completed_interview", by: " by")
-    when "disqualified"
-      I18n.t("attributes.job_application.aasm_states.disqualified")
-    end
-  end
-
-  def current_state(state)
+  def translate_state(state)
     case state
     when "applied"
       I18n.t("attributes.job_application.aasm_states.applied")
     when "advanced_to_phone"
-      I18n.t("attributes.job_application.aasm_states.advanced_to_phone", by: "")
+      I18n.t("attributes.job_application.aasm_states.advanced_to_phone")
     when "completed_phone"
-      I18n.t("attributes.job_application.aasm_states.completed_phone", by: "")
+      I18n.t("attributes.job_application.aasm_states.completed_phone")
     when "advanced_interview"
-      I18n.t("attributes.job_application.aasm_states.advanced_to_interview", by: "")
+      I18n.t("attributes.job_application.aasm_states.advanced_to_interview")
     when "completed_interview"
       I18n.t("attributes.job_application.aasm_states.qualified")
     when "disqualified"
@@ -94,7 +79,7 @@ class JobApplication < ApplicationRecord
     end
   end
 
-  def job_application_handler(job_id, job_application_id, next_state = "")
+  def job_application_route_handler(job_id, job_application_id, next_state = "")
     if job_id.present?
       {
         update_aasm_state: "/jobs/#{job_id}/job_applications/#{job_application_id}/update_aasm_state?aasm_state=#{next_state}",
