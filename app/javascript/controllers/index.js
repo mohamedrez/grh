@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import ApplicantController from "./applicant_controller"
+application.register("applicant", ApplicantController)
+
 import AvatarMenuController from "./avatar_menu_controller"
 application.register("avatar-menu", AvatarMenuController)
 
