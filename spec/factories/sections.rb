@@ -3,6 +3,6 @@ FactoryBot.define do
     name { "MyString" }
     description { "MyText" }
     section_type { 1 }
-    survey { nil }
+    review { nil }
   end
 end

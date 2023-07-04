@@ -17,7 +17,7 @@ class UserAnswersController < ApplicationController
     user_answer = UserAnswer.create!(review: @review, author: current_user, user: @user)
     user_answer.create_question_answers(text_questions, single_select_questions, multiple_select_questions)
 
-    redirect_to review_user_answer_path(@review, user_answer), notice: t("flash.successfully_created")
+    redirect_to review_user_answer_path(@review, user_answer, user_id: @user.id), notice: t("flash.successfully_created")
   end
 
   private
