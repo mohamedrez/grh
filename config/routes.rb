@@ -24,7 +24,6 @@ Rails.application.routes.draw do
     resources :comments
     resources :holidays
     resources :performance, only: :index
-    resources :reviews
     resources :goals, except: :destroy
     patch "/goals/:id/archive", to: "goals#archive", as: "archive_goal"
     patch "/goals/:id/end_goal", to: "goals#end_goal", as: "end_goal"
@@ -33,6 +32,21 @@ Rails.application.routes.draw do
     resources :expenses, only: [:index]
     resources :time_requests, only: [:index]
     resources :mission_orders, only: [:index]
+    get "/job_applications/:id/infos", to: "job_applications#infos", as: "job_application_infos"
+    patch "/job_applications/:id/update_aasm_state", to: "job_applications#update_aasm_state", as: "update_aasm_state_job_application"
+
+    resources :reviews do
+      resources :user_answers, only: %i[show new create]
+    end
+
+    resources :jobs do
+      resources :job_applications
+      patch "/job_applications/:id/update_aasm_state", to: "job_applications#update_aasm_state", as: "update_aasm_state_job_application"
+    end
+
+    resources :job_applications do
+      delete :delete_resume, on: :member
+    end
 
     scope :team, as: "team" do
       resources :users, only: [:index]
@@ -69,14 +83,5 @@ Rails.application.routes.draw do
 
     get "user_notifications", to: "user_notifications#index"
     get "user_notifications/notification_bell", to: "user_notifications#notification_bell"
-    resources :jobs do
-      resources :job_applications
-      patch "/job_applications/:id/update_aasm_state", to: "job_applications#update_aasm_state", as: "update_aasm_state_job_application"
-    end
-    resources :job_applications do
-      delete :delete_resume, on: :member
-    end
-    get "/job_applications/:id/infos", to: "job_applications#infos", as: "job_application_infos"
-    patch "/job_applications/:id/update_aasm_state", to: "job_applications#update_aasm_state", as: "update_aasm_state_job_application"
   end
 end

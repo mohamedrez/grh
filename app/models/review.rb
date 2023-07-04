@@ -6,6 +6,7 @@ class Review < ApplicationRecord
   has_many :users, through: :review_users
 
   has_many :sections, dependent: :destroy
+  has_many :questions, through: :sections
 
   accepts_nested_attributes_for :sections, reject_if: :all_blank, allow_destroy: true
 

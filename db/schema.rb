@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_06_26_141809) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_03_090957) do
   create_table "aasm_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "actor_id", null: false
     t.string "from_state"
@@ -229,6 +229,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_141809) do
     t.index ["site_id"], name: "index_mission_orders_on_site_id"
   end
 
+  create_table "multiple_select_options", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "multiple_select_response_id", null: false
+    t.bigint "option_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["multiple_select_response_id"], name: "index_multiple_select_options_on_multiple_select_response_id"
+    t.index ["option_id"], name: "index_multiple_select_options_on_option_id"
+  end
+
+  create_table "multiple_select_responses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "notes", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.text "content"
@@ -245,6 +259,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_141809) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_options_on_question_id"
+  end
+
+  create_table "question_answers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "user_answer_id", null: false
+    t.bigint "question_id", null: false
+    t.string "answerable_type", null: false
+    t.bigint "answerable_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answerable_type", "answerable_id"], name: "index_question_answers_on_answerable"
+    t.index ["question_id"], name: "index_question_answers_on_question_id"
+    t.index ["user_answer_id"], name: "index_question_answers_on_user_answer_id"
   end
 
   create_table "questions", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -293,6 +319,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_141809) do
     t.index ["review_id"], name: "index_sections_on_review_id"
   end
 
+  create_table "single_select_responses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "option_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["option_id"], name: "index_single_select_responses_on_option_id"
+  end
+
   create_table "sites", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
     t.string "code"
@@ -317,12 +350,29 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_141809) do
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
+  create_table "text_responses", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "time_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "category"
+  end
+
+  create_table "user_answers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "review_id", null: false
+    t.bigint "author_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_user_answers_on_author_id"
+    t.index ["review_id"], name: "index_user_answers_on_review_id"
+    t.index ["user_id"], name: "index_user_answers_on_user_id"
   end
 
   create_table "user_requests", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -396,16 +446,24 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_26_141809) do
   add_foreign_key "goals", "users", column: "owner_id"
   add_foreign_key "job_applications", "jobs"
   add_foreign_key "mission_orders", "sites"
+  add_foreign_key "multiple_select_options", "multiple_select_responses"
+  add_foreign_key "multiple_select_options", "options"
   add_foreign_key "notes", "users"
   add_foreign_key "notes", "users", column: "author_id"
   add_foreign_key "options", "questions"
+  add_foreign_key "question_answers", "questions"
+  add_foreign_key "question_answers", "user_answers"
   add_foreign_key "questions", "sections"
   add_foreign_key "review_users", "reviews"
   add_foreign_key "review_users", "users"
   add_foreign_key "roles", "users"
   add_foreign_key "sections", "reviews"
+  add_foreign_key "single_select_responses", "options"
   add_foreign_key "tasks", "tasks", column: "tasks_id"
   add_foreign_key "tasks", "users"
+  add_foreign_key "user_answers", "reviews"
+  add_foreign_key "user_answers", "users"
+  add_foreign_key "user_answers", "users", column: "author_id"
   add_foreign_key "user_requests", "users"
   add_foreign_key "user_requests", "users", column: "managed_by_id"
   add_foreign_key "users", "sites"

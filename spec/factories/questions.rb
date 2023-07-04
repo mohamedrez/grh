@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :question do
-    title { "MyString" }
+    name { "MyString" }
     question_type { 1 }
     section { nil }
   end
