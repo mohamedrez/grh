@@ -8,19 +8,19 @@ RSpec.describe TimeRequest, type: :model do
   describe "#color" do
     it "returns the correct color for each category" do
       request = TimeRequest.new(category: :vacation_time)
-      expect(request.color).to eq("#FFD700")
+      expect(request.color).to eq("#333D51")
 
       request = TimeRequest.new(category: :sick_time)
-      expect(request.color).to eq("#FF0000")
+      expect(request.color).to eq("#CBD0D8")
 
       request = TimeRequest.new(category: :personal_time)
-      expect(request.color).to eq("#00FF00")
+      expect(request.color).to eq("#F4F3EA")
 
       request = TimeRequest.new(category: :bereavement_time)
-      expect(request.color).to eq("#0000FF")
+      expect(request.color).to eq("#354649")
 
       request = TimeRequest.new(category: :parental_leave)
-      expect(request.color).to eq("#FF00FF")
+      expect(request.color).to eq("#6C7A89")
     end
   end
   describe "#create_user_request" do

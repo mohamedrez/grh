@@ -37,7 +37,7 @@ class EventsController < ApplicationController
         title: holiday.name,
         start: holiday.start_date,
         end: holiday.end_date,
-        color: "green"
+        color: "#D3AC2B"
       }
     end
   end
