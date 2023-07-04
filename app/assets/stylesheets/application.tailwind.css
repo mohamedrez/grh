@@ -50,32 +50,22 @@ a {
   @apply inline-flex items-center rounded-full px-1.5 py-0.5 text-xs font-medium ring-1 ring-inset
 }
 
-.table-4, .table-5 {
-  display: grid;
-  column-gap: 2rem;
-  align-items: bottom;
-  border: 1px solid #ccc;
-  border-bottom: none;
-  border-collapse: collapse;
-  border-bottom: 1px solid #ccc;
-  @apply py-3.5 pl-4 pr-3
+.badge {
+  @apply inline-flex items-center rounded-full px-3 py-2 text-xs font-medium ring-1 ring-inset;
 }
 
-.table-4 {
-  grid-template-columns: repeat(4, 2fr) 1fr;
+.yellow-badge{
+  @apply bg-yellow-50 text-yellow-600 ring-yellow-500/10;
 }
 
-.table-5 {
-  grid-template-columns: repeat(5, 1fr) 1fr;
+.red-badge{
+  @apply bg-red-50 text-red-600 ring-red-500/10;
 }
 
-turbo-frame:last-child {
-  border-bottom: 1px solid #ccc;
+.green-badge{
+  @apply bg-green-50 text-green-600 ring-green-500/10;
 }
 
-turbo-frame:nth-child(even) .table-4 .table-5 {
-  background: #fafafa;
-}
 
 .datefield {
   line-height: 1.12;
