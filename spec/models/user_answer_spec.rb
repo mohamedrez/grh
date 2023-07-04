@@ -24,5 +24,45 @@ RSpec.describe UserAnswer, type: :model do
         expect(QuestionAnswer.count).to eq(1)
       end
     end
+
+    context "Providing the single_select_questions argumnet" do
+      before do
+        question = create(:question, id: 1, name: "Question 1", question_type: "single_select", section_id: section.id)
+        option1 = create(:option, id: 1, name: "Option 1", question_id: question.id)
+        option2 = create(:option, id: 2, name: "Option 2", question_id: question.id)
+
+        user_answer.create_question_answers(nil, {"1"=>"1"}, nil)
+      end
+
+      it 'creates a new SingleSelectResponse' do
+        expect(SingleSelectResponse.count).to eq(1)
+      end
+
+      it 'creates a new QuestionAnswer' do
+        expect(QuestionAnswer.count).to eq(1)
+      end
+    end
+
+    context "Providing the single_select_questions argumnet" do
+      before do
+        question = create(:question, id: 1, name: "Question 1", question_type: "multiple_select", section_id: section.id)
+        option1 = create(:option, id: 1, name: "Option 1", question_id: question.id)
+        option2 = create(:option, id: 2, name: "Option 2", question_id: question.id)
+
+        user_answer.create_question_answers(nil, nil, {"1"=>{"1"=>"1", "2"=>"2"}})
+      end
+
+      it 'creates a new MultipleSelectResponse' do
+        expect(MultipleSelectResponse.count).to eq(1)
+      end
+
+      it 'creates a new SingleSelectResponse' do
+        expect(MultipleSelectOption.count).to eq(2)
+      end
+
+      it 'creates a new QuestionAnswer' do
+        expect(QuestionAnswer.count).to eq(1)
+      end
+    end
   end
 end
