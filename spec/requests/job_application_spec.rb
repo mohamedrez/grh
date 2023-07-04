@@ -42,14 +42,27 @@ RSpec.describe "JobApplications", type: :request do
   end
 
   describe "GET /show" do
-    it "renders a successful response if job_id is not present" do
+    context "when job_id is not present" do
+      
+      before do
         get job_application_path(id: job_application.id)
-        expect(response).to be_successful
+      end
+
+      it "renders a successful response if job_id is not present" do
+          get job_application_path(id: job_application.id)
+          expect(response).to be_successful
+      end
     end
 
-    it "renders a successful response if job_id is present" do
-      get job_application_path(id: job_application.id, job_id: job.id)
-      expect(response).to be_successful
+    context "when job_id is present" do
+      before do
+        get job_job_application_path(id: job_application.id, job_id: job.id)
+      end
+
+      it "renders a successful response if job_id is present" do
+        get job_application_path(id: job_application.id, job_id: job.id)
+        expect(response).to be_successful
+      end
     end
   end
 
