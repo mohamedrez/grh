@@ -27,15 +27,15 @@ class TimeRequest < ApplicationRecord
   def color
     case category
     when "vacation_time"
-      "#FFD700"
+      "#333D51"
     when "sick_time"
-      "#FF0000"
+      "#CBD0D8"
     when "personal_time"
-      "#00FF00"
+      "#F4F3EA"
     when "bereavement_time"
-      "#0000FF"
+      "#354649"
     when "parental_leave"
-      "#FF00FF"
+      "#6C7A89"
     end
   end
 end
