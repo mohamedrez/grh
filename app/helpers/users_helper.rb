@@ -78,6 +78,7 @@ module UsersHelper
       "Directeur QHSE" => 96,
       "Directeur Sys Informatique" => 97,
       "Directeur des soins" => 98,
+      "Directeur Général" => 299,
       "Docteur en Anesthésie et Réanimation" => 99,
       "Encadreur" => 100,
       "Facturation" => 101,
