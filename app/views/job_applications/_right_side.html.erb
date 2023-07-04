@@ -30,21 +30,8 @@
                 </div>
                 <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
                   <div>
-                    <%
-                      case aasm_log.to_state
-                      when "advanced_to_phone"
-                        job_application_state = t("attributes.job_application.aasm_states.advanced_to_phone")
-                      when "completed_phone"
-                        job_application_state = t("attributes.job_application.aasm_states.completed_phone")
-                      when "advanced_interview"
-                        job_application_state = t("attributes.job_application.aasm_states.advanced_to_interview")
-                      when "completed_interview"
-                        job_application_state = t("attributes.job_application.aasm_states.completed_interview")
-                      when "disqualified"
-                        job_application_state = t("attributes.job_application.aasm_states.disqualified")
-                      end 
-                    %>
-                    <p class="text-sm text-gray-500"><%= job_application_state %> <span class="text-base font-semibold text-gray-900"><%= aasm_log.actor.full_name %></span> <%= time_ago_in_words(aasm_log.created_at) %> ago</p>
+                    <% job_application_state = job_application.translate_state(aasm_log.to_state) %>
+                    <p class="text-sm text-gray-500"><%= job_application_state %> <%= t("attributes.job_application.aasm_states.by") %> <span class="text-base font-semibold text-gray-900"><%= aasm_log.actor.full_name %></span> <%= time_ago_in_words(aasm_log.created_at) %> ago</p>
                   </div>
                 </div>
               </div>

@@ -92,10 +92,10 @@ class UsersController < ApplicationController
   end
 
   def build_breadcrumbs(user)
-    if user.manager
-      build_breadcrumbs(user.manager)
-      add_breadcrumb(user.manager.full_name, user_path(user.manager))
-    end
+    # if user.manager
+    #   build_breadcrumbs(user.manager)
+    #   add_breadcrumb(user.manager.full_name, user_path(user.manager))
+    # end
   end
 
   def user_params

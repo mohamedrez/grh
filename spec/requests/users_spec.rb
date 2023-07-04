@@ -27,7 +27,7 @@ RSpec.describe "Users", type: :request do
       employee_number: "3397701296",
       brut_salary: 11000,
       net_salary: 8000,
-      job_title: :sale,
+      job_title: "Acheteur",
       cnss_contribution: 1000,
       retirement_contribution: 2000,
       pto_number: 23,
@@ -123,7 +123,7 @@ RSpec.describe "Users", type: :request do
     context 'Email validations' do
       it 'validates the format of email' do
         expect(user).to be_valid
-  
+
         user.email = 'invalid_email'
         expect(user).to_not be_valid
       end
@@ -175,7 +175,7 @@ RSpec.describe "Users", type: :request do
         expect(user.children_number).to eq(2)
         expect(user.cin).to eq("ZWE452GH")
         expect(user.service).to eq("financial")
-        expect(user.job_title).to eq("sale")
+        expect(user.job_title).to eq("Acheteur")
         expect(user.joining_date).to eq(Date.new(2023, 4, 14))
         expect(user.contract).to eq("cdi")
         expect(user.category).to eq("cadre")

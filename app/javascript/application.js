@@ -3,6 +3,8 @@ import "@hotwired/turbo-rails"
 import "./controllers"
 import "trix"
 import "@rails/actiontext"
+import TomSelect from "tom-select";
+
 // import { getUserNavBarNotification } from "./custom.mjs";
 
 // function getCookie(name) {
@@ -14,3 +16,4 @@ import "@rails/actiontext"
 // if (getCookie("user_id") != 'guest') {
 //   getUserNavBarNotification();
 // }
+
