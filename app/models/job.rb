@@ -7,8 +7,6 @@ class Job < ApplicationRecord
   enum status: {open: 0, closed: 1}
 
   has_rich_text :description
-<<<<<<< Updated upstream
-=======
 
   def color_badge(status)
     if status == "open"
@@ -25,5 +23,4 @@ class Job < ApplicationRecord
   def self.ransackable_associations(auth_object = nil)
     ["job_applications"]
   end
->>>>>>> Stashed changes
 end
