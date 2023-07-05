@@ -113,7 +113,25 @@ class MissionOrder < ApplicationRecord
     # TODO not yet implmented
   end
 
-  private
+  def state_action
+
+
+  def state_label
+    case aasm_state
+    when "created"
+      I18n.t("attributes.mission_order.labels.created")
+    when "validated_by_manager"
+      I18n.t("attributes.mission_order.labels.validated_by_manager")
+    when "validated_by_hr"
+      I18n.t("attributes.mission_order.labels.validated_by_hr")
+    when "paid_by_accountant"
+      I18n.t("attributes.mission_order.labels.paid_by_accountant")
+    when "paid_by_holding_treasury"
+      I18n.t("attributes.mission_order.labels.paid_by_holding_treasury")
+    when "rejected"
+      I18n.t("attributes.mission_order.labels.rejected")
+    end
+  end
 
   def validate_indemnity_type
     return unless start_date.present? && end_date.present?
@@ -126,6 +144,26 @@ class MissionOrder < ApplicationRecord
       errors.add(:indemnity_type, I18n.t("attributes.mission_order.errors.must_be_flat_rate"))
     end
   end
+
+  def available_actions(user)
+    policy = MissionOrderPolicy.new(self, user: user)
+    case aasm_state
+    when "created"
+      policy.allowed_to?(:validate_mission_order_by_manager?, self) ? [:validate_mission_order_by_manager, :reject_mission_order] : []
+    when "validated_by_manager"
+      policy.allowed_to?(:validate_mission_order_by_hr?, self) ? [:validate_mission_order_by_hr, :reject_mission_order] : []
+    when "validated_by_hr"
+      if site?
+        policy.allowed_to?(:pay_mission_order_by_accountant, self) ? [:pay_mission_order_by_accountant, :reject_mission_order] : []
+      elsif project?
+        policy.allowed_to?(:pay_mission_order_by_holding_treasury, self) ? [:pay_mission_order_by_holding_treasury, :reject_mission_order] : []
+      end
+    else
+      []
+    end
+  end
+
+  private
 
   def log_status_change
     AasmLog.create(aasm_logable: self, actor_id: actor_id, from_state: aasm.from_state, to_state: aasm.to_state, event: aasm.current_event)
