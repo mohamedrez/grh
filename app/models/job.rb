@@ -7,4 +7,12 @@ class Job < ApplicationRecord
   enum status: {open: 0, closed: 1}
 
   has_rich_text :description
+
+  def color_badge(status)
+    if status == "open"
+      "green-badge"
+    else
+      "red-badge"
+    end
+  end
 end
