@@ -33,7 +33,7 @@ class EventsController < ApplicationController
         title: mission_order.user.full_name,
         start: mission_order.start_date,
         end: mission_order.end_date,
-        avatar: mission_order.user.avatar_url_or_default,
+        avatar: mission_order.user.avatar_url_or_default
       }
     end
   end
@@ -45,7 +45,7 @@ class EventsController < ApplicationController
         type: "Expense",
         title: expense.user.full_name,
         date: expense.date,
-        avatar: expense.user.avatar_url_or_default,
+        avatar: expense.user.avatar_url_or_default
       }
     end
   end
@@ -53,10 +53,10 @@ class EventsController < ApplicationController
   def fetch_events(model_class)
     events = model_class.all.includes(:user_request).includes(user_request: :user)
     if params["service"].present?
-      events = events.where(user_requests: { users: { service: params[:service] } })
+      events = events.where(user_requests: {users: {service: params[:service]}})
     end
     if params["site"].present?
-      events = events.where(user_requests: { users: { site_id: params[:site] } })
+      events = events.where(user_requests: {users: {site_id: params[:site]}})
     end
     events.map { |event| yield event }
   end
