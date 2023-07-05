@@ -441,6 +441,7 @@ en:
       edit_mission_order: "Edit the mission order"
       validate_by_manager: "Validate by manager"
       validate_by_hr: "Validate by HR"
+      reject: "Deny"
       pay_by_accountant: "Pay by accountant"
       pay_by_holding_treasury: "Pay by holding treasury"
       created_by: "Created by"

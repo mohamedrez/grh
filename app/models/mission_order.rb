@@ -113,26 +113,6 @@ class MissionOrder < ApplicationRecord
     # TODO not yet implmented
   end
 
-  def state_action
-
-
-  def state_label
-    case aasm_state
-    when "created"
-      I18n.t("attributes.mission_order.labels.created")
-    when "validated_by_manager"
-      I18n.t("attributes.mission_order.labels.validated_by_manager")
-    when "validated_by_hr"
-      I18n.t("attributes.mission_order.labels.validated_by_hr")
-    when "paid_by_accountant"
-      I18n.t("attributes.mission_order.labels.paid_by_accountant")
-    when "paid_by_holding_treasury"
-      I18n.t("attributes.mission_order.labels.paid_by_holding_treasury")
-    when "rejected"
-      I18n.t("attributes.mission_order.labels.rejected")
-    end
-  end
-
   def validate_indemnity_type
     return unless start_date.present? && end_date.present?
 
@@ -145,21 +125,47 @@ class MissionOrder < ApplicationRecord
     end
   end
 
-  def available_actions(user)
+  def state_label
+    case aasm_state
+    when "created"
+      I18n.t("attributes.mission_order.aasm_states.created")
+    when "validated_by_manager"
+      I18n.t("attributes.mission_order.aasm_states.validated_by_manager")
+    when "validated_by_hr"
+      I18n.t("attributes.mission_order.aasm_states.validated_by_hr")
+    when "paid_by_accountant"
+      I18n.t("attributes.mission_order.aasm_states.paid_by_accountant")
+    when "paid_by_holding_treasury"
+      I18n.t("attributes.mission_order.aasm_states.paid_by_holding_treasury")
+    when "rejected"
+      I18n.t("attributes.mission_order.aasm_states.rejected")
+    end
+  end
+
+  def available_states(user)
     policy = MissionOrderPolicy.new(self, user: user)
     case aasm_state
     when "created"
-      policy.allowed_to?(:validate_mission_order_by_manager?, self) ? [:validate_mission_order_by_manager, :reject_mission_order] : []
+      policy.allowed_to?(:validate_mission_order_by_manager?, self) ? [:validate_by_manager, :reject] : []
     when "validated_by_manager"
-      policy.allowed_to?(:validate_mission_order_by_hr?, self) ? [:validate_mission_order_by_hr, :reject_mission_order] : []
+      policy.allowed_to?(:validate_mission_order_by_hr?, self) ? [:validate_by_hr, :reject] : []
     when "validated_by_hr"
       if site?
-        policy.allowed_to?(:pay_mission_order_by_accountant, self) ? [:pay_mission_order_by_accountant, :reject_mission_order] : []
+        policy.allowed_to?(:pay_mission_order_by_accountant?, self) ? [:pay_by_accountant, :reject] : []
       elsif project?
-        policy.allowed_to?(:pay_mission_order_by_holding_treasury, self) ? [:pay_mission_order_by_holding_treasury, :reject_mission_order] : []
+        policy.allowed_to?(:pay_mission_order_by_holding_treasury?, self) ? [:pay_by_holding_treasury, :reject] : []
       end
     else
       []
+    end
+  end
+
+  def badge_color
+    case aasm_state
+    when "rejected"
+      "red"
+    when "paid_by_accountant", "paid_by_holding_treasury"
+      "green"
     end
   end
 

@@ -11,49 +11,17 @@ require 'rails_helper'
 #   end
 # end
 RSpec.describe MissionOrdersHelper, type: :helper do
-  describe '#mission_order_status' do
-    let(:user) { create(:user) }
-    let(:site) { create(:site, id: 1) }
-    let(:mission_order) { create(:mission_order, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08", indemnity_type: "expense_report") }
-
-    context 'when type is "badge"' do
-      it 'returns the correct status for a rejected mission order' do
-        mission_order.stub(:rejected?).and_return(true)
-        expect(mission_order_status(mission_order, "badge")).to eq({ color: 'red', text: t('views.shared.rejected') })
-      end
-
-      it 'returns the correct status for a mission order paid by accountant' do
-        mission_order.stub(:paid_by_accountant?).and_return(true)
-        expect(mission_order_status(mission_order, "badge")).to eq({ color: 'green', text: t('attributes.mission_order.aasm_states.paid_by_accountant') })
-      end
-
-      it 'returns the correct status for a mission order paid by holding treasury' do
-        mission_order.stub(:paid_by_holding_treasury?).and_return(true)
-        expect(mission_order_status(mission_order, "badge")).to eq({ color: 'green', text: t('attributes.mission_order.aasm_states.paid_by_holding_treasury') })
-      end
+  describe '#button_classes' do
+    it 'returns the correct button classes for each state' do
+      expect(button_classes(:reject)).to eq('bg-red-500 hover:bg-red-400')
+      expect(button_classes(:pay_by_accountant)).to eq('bg-green-500 hover:bg-green-400')
+      expect(button_classes(:pay_by_holding_treasury)).to eq('bg-green-500 hover:bg-green-400')
+      expect(button_classes(:validate_by_manager)).to eq('bg-indigo-500 hover:bg-indigo-400')
+      expect(button_classes(:validate_by_hr)).to eq('bg-indigo-500 hover:bg-indigo-400')
     end
 
-    context 'when type is "simple_button"' do
-      it 'returns the correct status for a mission order will validate by manager' do
-        expect(mission_order_status(mission_order, "simple_button")).to eq({text: t("views.mission_orders.validate_by_manager"), aasm_state: "validated_by_manager"})
-      end
-
-      it 'returns the correct status for a mission order will validate by hr' do
-        mission_order.update!(aasm_state: "validated_by_manager")
-        expect(mission_order_status(mission_order, "simple_button")).to eq({text: t("views.mission_orders.validate_by_hr"), aasm_state: "validated_by_hr"})
-      end
-    end
-
-    context 'when type is "pay_button"' do
-      it 'returns the correct status for a mission order will pay by accountant' do
-        mission_order.update!(aasm_state: "validated_by_hr", mission_type: "site")
-        expect(mission_order_status(mission_order, "pay_button")).to eq({text: t("views.mission_orders.pay_by_accountant")})
-      end
-
-      it 'returns the correct status for a mission order will pay by holding treasury' do
-        mission_order.update!(aasm_state: "validated_by_hr", mission_type: "project")
-        expect(mission_order_status(mission_order, "pay_button")).to eq({text: t("views.mission_orders.pay_by_holding_treasury")})
-      end
+    it 'returns nil for unsupported states' do
+      expect(button_classes(:some_state)).to be_nil
     end
   end
 end

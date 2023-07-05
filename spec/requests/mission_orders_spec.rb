@@ -172,7 +172,7 @@ RSpec.describe "/mission_orders", type: :request do
   describe 'PATCH /update_aasm_state' do
     context 'when aasm_state is "validated_by_manager"' do
       it 'updates the AASM state to "validated_by_manager" and redirects to the mission order page' do
-        patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, aasm_state: 'validated_by_manager')
+        patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, state: 'validate_by_manager')
         mission_order.reload
         expect(mission_order.aasm_state).to eq('validated_by_manager')
         expect(response).to redirect_to(user_mission_order_path(user, mission_order))
@@ -182,7 +182,7 @@ RSpec.describe "/mission_orders", type: :request do
     context 'when aasm_state is "validated_by_hr"' do
       it 'updates the AASM state to "validated_by_hr" and redirects to the mission order page' do
         mission_order = create(:mission_order, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report", aasm_state: "validated_by_manager")
-        patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, aasm_state: 'validated_by_hr')
+        patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, state: 'validate_by_hr')
         mission_order.reload
         expect(mission_order.aasm_state).to eq('validated_by_hr')
         expect(response).to redirect_to(user_mission_order_path(user, mission_order))
@@ -191,7 +191,7 @@ RSpec.describe "/mission_orders", type: :request do
 
     context 'when aasm_state is "rejected"' do
       it 'updates the AASM state to "rejected" and redirects to the mission order page' do
-        patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, aasm_state: 'rejected')
+        patch user_update_aasm_state_mission_order_path(user_id: user.id, id: mission_order.id, state: 'reject')
         mission_order.reload
         expect(mission_order.aasm_state).to eq('rejected')
         expect(response).to redirect_to(user_mission_order_path(user, mission_order))

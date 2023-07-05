@@ -6,12 +6,11 @@ class MissionOrderPolicy < ApplicationPolicy
   end
 
   def approve?
-    return true
     user.has_any_role?([:hr, :admin]) ||
       user.id == record.user.manager_id
   end
 
-  def reject?
+  def validate_mission_order_by_manager?
     true
   end
 
@@ -19,7 +18,11 @@ class MissionOrderPolicy < ApplicationPolicy
     true
   end
 
-  def validate_mission_order_by_manager?
+  def pay_mission_order_by_accountant?
+    true
+  end
+
+  def pay_mission_order_by_holding_treasury?
     true
   end
 end

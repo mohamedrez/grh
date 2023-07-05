@@ -437,6 +437,7 @@ fr:
       edit_mission_order: "Modifier l'ordre de mission"
       validate_by_manager: "Valider par le responsable"
       validate_by_hr: "Valider par les RH"
+      reject: "Refuser"
       pay_by_accountant: "Payer par le comptable"
       pay_by_holding_treasury: "Payer par la trésorerie centrale"
       created_by: "Créé par"

@@ -79,15 +79,15 @@ class MissionOrdersController < ApplicationController
   end
 
   def update_aasm_state
-    aasm_state = params[:aasm_state]
+    state = params[:state]
     @mission_order.actor_id = current_user.id
 
-    case aasm_state
-    when "validated_by_manager"
+    case state
+    when "validate_by_manager"
       @mission_order.validate_mission_order_by_manager!
-    when "validated_by_hr"
+    when "validate_by_hr"
       @mission_order.validate_mission_order_by_hr!
-    when "rejected"
+    when "reject"
       @mission_order.reject_mission_order!
     end
 
