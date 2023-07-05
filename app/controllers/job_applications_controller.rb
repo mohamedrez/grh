@@ -2,7 +2,7 @@ class JobApplicationsController < ApplicationController
   layout "custom_layout", only: %i[new create]
   skip_before_action :authenticate_user!, only: %i[new create]
   before_action :set_job_application, only: %i[infos show edit update destroy delete_resume update_aasm_state]
-  before_action :set_breadcrumbs, only: :index
+  before_action :set_breadcrumbs, only: %i[index show]
   before_action :set_job, only: %i[show new edit]
 
   def index
@@ -29,6 +29,7 @@ class JobApplicationsController < ApplicationController
 
   def new
     @job_application = JobApplication.new
+    @jobs = Job.all
   end
 
   def edit
@@ -39,7 +40,11 @@ class JobApplicationsController < ApplicationController
 
     if @job_application.save
       flash.now[:notice] = t("flash.successfully_created")
-      redirect_to user_signed_in? ? job_applications_path : jobs_path
+      if params[:job_id].present?
+        redirect_to job_job_applications_path(params[:job_id])
+      else
+        redirect_to job_applications_path
+      end
     else
       render :new, status: :unprocessable_entity
     end
