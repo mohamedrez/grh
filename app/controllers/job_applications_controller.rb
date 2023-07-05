@@ -1,8 +1,9 @@
 class JobApplicationsController < ApplicationController
   layout "custom_layout", only: %i[new create]
-  before_action :set_job_application, only: %i[infos show edit update destroy delete_resume update_aasm_state]
   skip_before_action :authenticate_user!, only: %i[new create]
+  before_action :set_job_application, only: %i[infos show edit update destroy delete_resume update_aasm_state]
   before_action :set_breadcrumbs, only: :index
+  before_action :set_job, only: %i[show new edit]
 
   def index
     @job_applications = if params[:job_id]
