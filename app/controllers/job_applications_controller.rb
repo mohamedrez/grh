@@ -4,11 +4,14 @@ class JobApplicationsController < ApplicationController
   before_action :set_job, only: %i[show new edit]
 
   def index
-    @job_applications = if params[:job_id]
-      JobApplication.where(job_id: params[:job_id]).page(params[:page])
+    @q = if params[:job_id]
+      @url = job_job_applications_path
+      JobApplication.where(job_id: params[:job_id]).ransack(params[:q])
     else
-      JobApplication.all.page(params[:page])
+      @url = job_applications_path
+      JobApplication.all.ransack(params[:q])
     end
+    @job_applications = @q.result.page(params[:page])
   end
 
   def show
