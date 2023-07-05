@@ -3,6 +3,8 @@ class EventsController < ApplicationController
     @events = []
     @events += holidays
     @events += time_requests
+    @events += mission_orders
+    @events += expenses
 
     render json: @events
   end
@@ -10,16 +12,10 @@ class EventsController < ApplicationController
   private
 
   def time_requests
-    @time_requests ||= TimeRequest.all.includes(:user_request).includes(user_request: :user)
-    if params["service"].present?
-      @time_requests = @time_requests.where(user_requests: {users: {service: params[:service]}})
-    end
-    if params["site"].present?
-      @time_requests = @time_requests.where(user_requests: {users: {site_id: params[:site]}})
-    end
-    @time_requests.map do |time_request|
+    fetch_events(TimeRequest) do |time_request|
       {
         id: time_request.id,
+        type: "Time request",
         title: time_request.user.full_name,
         start: time_request.start_date,
         end: time_request.end_date,
@@ -27,6 +23,42 @@ class EventsController < ApplicationController
         color: time_request.color
       }
     end
+  end
+
+  def mission_orders
+    fetch_events(MissionOrder) do |mission_order|
+      {
+        id: mission_order.id,
+        type: "Mission order",
+        title: mission_order.user.full_name,
+        start: mission_order.start_date,
+        end: mission_order.end_date,
+        avatar: mission_order.user.avatar_url_or_default,
+      }
+    end
+  end
+
+  def expenses
+    fetch_events(Expense) do |expense|
+      {
+        id: expense.id,
+        type: "Expense",
+        title: expense.user.full_name,
+        date: expense.date,
+        avatar: expense.user.avatar_url_or_default,
+      }
+    end
+  end
+
+  def fetch_events(model_class)
+    events = model_class.all.includes(:user_request).includes(user_request: :user)
+    if params["service"].present?
+      events = events.where(user_requests: { users: { service: params[:service] } })
+    end
+    if params["site"].present?
+      events = events.where(user_requests: { users: { site_id: params[:site] } })
+    end
+    events.map { |event| yield event }
   end
 
   def holidays
