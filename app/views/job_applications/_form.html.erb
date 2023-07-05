@@ -1,3 +1,11 @@
+<% if @job_id.present? %>
+  <%= form_with(model: job_application, url: (@job_application.new_record? ? job_job_applications_path(job_id: @job_id) : job_job_application_path(job_id: @job_id, id: @job_application.id)), method: (@job_application.new_record? ? :post : :patch), class: "bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 my-5") do |form| %>
+    <%= render partial: "fields", locals: {job: @job, form: form, job_application: @job_application} %>
+  <% end %>
+<% else %>
+  <%= form_with(model: job_application, url: (job_application.new_record? ? job_applications_path : job_application_path(job_application)), method: (job_application.new_record? ? :post : :patch), class: "bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 my-5") do |form| %>
+    <%= render partial: "fields", locals: {job: @job, form: form, job_application: @job_application} %>
+  <% end %>
 <%= form_with(model: job_application, class: "bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2 my-5") do |form| %>
   <div class="px-4 py-6 sm:p-8">
     <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
