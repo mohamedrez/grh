@@ -17,8 +17,11 @@ function eventHtml(event) {
     console.log(event.extendedProps.avatar)
     content += '<img class="inline-block rounded-full h-8 w-8 align-middle" src="'+ event.extendedProps.avatar +'">'
   }
-  content += '<span class="ml-2">' + event.title   + '</span>';
-  return '<div class="">'+ content +'</div>';
+  content += '<span class="ml-2">' + event.title + '</span>';
+  if (event.extendedProps.type){
+    content += '<p class="mt-1">' + event.extendedProps.type + '</p>'
+  }
+  return '<div class="text-center">'+ content +'</div>';
 }
 function  renderCalendar(events){
   var calendarEl = document.getElementById('calendar');
