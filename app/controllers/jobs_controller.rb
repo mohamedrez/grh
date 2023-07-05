@@ -3,7 +3,9 @@ class JobsController < ApplicationController
   before_action :set_breadcrumbs, only: %i[index show]
 
   def index
-    @jobs = Job.order(created_at: :desc).page(params[:page])
+    @url = jobs_path
+    @q = Job.ransack(params[:q])
+    @jobs = @q.result.page(params[:page])
   end
 
   def show
@@ -45,7 +47,7 @@ class JobsController < ApplicationController
   private
 
   def set_breadcrumbs
-    add_breadcrumb("Job", jobs_path)
+    add_breadcrumb(t("attributes.job.jobs"), jobs_path)
   end
 
   def job_params
