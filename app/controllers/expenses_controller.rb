@@ -24,6 +24,7 @@ class ExpensesController < ApplicationController
   def show
     authorize! @expense
     @user_request = @expense.user_request
+    @aasm_logs = AasmLog.where(aasm_logable: @expense)
   end
 
   def new

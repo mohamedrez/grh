@@ -16,4 +16,8 @@ class ExpensePolicy < ApplicationPolicy
   def pay_expense?
     user.has_role?(:accountant)
   end
+
+  def back_expense_to_modify?
+    validate_expense_by_manager? || validate_expense_by_hr? || pay_expense?
+  end
 end

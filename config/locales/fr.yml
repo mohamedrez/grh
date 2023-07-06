@@ -67,6 +67,7 @@ fr:
         other_study_field: "Autre domaine d'études"
     expense:
       employee: "Employé"
+      state: "État"
       date: "Date"
       category: "Catégorie"
       description: "Description"
@@ -389,6 +390,13 @@ fr:
       no_receipts: "Aucun reçu"
       mark_as_paid: "Marquer comme payé"
       expense_details: "Détails des notes de frais"
+      feeds:
+        created: "Créé par"
+        validated_by_manager: "Validé par le manager"
+        validated_by_hr: "Validé par les RH"
+        paid: "Payé par"
+        back_to_modified: "Retourné pour modification par"
+        rejected: "Rejeté par"
       labels:
         created: "Créé"
         validated_by_manager: "Validé par le manager"

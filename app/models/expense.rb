@@ -67,12 +67,14 @@ class Expense < ApplicationRecord
   def available_next_states(user)
     policy = ExpensePolicy.new(self, user: user)
     case aasm_state
-    when "created", "back_to_modified"
+    when "created"
       policy.allowed_to?(:validate_expense_by_manager?, self) ? [:validate_by_manager, :back_to_modify, :reject] : []
     when "validated_by_manager"
       policy.allowed_to?(:validate_expense_by_hr?, self) ? [:validate_by_hr, :back_to_modify, :reject] : []
     when "validated_by_hr"
       policy.allowed_to?(:pay_expense?, self) ? [:pay, :back_to_modify] : []
+    when "back_to_modified"
+      policy.allowed_to?(:back_expense_to_modify?, self) ? [:validate_by_manager, :back_to_modify, :reject] : []
     else
       []
     end
@@ -98,6 +100,7 @@ class Expense < ApplicationRecord
   def create_expense_trigger_actions
     create_user_request
     notify_manager
+    AasmLog.create(aasm_logable: self, actor_id: user.id, to_state: "created")
   end
 
   def validate_expense_by_manager_trigger_actions
