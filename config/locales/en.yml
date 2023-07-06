@@ -10,6 +10,7 @@ en:
     download: "Download"
     delete: "Delete"
     archive: "Archive"
+    submit: "Submit"
   attributes:
     address:
       countries:
@@ -392,6 +393,15 @@ en:
       no_receipts: "No receipts"
       mark_as_paid: "Mark as paid"
       expense_details: "Expense Details"
+      labels:
+        rejected: "Rejected"
+        paid: "Paid"
+      actions:
+        validate_by_manager: "Validate by manager"
+        validate_by_hr: "validate by hr"
+        pay: "Pay"
+        back_to_modify: "Back to modify"
+        reject: "Reject"
     experiences:
       add_experience: "Add new experience"
     emergency_contacts:

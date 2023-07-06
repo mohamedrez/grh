@@ -10,6 +10,7 @@ fr:
     download: "Télécharger"
     delete: "Supprimer"
     archive: "Archiver"
+    submit: "Soumettre"
   attributes:
     address:
       countries:
@@ -388,6 +389,15 @@ fr:
       no_receipts: "Aucun reçu"
       mark_as_paid: "Marquer comme payé"
       expense_details: "Détails des notes de frais"
+      labels:
+        rejected: "Rejeté"
+        paid: "Payé"
+      actions:
+        validate_by_manager: "Valider par le manager"
+        validate_by_hr: "Valider par les RH"
+        pay: "Payer"
+        back_to_modify: "Retourner pour modifier"
+        reject: "Rejeter"
     experiences:
       add_experience: "Ajouter une nouvelle expérience"
     emergency_contacts:
