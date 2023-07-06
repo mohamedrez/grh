@@ -133,6 +133,7 @@ fr:
         very_important: "Très important"
         critical: "Critique"
     job:
+      jobs: "Emplois"
       title: "Titre"
       job_type: "Type d'emploi"
       location: "Emplacement"

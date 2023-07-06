@@ -137,6 +137,7 @@ en:
         admin: "Admin"
         accountant: "Accountant"
     job:
+      jobs: "Jobs"
       title: "Title"
       job_type: "Job type"
       location: "Location"
