@@ -390,8 +390,12 @@ fr:
       mark_as_paid: "Marquer comme payé"
       expense_details: "Détails des notes de frais"
       labels:
-        rejected: "Rejeté"
+        created: "Créé"
+        validated_by_manager: "Validé par le manager"
+        validated_by_hr: "Validé par les RH"
         paid: "Payé"
+        back_to_modified: "Retourné pour modification"
+        rejected: "Rejeté"
       actions:
         validate_by_manager: "Valider par le manager"
         validate_by_hr: "Valider par les RH"

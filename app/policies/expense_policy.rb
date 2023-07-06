@@ -5,20 +5,15 @@ class ExpensePolicy < ApplicationPolicy
       (user.id == record.user.manager_id)
   end
 
-  def approve?
-    user.has_any_role?([:hr, :admin]) ||
-      user.id == record.user.manager_id
-  end
-
   def validate_expense_by_manager?
-    true
+    user.has_role?(:manager) && user.id == record.user.manager_id
   end
 
   def validate_expense_by_hr?
-    true
+    user.has_role?(:hr)
   end
 
   def pay_expense?
-    true
+    user.has_role?(:accountant)
   end
 end

@@ -394,8 +394,12 @@ en:
       mark_as_paid: "Mark as paid"
       expense_details: "Expense Details"
       labels:
-        rejected: "Rejected"
+        created: "Created"
+        validated_by_manager: "Validated by manager"
+        validated_by_hr: "Validated by hr"
         paid: "Paid"
+        back_to_modified: "Back to modified"
+        rejected: "Rejected"
       actions:
         validate_by_manager: "Validate by manager"
         validate_by_hr: "validate by hr"

@@ -4,6 +4,7 @@ RSpec.describe ExpensePolicy do
   let(:admin_user) { create(:user) }
   let(:hr_user) { create(:user) }
   let(:manager_user) { create(:user) }
+  let(:manager_user2) { create(:user) }
   let(:user) { create(:user, manager_id: manager_user.id) }
   let(:other_user) { create(:user) }
 
@@ -13,6 +14,7 @@ RSpec.describe ExpensePolicy do
     Role.create!(user_id: admin_user.id, name: :admin)
     Role.create!(user_id: hr_user.id, name: :hr)
     Role.create!(user_id: manager_user.id, name: :manager)
+    Role.create!(user_id: manager_user2.id, name: :manager)
   end
 
   describe "#show?" do
@@ -42,28 +44,25 @@ RSpec.describe ExpensePolicy do
     end
   end
 
-  describe "#approve?" do
-    subject { policy.apply(:approve?) }
+  describe "#validate_expense_by_manager?" do
+    subject { policy.apply(:validate_expense_by_manager?) }
 
-    context "Admin and HR can approve the expense" do
-      let(:policy) { described_class.new(record, user: admin_user) }
-      it { is_expected.to eq true }
-  
-      let(:policy) { described_class.new(record, user: hr_user) }
-      it { is_expected.to eq true }
-    end
-
-    context "when user is the manager of the record, can approve the expense" do
+    context "when user has manger role and the manager of the record, can validate the expense" do
       let(:policy) { described_class.new(record, user: manager_user) }
       it { is_expected.to eq true }
     end
 
-    context "when user is neither HR, admin, nor the manager of the expense user, can't see the expense" do
-      let(:policy) { described_class.new(record, user: other_user) }
+    context "when user has manger role and the not manager of the record, can't validate the expense" do
+      let(:policy) { described_class.new(record, user: manager_user2) }
       it { is_expected.to eq false }
+    end
 
-      let(:policy) { described_class.new(record, user: other_user) }
-      it { is_expected.to eq false }
+    context "when user hasn't manger role and the manager of the record" do
+      let(:policy) { described_class.new(record, user: manager_user) }
+      it "can't validate the expense" do 
+        Role.where(user_id: manager_user.id, name: :manager).destroy_all
+        is_expected.to eq false
+      end
     end
   end
 end

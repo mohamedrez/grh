@@ -78,6 +78,21 @@ class Expense < ApplicationRecord
     end
   end
 
+  def color
+    case aasm_state
+    when "created"
+      "gray"
+    when "validated_by_manager", "validated_by_hr"
+      "indigo"
+    when "paid"
+      "green"
+    when "back_to_modified"
+      "yellow"
+    when "rejected"
+      "red"
+    end
+  end
+
   # Actions
 
   def create_expense_trigger_actions

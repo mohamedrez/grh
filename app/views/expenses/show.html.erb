@@ -6,21 +6,22 @@
         <p class="text-2xl font-extrabold leading-none tracking-tight text-gray-900"><%= t("views.expenses.expense_details") %></p>
         </div>
         <div class="flex items-center gap-x-5">
-          <% if @expense.rejected? || @expense.paid? %>
-            <% color = @expense.rejected? ? "red" : "green" %>
+          <% available_next_states = @expense.available_next_states(current_user) %>
+          <% if available_next_states.present? %>
+            <%= form_tag(user_update_aasm_state_expense_path(@user, @expense), method: :patch) do %>
+              <div class="flex items-center">
+                <%= select_tag :next_state, options_for_select(available_next_states.map { |state| [t("views.expenses.actions.#{state}"), state] }), class: "rounded-md text-base font-medium shadow-sm inline-block mr-4" %>
+                <%= submit_tag t("buttons.submit"), class: "rounded-md text-base font-medium shadow-sm px-4 py-2" %>
+              </div>
+            <% end %>
+          <% else %>
+            <% color = @expense.color %>
             <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-<%= color %>-100 text-<%= color %>-800">
               <svg class="mr-1.5 h-2 w-2 text-<%= color %>-400" fill="currentColor" viewBox="0 0 8 8">
                 <circle cx="4" cy="4" r="3" />
               </svg>
               <%= t("views.expenses.labels.#{@expense.aasm_state}") %>
             </span>
-          <% else %>
-            <%= form_tag(user_update_aasm_state_expense_path(@user, @expense), method: :patch) do %>
-              <div class="flex items-center">
-                <%= select_tag :next_state, options_for_select(@expense.available_next_states(current_user).map { |state| [t("views.expenses.actions.#{state}"), state] }), class: "rounded-md text-base font-medium shadow-sm inline-block mr-4" %>
-                <%= submit_tag t("buttons.submit"), class: "rounded-md text-base font-medium shadow-sm px-4 py-2" %>
-              </div>
-            <% end %>
           <% end %>
         </div>
       </div>
