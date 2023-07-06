@@ -9,8 +9,6 @@ class EventsController < ApplicationController
     render json: @events
   end
 
-  private
-
   def time_requests
     fetch_events(TimeRequest) do |time_request|
       {
@@ -49,6 +47,8 @@ class EventsController < ApplicationController
       }
     end
   end
+
+  private
 
   def fetch_events(model_class)
     events = model_class.all.includes(:user_request).includes(user_request: :user)
