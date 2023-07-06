@@ -7,7 +7,14 @@ class EventsController < ApplicationController
   end
 
   def time_requests
-    fetch_events(TimeRequest) do |time_request|
+    @time_requests ||= TimeRequest.all.includes(:user_request).includes(user_request: :user)
+    if params["service"].present?
+      @time_requests = @time_requests.where(user_requests: {users: {service: params[:service]}})
+    end
+    if params["site"].present?
+      @time_requests = @time_requests.where(user_requests: {users: {site_id: params[:site]}})
+    end
+    @time_requests.map do |time_request|
       {
         id: time_request.id,
         title: time_request.user.full_name,
@@ -28,18 +35,5 @@ class EventsController < ApplicationController
         end: holiday.end_date
       }
     end
-  end
-
-  private
-
-  def fetch_events(model_class)
-    events = model_class.all.includes(:user_request).includes(user_request: :user)
-    if params["service"].present?
-      events = events.where(user_requests: {users: {service: params[:service]}})
-    end
-    if params["site"].present?
-      events = events.where(user_requests: {users: {site_id: params[:site]}})
-    end
-    events.map { |event| yield event }
   end
 end
