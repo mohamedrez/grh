@@ -76,4 +76,34 @@ RSpec.describe Expense, type: :model do
     end
   end
 
+  describe '#update_to_next_state' do
+    it 'updates the state to validated_by_manager' do
+      expense.update_to_next_state("validate_by_manager")
+      expect(expense.aasm_state).to eq("validated_by_manager")
+    end
+
+    it 'updates the state to validated_by_hr' do
+      expense.aasm_state = "validated_by_manager"
+
+      expense.update_to_next_state("validate_by_hr")
+      expect(expense.aasm_state).to eq("validated_by_hr")
+    end
+
+    it 'updates the state to paid' do
+      expense.aasm_state = "validated_by_hr"
+
+      expense.update_to_next_state("pay")
+      expect(expense.aasm_state).to eq("paid")
+    end
+
+    it 'updates the state to back_to_modified' do
+      expense.update_to_next_state("back_to_modify")
+      expect(expense.aasm_state).to eq("back_to_modified")
+    end
+
+    it 'updates the state to rejected' do
+      expense.update_to_next_state("reject")
+      expect(expense.aasm_state).to eq("rejected")
+    end
+  end
 end

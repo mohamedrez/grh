@@ -83,18 +83,7 @@ class ExpensesController < ApplicationController
     next_state = params[:next_state]
     @expense.actor_id = current_user.id
 
-    case next_state
-    when "validate_by_manager"
-      @expense.validate_expense_by_manager!
-    when "validate_by_hr"
-      @expense.validate_expense_by_hr!
-    when "pay"
-      @expense.pay_expense!
-    when "back_to_modify"
-      @expense.back_to_modify_expense!
-    when "reject"
-      @expense.reject_expense!
-    end
+    @expense.update_to_next_state(next_state)
 
     redirect_to user_expense_path(@user, @expense)
   end

@@ -410,7 +410,7 @@ en:
         rejected: "Rejected"
       actions:
         validate_by_manager: "Validate by manager"
-        validate_by_hr: "validate by hr"
+        validate_by_hr: "Validate by hr"
         pay: "Pay"
         back_to_modify: "Back to modify"
         reject: "Reject"

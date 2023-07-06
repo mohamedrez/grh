@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe "/expenses", type: :request do
-  let(:manager) { create(:user, admin: true) }
-  let(:user) { create(:user, manager_id: manager.id, admin: true) }
+  let(:manager_user) { create(:user) }
+  let(:user) { create(:user, manager_id: manager_user.id) }
   let(:expense) { create(:expense, user_id: user.id) }
 
   let(:valid_attributes) do
@@ -177,6 +177,22 @@ RSpec.describe "/expenses", type: :request do
 
     it 'returns a 302 response' do
       expect(response).to have_http_status(302)
+    end
+  end
+
+  describe 'PATCH /update_aasm_state' do
+    before do   
+      Role.create!(user: manager_user, name: :manager)
+      patch user_update_aasm_state_expense_path(user_id: user.id, id: expense.id, next_state: 'validate_by_manager')
+    end
+
+    it 'updates the state of the expense to the next one' do
+      expense.reload
+      expect(expense.aasm_state).to eq('validated_by_manager')
+    end
+
+    it "redirects to the expense page" do
+      expect(response).to redirect_to(user_expense_path(user, expense))
     end
   end
 end

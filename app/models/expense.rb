@@ -46,7 +46,7 @@ class Expense < ApplicationRecord
     end
 
     event :reject_expense do
-      transitions from: [:created, :validated_by_manager], to: :rejected, after: :reject_expense_trigger_actions
+      transitions from: [:created, :validated_by_manager, :back_to_modified], to: :rejected, after: :reject_expense_trigger_actions
     end
   end
 
@@ -92,6 +92,21 @@ class Expense < ApplicationRecord
       "yellow"
     when "rejected"
       "red"
+    end
+  end
+
+  def update_to_next_state(next_state)
+    case next_state
+    when "validate_by_manager"
+      validate_expense_by_manager!
+    when "validate_by_hr"
+      validate_expense_by_hr!
+    when "pay"
+      pay_expense!
+    when "back_to_modify"
+      back_to_modify_expense!
+    when "reject"
+      reject_expense!
     end
   end
 
