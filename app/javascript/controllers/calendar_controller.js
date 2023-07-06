@@ -21,7 +21,7 @@ function eventHtml(event) {
   if (event.extendedProps.type){
     content += '<p class="mt-1">' + event.extendedProps.type + '</p>'
   }
-  return '<div class="text-center">'+ content +'</div>';
+  return '<div class="text-center p-2">'+ content +'</div>';
 }
 function  renderCalendar(events){
   var calendarEl = document.getElementById('calendar');
