@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Connects to data-controller="applicant"
+// Connects to data-controller="attachment"
 export default class extends Controller {
   connect() {
     const fileInput = document.querySelector('#job_application_resume');
