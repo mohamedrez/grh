@@ -54,6 +54,14 @@ a {
   @apply inline-flex items-center rounded-full px-3 py-2 text-xs font-medium ring-1 ring-inset;
 }
 
+.closed{
+  @apply bg-red-50 text-red-600 ring-red-500/10;
+}
+
+.open{
+  @apply bg-green-50 text-green-600 ring-green-500/10;
+}
+
 .yellow-badge{
   @apply bg-yellow-50 text-yellow-600 ring-yellow-500/10;
 }

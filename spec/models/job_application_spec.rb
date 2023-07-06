@@ -86,19 +86,5 @@ RSpec.describe JobApplication, type: :model do
         expect(urls[:disqualified]).to eq("/job_applications/#{job_application_id}/update_aasm_state?aasm_state=disqualified")
       end
     end
-
-    describe "#color_badge" do
-    context "when status is 'open'" do
-      it "returns 'green-badge'" do
-        expect(job.color_badge("open")).to eq("green-badge")
-      end
-    end
-
-    context "when status is not 'open'" do
-      it "returns 'red-badge'" do
-        expect(job.color_badge("closed")).to eq("red-badge")
-      end
-    end
-  end
   end
 end

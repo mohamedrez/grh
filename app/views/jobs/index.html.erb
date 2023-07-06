@@ -44,7 +44,7 @@
                   </td>
                   <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500"><%= job.location %></td>
                   <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500">
-                    <span class="badge <%= job.color_badge(job.status) %>">
+                    <span class="badge <%= job.status %>">
                       <%= Job.human_enum_name(:status, job.status) %>
                     </span>
                   </td>
