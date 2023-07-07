@@ -1,6 +1,6 @@
 class ExpensesController < ApplicationController
   before_action :set_user, except: :index
-  before_action :set_expense, only: %i[show edit update destroy update_status delete_receipt]
+  before_action :set_expense, only: %i[show edit update destroy delete_receipt update_aasm_state]
   before_action :set_breadcrumbs, only: :index
 
   def index
@@ -24,6 +24,7 @@ class ExpensesController < ApplicationController
   def show
     authorize! @expense
     @user_request = @expense.user_request
+    @aasm_logs = AasmLog.where(aasm_logable: @expense)
   end
 
   def new
@@ -72,16 +73,19 @@ class ExpensesController < ApplicationController
     ]
   end
 
-  def update_status
-    status = params[:status]
-    @expense.update!(status: status)
-    redirect_to user_expense_path(@user, @expense), notice: t("flash.status_successfully_updated")
-  end
-
   def delete_receipt
     receipt = ActiveStorage::Attachment.find(params[:receipt_id])
     receipt.destroy
     redirect_to user_expense_path(@user, @expense), notice: t("flash.receipt_successfully_deleted")
+  end
+
+  def update_aasm_state
+    next_state = params[:next_state]
+    @expense.actor_id = current_user.id
+
+    @expense.send("#{next_state}!")
+
+    redirect_to user_expense_path(@user, @expense)
   end
 
   private
