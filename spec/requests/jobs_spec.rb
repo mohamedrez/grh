@@ -30,7 +30,7 @@ RSpec.describe "Jobs", type: :request do
 
     describe "GET /index" do
         it "renders a successful response" do
-            get jobs_url(jub_id: job.id)
+            get jobs_path
             expect(response).to be_successful
         end
     end
