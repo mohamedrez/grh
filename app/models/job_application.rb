@@ -96,6 +96,14 @@ class JobApplication < ApplicationRecord
       }
     end
   end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["first_name", "last_name", "phone", "email", "first_name_or_last_name_or_email_or_phone_cont"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["aasm_logs", "job", "resume_attachment", "resume_blob"]
+  end
   # Actions
 
   def create_job_application_trigger_actions

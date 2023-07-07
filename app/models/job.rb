@@ -7,4 +7,20 @@ class Job < ApplicationRecord
   enum status: {open: 0, closed: 1}
 
   has_rich_text :description
+
+  def color_badge(status)
+    if status == "open"
+      "green-badge"
+    else
+      "red-badge"
+    end
+  end
+
+  def self.ransackable_attributes(auth_object = nil)
+    ["title", "location", "title_or_location_cont"]
+  end
+
+  def self.ransackable_associations(auth_object = nil)
+    ["job_applications"]
+  end
 end
