@@ -31,5 +31,8 @@ application.register("search", SearchController)
 import SidebarMenuController from "./sidebar_menu_controller"
 application.register("sidebar-menu", SidebarMenuController)
 
+import ToggleVisibilityController from "./toggle_visibility_controller"
+application.register("toggle-visibility", ToggleVisibilityController)
+
 import TomSelectController from "./tom_select_controller"
 application.register("tom-select", TomSelectController)
