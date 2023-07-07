@@ -51,8 +51,9 @@ a {
 }
 
 .badge {
-  @apply inline-flex items-center rounded-full px-3 py-2 text-xs font-medium ring-1 ring-inset;
+  @apply inline-flex items-center rounded-full px-4 py-1 text-sm font-medium;
 }
+
 
 .closed{
   @apply bg-red-50 text-red-600 ring-red-500/10;
@@ -62,16 +63,24 @@ a {
   @apply bg-green-50 text-green-600 ring-green-500/10;
 }
 
-.yellow-badge{
-  @apply bg-yellow-50 text-yellow-600 ring-yellow-500/10;
+.yellow-badge, .back_to_modified {
+  @apply bg-yellow-100 text-yellow-800;
 }
 
-.red-badge{
-  @apply bg-red-50 text-red-600 ring-red-500/10;
+.red-badge, .rejected {
+  @apply bg-red-100 text-red-800;
 }
 
-.green-badge{
-  @apply bg-green-50 text-green-600 ring-green-500/10;
+.green-badge, .paid {
+  @apply bg-green-100 text-green-800;
+}
+
+.created {
+  @apply bg-gray-100 text-gray-800;
+}
+
+.validated_by_manager .validated_by_hr {
+  @apply bg-indigo-100 text-indigo-800;
 }
 
 
