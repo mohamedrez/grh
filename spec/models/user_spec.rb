@@ -64,13 +64,22 @@ RSpec.describe User, type: :model do
     let(:manager) { create(:user) }
     let(:user) { create(:user, manager: manager) }
 
-    context "when the user is their own manager" do
+    context "when the manager is already managed by the current user" do
       it "returns an error" do
-        user.manager = user
-        expect(user).not_to be_valid
-        expect(user.errors[:manager_id]).to include("can't be your own manager")
+        manager.manager_id = user.id
+        manager.check_manager
+        expect(manager.errors[:manager_id]).to include("the #{user.full_name} cannot be your manager because you are his manager.")
       end
     end
+
+    context 'when the user tries to assign themselves as their own manager' do
+      it 'adds an error to manager' do
+        user.manager_id = user.id
+        user.check_manager
+        expect(user.errors[:manager_id]).to include('You cannot assign yourself as your own manager')
+      end
+    end
+
 
     context "when the user has a valid manager" do
       it "does not return an error" do

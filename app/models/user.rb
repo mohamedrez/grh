@@ -76,8 +76,10 @@ class User < ApplicationRecord
   end
 
   def check_manager
-    if manager.present? && manager.manager == self
-      errors.add(:manager_id, "can't be your own manager")
+    if manager && manager.manager == self
+      errors.add(:manager_id, "the #{manager.full_name} cannot be your manager because you are his manager.")
+    elsif manager == self
+      errors.add(:manager_id, "You cannot assign yourself as your own manager")
     end
   end
 
