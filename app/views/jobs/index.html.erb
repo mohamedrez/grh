@@ -3,44 +3,6 @@
       <div class="sm:flex-auto">
         <h1> <%= t("views.jobs.jobs_list") %> </h1>
       </div>
-      <div class="px-2 py-2 border border-transparent rounded-md leading-5 bg-gray-100 sm:text-sm transition" data-controller="toggle-visibility">
-        <div class="mx-auto max-w-3xl text-center sm:px-6 lg:max-w-7xl lg:px-8">
-          <section aria-labelledby="filter-heading">
-            <h2 id="filter-heading" class="sr-only">Product filters</h2>
-
-            <div class="flex items-center justify-between">
-
-              <button type="button" class="inline-block text-sm font-medium text-gray-700 hover:text-gray-900 sm:hidden">Filters</button>
-
-              <div class="hidden sm:flex sm:items-baseline sm:space-x-8">
-                <div id="desktop-menu-2" class="relative inline-block text-left">
-                  <div>
-                    <button type="button" id="filter-button" class="group inline-flex items-center justify-center text-sm font-medium text-gray-700 hover:text-gray-900" aria-expanded="false">
-                      <span>Filter by status</span>
-                      <svg class="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                        <path fill-rule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z" clip-rule="evenodd" />
-                      </svg>
-                    </button>
-                  </div>
-                  <div id="filter-form" class="absolute hidden left-0 z-10 mt-2 origin-top-left rounded-md bg-white p-4 shadow-2xl focus:outline-none">
-                    <form class="space-y-4">
-                      <div class="flex items-center">
-                        <input id="filter-status-0" name="status[]" value="open" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                        <label for="filter-status-0" class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900">Open</label>
-                      </div>
-                      <div class="flex items-center">
-                        <input id="filter-status-1" name="status[]" value="closed" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                        <label for="filter-status-1" class="ml-3 whitespace-nowrap pr-6 text-sm font-medium text-gray-900">Closed</label>
-                      </div>
-                      <%= button_to "Apply", jobs_path, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        </div>
-      </div>
       <div class="flex-1 flex justify-center px-2 lg:ml-6 lg:justify-end">
         <%= render partial: "search_form", locals: {url: @url} %>
       </div>

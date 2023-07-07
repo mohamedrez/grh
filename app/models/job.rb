@@ -8,6 +8,14 @@ class Job < ApplicationRecord
 
   has_rich_text :description
 
+  def self.job_status
+    humanized_statuses = {}
+    Job.statuses.each do |key, value|
+      humanized_statuses[Job.human_enum_name(:status, key)] = value
+    end
+    humanized_statuses
+  end
+
   def color_badge(status)
     if status == "open"
       "green-badge"
@@ -17,7 +25,7 @@ class Job < ApplicationRecord
   end
 
   def self.ransackable_attributes(auth_object = nil)
-    ["title", "location", "title_or_location_cont"]
+    ["title", "location", "status", "status_eq", "title_or_location_cont"]
   end
 
   def self.ransackable_associations(auth_object = nil)
