@@ -29,24 +29,24 @@ class Expense < ApplicationRecord
     state :back_to_modified
     state :rejected
 
-    event :validate_expense_by_manager do
-      transitions from: [:created, :back_to_modified], to: :validated_by_manager, after: :validate_expense_by_manager_trigger_actions
+    event :validate_by_manager do
+      transitions from: [:created, :back_to_modified], to: :validated_by_manager, after: :validate_by_manager_trigger_actions
     end
 
-    event :validate_expense_by_hr do
-      transitions from: :validated_by_manager, to: :validated_by_hr, after: :validate_expense_by_hr_trigger_actions
+    event :validate_by_hr do
+      transitions from: :validated_by_manager, to: :validated_by_hr, after: :validate_by_hr_trigger_actions
     end
 
-    event :pay_expense do
-      transitions from: :validated_by_hr, to: :paid, after: :pay_expense_trigger_actions
+    event :pay do
+      transitions from: :validated_by_hr, to: :paid, after: :pay_trigger_actions
     end
 
-    event :back_to_modify_expense do
-      transitions from: [:created, :validated_by_manager, :validated_by_hr, :back_to_modified], to: :back_to_modified, after: :back_to_modify_expense_trigger_actions
+    event :back_to_modify do
+      transitions from: [:created, :validated_by_manager, :validated_by_hr, :back_to_modified], to: :back_to_modified, after: :back_to_modify_trigger_actions
     end
 
-    event :reject_expense do
-      transitions from: [:created, :validated_by_manager, :back_to_modified], to: :rejected, after: :reject_expense_trigger_actions
+    event :reject do
+      transitions from: [:created, :validated_by_manager, :back_to_modified], to: :rejected, after: :reject_trigger_actions
     end
   end
 
@@ -68,45 +68,15 @@ class Expense < ApplicationRecord
     policy = ExpensePolicy.new(self, user: user)
     case aasm_state
     when "created"
-      policy.allowed_to?(:validate_expense_by_manager?, self) ? [:validate_by_manager, :back_to_modify, :reject] : []
+      policy.allowed_to?(:validate_by_manager?, self) ? [:validate_by_manager, :back_to_modify, :reject] : []
     when "validated_by_manager"
-      policy.allowed_to?(:validate_expense_by_hr?, self) ? [:validate_by_hr, :back_to_modify, :reject] : []
+      policy.allowed_to?(:validate_by_hr?, self) ? [:validate_by_hr, :back_to_modify, :reject] : []
     when "validated_by_hr"
-      policy.allowed_to?(:pay_expense?, self) ? [:pay, :back_to_modify] : []
+      policy.allowed_to?(:pay?, self) ? [:pay, :back_to_modify] : []
     when "back_to_modified"
-      policy.allowed_to?(:back_expense_to_modify?, self) ? [:validate_by_manager, :back_to_modify, :reject] : []
+      policy.allowed_to?(:back_to_modify?, self) ? [:validate_by_manager, :back_to_modify, :reject] : []
     else
       []
-    end
-  end
-
-  def color
-    case aasm_state
-    when "created"
-      "gray"
-    when "validated_by_manager", "validated_by_hr"
-      "indigo"
-    when "paid"
-      "green"
-    when "back_to_modified"
-      "yellow"
-    when "rejected"
-      "red"
-    end
-  end
-
-  def update_to_next_state(next_state)
-    case next_state
-    when "validate_by_manager"
-      validate_expense_by_manager!
-    when "validate_by_hr"
-      validate_expense_by_hr!
-    when "pay"
-      pay_expense!
-    when "back_to_modify"
-      back_to_modify_expense!
-    when "reject"
-      reject_expense!
     end
   end
 
@@ -118,23 +88,23 @@ class Expense < ApplicationRecord
     AasmLog.create(aasm_logable: self, actor_id: user.id, to_state: "created")
   end
 
-  def validate_expense_by_manager_trigger_actions
+  def validate_by_manager_trigger_actions
     notify_hr
   end
 
-  def validate_expense_by_hr_trigger_actions
+  def validate_by_hr_trigger_actions
     notify_payer
   end
 
-  def pay_expense_trigger_actions
+  def pay_trigger_actions
     notify_member
   end
 
-  def back_to_modify_expense_trigger_actions
+  def back_to_modify_trigger_actions
     notify_member
   end
 
-  def reject_expense_trigger_actions
+  def reject_trigger_actions
     notify_member
   end
 

@@ -46,8 +46,8 @@ RSpec.describe ExpensePolicy do
     end
   end
 
-  describe "#validate_expense_by_manager?" do
-    subject { policy.apply(:validate_expense_by_manager?) }
+  describe "#validate_by_manager?" do
+    subject { policy.apply(:validate_by_manager?) }
 
     context "when user has manger role and the manager of the record, can validate the expense" do
       let(:policy) { described_class.new(record, user: manager_user) }
@@ -68,8 +68,8 @@ RSpec.describe ExpensePolicy do
     end
   end
 
-  describe "#validate_expense_by_hr?" do
-    subject { policy.apply(:validate_expense_by_hr?) }
+  describe "#validate_by_hr?" do
+    subject { policy.apply(:validate_by_hr?) }
 
     context "when user has hr role, can validate the expense" do
       let(:policy) { described_class.new(record, user: hr_user) }
@@ -82,8 +82,8 @@ RSpec.describe ExpensePolicy do
     end
   end
 
-  describe "#pay_expense?" do
-    subject { policy.apply(:pay_expense?) }
+  describe "#pay?" do
+    subject { policy.apply(:pay?) }
 
     context "when user has accountant role, can pay the expense" do
       let(:policy) { described_class.new(record, user: accountant_user) }
@@ -96,20 +96,20 @@ RSpec.describe ExpensePolicy do
     end
   end
 
-  describe "#back_expense_to_modify?" do
-    subject { policy.apply(:back_expense_to_modify?) }
+  describe "#back_to_modify?" do
+    subject { policy.apply(:back_to_modify?) }
 
-    context "when user has manger role and the manager of the record, can back_expense_to_modify" do
+    context "when user has manger role and the manager of the record, can back_to_modify" do
       let(:policy) { described_class.new(record, user: manager_user) }
       it { is_expected.to eq true }
     end
 
-    context "when user has hr role, can back_expense_to_modify" do
+    context "when user has hr role, can back_to_modify" do
       let(:policy) { described_class.new(record, user: hr_user) }
       it { is_expected.to eq true }
     end
 
-    context "when user has accountant role, can back_expense_to_modify" do
+    context "when user has accountant role, can back_to_modify" do
       let(:policy) { described_class.new(record, user: accountant_user) }
       it { is_expected.to eq true }
     end

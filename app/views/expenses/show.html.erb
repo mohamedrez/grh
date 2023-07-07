@@ -15,9 +15,8 @@
               </div>
             <% end %>
           <% else %>
-            <% color = @expense.color %>
-            <span class="inline-flex items-center rounded-full px-3 py-0.5 text-sm font-medium bg-<%= color %>-100 text-<%= color %>-800">
-              <svg class="mr-1.5 h-2 w-2 text-<%= color %>-400" fill="currentColor" viewBox="0 0 8 8">
+            <span class="badge <%= @expense.aasm_state %>">
+              <svg class="mr-1.5 h-2 w-2" fill="currentColor" viewBox="0 0 8 8">
                 <circle cx="4" cy="4" r="3" />
               </svg>
               <%= t("views.expenses.labels.#{@expense.aasm_state}") %>

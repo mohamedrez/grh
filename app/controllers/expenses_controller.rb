@@ -83,7 +83,7 @@ class ExpensesController < ApplicationController
     next_state = params[:next_state]
     @expense.actor_id = current_user.id
 
-    @expense.update_to_next_state(next_state)
+    @expense.send("#{next_state}!")
 
     redirect_to user_expense_path(@user, @expense)
   end
