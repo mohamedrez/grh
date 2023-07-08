@@ -1,21 +1,7 @@
 # frozen_string_literal: true
-
-# == Schema Information
-#
-# Table name: users
-#
-#  id                     :bigint           not null, primary key
-#  created_at             :datetime         not null
-#  updated_at             :datetime         not null
-#  email                  :string(255)      default(""), not null
-#  encrypted_password     :string(255)      default(""), not null
-#  reset_password_token   :string(255)
-#  reset_password_sent_at :datetime
-#  remember_created_at    :datetime
-#
 require "rails_helper"
 
-RSpec.describe(User, type: :model) do
+RSpec.describe User, type: :model do
   let(:user) { create(:user) }
 
   describe "#full_name" do
@@ -26,6 +12,7 @@ RSpec.describe(User, type: :model) do
 
   describe "#has_role?" do
     let(:role) { create(:role, user: user, name: :admin) }
+
     it "returns true if the user has the role" do
       expect(user.has_role?(role.name)).to be_truthy
     end
@@ -69,6 +56,35 @@ RSpec.describe(User, type: :model) do
         expect(user2.address.city).to eq("Anycity")
         expect(user2.address.zipcode).to eq("54321")
         expect(user2.address.country).to eq("morocco")
+      end
+    end
+  end
+
+  describe "#check_manager" do
+    let(:manager) { create(:user) }
+    let(:user) { create(:user, manager: manager) }
+
+    context "when the manager is already managed by the current user" do
+      it "returns an error" do
+        manager.manager_id = user.id
+        manager.check_manager
+        expect(manager.errors[:manager_id]).to include("the #{user.full_name} cannot be your manager because you are his manager.")
+      end
+    end
+
+    context 'when the user tries to assign themselves as their own manager' do
+      it 'adds an error to manager' do
+        user.manager_id = user.id
+        user.check_manager
+        expect(user.errors[:manager_id]).to include('You cannot assign yourself as your own manager')
+      end
+    end
+
+
+    context "when the user has a valid manager" do
+      it "does not return an error" do
+        expect(user).to be_valid
+        expect(user.errors[:manager]).to be_empty
       end
     end
   end
