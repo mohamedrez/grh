@@ -35,24 +35,24 @@ class MissionOrder < ApplicationRecord
     state :paid_by_holding_treasury
     state :rejected
 
-    event :validate_mission_order_by_manager do
-      transitions from: :created, to: :validated_by_manager, after: :validate_mission_order_by_manager_trigger_actions
+    event :validate_by_manager do
+      transitions from: :created, to: :validated_by_manager, after: :validate_by_manager_trigger_actions
     end
 
-    event :validate_mission_order_by_hr do
-      transitions from: :validated_by_manager, to: :validated_by_hr, after: :validate_mission_order_by_hr_trigger_actions
+    event :validate_by_hr do
+      transitions from: :validated_by_manager, to: :validated_by_hr, after: :validate_by_hr_trigger_actions
     end
 
-    event :pay_mission_order_by_accountant do
-      transitions from: :validated_by_hr, to: :paid_by_accountant, after: :pay_mission_order_trigger_actions
+    event :pay_by_accountant do
+      transitions from: :validated_by_hr, to: :paid_by_accountant, after: :pay_trigger_actions
     end
 
-    event :pay_mission_order_by_holding_treasury do
-      transitions from: :validated_by_hr, to: :paid_by_holding_treasury, after: :pay_mission_order_trigger_actions
+    event :pay_by_holding_treasury do
+      transitions from: :validated_by_hr, to: :paid_by_holding_treasury, after: :pay_trigger_actions
     end
 
-    event :reject_mission_order do
-      transitions from: [:created, :validated_by_manager, :validated_by_hr], to: :rejected, after: :reject_mission_order_trigger_actions
+    event :reject do
+      transitions from: [:created, :validated_by_manager, :validated_by_hr], to: :rejected, after: :reject_trigger_actions
     end
   end
 
@@ -64,18 +64,35 @@ class MissionOrder < ApplicationRecord
     UserRequest.create(user_id: user_id, state: :pending, requestable: self)
   end
 
+  def available_next_state(user)
+    policy = MissionOrderPolicy.new(self, user: user)
+    case aasm_state
+    when "created"
+      policy.allowed_to?(:validate_by_manager?, self) ? :validate_by_manager : ""
+    when "validated_by_manager"
+      policy.allowed_to?(:validate_by_hr?, self) ? :validate_by_hr : ""
+    when "validated_by_hr"
+      if site?
+        policy.allowed_to?(:pay?, self) ? :pay_by_accountant : ""
+      elsif project?
+        policy.allowed_to?(:pay?, self) ? :pay_by_holding_treasury : ""
+      end
+    end
+  end
+
   # Actions
 
   def create_mission_order_trigger_actions
     create_user_request
     notify_manager
+    AasmLog.create(aasm_logable: self, actor_id: user.id, to_state: "created")
   end
 
-  def validate_mission_order_by_manager_trigger_actions
+  def validate_by_manager_trigger_actions
     notify_hr
   end
 
-  def validate_mission_order_by_hr_trigger_actions
+  def validate_by_hr_trigger_actions
     if site?
       notify_accountant
     elsif project?
@@ -83,11 +100,11 @@ class MissionOrder < ApplicationRecord
     end
   end
 
-  def pay_mission_order_trigger_actions
+  def pay_trigger_actions
     notify_member
   end
 
-  def reject_mission_order_trigger_actions
+  def reject_trigger_actions
     notify_member
   end
 

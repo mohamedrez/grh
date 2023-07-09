@@ -217,13 +217,6 @@ fr:
       errors:
         must_be_expense_report: "doit être une Note de frais pour une mission d'une journée"
         must_be_flat_rate: "doit être un Forfait pour les missions de plus de 15 jours"
-      aasm_states:
-        created: "Créé"
-        validated_by_manager: "Validé par le responsable"
-        validated_by_hr: "Validé par les RH"
-        paid_by_accountant: "Payé par le comptable"
-        paid_by_holding_treasury: "Payé par la trésorerie centrale"
-        rejected: "Rejeté"
       payment_types:
         cash: "Espèces"
         bank_transfer: "Virement bancaire"
@@ -380,7 +373,6 @@ fr:
     expenses:
       title_expenses: "Note de frais"
       add_expense: "Ajouter une dépense"
-      paid: "Payé"
       you_have_files_uploaded: "Vous avez %{nbr_files} téléchargés"
       upload_more_files: "Télécharger plus de fichiers"
       upload_files: "Télécharger des fichiers"
@@ -389,28 +381,7 @@ fr:
       edit_expense: "Modifier la dépense"
       receipts: "Reçus"
       no_receipts: "Aucun reçu"
-      mark_as_paid: "Marquer comme payé"
       expense_details: "Détails des notes de frais"
-      feeds:
-        created: "Créé par"
-        validated_by_manager: "Validé par le manager"
-        validated_by_hr: "Validé par les RH"
-        paid: "Payé par"
-        back_to_modified: "Retourné pour modification par"
-        rejected: "Rejeté par"
-      labels:
-        created: "Créé"
-        validated_by_manager: "Validé par le manager"
-        validated_by_hr: "Validé par les RH"
-        paid: "Payé"
-        back_to_modified: "Retourné pour modification"
-        rejected: "Rejeté"
-      actions:
-        validate_by_manager: "Valider par le manager"
-        validate_by_hr: "Valider par les RH"
-        pay: "Payer"
-        back_to_modify: "Retourner pour modifier"
-        reject: "Rejeter"
     experiences:
       add_experience: "Ajouter une nouvelle expérience"
     emergency_contacts:
@@ -462,12 +433,6 @@ fr:
       create_mission_order: "Créer un ordre de mission"
       add_mission_order: "Ajouter un nouvel ordre de mission"
       edit_mission_order: "Modifier l'ordre de mission"
-      validate_by_manager: "Valider par le responsable"
-      validate_by_hr: "Valider par les RH"
-      pay_by_accountant: "Payer par le comptable"
-      pay_by_holding_treasury: "Payer par la trésorerie centrale"
-      created_by: "Créé par"
-      rejected_by: "Rejeté par"
     performance:
       performance_management: "Gestion des performances"
       performance_management_phrase: "Tirez le meilleur parti de votre équipe talentueuse grâce à des outils conçus pour leur croissance et leur réussite."
@@ -586,6 +551,32 @@ fr:
       user_overview:
         edit_profile: "Modifier le profil"
         time_off_days: "Jours de congé restants"
+      feeds:
+        created: "Créé par"
+        validated_by_manager: "Validé par le manager"
+        validated_by_hr: "Validé par les RH"
+        paid_by_accountant: "Payé par le comptable"
+        paid_by_holding_treasury: "Payé par la trésorerie centrale"
+        rejected: "Rejeté par"
+        paid: "Payé par"
+        back_to_modified: "Retourné pour modification par"
+      labels:
+        created: "Créé"
+        validated_by_manager: "Validé par le manager"
+        validated_by_hr: "Validé par les RH"
+        paid_by_accountant: "Payé par la trésorerie centrale"
+        paid_by_holding_treasury: "Payé par la trésorerie centrale"
+        rejected: "Rejeté"
+        paid: "Payé"
+        back_to_modified: "Retourné pour modification"
+      actions:
+        validate_by_manager: "Valider par le manager"
+        validate_by_hr: "Valider par les RH"
+        pay_by_accountant: "Payer par le comptable"
+        pay_by_holding_treasury: "Payer par la trésorerie centrale"
+        reject: "Rejeter"
+        pay: "Payer"
+        back_to_modify: "Retourner pour modifier"
   flash:
     not_authorized: "Vous n'êtes pas autorisé(e) à effectuer cette action."
     there_is_an_error_in_your_file: "Il y a une erreur dans votre fichier."

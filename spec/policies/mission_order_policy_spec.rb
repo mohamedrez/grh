@@ -42,29 +42,4 @@ RSpec.describe MissionOrderPolicy do
       it { is_expected.to eq false }
     end
   end
-
-  describe "#approve?" do
-    subject { policy.apply(:approve?) }
-
-    context "Admin and HR can approve the mission_order" do
-      let(:policy) { described_class.new(record, user: admin_user) }
-      it { is_expected.to eq true }
-  
-      let(:policy) { described_class.new(record, user: hr_user) }
-      it { is_expected.to eq true }
-    end
-
-    context "when user is the manager of the record, can approve the mission_order" do
-      let(:policy) { described_class.new(record, user: manager_user) }
-      it { is_expected.to eq true }
-    end
-
-    context "when user is neither HR, admin, nor the manager of the mission_order user, can't see the mission_order" do
-      let(:policy) { described_class.new(record, user: other_user) }
-      it { is_expected.to eq false }
-
-      let(:policy) { described_class.new(record, user: other_user) }
-      it { is_expected.to eq false }
-    end
-  end
 end

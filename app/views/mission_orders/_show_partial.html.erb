@@ -11,7 +11,7 @@
   </div>
 
   <div class="mt-8 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
-    <%= render partial: "left_side", locals: {mission_order: mission_order, user_request: user_request, aasm_logs: aasm_logs} %>
+    <%= render partial: "shared/request_left_side", locals: {user_request: user_request, aasm_logs: aasm_logs} %>
 
     <div class="w-full overflow-hidden bg-white shadow sm:rounded-lg">
       <%= render partial: "mission_order_attributes", locals: {mission_order: mission_order} %>
