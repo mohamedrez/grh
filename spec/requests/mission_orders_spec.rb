@@ -186,7 +186,7 @@ RSpec.describe "/mission_orders", type: :request do
       it "updates mission_order, sets payment type, and renders turbo_stream" do
         patch user_new_payment_mission_order_path(user_id: user.id, id: mission_order.id), params: {
           mission_order: {
-            aasm_state: "paid_by_accountant",
+            next_state: "pay_by_accountant",
             payment_type: "cash"
           }
         }
@@ -206,7 +206,7 @@ RSpec.describe "/mission_orders", type: :request do
       it "updates mission_order, sets payment type, and renders turbo_stream" do
         patch user_new_payment_mission_order_path(user_id: user.id, id: mission_order.id), params: {
           mission_order: {
-            aasm_state: "paid_by_holding_treasury",
+            next_state: "pay_by_holding_treasury",
             payment_type: "cash"
           }
         }
