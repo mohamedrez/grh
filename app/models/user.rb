@@ -55,8 +55,6 @@ class User < ApplicationRecord
   validate :check_manager
 
   accepts_nested_attributes_for :address, update_only: true
-  accepts_nested_attributes_for :experiences
-  accepts_nested_attributes_for :educations
 
   enum gender: {male: 0, female: 1}
   enum marital_status: {single: 0, married: 1, divorced: 2, other_marital_status: 3}

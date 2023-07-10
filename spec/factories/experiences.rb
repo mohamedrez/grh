@@ -7,5 +7,7 @@ FactoryBot.define do
     end_date { "2023-04-02" }
     work_description { "MyText" }
     user { nil }
+    city { "City name" }
+    country { "usa" }
   end
 end

@@ -1,27 +1,27 @@
-<%= form_with model: [@user, @education], class: "mt-5 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2" do |form| %>
+<%= form_with model: [user, education], class: "mt-5 bg-white shadow-sm ring-1 ring-gray-900/5 sm:rounded-xl md:col-span-2" do |form| %>
   <div class="px-4 py-6 sm:p-8">
     <div class="grid max-w-2xl grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
       <div class="sm:col-span-full">
         <%= form.label :school, t("attributes.education.school") %>
         <div class="mt-2">
           <%= form.text_field :school, class: "w-full" %>
-          <%= inline_error_for(:school, @education).html_safe %>
+          <%= inline_error_for(:school, education).html_safe %>
         </div>
       </div>
 
       <div class="sm:col-span-full">
         <%= form.label :education_level, t("attributes.education.education_level") %>
         <div class="mt-2">
-          <%= form.select :education_level, options_for_select(Education.education_levels.map {|key, value| [key.humanize, key]}, @education.education_level) %>
-          <%= inline_error_for(:education_level, @education).html_safe %>
+          <%= form.select :education_level, options_for_select(Education.education_levels.map {|key, value| [key.humanize, key]}, education.education_level) %>
+          <%= inline_error_for(:education_level, education).html_safe %>
         </div>
       </div>
 
       <div class="sm:col-span-full">
         <%= form.label :study_field, t("attributes.education.study_field") %>
         <div class="mt-2">
-          <%= form.select :study_field, options_for_select(Education.study_fields.map {|key, value| [key.humanize, key]}, @education.study_field) %>
-          <%= inline_error_for(:study_field, @education).html_safe %>
+          <%= form.select :study_field, options_for_select(Education.study_fields.map {|key, value| [key.humanize, key]}, education.study_field) %>
+          <%= inline_error_for(:study_field, education).html_safe %>
         </div>
        </div>
 
@@ -29,7 +29,7 @@
         <%= form.label :start_date, t("attributes.shared.start_date") %>
         <div class="mt-2">
           <%= form.date_field :start_date, class: "w-full" %>
-          <%= inline_error_for(:start_date, @education).html_safe %>
+          <%= inline_error_for(:start_date, education).html_safe %>
         </div>
       </div>
 
@@ -37,15 +37,15 @@
         <%= form.label :end_date, t("attributes.shared.end_date") %>
         <div class="mt-2">
           <%= form.date_field :end_date, class: "w-full" %>
-          <%= inline_error_for(:staend_datert_date, @education).html_safe %>
+          <%= inline_error_for(:staend_datert_date, education).html_safe %>
         </div>
       </div>
 
       <div class="sm:col-span-full">
         <%= form.label :country, t("attributes.shared.country") %>
         <div class="mt-2">
-          <%= form.select :country, options_for_select(Education.countries.map {|key, value| [key.humanize, key]}, @education.country) %>
-          <%= inline_error_for(:country, @education).html_safe %>
+          <%= form.select :country, options_for_select(Education.countries.map {|key, value| [key.humanize, key]}, education.country) %>
+          <%= inline_error_for(:country, education).html_safe %>
         </div>
       </div>
 
@@ -53,14 +53,14 @@
         <%= form.label :city, t("attributes.shared.city") %>
         <div class="mt-2">
           <%= form.text_field :city, class: "w-full" %>
-          <%= inline_error_for(:city, @education).html_safe %>
+          <%= inline_error_for(:city, education).html_safe %>
         </div>
       </div>
 
       <div class="sm:col-span-full flex items-center">
         <%= form.check_box :still_on_this_course, class: "mx-2 h-5 w-5 rounded text-indigo-500 focus:ring-indigo-500 focus:border-indigo-500" %>
         <%= form.label :still_on_this_course, t("attributes.education.still_on_this_course") %>
-        <%= inline_error_for(:still_on_this_course, @education).html_safe %>
+        <%= inline_error_for(:still_on_this_course, education).html_safe %>
       </div>
     </div>
   </div>

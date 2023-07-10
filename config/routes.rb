@@ -72,8 +72,8 @@ Rails.application.routes.draw do
       collection { post :import }
       get "settings", to: "settings#edit"
       patch "settings", to: "settings#update"
-      resources :experiences, only: [:new, :create]
-      resources :educations, only: [:new, :create]
+      resources :experiences, except: %i[index show]
+      resources :educations, except: %i[index show]
       resources :mission_orders
       patch "/mission_orders/:id/update_aasm_state", to: "mission_orders#update_aasm_state", as: "update_aasm_state_mission_order"
       get "/mission_orders/:id/payment", to: "mission_orders#new_payment", as: "new_payment_mission_order"
