@@ -1,16 +1,18 @@
 <div class="border-t border-gray-100">
   <dl class="divide-y divide-gray-100">
+  <% unless @for == "user" %>
+    <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+      <dt class="text-sm font-medium text-gray-900"><%= t("attributes.expense.employee") %></dt>
+      <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= user.full_name %></dd>
+    </div>
+  <% end %>
   <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-    <dt class="text-sm font-medium text-gray-900"><%= t("attributes.expense.employee") %></dt>
-    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= user.full_name %></dd>
+    <dt class="text-sm font-medium text-gray-900"><%= t("attributes.expense.category") %></dt>
+    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= Expense.human_enum_name(:category, expense.category) %></dd>
   </div>
   <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
     <dt class="text-sm font-medium text-gray-900"><%= t("attributes.expense.state") %></dt>
     <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= t("views.expenses.labels.#{expense.aasm_state}") %></dd>
-  </div>
-  <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
-    <dt class="text-sm font-medium text-gray-900"><%= t("attributes.expense.category") %></dt>
-    <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= Expense.human_enum_name(:category, expense.category) %></dd>
   </div>
   <div class="px-4 py-6 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
     <dt class="text-sm font-medium text-gray-900"><%= t("attributes.expense.date") %></dt>

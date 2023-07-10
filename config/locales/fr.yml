@@ -384,7 +384,6 @@ fr:
       you_have_files_uploaded: "Vous avez %{nbr_files} téléchargés"
       upload_more_files: "Télécharger plus de fichiers"
       upload_files: "Télécharger des fichiers"
-      drag_drop: "ou faites glisser-déposer"
       files_type: "IMAGES, PDFs"
       edit_expense: "Modifier la dépense"
       receipts: "Reçus"
