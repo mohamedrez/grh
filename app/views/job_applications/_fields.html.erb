@@ -79,7 +79,7 @@
                     </svg>
                     <span><%= t("views.job_applications.upload_files") %></span>
                       <p class="text-xs leading-5 text-gray-600" id = "file-type-text"><%= t("views.job_applications.files_type") %></p>
-                    <%= form.file_field :resume, accept: "image/*, .pdf", multiple: false, class: "sr-only" %>
+                    <%= form.file_field :resume, accept: "image/*, .pdf", multiple: false, class: "sr-only attach_field" %>
                     <span id="file-name"></span>
                   <% end %>
                 </div>  

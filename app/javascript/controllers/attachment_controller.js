@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="attachment"
 export default class extends Controller {
   connect() {
-    const fileInput = document.querySelector('#job_application_resume');
+    const fileInput = document.querySelector('.attach_field');
     const fileNameDisplay = document.querySelector('#file-name');
     const fileTypeText = document.querySelector('#file-type-text');
 
