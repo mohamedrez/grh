@@ -51,7 +51,7 @@ en:
       school: "School"
       education_level: "Education level"
       study_field: "Study field"
-      still_on_this_course: "Still on this course?"
+      still_on: "Still On"
       education_levels:
         high_school: "High School"
         bachelor: "Bachelor's Degree"
@@ -370,6 +370,7 @@ en:
       announcements_button: "View All Announcement"
     educations:
       add_education: "Add new education"
+      edit_education: "Edit the education"
     expenses:
       title_expenses: "Expenses"
       add_expense: "Add expense"
@@ -382,7 +383,8 @@ en:
       no_receipts: "No receipts"
       expense_details: "Expense Details"
     experiences:
-      add_experience: "Add new experience"
+      add_experience: "Add new experience"   
+      edit_experience: "Edit the experience"
     emergency_contacts:
       title_emergency_contact: "Emergency contacts"
       emergency_contacts_list: "List of all of your emergency contacts."

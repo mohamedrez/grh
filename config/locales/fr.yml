@@ -51,7 +51,7 @@ fr:
       school: "École"
       education_level: "Niveau d'éducation"
       study_field: "Domaine d'études"
-      still_on_this_course: "Êtes-vous toujours en cours de formation ?"
+      still_on: "En cours"
       education_levels:
         high_school: "Lycée"
         bachelor: "Licence"
@@ -370,6 +370,7 @@ fr:
       announcements_button: "Voir toutes les annonces"
     educations:
       add_education: "Ajouter une nouvelle formation"
+      edit_education: "Modifier l'éducation"
     expenses:
       title_expenses: "Note de frais"
       add_expense: "Ajouter une dépense"

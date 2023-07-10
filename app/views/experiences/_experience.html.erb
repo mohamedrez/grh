@@ -1,29 +1,61 @@
-<li>
-  <div class="relative pb-10 w-1/2">
-    <% unless experience == user.experiences.last %>
-      <span class="absolute left-10 top-4 -ml-px h-full w-0.5 bg-gray-200" aria-hidden="true"></span>
-    <% end %>
-    <div class="relative flex space-x-3">
-      <div>
-        <span class="h-20 w-20 rounded-full bg-indigo-50 flex items-center justify-center ring-8 ring-white">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" class="h-12 w-12 text-white">
-            <path fill="#2b3344" d="M21.5 22h-7a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM12.5 22h-9a.5.5 0 0 1 0-1h9a.5.5 0 0 1 0 1z" class="color2b3344 svgShape"></path>
-            <path fill="#2b3344" d="M14.5 22a.5.5 0 0 1-.5-.5V4H6V21.5a.5.5 0 0 1-1 0V3.5A.5.5 0 0 1 5.5 3h9a.5.5 0 0 1 .5.5v18A.5.5 0 0 1 14.5 22zM19.5 22a.5.5 0 0 1-.5-.5V7.86L16.34 7A.49.49 0 0 1 16 6.34.51.51 0 0 1 16.66 6l3 1A.49.49 0 0 1 20 7.5v14A.5.5 0 0 1 19.5 22z" class="color2b3344 svgShape"></path>
-            <path fill="#2b3344" d="M11 22a.5.5 0 0 1-.5-.5V19h-1V21.5a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 9 18h2a.5.5 0 0 1 .5.5v3A.5.5 0 0 1 11 22zM9 16h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 16H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 13h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 13H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 10h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 10H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 7h-1a.5.5 0 0 1 0-1H9A.5.5 0 0 1 9 7zM12.06 7H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM17.5 19h-1a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zM17.5 16h-1a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5h1a.51.51 0 0 1 .5.5A.5.5 0 0 1 17.5 16zM17.5 13h-1a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zM17.5 10h-1a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5A.51.51 0 0 1 17.5 10z" class="color2b3344 svgShape"></path>
-          </svg>
-        </span>
-      </div>
-      <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+<li id="<%= dom_id experience %>">
+  <div class="relative flex items-start space-x-3">
+    <div class="relative pb-10 w-11/12">
+      <div class="relative flex space-x-3">
         <div>
-          <p class="font-medium text-lg text-gray-900"><%= experience.job_title&.humanize %></p>
-          <p class="font-normal text-base text-gray-900"><%= experience.company_name&.humanize %> . <%= Experience.human_enum_name(:employment_type, experience.employment_type) %></p>
-          <p class="font-normal text-base text-gray-500"><%= experience.start_date %> - <%= experience.end_date %></p>
-          <p class="font-normal text-base text-gray-500"><%= experience.city&.humanize %>, <%= Address.human_enum_name(:country, experience.country) %></p>
-          <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 mt-3">
-            <div class="flex justify-between gap-x-4">
-              <p class="font-normal text-base text-gray-900"><%= t("attributes.experience.work_description") %></p>
+          <span class="h-20 w-20 rounded-full bg-indigo-50 flex items-center justify-center ring-8 ring-white">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" class="h-12 w-12 text-white">
+              <path fill="#2b3344" d="M21.5 22h-7a.5.5 0 0 1 0-1h7a.5.5 0 0 1 0 1zM12.5 22h-9a.5.5 0 0 1 0-1h9a.5.5 0 0 1 0 1z" class="color2b3344 svgShape"></path>
+              <path fill="#2b3344" d="M14.5 22a.5.5 0 0 1-.5-.5V4H6V21.5a.5.5 0 0 1-1 0V3.5A.5.5 0 0 1 5.5 3h9a.5.5 0 0 1 .5.5v18A.5.5 0 0 1 14.5 22zM19.5 22a.5.5 0 0 1-.5-.5V7.86L16.34 7A.49.49 0 0 1 16 6.34.51.51 0 0 1 16.66 6l3 1A.49.49 0 0 1 20 7.5v14A.5.5 0 0 1 19.5 22z" class="color2b3344 svgShape"></path>
+              <path fill="#2b3344" d="M11 22a.5.5 0 0 1-.5-.5V19h-1V21.5a.5.5 0 0 1-1 0v-3A.5.5 0 0 1 9 18h2a.5.5 0 0 1 .5.5v3A.5.5 0 0 1 11 22zM9 16h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 16H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 13h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 13H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 10h-1a.5.5 0 0 1 0-1H9a.5.5 0 0 1 0 1zM12.06 10H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM9 7h-1a.5.5 0 0 1 0-1H9A.5.5 0 0 1 9 7zM12.06 7H11a.5.5 0 0 1 0-1h1a.5.5 0 1 1 0 1zM17.5 19h-1a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zM17.5 16h-1a.5.5 0 0 1-.5-.5.51.51 0 0 1 .5-.5h1a.51.51 0 0 1 .5.5A.5.5 0 0 1 17.5 16zM17.5 13h-1a.5.5 0 0 1 0-1h1a.5.5 0 0 1 0 1zM17.5 10h-1a.51.51 0 0 1-.5-.5.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5A.51.51 0 0 1 17.5 10z" class="color2b3344 svgShape"></path>
+            </svg>
+          </span>
+        </div>
+        <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
+          <div>
+            <p class="font-medium text-lg text-gray-900"><%= experience.job_title %></p>
+            <p class="font-normal text-base text-gray-900"><%= experience.company_name&.humanize %> . <%= Experience.human_enum_name(:employment_type, experience.employment_type) %></p>
+            <p class="font-normal text-base text-gray-500"><%= experience.start_date %> - <%= experience.end_date %></p>
+            <p class="font-normal text-base text-gray-500"><%= experience.city&.humanize %>, <%= Address.human_enum_name(:country, experience.country) %></p>
+            <div class="flex-auto rounded-md p-3 ring-1 ring-inset ring-gray-200 mt-3 w-1/2">
+              <div class="flex justify-between gap-x-4">
+                <p class="font-normal text-base text-gray-900"><%= t("attributes.experience.work_description") %></p>
+              </div>
+              <p class="text-sm leading-6 text-gray-500"><%= experience.work_description&.humanize %></p>
             </div>
-            <p class="text-sm leading-6 text-gray-500"><%= experience.work_description&.humanize %></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="min-w-0 flex-1">
+      <div class="inline-block text-sm px-4 py-2 leading-none rounded no-underline text-gray hover:text-gray-900 hover:bg-white mt-4 lg:mt-0">
+        <div class="relative" data-controller="dropdown">
+          <div data-action="click->dropdown#toggle click@window->dropdown#hide" role="button" data-dropdown-target="button" tabindex="0" class="inline-block select-none">
+            <span class="appearance-none flex items-center inline-block text-gray-700">
+              <span class="sr-only">Open options</span>
+              <svg class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                <path d="M3 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM8.5 10a1.5 1.5 0 113 0 1.5 1.5 0 01-3 0zM15.5 8.5a1.5 1.5 0 100 3 1.5 1.5 0 000-3z" />
+              </svg>
+            </span>
+          </div>
+          <div data-dropdown-target="menu" class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+            <div class="py-1" role="none">
+              <%= link_to edit_user_experience_path(user, experience), data: { turbo_frame: "right_content", action: "right#show" }, class: "text-gray-700 group flex items-center px-4 py-2 text-sm hover:text-indigo-500", role: "menuitem", tabindex: "-1", id: "menu-item-0" do %>
+                <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-indigo-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path d="M5.433 13.917l1.262-3.155A4 4 0 017.58 9.42l6.92-6.918a2.121 2.121 0 013 3l-6.92 6.918c-.383.383-.84.685-1.343.886l-3.154 1.262a.5.5 0 01-.65-.65z" />
+                  <path d="M3.5 5.75c0-.69.56-1.25 1.25-1.25H10A.75.75 0 0010 3H4.75A2.75 2.75 0 002 5.75v9.5A2.75 2.75 0 004.75 18h9.5A2.75 2.75 0 0017 15.25V10a.75.75 0 00-1.5 0v5.25c0 .69-.56 1.25-1.25 1.25h-9.5c-.69 0-1.25-.56-1.25-1.25v-9.5z" />
+                </svg>
+                <%= t("buttons.edit") %>
+              <% end %>
+
+              <%= button_to user_experience_path(user, experience), method: :delete, data: {turbo_confirm: t("popups.message_delete"), action: "click->dropdown#toggle"}, class: "text-gray-700 group flex items-center px-4 py-2 text-sm hover:text-red-500", role: "menuitem", tabindex: "-1", id: "menu-item-1" do %>
+                <svg class="mr-3 h-5 w-5 text-gray-400 group-hover:text-red-500" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path fill-rule="evenodd" d="M8.75 1A2.75 2.75 0 006 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 10.23 1.482l.149-.022.841 10.518A2.75 2.75 0 007.596 19h4.807a2.75 2.75 0 002.742-2.53l.841-10.52.149.023a.75.75 0 00.23-1.482A41.03 41.03 0 0014 4.193V3.75A2.75 2.75 0 0011.25 1h-2.5zM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4zM8.58 7.72a.75.75 0 00-1.5.06l.3 7.5a.75.75 0 101.5-.06l-.3-7.5zm4.34.06a.75.75 0 10-1.5-.06l-.3 7.5a.75.75 0 101.5.06l.3-7.5z" clip-rule="evenodd" />
+                </svg>
+                <%= t("buttons.delete") %>
+              <% end %>
+            </div>
           </div>
         </div>
       </div>
