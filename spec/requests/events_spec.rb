@@ -33,7 +33,8 @@ RSpec.describe "Events", type: :request do
           type: time_request.category.humanize,
           start: time_request.start_date.to_fs(:db),
           end: time_request.end_date.to_fs(:db),
-          avatar: time_request.user.avatar_url_or_default
+          avatar: time_request.user.avatar_url_or_default,
+          color: time_request.color
         }
       ])
     end
