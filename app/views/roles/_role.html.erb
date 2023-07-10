@@ -1,7 +1,7 @@
 <tr id="<%= dom_id role %>">
   <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm text-gray-500 sm:pl-6"><%= role.user.full_name %></td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-    <span class="inline-flex rounded-full bg-sky-100 px-2 text-xs font-semibold leading-5 text-sky-800"><%= role.name.humanize %></span>
+    <span class="inline-flex rounded-full bg-sky-100 px-2 text-xs font-semibold leading-5 text-sky-800"><%= Role.human_enum_name(:name, role.name) %></span>
   </td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
      <div class="flex justify-center">

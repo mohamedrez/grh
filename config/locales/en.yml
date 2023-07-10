@@ -134,10 +134,6 @@ en:
         important: "Important"
         very_important: "Very important"
         critical: "Critical"
-      roles: 
-        hr: "HR"
-        admin: "Admin"
-        accountant: "Accountant"
     job:
       jobs: "Jobs"
       title: "Title"
