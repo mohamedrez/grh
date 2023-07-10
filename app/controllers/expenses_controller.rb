@@ -1,7 +1,6 @@
 class ExpensesController < ApplicationController
   before_action :set_user, except: :index
   before_action :set_expense, only: %i[show edit update destroy delete_receipt update_aasm_state]
-  before_action :set_breadcrumbs, only: :index
 
   def index
     user_id = params[:user_id]
@@ -9,6 +8,8 @@ class ExpensesController < ApplicationController
       @user = User.find(user_id)
       ids = UserRequest.where(user_id: user_id, requestable_type: "Expense").pluck(:requestable_id)
       @expenses = Expense.where(id: ids)
+      @for = "user"
+      add_breadcrumb(t("views.layouts.main.my_requests"), user_time_requests_path(@user))
     elsif request.path.include?("team")
       ids = UserRequest.joins(:user)
         .where(users: {manager_id: current_user.id})
@@ -16,8 +17,12 @@ class ExpensesController < ApplicationController
         .pluck(:requestable_id)
 
       @expenses = Expense.where(id: ids)
+      @for = "team"
+      add_breadcrumb(t("views.layouts.main.team_requests"), team_time_requests_path)
     else
       @expenses = Expense.all
+      @for = "all"
+      add_breadcrumb(t("views.layouts.main.requests"), time_requests_path)
     end
   end
 
@@ -25,6 +30,17 @@ class ExpensesController < ApplicationController
     authorize! @expense
     @user_request = @expense.user_request
     @aasm_logs = AasmLog.where(aasm_logable: @expense)
+
+    @for = params[:for]
+    case @for
+    when "user"
+      add_breadcrumb(t("views.layouts.main.my_requests"), user_time_requests_path(current_user))
+    when "team"
+      add_breadcrumb(t("views.layouts.main.team_requests"), team_time_requests_path)
+    when "all"
+      add_breadcrumb(t("views.layouts.main.requests"), time_requests_path)
+    end
+    add_breadcrumb(t("views.expenses.expense_details"))
   end
 
   def new

@@ -380,7 +380,6 @@ en:
       you_have_files_uploaded: "You have %{nbr_files} uploaded"
       upload_more_files: "Upload more files"
       upload_files: "Upload files"
-      drag_drop: "or drag and drop"
       files_type: "IMAGEs, PDFs"
       edit_expense: "Edit expense"
       receipts: "Receipts"

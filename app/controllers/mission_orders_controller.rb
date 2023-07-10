@@ -1,7 +1,6 @@
 class MissionOrdersController < ApplicationController
   before_action :set_user, except: [:index, :destroy]
   before_action :set_mission_order, except: %i[index new create]
-  before_action :set_breadcrumbs, only: %i[index show]
 
   def index
     user_id = params[:user_id]
@@ -9,6 +8,8 @@ class MissionOrdersController < ApplicationController
       @user = User.find(user_id)
       ids = UserRequest.where(user_id: @user.id, requestable_type: "MissionOrder").pluck(:requestable_id)
       @mission_orders = MissionOrder.where(id: ids)
+      @for = "user"
+      add_breadcrumb(t("views.layouts.main.my_requests"), user_time_requests_path(@user))
     elsif request.path.include?("team")
       ids = UserRequest.joins(:user)
         .where(users: {manager_id: current_user.id})
@@ -16,17 +17,28 @@ class MissionOrdersController < ApplicationController
         .pluck(:requestable_id)
 
       @mission_orders = MissionOrder.where(id: ids)
+      @for = "team"
+      add_breadcrumb(t("views.layouts.main.team_requests"), team_time_requests_path)
     else
       @mission_orders = MissionOrder.all
+      @for = "all"
+      add_breadcrumb(t("views.layouts.main.requests"), time_requests_path)
     end
   end
 
   def show
     authorize! @mission_order
-
     @user_request = @mission_order.user_request
     @aasm_logs = AasmLog.where(aasm_logable: @mission_order)
 
+    case params[:for]
+    when "user"
+      add_breadcrumb(t("views.layouts.main.my_requests"), user_time_requests_path(current_user))
+    when "team"
+      add_breadcrumb(t("views.layouts.main.team_requests"), team_time_requests_path)
+    when "all"
+      add_breadcrumb(t("views.layouts.main.requests"), time_requests_path)
+    end
     add_breadcrumb(@mission_order.title)
   end
 
@@ -117,17 +129,6 @@ class MissionOrdersController < ApplicationController
 
   def set_mission_order
     @mission_order = MissionOrder.find(params[:id])
-  end
-
-  def set_breadcrumbs
-    if params[:user_id]
-      @user = User.find(params[:user_id])
-      add_breadcrumb(t("views.layouts.main.my_requests"), user_time_requests_path(@user))
-    elsif request.path.include?("team")
-      add_breadcrumb(t("views.layouts.main.team_requests"), team_time_requests_path)
-    else
-      add_breadcrumb(t("views.layouts.main.requests"), time_requests_path)
-    end
   end
 
   def mission_order_params
