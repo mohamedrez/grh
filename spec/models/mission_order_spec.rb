@@ -1,9 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe MissionOrder, type: :model do
+  let(:manager_user) { create(:user) }
+  let(:user) { create(:user, manager_id: manager_user.id) }
+  let(:site) { create(:site, id: 1) }
+
   describe "#validate_indemnity_type" do
-    let(:user) { create(:user) }
-    let(:site) { create(:site, id: 1) }
     let(:mission_order) { build(:mission_order, user_id: user.id, site_id: site.id, start_date: start_date, end_date: end_date, indemnity_type: indemnity_type) }
 
     context "when start_date and end_date are present" do
@@ -54,6 +56,51 @@ RSpec.describe MissionOrder, type: :model do
       payment_types = MissionOrder.payment_types
 
       expect(payment_types).to eq(expected_payment_types)
+    end
+  end
+
+  describe '#available_next_state' do
+    let(:mission_order) { create(:mission_order, user_id: user.id, site_id: site.id, start_date: "2023-06-08", end_date: "2023-06-08",indemnity_type: "expense_report") }
+
+    it 'returns the correct next state for aasm_state with value created' do
+      Role.create!(user_id: manager_user.id, name: :manager)
+
+      next_state = mission_order.available_next_state(manager_user)
+      expect(next_state).to eq(:validate_by_manager)
+    end
+
+    it 'returns the correct next state for aasm_state with value validated_by_manager' do
+      hr_user = create(:user)
+      Role.create!(user_id: hr_user.id, name: :hr)
+      mission_order.update!(aasm_state: "validated_by_manager")
+
+      next_state = mission_order.available_next_state(hr_user)
+      expect(next_state).to eq(:validate_by_hr)
+    end
+
+    context "returns the correct next state for aasm_state with value validated_by_hr" do
+      it 'when the mission of type site' do
+        accountant_user = create(:user)
+        Role.create!(user_id: accountant_user.id, name: :accountant)
+        mission_order.update!(aasm_state: "validated_by_hr", mission_type: :site)
+
+        next_state = mission_order.available_next_state(accountant_user)
+        expect(next_state).to eq(:pay_by_accountant)
+      end
+
+      it 'when the mission of type project' do
+        accountant_user = create(:user)
+        Role.create!(user_id: accountant_user.id, name: :accountant)
+        mission_order.update!(aasm_state: "validated_by_hr", mission_type: :project)
+
+        next_state = mission_order.available_next_state(accountant_user)
+        expect(next_state).to eq(:pay_by_holding_treasury)
+      end
+    end
+
+    it 'returns an "" for unsupported states' do
+      next_state = mission_order.available_next_state(user)
+      expect(next_state).to be_empty
     end
   end
 end

@@ -15,7 +15,7 @@
               </div>
               <div class="flex min-w-0 flex-1 justify-between space-x-4 pt-1.5">
                 <div>
-                  <p class="text-sm text-gray-500"><%= t("views.expenses.feeds.#{aasm_log.to_state}") %> <span class="font-medium text-gray-900"><%= aasm_log.actor.full_name %></span></p>
+                  <p class="text-sm text-gray-500"><%= t("views.shared.feeds.#{aasm_log.to_state}") %> <span class="font-medium text-gray-900"><%= aasm_log.actor.full_name %></span></p>
                 </div>
                 <div class="whitespace-nowrap text-right text-sm text-gray-500">
                   <p><%= time_ago_in_words(aasm_log.created_at) %></p>

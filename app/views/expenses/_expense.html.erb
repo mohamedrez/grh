@@ -15,7 +15,7 @@
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= Expense.human_enum_name(:category, expense.category) %></td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= expense.date %></td>
   <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= truncate(expense.description, length: 40) %></td>
-  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= t("views.expenses.labels.#{expense.aasm_state}") %></td>
+  <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500"><%= t("views.shared.labels.#{expense.aasm_state}") %></td>
   <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
     <%= link_to user_expense_path(expense.user, expense), data: { turbo_frame: "_top" } do %>
       <svg class="inline-block w-6 h-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">

@@ -10,7 +10,7 @@
           <% if available_next_states.present? %>
             <%= form_tag(user_update_aasm_state_expense_path(@user, @expense), method: :patch) do %>
               <div class="flex items-center">
-                <%= select_tag :next_state, options_for_select(available_next_states.map { |state| [t("views.expenses.actions.#{state}"), state] }), class: "rounded-md text-base font-medium shadow-sm inline-block mr-4" %>
+                <%= select_tag :next_state, options_for_select(available_next_states.map { |state| [t("views.shared.actions.#{state}"), state] }), class: "rounded-md text-base font-medium shadow-sm inline-block mr-4" %>
                 <%= submit_tag t("buttons.submit"), class: "rounded-md text-base font-medium shadow-sm px-4 py-2" %>
               </div>
             <% end %>
@@ -19,7 +19,7 @@
               <svg class="mr-1.5 h-2 w-2" fill="currentColor" viewBox="0 0 8 8">
                 <circle cx="4" cy="4" r="3" />
               </svg>
-              <%= t("views.expenses.labels.#{@expense.aasm_state}") %>
+              <%= t("views.shared.labels.#{@expense.aasm_state}") %>
             </span>
           <% end %>
         </div>
@@ -27,7 +27,7 @@
     </div>
 
     <div class="mt-8 flex flex-col gap-x-8 gap-y-20 lg:flex-row">
-      <%= render partial: "left_side", locals: {expense: @expense, user_request: @user_request, aasm_logs: @aasm_logs} %>
+      <%= render partial: "shared/request_left_side", locals: {user_request: @user_request, aasm_logs: @aasm_logs} %>
 
       <div class="w-full overflow-hidden bg-white shadow sm:rounded-lg">
         <%= render partial: "expense_attributes", locals: {expense: @expense, user: @user} %>

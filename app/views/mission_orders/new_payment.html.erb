@@ -15,14 +15,10 @@
       <%= t("buttons.cancel") %>
     </a>
 
-    <% if @mission_order.site? && @mission_order.may_pay_mission_order_by_accountant? %>
-      <%= form.hidden_field :aasm_state, value: "paid_by_accountant" %>
-      <%= form.submit t("views.mission_orders.pay_by_accountant") %>
-    <% end %>
-
-    <% if @mission_order.project? && @mission_order.may_pay_mission_order_by_holding_treasury? %>
-      <%= form.hidden_field :aasm_state, value: "paid_by_holding_treasury" %>
-      <%= form.submit t("views.mission_orders.pay_by_holding_treasury") %>
+    <% available_next_state = @mission_order.available_next_state(current_user) %>
+    <% if available_next_state %>
+      <%= form.hidden_field :next_state, value: available_next_state %>
+      <%= form.submit t("views.shared.actions.#{available_next_state}") %>
     <% end %>
   </div>
   <% end %>

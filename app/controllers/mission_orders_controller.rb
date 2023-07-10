@@ -79,17 +79,10 @@ class MissionOrdersController < ApplicationController
   end
 
   def update_aasm_state
-    aasm_state = params[:aasm_state]
+    next_state = params[:next_state]
     @mission_order.actor_id = current_user.id
 
-    case aasm_state
-    when "validated_by_manager"
-      @mission_order.validate_mission_order_by_manager!
-    when "validated_by_hr"
-      @mission_order.validate_mission_order_by_hr!
-    when "rejected"
-      @mission_order.reject_mission_order!
-    end
+    @mission_order.send("#{next_state}!")
 
     redirect_to user_mission_order_path(@user, @mission_order)
   end
@@ -98,21 +91,13 @@ class MissionOrdersController < ApplicationController
   end
 
   def make_payment
-    @user = User.find(params[:user_id])
-    @mission_order = MissionOrder.find(params[:id])
-
-    aasm_state = params[:mission_order][:aasm_state]
+    next_state = params[:mission_order][:next_state]
     payment_type = params[:mission_order][:payment_type]
 
     @mission_order.actor_id = current_user.id
     @mission_order.payment_type = payment_type
 
-    case aasm_state
-    when "paid_by_accountant"
-      @mission_order.pay_mission_order_by_accountant!
-    when "paid_by_holding_treasury"
-      @mission_order.pay_mission_order_by_holding_treasury!
-    end
+    @mission_order.send("#{next_state}!")
 
     @user_request = @mission_order.user_request
     @aasm_logs = AasmLog.where(aasm_logable: @mission_order)
