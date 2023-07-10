@@ -29,7 +29,7 @@ class TimeRequest < ApplicationRecord
     when "vacation_time"
       "#333D51"
     when "sick_time"
-      "#CBD0D8"
+      "#7d7f82"
     when "personal_time"
       "#F4F3EA"
     when "bereavement_time"

@@ -21,7 +21,8 @@ class EventsController < ApplicationController
         type: time_request.category.humanize,
         start: time_request.start_date,
         end: time_request.end_date,
-        avatar: time_request.user.avatar_url_or_default
+        avatar: time_request.user.avatar_url_or_default,
+        color: time_request.color
       }
     end
   end
@@ -32,7 +33,8 @@ class EventsController < ApplicationController
         id: holiday.id,
         title: holiday.name,
         start: holiday.start_date,
-        end: holiday.end_date
+        end: holiday.end_date,
+        color: "#D3AC2B"
       }
     end
   end
