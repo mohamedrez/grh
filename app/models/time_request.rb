@@ -9,6 +9,7 @@ class TimeRequest < ApplicationRecord
   validates_comparison_of :end_date, greater_than_or_equal_to: :start_date
   validates :start_date, :end_date, :category, presence: true
   validates :category, exclusion: {in: ["none"], message: I18n.t("errors.not_allowing_none")}
+  validate :validate_time_request
 
   delegate :user, to: :user_request
 
@@ -36,6 +37,18 @@ class TimeRequest < ApplicationRecord
       "#354649"
     when "parental_leave"
       "#6C7A89"
+    end
+  end
+
+  private
+
+  def validate_time_request
+    return unless end_date && start_date && user_request && user_request.pto_number
+
+    days_requested = (end_date - start_date).to_i
+
+    if days_requested > user_request.pto_number
+      errors.add(:end_date, "You shouldn't exceed the number of days off")
     end
   end
 end
