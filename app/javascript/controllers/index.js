@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import AttachmentController from "./attachment_controller"
+application.register("attachment", AttachmentController)
+
 import AvatarMenuController from "./avatar_menu_controller"
 application.register("avatar-menu", AvatarMenuController)
 
