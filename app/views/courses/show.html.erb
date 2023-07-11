@@ -1,0 +1,27 @@
+<div class="px-4 sm:px-6 lg:px-8">
+  <div class="px-2 sm:px-3 lg:px-0 mt-1">
+    <div class="sm:flex sm:items-center py-5">
+      <div class="sm:flex-auto">
+        <h1><%= t("views.courses.view_course") %></h1>
+      </div>
+      <div class="sm:w-fit px-4">
+        <%= button_to t("views.courses.edit_course"), edit_course_path(@course), :method => :get, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:text-white hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      </div>
+      <div class="sm:w-fit px-4">
+        <%= link_to t("views.courses.delete_course"), @course, data: {"turbo_method": :delete, "turbo_confirm": "Are you sure?"}, class: "inline-flex items-center px-6 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-rose-800 hover:text-white hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" %>
+      </div>
+    </div>
+    <div class="border-t border-gray-100">
+      <dl class="divide-y divide-gray-100">
+        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.course.course_title") %></dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @course.title %></dd>
+        </div>
+        <div class="px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-0">
+          <dt class="text-sm font-medium leading-6 text-gray-900"><%= t("attributes.course.description_view") %></dt>
+          <dd class="mt-1 text-sm leading-6 text-gray-700 sm:col-span-2 sm:mt-0"><%= @course.description %></dd>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>

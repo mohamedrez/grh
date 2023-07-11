@@ -25,6 +25,7 @@ Rails.application.routes.draw do
     resources :holidays
     resources :performance, only: :index
     resources :goals, except: :destroy
+    resources :courses
     patch "/goals/:id/archive", to: "goals#archive", as: "archive_goal"
     patch "/goals/:id/end_goal", to: "goals#end_goal", as: "end_goal"
     get "objectives", to: "goals#objectives"
