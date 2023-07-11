@@ -47,7 +47,11 @@
                       </div>
                     </td>
                     <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500"><%= job.location %></td>
-                    <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500"><%= Job.human_enum_name(:status, job.status) %></td>
+                    <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500 items-center">
+                    <div class= "badge <%= job.status %>">
+                      <%= Job.human_enum_name(:status, job.status) %>
+                    </div>
+                    </td>
                     <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500"><%= job.min_salary %></td>
                     <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500"><%= job.max_salary %></td>
                     <td class="whitespace-nowrap text-center px-3 py-5 text-sm text-gray-500"><%= job.job_applications.count %></td>
