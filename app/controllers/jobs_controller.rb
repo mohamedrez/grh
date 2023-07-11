@@ -1,4 +1,6 @@
 class JobsController < ApplicationController
+  layout :determine_layout
+  skip_before_action :authenticate_user!, only: %i[index show]
   before_action :set_job, only: %i[show edit update destroy]
   before_action :set_breadcrumbs, only: %i[index show]
 
@@ -68,5 +70,13 @@ class JobsController < ApplicationController
 
   def set_job
     @job = Job.find(params[:id])
+  end
+
+  def determine_layout
+    if user_signed_in?
+      "application"
+    else
+      "custom_layout"
+    end
   end
 end

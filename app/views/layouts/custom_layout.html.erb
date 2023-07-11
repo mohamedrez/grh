@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Custom Layout</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <script src="https://kit.fontawesome.com/6526cfd35e.js" crossorigin="anonymous"></script>
+</head>
+<body data-controller="right" class="h-full">
+  <div class="container mx-auto px-6">
+    <div class="flex justify-center flex-col">
+      <%= yield %>
+    </div>
+  </div>
+</body>
+</html>
