@@ -1,4 +1,6 @@
 class JobApplicationsController < ApplicationController
+  before_action :layout_handler
+  skip_before_action :authenticate_user!, only: %i[new create]
   before_action :set_job_application, only: %i[infos show edit update destroy delete_resume update_aasm_state]
   before_action :set_breadcrumbs, only: %i[index show]
   before_action :set_job, only: %i[show new edit]
@@ -42,7 +44,11 @@ class JobApplicationsController < ApplicationController
     if @job_application.save
       flash.now[:notice] = t("flash.successfully_created")
       if params[:job_id].present?
-        redirect_to job_job_applications_path(params[:job_id])
+        if user_signed_in?
+          redirect_to job_job_applications_path(params[:job_id])
+        else
+          redirect_to jobs_path
+        end
       else
         redirect_to job_applications_path
       end
@@ -55,7 +61,6 @@ class JobApplicationsController < ApplicationController
     if @job_application.update(job_application_params)
       flash.now[:notice] = t("flash.successfully_updated")
       if params[:job_id].present?
-        redirect_to job_job_applications_path(params[:job_id])
       else
         redirect_to job_applications_path
       end
@@ -112,6 +117,14 @@ class JobApplicationsController < ApplicationController
 
   private
 
+  def layout_handler
+    if user_signed_in?
+      self.class.layout nil
+    else
+      self.class.layout "custom_layout", only: %i[new create]
+    end
+  end
+
   def set_job
     @job_id = params[:job_id]
   end
@@ -122,7 +135,7 @@ class JobApplicationsController < ApplicationController
 
   def set_breadcrumbs
     if params[:job_id]
-      add_breadcrumb("Job", jobs_path)
+      add_breadcrumb(t("attributes.job.jobs"), jobs_path)
       add_breadcrumb(Job.find(params[:job_id]).title, job_path(params[:job_id]))
       add_breadcrumb(t("views.job_applications.title_job_applications"), job_job_applications_path(params[:job_id]))
     else
