@@ -11,7 +11,7 @@ RSpec.describe TimeRequest, type: :model do
       expect(request.color).to eq("#333D51")
 
       request = TimeRequest.new(category: :sick_time)
-      expect(request.color).to eq("#CBD0D8")
+      expect(request.color).to eq("#7d7f82")
 
       request = TimeRequest.new(category: :personal_time)
       expect(request.color).to eq("#F4F3EA")

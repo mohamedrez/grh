@@ -1,13 +1,10 @@
 class EventsController < ApplicationController
   def index
     @events = []
-    @events += holidays
-    @events += time_requests
+    @events += time_requests + holidays
 
     render json: @events
   end
-
-  private
 
   def time_requests
     @time_requests ||= TimeRequest.all.includes(:user_request).includes(user_request: :user)
@@ -21,6 +18,7 @@ class EventsController < ApplicationController
       {
         id: time_request.id,
         title: time_request.user.full_name,
+        type: time_request.category.humanize,
         start: time_request.start_date,
         end: time_request.end_date,
         avatar: time_request.user.avatar_url_or_default,
@@ -30,8 +28,7 @@ class EventsController < ApplicationController
   end
 
   def holidays
-    @holidays ||= Holiday.all
-    @holidays.map do |holiday|
+    Holiday.all.map do |holiday|
       {
         id: holiday.id,
         title: holiday.name,
