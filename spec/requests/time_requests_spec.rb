@@ -90,6 +90,8 @@ RSpec.describe "/time_requests", type: :request do
         expect(response.body).to include("turbo-stream")
         expect(response.body).to include("append")
         expect(response.body).to include("time-request-list")
+        expect(response.body).to include("append")
+        expect(response.body).to include("days_per_year")
       end
     end
 
@@ -131,6 +133,7 @@ RSpec.describe "/time_requests", type: :request do
         expect(response).to have_http_status(:success)
         expect(response.body).to include("turbo-stream")
         expect(response.body).to include("replace")
+        expect(response.body).to include("days_per_year")
       end
     end
 
@@ -152,6 +155,12 @@ RSpec.describe "/time_requests", type: :request do
     end
     it 'sets the flash notice' do
       expect(flash[:notice]).to eq(I18n.t("flash.successfully_destroyed"))
+    end
+    it "renders the Turbo Stream response" do
+      expect(response).to have_http_status(:success)
+      expect(response.body).to include("turbo-stream")
+      expect(response.body).to include("replace")
+      expect(response.body).to include("days_per_year")
     end
   end
 end

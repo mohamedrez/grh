@@ -54,4 +54,28 @@ RSpec.describe TimeRequest, type: :model do
       end
     end
   end
+
+  context "when there are time requests and holidays" do
+    let(:year) { Time.current.year }
+    let(:start_date) { Date.new(year, 1, 1) }
+    let(:end_date) { Date.new(year, 12, 31) }
+
+    it "returns the correct number of days taken per year" do
+      time_request1 = double("TimeRequest", start_date: start_date, end_date: Date.new(year, 2, 1))
+      time_request2 = double("TimeRequest", start_date: Date.new(year, 3, 1), end_date: end_date)
+      time_requests = [time_request1, time_request2]
+
+      holiday1 = double("Holiday", start_date: Date.new(year, 1, 5), end_date: Date.new(year, 1, 10))
+      holiday2 = double("Holiday", start_date: Date.new(year, 2, 1), end_date: Date.new(year, 2, 5))
+      holidays = [holiday1, holiday2]
+
+      allow(TimeRequest).to receive(:joins).and_return(TimeRequest)
+      allow(TimeRequest).to receive(:where).and_return(time_requests)
+      allow(Holiday).to receive(:where).and_return(holidays)
+
+      result_hash = TimeRequest.number_of_days_taken_per_year(user.id)
+
+      expect(result_hash).to eq({ year-1 => 327,year => 327 })
+    end
+  end
 end
