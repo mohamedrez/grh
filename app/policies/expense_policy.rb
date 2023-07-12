@@ -10,11 +10,11 @@ class ExpensePolicy < ApplicationPolicy
   end
 
   def validate_by_hr?
-    user.has_role?(:hr)
+    user.has_any_role?([:hr, :hr_site_manager])
   end
 
   def pay?
-    user.has_role?(:accountant)
+    user.has_any_role?([:accountant, :accountant_site_manager])
   end
 
   def back_to_modify?

@@ -36,6 +36,8 @@ class CommentSubscriber
       URL_HELPERS.user_expense_url(user_id: comment.commentable.user.id, id: comment.commentable.requestable_id)
     when "TimeRequest"
       URL_HELPERS.user_time_request_url(user_id: comment.commentable.user.id, id: comment.commentable.requestable_id)
+    when "MissionOrder"
+      URL_HELPERS.user_mission_order_url(user_id: comment.commentable.user.id, id: comment.commentable.requestable_id)
     end
   end
 

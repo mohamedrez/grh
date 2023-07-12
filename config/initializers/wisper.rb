@@ -5,6 +5,6 @@ Rails.application.reloader.to_prepare do
   Wisper.clear if Rails.env.development? || Rails.env.test?
 
   # https://niallburkley.com/blog/ruby-publish-subscribe/
-  UserRequest.subscribe(UserRequestSubscriber)
+  Wisper.subscribe(UserRequestSubscriber.new)
   Comment.subscribe(CommentSubscriber)
 end

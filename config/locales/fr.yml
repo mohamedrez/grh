@@ -249,6 +249,7 @@ fr:
         manager: "Gestionnaire"
         hr_site_manager: "Responsable RH du site"
         accountant_site_manager: "Responsable comptable du site"
+        holding_treasury_manager: "Responsable du trésorerie de la holding"
     section:
       description: "Description"
       section_type: "Type de section"
@@ -493,6 +494,10 @@ fr:
       request: "Demande"
       time_off_request: "Demande de congé"
       mission_order: "Ordre de mission"
+      requestable:
+        TimeRequest: "Demande de congé"
+        MissionOrder: "Ordre de mission"
+        Expense: "Note de frais"
     users:
       personal_details_section: "Détails personnels"
       list_personal_details: "Liste des détails personnels vous concernant."
@@ -589,6 +594,18 @@ fr:
     goal_successfully_ended: objectif terminé avec succès
     successfully_archived: "Archivé avec succès"
     payment_was_successful: "Le paiement a été effectué avec succès !"
+  mailing:
+    title:
+      request_updated: "Votre demande a été mise à jour"
+      new_request: "Vous avez une nouvelle demande"
+      request_to_review: "Demande à examiner"
+    link_text:
+      see_request: "Voir la demande"
+      review_request: "Examiner la demande"
+    description:
+      state_been_updated: "L'état de votre demande de type %{type} a été mis à jour."
+      employee_submitted_new_request: "L'employé %{username} vient de soumettre une nouvelle demande de type %{type}"
+      request_requires_review: "Une demande de type %{type} par %{username} nécessite une révision."
   errors:
     comment_cant_be_blank: "Commentaire ne peut pas être vide."
     prohibited: "ont empêché(e)s son enregistrement :"

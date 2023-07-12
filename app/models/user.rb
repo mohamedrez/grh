@@ -30,7 +30,6 @@ class User < ApplicationRecord
   has_rich_text :about
 
   # has_many :job_applications, dependent: :destroy
-  has_many :notifications, as: :recipient, dependent: :destroy
   has_many :experiences, dependent: :destroy
   has_many :educations, dependent: :destroy
   has_many :user_requests, dependent: :destroy
