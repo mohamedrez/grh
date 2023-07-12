@@ -372,6 +372,10 @@ en:
       recent_hires: "Recent Hires"
       announcements_title: "Announcements"
       announcements_button: "View All Announcement"
+      tasks:
+        task: "Tasks"
+        let_do_it: "Let's do it"
+        status: "Status"
     educations:
       add_education: "Add new education"
     expenses:

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_05_145130) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_10_144103) do
   create_table "aasm_logs", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "actor_id", null: false
     t.string "from_state"
@@ -343,11 +343,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_145130) do
     t.integer "status"
     t.string "link"
     t.integer "priority"
-    t.bigint "tasks_id", null: false
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["tasks_id"], name: "index_tasks_on_tasks_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
@@ -460,7 +458,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_05_145130) do
   add_foreign_key "roles", "users"
   add_foreign_key "sections", "reviews"
   add_foreign_key "single_select_responses", "options"
-  add_foreign_key "tasks", "tasks", column: "tasks_id"
   add_foreign_key "tasks", "users"
   add_foreign_key "user_answers", "reviews"
   add_foreign_key "user_answers", "users"
