@@ -249,6 +249,7 @@ en:
         manager: "Manager"
         hr_site_manager: "HR Site Manager"
         accountant_site_manager: "Accountant Site Manager"
+        holding_treasury_manager: "Holding Treasury Manager"
     section:
       description: "Description"
       section_type: "Section type"
@@ -493,6 +494,10 @@ en:
       request: "Request"
       time_off_request: "Time Off Request"
       mission_order: "Mission Order"
+      requestable:
+        TimeRequest: "Time off request"
+        MissionOrder: "Mission Order"
+        Expense: "Expense"
     users:
       personal_details_section: "Personal details"
       list_personal_details: "List of personal details about you."
@@ -551,7 +556,6 @@ en:
       user_overview:
         welcome: "Welcome back,"
         edit_profile: "Edit profile"
-        time_off_days: "Time off days left"
       feeds:
         created: "Created By"
         validated_by_manager: "Validated by manager"
@@ -590,6 +594,18 @@ en:
     goal_successfully_ended: "Goal successfully ended"
     successfully_archived: "Successfully archived"
     payment_was_successful: "Payment was successful!"
+  mailing:
+    title:
+      request_updated: "Your request has just been updated"
+      new_request: "You have a new request"
+      request_to_review: "Request to review"
+    link_text:
+      see_request: "See request"
+      review_request: "Review Request"
+    description:
+      state_been_updated: "The state of your request of type %{type} has been updated."
+      employee_submitted_new_request: "Employee %{username} just submitted a new request of type %{type}"
+      request_requires_review: "A request of type %{type} by %{username} requires review."
   errors:
     comment_cant_be_blank: "Comment can't be blank"
     prohibited: "prohibited it from being saved:"

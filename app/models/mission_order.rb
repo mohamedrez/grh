@@ -1,5 +1,6 @@
 class MissionOrder < ApplicationRecord
   include AASM
+  include Wisper::Publisher
 
   after_create :create_mission_order_trigger_actions
 
@@ -84,50 +85,47 @@ class MissionOrder < ApplicationRecord
 
   def create_mission_order_trigger_actions
     create_user_request
-    notify_manager
     AasmLog.create(aasm_logable: self, actor_id: user.id, to_state: "created")
   end
 
   def validate_by_manager_trigger_actions
-    notify_hr
+    notify_hr_site_manager
+    notify_owner
   end
 
   def validate_by_hr_trigger_actions
     if site?
-      notify_accountant
+      notify_accountant_site_manager
     elsif project?
-      notify_holding_treasury
+      notify_holding_treasury_manager
     end
+    notify_owner
   end
 
   def pay_trigger_actions
-    notify_member
+    notify_owner
   end
 
   def reject_trigger_actions
-    notify_member
+    notify_owner
   end
 
   # Notifying
 
-  def notify_manager
-    # TODO not yet implmented
+  def notify_hr_site_manager
+    broadcast(:notify_hr_site_manager, user_request)
   end
 
-  def notify_hr
-    # TODO not yet implmented
+  def notify_accountant_site_manager
+    broadcast(:notify_accountant_site_manager, user_request)
   end
 
-  def notify_accountant
-    # TODO not yet implmented
+  def notify_holding_treasury_manager
+    broadcast(:notify_holding_treasury_manager, user_request)
   end
 
-  def notify_holding_treasury
-    # TODO not yet implmented
-  end
-
-  def notify_member
-    # TODO not yet implmented
+  def notify_owner
+    broadcast(:notify_owner, user_request)
   end
 
   private
