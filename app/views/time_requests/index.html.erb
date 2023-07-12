@@ -5,6 +5,7 @@
       <div class="sm:flex-auto">
         <h1><%= t("views.time_requests.title_time_request") %></h1>
       </div>
+      <%= render partial: "days_per_year", locals: {user_id: current_user.id} %>
       <% if @user %>
         <div class="mt-4 sm:ml-16 sm:mt-0 sm:flex-none">
           <%= link_to t("views.time_requests.create_time_request"), new_user_time_request_path(@user.id), class: "block rounded-md bg-indigo-600 px-3 py-2 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 hover:text-white focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", data: { turbo_frame: "right_content", action: "right#show" } %>

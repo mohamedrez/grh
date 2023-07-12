@@ -42,6 +42,7 @@ class TimeRequestsController < ApplicationController
       flash.now[:notice] = t("flash.successfully_created")
       render turbo_stream: [
         turbo_stream.append("time-request-list", @time_request),
+        turbo_stream.replace("days_per_year", partial: "time_requests/days_per_year", locals: {user_id: current_user.id}),
         turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
@@ -57,6 +58,7 @@ class TimeRequestsController < ApplicationController
       flash.now[:notice] = t("flash.successfully_updated")
       render turbo_stream: [
         turbo_stream.replace(@time_request, @time_request),
+        turbo_stream.replace("days_per_year", partial: "time_requests/days_per_year", locals: {user_id: current_user.id}),
         turbo_stream.replace("right", partial: "shared/right"),
         turbo_stream.replace("notification_alert", partial: "layouts/alert")
       ]
@@ -70,6 +72,7 @@ class TimeRequestsController < ApplicationController
     flash.now[:notice] = t("flash.successfully_destroyed")
     render turbo_stream: [
       turbo_stream.remove(@time_request),
+      turbo_stream.replace("days_per_year", partial: "time_requests/days_per_year", locals: {user_id: current_user.id}),
       turbo_stream.replace("notification_alert", partial: "layouts/alert")
     ]
   end

@@ -38,4 +38,27 @@ class TimeRequest < ApplicationRecord
       "#6C7A89"
     end
   end
+
+  def self.number_of_days_taken_per_year(user_id)
+    result_hash = {}
+
+    (Time.current.end_of_year.year - 1..Time.current.end_of_year.year).each do |year|
+      year_time_requests = TimeRequest.joins(:user_request).where(user_requests: {user_id: user_id}, start_date: Date.new(year, 1, 1)..Date.new(year, 12, 31))
+      year_holidays = Holiday.where("start_date <= ? AND end_date >= ?", Date.new(year, 12, 31), Date.new(year, 1, 1))
+
+      time_requests_days = 0
+      year_time_requests.each do |year_time_request|
+        time_requests_days += ((year_time_request.end_date - year_time_request.start_date) + 1).to_i
+      end
+
+      holidays_days = 0
+      year_holidays.each do |year_holiday|
+        holidays_days += ((year_holiday.end_date - year_holiday.start_date) + 1).to_i
+      end
+
+      result_hash[year] = time_requests_days - holidays_days
+    end
+
+    result_hash
+  end
 end
