@@ -368,6 +368,10 @@ fr:
       recent_hires: "Recrutements récents"
       announcements_title: "Annonces"
       announcements_button: "Voir toutes les annonces"
+      tasks:
+        task: "Tâches"
+        let_do_it: "Faisons-le"
+        status: "Status"
     educations:
       add_education: "Ajouter une nouvelle formation"
       edit_education: "Modifier l'éducation"

@@ -1,0 +1,29 @@
+<div class="flex items-center">
+  <h1 class="text-3xl font-bold mb-8 mr-auto"><%= t("views.dashboard.tasks.task")%></h1>
+  <%= form_tag root_path, method: :get, class: 'flex items-center' do %>
+  <%= label_tag "status", t("views.dashboard.tasks.Status"), class: 'mr-4' %>
+  <%= select_tag 'status', options_for_select(Task.statuses.map { |status, _value| [t("attributes.enum.tasks.status.#{status}"), status] }, params[:status]), include_blank: t("views.dashboard.tasks.All"), onchange: 'this.form.submit();', class: 'mr-4' %>
+<% end %>
+</div>
+
+  <% @tasks.each do |task| %>
+    <% if params[:status].blank? || task.status == params[:status] %>
+      <div class="border rounded-lg shadow-sm p-6 mb-8 relative">
+        <div class="flex justify-between items-center mb-4">
+          <h2 class="text-lg font-bold mb-2 "><%= task.title %></h2>
+          <div>
+            <span class="text-blue-500 font-bold text-sm p-3"><%= task.status %></span>
+            <span class="text-gray-500 text-sm"><%= task.due_date %></span>
+          </div>
+        </div>
+        <div class="absolute bottom-0">
+          <p class="text-center">
+            <a href="<%= task.link %>" class="text-blue-500 font-bold hover:text-blue-700 transition-colors duration-300">
+              <%= t("views.dashboard.tasks.let_do_it") %>
+            </a>
+          </p>
+        </div>
+        <p class="text-center text-gray-800 mb-6"><%= task.description %></p>
+      </div>
+    <% end %>
+  <% end %>
