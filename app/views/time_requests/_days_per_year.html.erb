@@ -1,0 +1,6 @@
+<div id="days_per_year">
+  <% number_of_days_taken_per_year = TimeRequest.number_of_days_taken_per_year(user_id) %>
+  <% number_of_days_taken_per_year.each do |year, days| %>
+    <%= "#{year}: #{days} days" %> <% if year != Time.current.end_of_year.year %> / <% end %>
+  <% end %>
+</div>
